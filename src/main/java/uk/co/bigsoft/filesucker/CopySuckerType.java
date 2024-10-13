@@ -1,9 +1,9 @@
 package uk.co.bigsoft.filesucker;
 
-public class CopySukaType extends SukaType
+public class CopySuckerType extends SuckerType
 {
 
-    CopySukaType(String f)
+    CopySuckerType(String f)
     {
         super(f);
     }

@@ -156,7 +156,7 @@ class MyTransferHandler extends TransferHandler
                 }
                 shouldRemove = false;
                 String str = (String) t.getTransferData(stringFlavor);
-                // str = TaskScreen.getSukaLable (str);
+                // str = TaskScreen.getSuckerLable (str);
                 tc.replaceSelection(str);
                 return true;
             }

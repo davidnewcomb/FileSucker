@@ -28,7 +28,7 @@ public class PrefixCopyButton extends JButton implements ActionListener
     public void actionPerformed(ActionEvent ae)
     {
         String s = Utility.getClipboard();
-        s = Utility.getSukaLable(s);
+        s = Utility.getSuckerLable(s);
         s = Utility.cleanString(s);
         prefix.replaceSelection(s + "_");
     }

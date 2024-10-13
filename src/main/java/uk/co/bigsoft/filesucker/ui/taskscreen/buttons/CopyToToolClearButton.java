@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.FileSukaFrame;
+import uk.co.bigsoft.filesucker.FileSuckerFrame;
 import uk.co.bigsoft.filesucker.ToolsScreen;
 
 public class CopyToToolClearButton extends JButton implements ActionListener
@@ -29,6 +29,6 @@ public class CopyToToolClearButton extends JButton implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         ToolsScreen.setConvertUrlText(url.getText());
-        FileSukaFrame.tabPane.setSelectedComponent(FileSucker.toolsScreen);
+        FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.toolsScreen);
     }
 }

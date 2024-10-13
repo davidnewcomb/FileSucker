@@ -401,7 +401,7 @@ public class Utility
         return;
     }
 
-    public static String getSukaLable(String sel)
+    public static String getSuckerLable(String sel)
     {
         StringBuffer sb = new StringBuffer();
 

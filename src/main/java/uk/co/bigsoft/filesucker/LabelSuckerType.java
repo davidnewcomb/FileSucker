@@ -1,9 +1,9 @@
 package uk.co.bigsoft.filesucker;
 
-public class LabelSukaType extends SukaType
+public class LabelSuckerType extends SuckerType
 {
 
-    LabelSukaType(String f)
+    LabelSuckerType(String f)
     {
         super(f);
     }

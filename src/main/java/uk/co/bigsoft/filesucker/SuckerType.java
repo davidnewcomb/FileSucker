@@ -2,7 +2,7 @@ package uk.co.bigsoft.filesucker;
 
 import java.util.StringTokenizer;
 
-public abstract class SukaType
+public abstract class SuckerType
 {
     String format;
 
@@ -10,7 +10,7 @@ public abstract class SukaType
 
     StringTokenizer formatTokens;
 
-    public SukaType(String f)
+    public SuckerType(String f)
     {
         if (f == null)
         {
@@ -42,7 +42,7 @@ public abstract class SukaType
         return format;
     }
 
-    public static SukaType getSukaType(String f)
+    public static SuckerType getSuckerType(String f)
     {
         if (f.length() == 0)
             return null;
@@ -53,19 +53,19 @@ public abstract class SukaType
             typeFormat = f.substring(2);
 
         if (f.charAt(0) == 'n')
-            return new NumberSukaType(typeFormat);
+            return new NumberSuckerType(typeFormat);
         if (f.charAt(0) == 't')
-            return new StringSukaType(typeFormat);
+            return new StringSuckerType(typeFormat);
         if (f.charAt(0) == 'l')
-            return new ListSukaType(typeFormat);
+            return new ListSuckerType(typeFormat);
         if (f.charAt(0) == 'c')
-            return new CopySukaType(typeFormat);
+            return new CopySuckerType(typeFormat);
         if (f.charAt(0) == 's')
-            return new StaticSukaType(typeFormat);
+            return new StaticSuckerType(typeFormat);
         if (f.charAt(0) == 'z')
-            return new CustomSukaType(typeFormat);
+            return new CustomSuckerType(typeFormat);
 
-        return new LabelSukaType(f);
+        return new LabelSuckerType(f);
     }
 
     public Integer getSaveBuffer()

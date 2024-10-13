@@ -1,10 +1,10 @@
 package uk.co.bigsoft.filesucker;
 
-public class StaticSukaType extends SukaType
+public class StaticSuckerType extends SuckerType
 {
     private int from = 1;
 
-    public StaticSukaType(String f)
+    public StaticSuckerType(String f)
     {
         super(f);
 

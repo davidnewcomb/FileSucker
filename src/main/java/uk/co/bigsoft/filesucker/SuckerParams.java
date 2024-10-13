@@ -2,7 +2,7 @@ package uk.co.bigsoft.filesucker;
 
 import java.util.Hashtable;
 
-public class SukaParams
+public class SuckerParams
 {
     private String name;
 
@@ -20,7 +20,7 @@ public class SukaParams
 
     private String orginalAddress;
 
-    public SukaParams(String name_, String orginalurl_, String intodir_,
+    public SuckerParams(String name_, String orginalurl_, String intodir_,
             String prefix_, String suffix_, Hashtable<String, String> headers_,
             boolean suffixend_, String orginalAddress_)
     {

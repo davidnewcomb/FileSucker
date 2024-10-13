@@ -89,15 +89,15 @@ public abstract class Looper extends JPanel // implements Iterator
         // char c = Character.toLowerCase (e.getKeyChar ());
         // switch (c)
         // {
-        // case 'c': FileSuka.taskScreen.copyB.actionPerformed ();
+        // case 'c': FileSucker.taskScreen.copyB.actionPerformed ();
         // break;
-        // case 'l': FileSuka.taskScreen.listB.actionPerformed ();
+        // case 'l': FileSucker.taskScreen.listB.actionPerformed ();
         // break;
-        // case 'n': FileSuka.taskScreen.numberB.actionPerformed ();
+        // case 'n': FileSucker.taskScreen.numberB.actionPerformed ();
         // break;
-        // case 's': FileSuka.taskScreen.staticB.actionPerformed ();
+        // case 's': FileSucker.taskScreen.staticB.actionPerformed ();
         // break;
-        // case 't': FileSuka.taskScreen.textB.actionPerformed ();
+        // case 't': FileSucker.taskScreen.textB.actionPerformed ();
         // break;
         // }
         //

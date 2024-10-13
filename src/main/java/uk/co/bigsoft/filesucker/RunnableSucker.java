@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RunnableSuka implements Runnable
+public class RunnableSucker implements Runnable
 {
     // private static int maxFollowDepth = 5 ; // TODO move to config
 
@@ -34,22 +34,22 @@ public class RunnableSuka implements Runnable
 
     private long expectedDownloadLoadsize = 0;
 
-    private SukaingFileJProgressBar transfer = null;
+    private SuckeringFileJProgressBar transfer = null;
 
     private long localFileLength = 0;
 
-    private SukaProgressPanel display = null;
+    private SuckerProgressPanel display = null;
 
     private FileOutputStream fos = null;
 
     private Socket socket = null;
 
-    private SukaThread completedNotifier;
+    private SuckerThread completedNotifier;
 
     // private int followDepth = 0;
 
-    public RunnableSuka(SukaProgressPanel _display, String _remotefile,
-            String _localfile, SukaThread done) throws MalformedURLException
+    public RunnableSucker(SuckerProgressPanel _display, String _remotefile,
+            String _localfile, SuckerThread done) throws MalformedURLException
     {
         completedNotifier = done;
         String parseLocalFile = "";
@@ -78,7 +78,7 @@ public class RunnableSuka implements Runnable
         }
 
         localFile = new File(parseLocalFile);
-        transfer = new SukaingFileJProgressBar(this);
+        transfer = new SuckeringFileJProgressBar(this);
         display = _display;
     }
 

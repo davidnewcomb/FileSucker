@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
-public class SukaProgressPanel extends JPanel
+public class SuckerProgressPanel extends JPanel
 {
     private static final int TRANSFER_ROW_HEIGHT = 20;
 
@@ -33,15 +33,15 @@ public class SukaProgressPanel extends JPanel
 
     private Box files;
 
-    protected SukaThread sukaThread;
+    protected SuckerThread suckerThread;
 
-    protected SukaParams parms;
+    protected SuckerParams parms;
 
-    SukaProgressPanel(SukaThread spt, SukaParams parm, int totalNoFiles)
+    SuckerProgressPanel(SuckerThread spt, SuckerParams parm, int totalNoFiles)
     {
         super();
 
-        sukaThread = spt;
+        suckerThread = spt;
         parms = parm;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(new LineBorder(Color.BLACK));
@@ -84,11 +84,11 @@ public class SukaProgressPanel extends JPanel
                                 @Override
                                 public void mousePressed(MouseEvent ee)
                                 {
-                                    SukaingFileJProgressBar[] cs = getFiles();
+                                    SuckeringFileJProgressBar[] cs = getFiles();
                                     for (int i = 0 ; i < cs.length ; ++i)
                                     {
-                                        SukaingFileJProgressBar s = cs[i];
-                                        RunnableSuka rs = s.getDownloadInfo();
+                                        SuckeringFileJProgressBar s = cs[i];
+                                        RunnableSucker rs = s.getDownloadInfo();
                                         rs.pauseThread();
                                     }
                                 }
@@ -101,11 +101,11 @@ public class SukaProgressPanel extends JPanel
                                 @Override
                                 public void mousePressed(MouseEvent ee)
                                 {
-                                    SukaingFileJProgressBar[] cs = getFiles();
+                                    SuckeringFileJProgressBar[] cs = getFiles();
                                     for (int i = 0 ; i < cs.length ; ++i)
                                     {
-                                        SukaingFileJProgressBar s = cs[i];
-                                        RunnableSuka rs = s.getDownloadInfo();
+                                        SuckeringFileJProgressBar s = cs[i];
+                                        RunnableSucker rs = s.getDownloadInfo();
                                         rs.resumeThread();
                                     }
                                 }
@@ -118,15 +118,15 @@ public class SukaProgressPanel extends JPanel
                                 @Override
                                 public void mousePressed(MouseEvent ee)
                                 {
-                                    sukaThread.cancelThread();
-                                    SukaingFileJProgressBar[] cs = getFiles();
+                                    suckerThread.cancelThread();
+                                    SuckeringFileJProgressBar[] cs = getFiles();
                                     // while
                                     // (true)
                                     // {
                                     for (int i = 0 ; i < cs.length ; ++i)
                                     {
-                                        SukaingFileJProgressBar s = cs[i];
-                                        RunnableSuka rs = s.getDownloadInfo();
+                                        SuckeringFileJProgressBar s = cs[i];
+                                        RunnableSucker rs = s.getDownloadInfo();
                                         rs.cancelThread();
                                     }
                                     cs = getFiles();
@@ -166,8 +166,7 @@ public class SukaProgressPanel extends JPanel
                                 {
                                     TaskScreen.setErrorMessage("Save: ");
                                     TaskScreenParams.save(parms);
-                                    // sukaThread.save
-                                    // ();
+                                    // suckerThread.save();
                                 }
                             });
                         popUpMenu.add(t);
@@ -220,10 +219,10 @@ public class SukaProgressPanel extends JPanel
         revalidate();
     }
 
-    protected SukaingFileJProgressBar[] getFiles()
+    protected SuckeringFileJProgressBar[] getFiles()
     {
         Component[] cs = null;
-        ArrayList<SukaingFileJProgressBar> al = new ArrayList<SukaingFileJProgressBar>();
+        ArrayList<SuckeringFileJProgressBar> al = new ArrayList<SuckeringFileJProgressBar>();
 
         try
         {
@@ -233,11 +232,11 @@ public class SukaProgressPanel extends JPanel
                 if (cs[i] == null)
                     continue;
 
-                if (cs[i] instanceof SukaingFileJProgressBar)
-                    al.add((SukaingFileJProgressBar) cs[i]);
+                if (cs[i] instanceof SuckeringFileJProgressBar)
+                    al.add((SuckeringFileJProgressBar) cs[i]);
             }
-            SukaingFileJProgressBar[] r = al
-                    .toArray(new SukaingFileJProgressBar[0]);
+            SuckeringFileJProgressBar[] r = al
+                    .toArray(new SuckeringFileJProgressBar[0]);
             return r;
         }
         catch (Exception e)

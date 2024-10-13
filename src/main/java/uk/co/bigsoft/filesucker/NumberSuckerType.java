@@ -1,13 +1,13 @@
 package uk.co.bigsoft.filesucker;
 
-public class NumberSukaType extends SukaType // implements Iterator
+public class NumberSuckerType extends SuckerType // implements Iterator
 {
     /*
      * {n,from,to,npad} {n,buffer,from,to,npad}
      */
     private int from, to, pad;
 
-    NumberSukaType(String f)
+    NumberSuckerType(String f)
     {
         super(f);
 

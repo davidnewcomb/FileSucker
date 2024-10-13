@@ -8,9 +8,9 @@ public class UrlSequencer
 {
     private String orginalString;
 
-    private ArrayList<SukaType> urlChunks = new ArrayList<SukaType>();
+    private ArrayList<SuckerType> urlChunks = new ArrayList<SuckerType>();
 
-    private HashMap<Integer, SukaType> lineParms = new HashMap<Integer, SukaType>();
+    private HashMap<Integer, SuckerType> lineParms = new HashMap<Integer, SuckerType>();
 
     private int totalFilesToGet = 1;
 
@@ -24,9 +24,9 @@ public class UrlSequencer
     {
         orginalString = s;
 
-        urlChunks = new ArrayList<SukaType>();
+        urlChunks = new ArrayList<SuckerType>();
         StringBuffer tok = new StringBuffer();
-        SukaType stype;
+        SuckerType stype;
         boolean inBrackets = false;
 
         for (int i = 0 ; i < orginalString.length() ; i++)
@@ -34,7 +34,7 @@ public class UrlSequencer
             if (orginalString.charAt(i) == '{'
                     || orginalString.charAt(i) == '}')
             {
-                stype = getSukaType(inBrackets, tok.toString());
+                stype = getSuckerType(inBrackets, tok.toString());
                 if (orginalString.charAt(i) == '{')
                     inBrackets = true;
                 else
@@ -44,7 +44,7 @@ public class UrlSequencer
                     continue;
 
                 Integer saveB = stype.getSaveBuffer();
-                if (!(stype instanceof CopySukaType))
+                if (!(stype instanceof CopySuckerType))
                 {
                     if (saveB != null && saveB.intValue() != 0)
                     {
@@ -62,18 +62,18 @@ public class UrlSequencer
 
         if (tok.toString().length() > 0)
         {
-            stype = getSukaType(inBrackets, tok.toString());
+            stype = getSuckerType(inBrackets, tok.toString());
             urlChunks.add(stype);
         }
     }
 
-    private SukaType getSukaType(boolean inBrackets, String tok)
+    private SuckerType getSuckerType(boolean inBrackets, String tok)
     {
         if (inBrackets)
-            return SukaType.getSukaType(tok.toString());
+            return SuckerType.getSuckerType(tok.toString());
         if ("".equals(tok))
             return null;
-        return new LabelSukaType(tok.toString());
+        return new LabelSuckerType(tok.toString());
     }
 
     public Iterator<UrlSequenceIteration> iterator()

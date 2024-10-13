@@ -13,7 +13,7 @@ public class ConfigData extends Properties
 {
     private static final String listSeperator = "�"; //$NON-NLS-1$
 
-    private final String CONFIG_FILE = "FileSuka.cfg.txt"; //$NON-NLS-1$
+    private final String CONFIG_FILE = "FileSucker.cfg.txt"; //$NON-NLS-1$
 
     private final String LAB_BASE = "base"; //$NON-NLS-1$
 
@@ -266,7 +266,7 @@ public class ConfigData extends Properties
     void save()
     {
         StringBuffer header = new StringBuffer();
-        header.append("FileSuka ");
+        header.append("FileSucker ");
         header.append(FileSucker.version);
         header.append(" (");
         header.append(FileSucker.versionDate);

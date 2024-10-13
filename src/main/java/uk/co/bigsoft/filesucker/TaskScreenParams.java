@@ -11,7 +11,7 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class TaskScreenParams
 {
-    private final static String PROGRESS_FILE = "z_FileSuka_progress";
+    private final static String PROGRESS_FILE = "z_FileSucker_progress";
 
     private static final String LAB_VERSION = "Version";
 
@@ -41,7 +41,7 @@ public class TaskScreenParams
 
     private static final String LAB_OLD_SUFFIX = "suffix";
 
-    public static void save(SukaParams parms)
+    public static void save(SuckerParams parms)
     {
         String base = parms.getIntoDir();
         int idx = base.indexOf("{");
@@ -98,7 +98,7 @@ public class TaskScreenParams
             is = new FileInputStream(file);
             p.load(is);
             String ver = p.getProperty(LAB_VERSION, "1");
-            SukaParams sp;
+            SuckerParams sp;
             if ("1".equals(ver))
                 sp = readVersion1(p);
             else if ("2".equals(ver))
@@ -134,7 +134,7 @@ public class TaskScreenParams
         }
     }
 
-    private static SukaParams readVersion1(Properties p)
+    private static SuckerParams readVersion1(Properties p)
     {
         String name = "";
         String url = p.getProperty(LAB_OLD_URL, "");
@@ -143,12 +143,12 @@ public class TaskScreenParams
         String suffix = p.getProperty(LAB_OLD_SUFFIX, "");
         boolean suffixEnd = false;
 
-        SukaParams sp = new SukaParams(name, url, into, prefix, suffix,
+        SuckerParams sp = new SuckerParams(name, url, into, prefix, suffix,
                 new Hashtable<String, String>(), suffixEnd, "");
         return sp;
     }
 
-    private static SukaParams readVersion2(Properties p)
+    private static SuckerParams readVersion2(Properties p)
     {
         String name = p.getProperty(LAB_NAME, "");
         String url = p.getProperty(LAB_URL, "");
@@ -163,7 +163,7 @@ public class TaskScreenParams
         String orginalAddress = p.getProperty(LAB_ORGINAL_ADDRESS, "");
         Hashtable<String, String> ht = string2Headers(headersString);
 
-        SukaParams sp = new SukaParams(name, url, into, prefix, suffix, ht,
+        SuckerParams sp = new SuckerParams(name, url, into, prefix, suffix, ht,
                 suffixEnd, orginalAddress);
         return sp;
 

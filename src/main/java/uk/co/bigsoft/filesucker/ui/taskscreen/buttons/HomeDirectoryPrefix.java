@@ -39,7 +39,7 @@ public class HomeDirectoryPrefix extends JButton implements ActionListener
         String url_s = url.getSelectedText();
         if (url_s == null)
             return;
-        url_s = Utility.getSukaLable(url_s);
+        url_s = Utility.getSuckerLable(url_s);
 
         url_s = Utility.cleanString(url_s);
 

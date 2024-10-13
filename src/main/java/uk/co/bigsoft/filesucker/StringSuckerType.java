@@ -1,6 +1,6 @@
 package uk.co.bigsoft.filesucker;
 
-public class StringSukaType extends SukaType // implements Iterator
+public class StringSuckerType extends SuckerType // implements Iterator
 {
     /*
      * {t,buffer,from,to}
@@ -9,7 +9,7 @@ public class StringSukaType extends SukaType // implements Iterator
 
     int from, to;
 
-    StringSukaType(String f)
+    StringSuckerType(String f)
     {
         super(f);
 

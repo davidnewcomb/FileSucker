@@ -15,7 +15,7 @@ public class FileSucker
 
     public static String versionDate = "";
 
-    public static LinkedList<SukaThread> activeFileSukaThreads = null;
+    public static LinkedList<SuckerThread> activeFileSuckerThreads = null;
 
     public static ConfigData configData = null;
 
@@ -81,8 +81,8 @@ public class FileSucker
                     .openConnection();
             Manifest manifest = jarConnection.getManifest();
             Attributes attr = manifest.getMainAttributes();
-            version = attr.getValue("FileSuka-Version");
-            versionDate = attr.getValue("FileSuka-Created");
+            version = attr.getValue("FileSucker-Version");
+            versionDate = attr.getValue("FileSucker-Created");
         }
         catch (ZipException e)
         {
@@ -95,7 +95,7 @@ public class FileSucker
         }
 
         // Build tabs
-        activeFileSukaThreads = new LinkedList<SukaThread>();
+        activeFileSuckerThreads = new LinkedList<SuckerThread>();
         configData = new ConfigData();
         configScreen = new ConfigScreen();
         taskScreen = new TaskScreen();
@@ -104,7 +104,7 @@ public class FileSucker
         toolsScreen = new ToolsScreen();
 
         // Open window
-        new FileSukaFrame();
+        new FileSuckerFrame();
     }
 
 }

@@ -11,13 +11,13 @@ import javax.swing.JProgressBar;
 
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
-public class SukaingFileJProgressBar extends JProgressBar
+public class SuckeringFileJProgressBar extends JProgressBar
 {
     private static final int TRANSFER_ROW_HEIGHT = 20;
 
-    private RunnableSuka downloadInfo = null;
+    private RunnableSucker downloadInfo = null;
 
-    SukaingFileJProgressBar(RunnableSuka di)
+    SuckeringFileJProgressBar(RunnableSucker di)
     {
         downloadInfo = di;
         setValue(0);
@@ -87,7 +87,7 @@ public class SukaingFileJProgressBar extends JProgressBar
                         popUpMenu.add(popUpMenuPause);
                         // popUpMenu.addSeperator();
                         popUpMenu.add(popUpMenuCancelNow);
-                        popUpMenu.show(SukaingFileJProgressBar.this, e.getX(),
+                        popUpMenu.show(SuckeringFileJProgressBar.this, e.getX(),
                                 e.getY());
                     }
 
@@ -111,7 +111,7 @@ public class SukaingFileJProgressBar extends JProgressBar
         setIndeterminate(b);
     }
 
-    protected RunnableSuka getDownloadInfo()
+    protected RunnableSucker getDownloadInfo()
     {
         return downloadInfo;
     }

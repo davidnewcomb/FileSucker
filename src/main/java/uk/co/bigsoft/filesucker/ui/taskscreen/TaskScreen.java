@@ -28,15 +28,15 @@ import javax.swing.border.LineBorder;
 import uk.co.bigsoft.filesucker.BasicAuth;
 import uk.co.bigsoft.filesucker.FileAndTextTransferHandler;
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.FileSukaFrame;
+import uk.co.bigsoft.filesucker.FileSuckerFrame;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.ListLooper;
 import uk.co.bigsoft.filesucker.Looper;
 import uk.co.bigsoft.filesucker.PrefixJTextField;
 import uk.co.bigsoft.filesucker.RunYetComponent;
 import uk.co.bigsoft.filesucker.SuffixJTextField;
-import uk.co.bigsoft.filesucker.SukaParams;
-import uk.co.bigsoft.filesucker.SukaThread;
+import uk.co.bigsoft.filesucker.SuckerParams;
+import uk.co.bigsoft.filesucker.SuckerThread;
 import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.AkaButton;
@@ -236,7 +236,7 @@ public class TaskScreen extends JPanel
 
                     selectedDir = Utility.expandsPercentVars(selectedDir);
 
-                    SukaParams sp = new SukaParams("name", urlTF.getText(),
+                    SuckerParams sp = new SuckerParams("name", urlTF.getText(),
                             selectedDir, prefix, suffix, hm, suffixEndCB
                                     .isSelected(), originalAddress.getText());
                     if (saveUrl.isSelected())
@@ -248,30 +248,30 @@ public class TaskScreen extends JPanel
                             return;
                         }
                     }
-                    // SukaThread sth =
-                    new SukaThread(sp);
+                    // SuckerThread sth =
+                    new SuckerThread(sp);
 
-                    // SukaThread sth = new SukaThread (sp)
+                    // SuckerThread sth = new SuckerThread (sp)
                     // ;
                     // synchronized
-                    // (FileSuka.activeFileSukaThreads)
+                    // (FileSucker.activeFileSuckerThreads)
                     // {
-                    // FileSuka.activeFileSukaThreads.add
+                    // FileSucker.activeFileSuckerThreads.add
                     // (sth) ;
                     // }
                     // TransferScreen.updateScreen () ;
                     // // Switch to other tab
-                    FileSukaFrame.tabPane
+                    FileSuckerFrame.tabPane
                             .setSelectedComponent(FileSucker.transferScreen);
 
                     // for (int t = 0 ; t <
-                    // FileSukaFrame.tabPane.getComponentCount()
+                    // FileSuckerFrame.tabPane.getComponentCount()
                     // ;
                     // t++)
                     // if
-                    // (FileSukaFrame.tabPane.getComponent(t)
+                    // (FileSuckerFrame.tabPane.getComponent(t)
                     // ==
-                    // FileSuka.transferScreen)
+                    // FileSucker.transferScreen)
                     //
                     originalAddress.setText("");
                     runYet.setReset();
@@ -362,7 +362,7 @@ public class TaskScreen extends JPanel
                         // StringBuffer sb = new StringBuffer();
                         //
                         // FileInputStream is = new FileInputStream(
-                        // "Z:\\dev\\FileSuka\\test_find_files_bug_index.php.html");
+                        // "Z:\\dev\\FileSucker\\test_find_files_bug_index.php.html");
                         // int len = 69;
                         // while (len > 0)
                         // {
@@ -623,7 +623,7 @@ public class TaskScreen extends JPanel
         errorMessages.setText(s.toString());
     }
 
-    public static void load(SukaParams p)
+    public static void load(SuckerParams p)
     {
         System.out.println(p.getOrginalAddress());
         urlTF.setText(p.getOrginalUrl());

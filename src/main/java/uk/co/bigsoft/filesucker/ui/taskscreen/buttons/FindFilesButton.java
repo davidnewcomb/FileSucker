@@ -56,7 +56,7 @@ public class FindFilesButton extends JButton implements ActionListener
             // // StringBuffer sb = new StringBuffer();
             // //
             // // FileInputStream is = new FileInputStream(
-            // // "Z:\\dev\\FileSuka\\test_find_files_bug_index.php.html");
+            // // "Z:\\dev\\FileSucker\\test_find_files_bug_index.php.html");
             // // int len = 69;
             // // while (len > 0)
             // // {
@@ -68,7 +68,7 @@ public class FindFilesButton extends JButton implements ActionListener
             // // is.close();
             //
             // TreeMap<String, String> map = new TreeMap<String, String>();
-            // String[] extns = FileSuka.configData.getFindExtn();
+            // String[] extns = FileSucker.configData.getFindExtn();
             // for (int i = 0 ; i < extns.length ; ++i)
             // {
             // Pattern p = Pattern.compile("[\\[\\]a-zA-Z%$./0-9_-]+."+

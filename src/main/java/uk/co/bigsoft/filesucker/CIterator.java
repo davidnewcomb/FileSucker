@@ -14,9 +14,9 @@ public class CIterator implements Iterator<UrlSequenceIteration>
 
     private boolean hasnext;
 
-    private List<SukaType> urlChunks;
+    private List<SuckerType> urlChunks;
 
-    public CIterator(List<SukaType> uc)
+    public CIterator(List<SuckerType> uc)
     {
         urlChunks = uc;
     }
@@ -65,11 +65,11 @@ public class CIterator implements Iterator<UrlSequenceIteration>
             return false;
         }
 
-        SukaType st = urlChunks.get(idx);
+        SuckerType st = urlChunks.get(idx);
 
-        if (st instanceof LabelSukaType == true
-                || st instanceof CopySukaType == true
-                || st instanceof StaticSukaType == true)
+        if (st instanceof LabelSuckerType == true
+                || st instanceof CopySuckerType == true
+                || st instanceof StaticSuckerType == true)
             return rotate(--idx);
 
         if (st.numberOfIterations() > iter[idx])
@@ -88,11 +88,11 @@ public class CIterator implements Iterator<UrlSequenceIteration>
         StringBuffer sb = new StringBuffer();
         int k = 0;
 
-        for (Iterator<SukaType> i = urlChunks.iterator() ; i.hasNext() ; k++)
+        for (Iterator<SuckerType> i = urlChunks.iterator() ; i.hasNext() ; k++)
         {
-            SukaType st = i.next();
+            SuckerType st = i.next();
 
-            if (st instanceof CopySukaType == true)
+            if (st instanceof CopySuckerType == true)
                 continue;
 
             if (st.getSaveBuffer().intValue() != 0)
@@ -101,14 +101,14 @@ public class CIterator implements Iterator<UrlSequenceIteration>
 
         String s;
         k = 0;
-        for (Iterator<SukaType> i = urlChunks.iterator() ; i.hasNext() ; k++)
+        for (Iterator<SuckerType> i = urlChunks.iterator() ; i.hasNext() ; k++)
         {
-            SukaType st = i.next();
+            SuckerType st = i.next();
 
-            if (st instanceof StaticSukaType)
+            if (st instanceof StaticSuckerType)
                 continue;
 
-            if (st instanceof CopySukaType)
+            if (st instanceof CopySuckerType)
                 s = ivariables.get(st.getSaveBuffer());
             else
                 s = st.indexOf(iter[k]);

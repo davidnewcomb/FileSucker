@@ -34,7 +34,7 @@ public class UrlSequenceIteration
         return remotefile;
     }
 
-    public String getLocalFile(SukaParams p)
+    public String getLocalFile(SuckerParams p)
     {
         StringBuffer file = new StringBuffer();
 

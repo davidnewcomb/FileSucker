@@ -2,14 +2,14 @@ package uk.co.bigsoft.filesucker;
 
 import java.util.ArrayList;
 
-public class ListSukaType extends SukaType // implements Iterator
+public class ListSuckerType extends SuckerType // implements Iterator
 {
     /*
      * {n,from,to,npad} {n,buffer,from,to,npad}
      */
     private ArrayList<String> list;
 
-    ListSukaType(String f)
+    ListSuckerType(String f)
     {
         super(f);
 

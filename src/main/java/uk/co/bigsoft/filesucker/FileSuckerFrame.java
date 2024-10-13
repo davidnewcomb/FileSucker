@@ -8,7 +8,7 @@ import java.util.prefs.Preferences;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-public class FileSukaFrame extends JFrame
+public class FileSuckerFrame extends JFrame
 {
     private static final String BOUND_X = "x";
 
@@ -24,9 +24,9 @@ public class FileSukaFrame extends JFrame
 
     public static JTabbedPane tabPane;
 
-    public FileSukaFrame()
+    public FileSuckerFrame()
     {
-        super("FileSuka");
+        super("FileSucker");
         // setIconImage (icon.getImage ()) ;
         addWindowListener(new WindowAdapter() // which exits when the
         // window is
@@ -43,7 +43,7 @@ public class FileSukaFrame extends JFrame
                 {
                     Rectangle rect = getBounds();
                     Preferences prefs = Preferences
-                            .userNodeForPackage(FileSukaFrame.class);
+                            .userNodeForPackage(FileSuckerFrame.class);
                     prefs.putInt(BOUND_X, rect.x);
                     prefs.putInt(BOUND_Y, rect.y);
                     prefs.putInt(BOUND_HEIGHT, rect.height);
@@ -72,7 +72,7 @@ public class FileSukaFrame extends JFrame
 
         pack();
 
-        Preferences prefs = Preferences.userNodeForPackage(FileSukaFrame.class);
+        Preferences prefs = Preferences.userNodeForPackage(FileSuckerFrame.class);
         int x = prefs.getInt(BOUND_X, 50);
         int y = prefs.getInt(BOUND_Y, 50);
         int height = prefs.getInt(BOUND_HEIGHT, 200);

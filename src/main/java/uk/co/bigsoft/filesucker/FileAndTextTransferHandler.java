@@ -92,7 +92,7 @@ public class FileAndTextTransferHandler extends TransferHandler
                     shouldRemove = false;
                 }
                 String str = (String) t.getTransferData(stringFlavor);
-                str = Utility.getSukaLable(str);
+                str = Utility.getSuckerLable(str);
                 tc.replaceSelection(str);
                 return true;
             }

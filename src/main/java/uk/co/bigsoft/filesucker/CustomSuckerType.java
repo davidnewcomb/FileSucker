@@ -1,22 +1,22 @@
 package uk.co.bigsoft.filesucker;
 
-public class CustomSukaType extends SukaType
+public class CustomSuckerType extends SuckerType
 {
     /*
      * {n,from,to,npad} {n,buffer,from,to,npad}
      */
-    private ICustomSukaType custom;
+    private ICustomSuckerType custom;
 
     private String functionName;
 
-    CustomSukaType(String f)
+    CustomSuckerType(String f)
     {
         super(f);
 
         functionName = formatTokens.nextToken();
         if ("lower".equals(functionName))
-            custom = new LowerCustomSukaType(formatTokens.nextToken());
-        throw new RuntimeException("bad CustomSukaType");
+            custom = new LowerCustomSuckerType(formatTokens.nextToken());
+        throw new RuntimeException("bad CustomSuckerType");
     }
 
     @Override
@@ -33,18 +33,18 @@ public class CustomSukaType extends SukaType
 
 }
 
-interface ICustomSukaType
+interface ICustomSuckerType
 {
     String getText(int idx);
 
     int numberOfIterations();
 }
 
-class LowerCustomSukaType implements ICustomSukaType
+class LowerCustomSuckerType implements ICustomSuckerType
 {
     private String stuff;
 
-    LowerCustomSukaType(String s)
+    LowerCustomSuckerType(String s)
     {
         stuff = s.toString();
     }

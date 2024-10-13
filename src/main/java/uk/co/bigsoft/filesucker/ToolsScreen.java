@@ -231,12 +231,12 @@ public class ToolsScreen extends JPanel
                         if (text.length() == 0)
                             return;
 
-                        File f = File.createTempFile("FileSuka-", ".html");
+                        File f = File.createTempFile("FileSucker-", ".html");
 
                         // TODO - FileWrite does not
                         // handle \n properly
                         FileWriter fw = new FileWriter(f);
-                        fw.write("<html>\n<head>\n<title>FileSuka v");
+                        fw.write("<html>\n<head>\n<title>FileSucker v");
                         fw.write(FileSucker.version);
                         fw.write("</title>\n</head>\n<body>\n<p>\n");
 
@@ -294,12 +294,12 @@ public class ToolsScreen extends JPanel
                         if (text.length() == 0)
                             return;
 
-                        File f = File.createTempFile("FileSuka-", ".html");
+                        File f = File.createTempFile("FileSucker-", ".html");
 
                         // TODO - FileWrite does not
                         // handle \n properly
                         FileWriter fw = new FileWriter(f);
-                        fw.write("<html>\n<head>\n<title>FileSuka v");
+                        fw.write("<html>\n<head>\n<title>FileSucker v");
                         fw.write(FileSucker.version);
                         fw.write("</title>\n</head>\n<body>\n<p>\n");
 
@@ -371,12 +371,12 @@ public class ToolsScreen extends JPanel
 
                         List<String> links = getLinks(sb);
 
-                        File f = File.createTempFile("FileSuka-", ".html");
+                        File f = File.createTempFile("FileSucker-", ".html");
 
                         // TODO - FileWrite does not
                         // handle \n properly
                         FileWriter fw = new FileWriter(f);
-                        fw.write("<html>\n<head>\n<title>FileSuka v");
+                        fw.write("<html>\n<head>\n<title>FileSucker v");
                         fw.write(FileSucker.version);
                         fw.write("</title>\n</head>\n<body>\n<p>\n");
 
@@ -464,7 +464,7 @@ public class ToolsScreen extends JPanel
         // try
         // {
         // String sub = list.getSel
-        // String helper = FileSuka.configData.getWebHelper
+        // String helper = FileSucker.configData.getWebHelper
         // ().replaceAll ("%s",
         // url) ;
         // Runtime.getRuntime ().exec (helper) ;

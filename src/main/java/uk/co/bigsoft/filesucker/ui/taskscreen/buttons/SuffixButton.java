@@ -34,7 +34,7 @@ public class SuffixButton extends JButton implements ActionListener
         if (url_s == null)
             return;
 
-        url_s = Utility.getSukaLable(url_s);
+        url_s = Utility.getSuckerLable(url_s);
         url_s = Utility.cleanString(url_s);
         url_s = FileSucker.configData.getPostPrefix() + url_s;
 

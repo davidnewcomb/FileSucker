@@ -43,7 +43,7 @@ public class SubDirectoryAndPrefixButton extends JButton implements
         if (url_s == null)
             return;
 
-        url_s = Utility.getSukaLable(url_s);
+        url_s = Utility.getSuckerLable(url_s);
         url_s = Utility.cleanString(url_s);
 
         String curDir = directory.getSelectedItem().toString();

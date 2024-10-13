@@ -14,10 +14,10 @@ import javax.swing.JPanel;
 
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
-public class SukaThread extends Thread
+public class SuckerThread extends Thread
 {
 
-    private SukaParams parms;
+    private SuckerParams parms;
 
     private boolean running = true;
 
@@ -29,16 +29,16 @@ public class SukaThread extends Thread
     private BlockingQueue<Runnable> queue;
     private int remaining;
     // private Object remainingSync = new Object();
-    private SukaProgressPanel statusPanel;
+    private SuckerProgressPanel statusPanel;
 
     private long timeToDownload = 0L;
 
-    // TODO: SukaThread
-    public SukaThread(SukaParams p)
+    // TODO: SuckerThread
+    public SuckerThread(SuckerParams p)
     {
         parms = p;
 
-        setName("FileSuka: " + parms.getName());
+        setName("FileSucker: " + parms.getName());
 
         urlsequence = new UrlSequencer(parms.getOrginalUrl());
         int ulen = urlsequence.size();
@@ -50,7 +50,7 @@ public class SukaThread extends Thread
         threadPoolExecutor = new ThreadPoolExecutor(corePoolSize,
                 maximumPoolSize, Long.MAX_VALUE, TimeUnit.SECONDS, queue);
         threadPoolExecutor.prestartAllCoreThreads();
-        statusPanel = new SukaProgressPanel(this, parms, ulen);
+        statusPanel = new SuckerProgressPanel(this, parms, ulen);
 
         TransferScreen.addTransferLine(statusPanel);
 
@@ -62,7 +62,7 @@ public class SukaThread extends Thread
     {
         timeToDownload = System.currentTimeMillis();
 
-        RunnableSuka r = null;
+        RunnableSucker r = null;
         UrlSequenceIteration usi = null;
         String localfile = null;
         StringBuffer s;
@@ -82,7 +82,7 @@ public class SukaThread extends Thread
             System.out.println(s.toString());
             try
             {
-                r = new RunnableSuka(statusPanel, usi.getRemoteFile(),
+                r = new RunnableSucker(statusPanel, usi.getRemoteFile(),
                         localfile, this);
             }
             catch (Exception e)
@@ -91,7 +91,7 @@ public class SukaThread extends Thread
                 return;
             }
 
-            // Utility.delay(FileSuka.configData.getDelayFilesMs().intValue());
+            // Utility.delay(FileSucker.configData.getDelayFilesMs().intValue());
             try
             {
                 queue.put(r);
@@ -118,9 +118,9 @@ public class SukaThread extends Thread
                     if (remaining > 0)
                         return;
 
-                    synchronized (SukaThread.this)
+                    synchronized (SuckerThread.this)
                     {
-                        SukaThread.this.notify();
+                        SuckerThread.this.notify();
                     }
 
                     TransferScreen.removeTransferLine(statusPanel);
@@ -187,12 +187,12 @@ public class SukaThread extends Thread
         TaskScreen.load(parms);
     }
 
-    public String getSukaName()
+    public String getSuckerName()
     {
         return parms.getName();
     }
 
-    public String getSukaUrl()
+    public String getSuckerUrl()
     {
         return parms.getOrginalUrl();
     }
@@ -211,9 +211,9 @@ public class SukaThread extends Thread
 
     public void removeFromTransfersList()
     {
-        synchronized (FileSucker.activeFileSukaThreads)
+        synchronized (FileSucker.activeFileSuckerThreads)
         {
-            FileSucker.activeFileSukaThreads.remove(this);
+            FileSucker.activeFileSuckerThreads.remove(this);
         }
     }
 
