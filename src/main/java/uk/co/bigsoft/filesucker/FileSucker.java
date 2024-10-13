@@ -7,6 +7,10 @@ import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 import java.util.zip.ZipException;
 
+import uk.co.bigsoft.filesucker.config.ConfigController;
+import uk.co.bigsoft.filesucker.config.ConfigModel;
+import uk.co.bigsoft.filesucker.config.ConfigSaver;
+import uk.co.bigsoft.filesucker.config.ConfigView;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 import uk.co.bigsoft.filesucker.view.ConfigScreen;
 import uk.co.bigsoft.filesucker.view.CreditScreen;
@@ -43,13 +47,19 @@ public class FileSucker {
 			Attributes attr = manifest.getMainAttributes();
 			version = attr.getValue("FileSucker-Version");
 			versionDate = attr.getValue("FileSucker-Created");
-		} catch (ZipException e) {
+		} catch (Exception e) {
 			version = "dev";
 			versionDate = "today";
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
+		ConfigSaver cs = new ConfigSaver();
+		ConfigModel configModel = cs.load();
+		
+		ConfigView configView = new ConfigView();
+		
+		ConfigController configController = new ConfigController(configModel, configView);
+		configController.initController();
+		
 		// Build tabs
 		activeFileSuckerThreads = new LinkedList<SuckerThread>();
 		configData = new ConfigData();
@@ -60,7 +70,7 @@ public class FileSucker {
 		toolsScreen = new ToolsScreen();
 
 		// Open window
-		new FileSuckerFrame();
+		new FileSuckerFrame(configView);
 	}
 
 }

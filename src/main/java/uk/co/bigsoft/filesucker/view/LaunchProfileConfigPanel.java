@@ -29,7 +29,7 @@ public class LaunchProfileConfigPanel extends JPanel {
 
 	protected LaunchListModel model;
 
-	LaunchProfileConfigPanel() {
+	public LaunchProfileConfigPanel() {
 		super(new GridLayout(1, 3));
 		List<String> l = FileSucker.configData.getLaunchProfiles();
 		model = new LaunchListModel(l);

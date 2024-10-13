@@ -9,24 +9,20 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 import uk.co.bigsoft.filesucker.FileSucker;
+import uk.co.bigsoft.filesucker.config.ConfigView;
 
 public class FileSuckerFrame extends JFrame {
 
 	private static final String BOUND_X = "x";
-
 	private static final String BOUND_Y = "y";
-
 	private static final String BOUND_HEIGHT = "height";
-
 	private static final String BOUND_WIDTH = "width";
-
 	private static final String TOTAL_DOWNLOADED_FILES = "totalFiles";
-
 	private static final String TOTAL_DOWNLOADED_BYTES = "totalBytes";
 
 	public static JTabbedPane tabPane;
 
-	public FileSuckerFrame() {
+	public FileSuckerFrame(ConfigView configView) {
 		super("FileSucker");
 		// setIconImage (icon.getImage ()) ;
 		addWindowListener(new WindowAdapter() // which exits when the
@@ -60,7 +56,7 @@ public class FileSuckerFrame extends JFrame {
 		tabPane.addTab("NewTask", null, FileSucker.taskScreen, "Create new task");
 		tabPane.addTab("Transfer", null, FileSucker.transferScreen, "View tasks in progress");
 		tabPane.addTab("Tools", null, FileSucker.toolsScreen, "Text tools");
-		tabPane.addTab("Options", null, FileSucker.configScreen, "Change default options");
+		tabPane.addTab("Options", null, configView, "Change default options");
 		tabPane.addTab("Credits", null, FileSucker.creditScreen, "Statistics & Credits");
 
 		pack();
