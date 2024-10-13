@@ -19,8 +19,8 @@ public class TextLooper extends Looper implements MenuButtonListOwner
         super(sel);
         if (setParameters() == false)
         {
-            from = FileSuka.configData.getTextFrom();
-            to = FileSuka.configData.getTextTo();
+            from = FileSucker.configData.getTextFrom();
+            to = FileSucker.configData.getTextTo();
         }
         createLayout();
     }
@@ -99,12 +99,12 @@ public class TextLooper extends Looper implements MenuButtonListOwner
 
     public void setList(HistoryDropDown l)
     {
-        FileSuka.configData.setTextLooperHistory(l);
+        FileSucker.configData.setTextLooperHistory(l);
     }
 
     public HistoryDropDown getList()
     {
-        return FileSuka.configData.getTextLooperHistory();
+        return FileSucker.configData.getTextLooperHistory();
     }
 
 }

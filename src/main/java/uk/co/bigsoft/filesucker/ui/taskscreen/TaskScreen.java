@@ -27,7 +27,7 @@ import javax.swing.border.LineBorder;
 
 import uk.co.bigsoft.filesucker.BasicAuth;
 import uk.co.bigsoft.filesucker.FileAndTextTransferHandler;
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.FileSukaFrame;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.ListLooper;
@@ -128,7 +128,7 @@ public class TaskScreen extends JPanel
         directoryCB.setMinimumSize(new Dimension(10, 20));
         directoryCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
         directoryCB
-                .setSelectedItem(FileSuka.configData.getBaseDir().toString());
+                .setSelectedItem(FileSucker.configData.getBaseDir().toString());
 
         // Prefix and Suffix
         prefixTF = new PrefixJTextField(ddHandler);
@@ -262,7 +262,7 @@ public class TaskScreen extends JPanel
                     // TransferScreen.updateScreen () ;
                     // // Switch to other tab
                     FileSukaFrame.tabPane
-                            .setSelectedComponent(FileSuka.transferScreen);
+                            .setSelectedComponent(FileSucker.transferScreen);
 
                     // for (int t = 0 ; t <
                     // FileSukaFrame.tabPane.getComponentCount()
@@ -374,7 +374,7 @@ public class TaskScreen extends JPanel
                         // is.close();
 
                         TreeMap<String, String> map = new TreeMap<String, String>();
-                        String[] extns = FileSuka.configData.getFindExtn();
+                        String[] extns = FileSucker.configData.getFindExtn();
                         for (int i = 0 ; i < extns.length ; ++i)
                         {
                             Pattern p = Pattern

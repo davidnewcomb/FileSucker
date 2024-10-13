@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.ListLooper;
 
 public class ListLooperButton extends JButton implements ActionListener
@@ -30,15 +30,15 @@ public class ListLooperButton extends JButton implements ActionListener
         if (caretpos == 0)
             return;
 
-        FileSuka.taskScreen.numberB.setVisible(false);
-        FileSuka.taskScreen.textB.setVisible(false);
-        FileSuka.taskScreen.listB.setEnabled(false);
-        FileSuka.taskScreen.copyB.setVisible(false);
-        FileSuka.taskScreen.staticB.setVisible(false);
+        FileSucker.taskScreen.numberB.setVisible(false);
+        FileSucker.taskScreen.textB.setVisible(false);
+        FileSucker.taskScreen.listB.setEnabled(false);
+        FileSucker.taskScreen.copyB.setVisible(false);
+        FileSucker.taskScreen.staticB.setVisible(false);
 
-        FileSuka.taskScreen.iteratorJP.removeAll();
-        FileSuka.taskScreen.iteratorJP.add(new ListLooper(TaskScreen.urlTF
+        FileSucker.taskScreen.iteratorJP.removeAll();
+        FileSucker.taskScreen.iteratorJP.add(new ListLooper(TaskScreen.urlTF
                 .getSelectedText()), BorderLayout.CENTER);
-        FileSuka.taskScreen.iteratorJP.repaint();
+        FileSucker.taskScreen.iteratorJP.repaint();
     }
 }

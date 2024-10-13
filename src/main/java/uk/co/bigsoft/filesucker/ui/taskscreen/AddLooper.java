@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Looper;
 
 public class AddLooper extends JButton implements ActionListener
@@ -21,7 +21,7 @@ public class AddLooper extends JButton implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        Looper lp = (Looper) FileSuka.taskScreen.iteratorJP.getComponent(0);
+        Looper lp = (Looper) FileSucker.taskScreen.iteratorJP.getComponent(0);
         String braces = lp.toStringBraces();
         TaskScreen.replaceUrlText(braces);
         lp.resetLooper();

@@ -460,7 +460,7 @@ public class RunnableSuka implements Runnable
 
             out.write(buffer, 0, i);
             bytesDownloaded += i;
-            Utility.delay(FileSuka.configData.getDelaySockReadMs().intValue());
+            Utility.delay(FileSucker.configData.getDelaySockReadMs().intValue());
             transfer.setCurrentDownloadedFileLength(bytesDownloaded);
             CreditScreen.addBytes(i);
         }

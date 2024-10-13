@@ -237,7 +237,7 @@ public class ToolsScreen extends JPanel
                         // handle \n properly
                         FileWriter fw = new FileWriter(f);
                         fw.write("<html>\n<head>\n<title>FileSuka v");
-                        fw.write(FileSuka.version);
+                        fw.write(FileSucker.version);
                         fw.write("</title>\n</head>\n<body>\n<p>\n");
 
                         StringBuffer s;
@@ -300,7 +300,7 @@ public class ToolsScreen extends JPanel
                         // handle \n properly
                         FileWriter fw = new FileWriter(f);
                         fw.write("<html>\n<head>\n<title>FileSuka v");
-                        fw.write(FileSuka.version);
+                        fw.write(FileSucker.version);
                         fw.write("</title>\n</head>\n<body>\n<p>\n");
 
                         StringBuffer s;
@@ -377,7 +377,7 @@ public class ToolsScreen extends JPanel
                         // handle \n properly
                         FileWriter fw = new FileWriter(f);
                         fw.write("<html>\n<head>\n<title>FileSuka v");
-                        fw.write(FileSuka.version);
+                        fw.write(FileSucker.version);
                         fw.write("</title>\n</head>\n<body>\n<p>\n");
 
                         for (String l : links)

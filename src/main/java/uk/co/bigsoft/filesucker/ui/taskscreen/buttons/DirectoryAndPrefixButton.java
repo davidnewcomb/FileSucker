@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.Utility;
 
@@ -51,14 +51,14 @@ public class DirectoryAndPrefixButton extends JButton implements ActionListener
         }
         newDir.append(url_s);
         if (curDir.equals(""))
-            newDir.insert(0, FileSuka.configData.getScreenBaseDir());
+            newDir.insert(0, FileSucker.configData.getScreenBaseDir());
         else
             newDir.insert(0, curDir);
 
         directory.setSelectedItem(newDir.toString());
 
         // Add to prefix
-        url_s = url_s + FileSuka.configData.getPostPrefix();
+        url_s = url_s + FileSucker.configData.getPostPrefix();
         prefix.setText(prefix.getText() + url_s.toLowerCase());
     }
 }

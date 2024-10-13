@@ -71,27 +71,27 @@ public class ConfigScreen extends JPanel
                 {
                     saveB.setEnabled(false);
 
-                    FileSuka.configData.setScreenBaseDir(baseTF.getText());
-                    FileSuka.configData.setNumberFrom(numberFromTF.getText());
-                    FileSuka.configData.setNumberTo(numberToTF.getText());
-                    FileSuka.configData.setNumberPad(numberPadTF.getText());
-                    FileSuka.configData.setTextFrom(textFromTF.getText());
-                    FileSuka.configData.setTextTo(textToTF.getText());
-                    FileSuka.configData.setPostPrefix(textPostPrefixTF
+                    FileSucker.configData.setScreenBaseDir(baseTF.getText());
+                    FileSucker.configData.setNumberFrom(numberFromTF.getText());
+                    FileSucker.configData.setNumberTo(numberToTF.getText());
+                    FileSucker.configData.setNumberPad(numberPadTF.getText());
+                    FileSucker.configData.setTextFrom(textFromTF.getText());
+                    FileSucker.configData.setTextTo(textToTF.getText());
+                    FileSucker.configData.setPostPrefix(textPostPrefixTF
                             .getText());
-                    FileSuka.configData.setMaxTasks(maxTasksFT.getText());
-                    FileSuka.configData.setMaxSubTasks(maxSubTaskFT.getText());
-                    FileSuka.configData.setFindExtn(findFilesFT.getText());
-                    FileSuka.configData.setDelaySockReadMs(delaySockReadMsTF
+                    FileSucker.configData.setMaxTasks(maxTasksFT.getText());
+                    FileSucker.configData.setMaxSubTasks(maxSubTaskFT.getText());
+                    FileSucker.configData.setFindExtn(findFilesFT.getText());
+                    FileSucker.configData.setDelaySockReadMs(delaySockReadMsTF
                             .getText());
-                    FileSuka.configData.setDelayFilesMs(delayFilesMsTF
+                    FileSucker.configData.setDelayFilesMs(delayFilesMsTF
                             .getText());
-                    FileSuka.configData.setHelperWeb(helperWebTF.getText());
-                    FileSuka.configData.setHelperWeb(helperTextTF.getText());
-                    FileSuka.configData.setOpenDirectory(openDirectoryTF
+                    FileSucker.configData.setHelperWeb(helperWebTF.getText());
+                    FileSucker.configData.setHelperWeb(helperTextTF.getText());
+                    FileSucker.configData.setOpenDirectory(openDirectoryTF
                             .getText());
 
-                    FileSuka.configData.save();
+                    FileSucker.configData.save();
 
                     saveB.setEnabled(true);
                 }
@@ -102,7 +102,7 @@ public class ConfigScreen extends JPanel
         centre.add(new JLabel("Home directory"));
         Box hbox = Box.createHorizontalBox();
 
-        baseTF = new JTextField(FileSuka.configData.getScreenBaseDir());
+        baseTF = new JTextField(FileSucker.configData.getScreenBaseDir());
         baseTF.setMinimumSize(new Dimension(10, 20));
         baseTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
         baseTF.setEditable(true);
@@ -116,7 +116,7 @@ public class ConfigScreen extends JPanel
                         public void actionPerformed(ActionEvent e)
                         {
                             JFileChooser fc = new JFileChooser(
-                                    FileSuka.configData.getBaseDir());
+                                    FileSucker.configData.getBaseDir());
                             fc
                                     .setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                             int returnVal = fc.showOpenDialog(baseBrowseButton);
@@ -124,7 +124,7 @@ public class ConfigScreen extends JPanel
                             if (returnVal == JFileChooser.APPROVE_OPTION)
                             {
                                 File file = fc.getSelectedFile();
-                                FileSuka.configData.setScreenBaseDir(file);
+                                FileSucker.configData.setScreenBaseDir(file);
                                 // System.out.println("File="+file.toString()+"|");
                             }
                         }
@@ -138,7 +138,7 @@ public class ConfigScreen extends JPanel
         centre.add(new JLabel("Web browser helper (%s for url)"));
         hbox = Box.createHorizontalBox();
 
-        helperWebTF = new JTextField(FileSuka.configData.getHelperWeb());
+        helperWebTF = new JTextField(FileSucker.configData.getHelperWeb());
         helperWebTF.setMinimumSize(new Dimension(10, 20));
         helperWebTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
         helperWebTF.setEditable(true);
@@ -153,7 +153,7 @@ public class ConfigScreen extends JPanel
         centre.add(new JLabel("Text file helper (%s for file)"));
         hbox = Box.createHorizontalBox();
 
-        helperTextTF = new JTextField(FileSuka.configData.getHelperText());
+        helperTextTF = new JTextField(FileSucker.configData.getHelperText());
         helperTextTF.setMinimumSize(new Dimension(10, 20));
         helperTextTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
         helperTextTF.setEditable(true);
@@ -169,7 +169,7 @@ public class ConfigScreen extends JPanel
                 "Open directory helper (%s for the directory name)"));
         hbox = Box.createHorizontalBox();
 
-        openDirectoryTF = new JTextField(FileSuka.configData.getOpenDirectory());
+        openDirectoryTF = new JTextField(FileSucker.configData.getOpenDirectory());
         openDirectoryTF.setMinimumSize(new Dimension(10, 20));
         openDirectoryTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
         openDirectoryTF.setEditable(true);
@@ -195,16 +195,16 @@ public class ConfigScreen extends JPanel
         jp.setMinimumSize(new Dimension(10, MAX_WID_HEIGHT));
         jp.setMaximumSize(new Dimension(Integer.MAX_VALUE, MAX_WID_HEIGHT * 6));
 
-        numberFromTF = new JTextField(FileSuka.configData.getScreenNumberFrom());
-        numberToTF = new JTextField(FileSuka.configData.getScreenNumberTo());
-        numberPadTF = new JTextField(FileSuka.configData.getScreenNumberPad());
+        numberFromTF = new JTextField(FileSucker.configData.getScreenNumberFrom());
+        numberToTF = new JTextField(FileSucker.configData.getScreenNumberTo());
+        numberPadTF = new JTextField(FileSucker.configData.getScreenNumberPad());
 
-        textFromTF = new JTextField(FileSuka.configData.getScreenTextFrom());
-        textToTF = new JTextField(FileSuka.configData.getScreenTextTo());
-        textPostPrefixTF = new JTextField(FileSuka.configData
+        textFromTF = new JTextField(FileSucker.configData.getScreenTextFrom());
+        textToTF = new JTextField(FileSucker.configData.getScreenTextTo());
+        textPostPrefixTF = new JTextField(FileSucker.configData
                 .getScreenPostPrefix());
 
-        findFilesFT = new JTextField(Utility.implode(FileSuka.configData
+        findFilesFT = new JTextField(Utility.implode(FileSucker.configData
                 .getFindExtn(), ","));
         jp.add(new JLabel("")); // blank
         jp.add(new JLabel("From"));
@@ -241,8 +241,8 @@ public class ConfigScreen extends JPanel
         jp.setMinimumSize(new Dimension(10, MAX_WID_HEIGHT));
         jp.setMaximumSize(new Dimension(Integer.MAX_VALUE, MAX_WID_HEIGHT * 4));
 
-        maxTasksFT = new JTextField(FileSuka.configData.getScreenMaxTasks());
-        maxSubTaskFT = new JTextField(FileSuka.configData
+        maxTasksFT = new JTextField(FileSucker.configData.getScreenMaxTasks());
+        maxSubTaskFT = new JTextField(FileSucker.configData
                 .getScreenMaxSubTasks());
 
         jp.add(new JLabel("Concurrent Tasks"));
@@ -260,9 +260,9 @@ public class ConfigScreen extends JPanel
         jp.setMinimumSize(new Dimension(10, MAX_WID_HEIGHT));
         jp.setMaximumSize(new Dimension(Integer.MAX_VALUE, MAX_WID_HEIGHT * 4));
 
-        delaySockReadMsTF = new JTextField(FileSuka.configData
+        delaySockReadMsTF = new JTextField(FileSucker.configData
                 .getScreenDelaySockReadMs());
-        delayFilesMsTF = new JTextField(FileSuka.configData
+        delayFilesMsTF = new JTextField(FileSucker.configData
                 .getScreenDelayFilesMs());
 
         jp.add(new JLabel("Delay between socket reads (ms)"));

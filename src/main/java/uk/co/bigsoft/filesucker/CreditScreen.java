@@ -81,8 +81,8 @@ public class CreditScreen extends JPanel
         JLabel c = new JLabel();
         c.setText("<html>" + "<body>" + "<center>" + "<table border=1>"
                 + "<tr><td align=center valign=middle nowrap>"
-                + "<b>FileSuka</b><br><hr>" + FileSuka.version + "<br>" + "["
-                + FileSuka.versionDate + "]" + "</td></tr>" + "</table>"
+                + "<b>FileSuka</b><br><hr>" + FileSucker.version + "<br>" + "["
+                + FileSucker.versionDate + "]" + "</td></tr>" + "</table>"
                 + "</center>" + "</body>" + "</html>");
         c.setHorizontalAlignment(SwingConstants.CENTER);
         c.setVerticalAlignment(SwingConstants.CENTER);

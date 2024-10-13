@@ -61,13 +61,13 @@ public class FileSukaFrame extends JFrame
         getContentPane().add(tabPane);
 
         // Set up page
-        tabPane.addTab("NewTask", null, FileSuka.taskScreen, "Create new task");
-        tabPane.addTab("Transfer", null, FileSuka.transferScreen,
+        tabPane.addTab("NewTask", null, FileSucker.taskScreen, "Create new task");
+        tabPane.addTab("Transfer", null, FileSucker.transferScreen,
                 "View tasks in progress");
-        tabPane.addTab("Tools", null, FileSuka.toolsScreen, "Text tools");
-        tabPane.addTab("Options", null, FileSuka.configScreen,
+        tabPane.addTab("Tools", null, FileSucker.toolsScreen, "Text tools");
+        tabPane.addTab("Options", null, FileSucker.configScreen,
                 "Change default options");
-        tabPane.addTab("Credits", null, FileSuka.creditScreen,
+        tabPane.addTab("Credits", null, FileSucker.creditScreen,
                 "Statistics & Credits");
 
         pack();

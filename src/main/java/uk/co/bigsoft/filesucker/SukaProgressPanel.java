@@ -49,7 +49,7 @@ public class SukaProgressPanel extends JPanel
 
         files = Box.createVerticalBox();
 
-        int th = TRANSFER_ROW_HEIGHT * FileSuka.configData.getMaxTasks();
+        int th = TRANSFER_ROW_HEIGHT * FileSucker.configData.getMaxTasks();
 
         files.setMinimumSize(new Dimension(0, th));
         files.setMaximumSize(new Dimension(Integer.MAX_VALUE, th));

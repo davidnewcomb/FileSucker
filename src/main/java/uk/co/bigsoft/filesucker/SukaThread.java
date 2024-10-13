@@ -43,7 +43,7 @@ public class SukaThread extends Thread
         urlsequence = new UrlSequencer(parms.getOrginalUrl());
         int ulen = urlsequence.size();
 
-        int maxTasks = FileSuka.configData.getMaxTasks();
+        int maxTasks = FileSucker.configData.getMaxTasks();
         queue = new LinkedBlockingQueue<Runnable>(maxTasks);
         int corePoolSize = maxTasks;
         int maximumPoolSize = maxTasks;
@@ -211,9 +211,9 @@ public class SukaThread extends Thread
 
     public void removeFromTransfersList()
     {
-        synchronized (FileSuka.activeFileSukaThreads)
+        synchronized (FileSucker.activeFileSukaThreads)
         {
-            FileSuka.activeFileSukaThreads.remove(this);
+            FileSucker.activeFileSukaThreads.remove(this);
         }
     }
 

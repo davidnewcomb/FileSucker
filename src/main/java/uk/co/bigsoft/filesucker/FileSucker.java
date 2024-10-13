@@ -9,7 +9,7 @@ import java.util.zip.ZipException;
 
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
-public class FileSuka
+public class FileSucker
 {
     public static String version = "";
 
@@ -76,7 +76,7 @@ public class FileSuka
         // Read version numbers from the manifest
         try
         {
-            URL url = new URL("jar:file:FileSuka.jar!/META-INF/MANIFEST.MF");
+            URL url = new URL("jar:file:FileSucker.jar!/META-INF/MANIFEST.MF");
             JarURLConnection jarConnection = (JarURLConnection) url
                     .openConnection();
             Manifest manifest = jarConnection.getManifest();

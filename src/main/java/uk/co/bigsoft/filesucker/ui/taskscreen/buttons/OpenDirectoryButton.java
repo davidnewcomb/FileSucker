@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.Utility;
 
@@ -31,7 +31,7 @@ public class OpenDirectoryButton extends JButton implements ActionListener
         String dirEpanded = Utility.realDirectory(dir);
         try
         {
-            String od = FileSuka.configData.getOpenDirectory();
+            String od = FileSucker.configData.getOpenDirectory();
             String helper = od.replaceAll("%s", dirEpanded);
             Runtime.getRuntime().exec(helper);
         }

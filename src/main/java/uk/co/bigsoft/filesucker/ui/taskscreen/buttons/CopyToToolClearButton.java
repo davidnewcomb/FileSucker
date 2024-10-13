@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.FileSukaFrame;
 import uk.co.bigsoft.filesucker.ToolsScreen;
 
@@ -29,6 +29,6 @@ public class CopyToToolClearButton extends JButton implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         ToolsScreen.setConvertUrlText(url.getText());
-        FileSukaFrame.tabPane.setSelectedComponent(FileSuka.toolsScreen);
+        FileSukaFrame.tabPane.setSelectedComponent(FileSucker.toolsScreen);
     }
 }

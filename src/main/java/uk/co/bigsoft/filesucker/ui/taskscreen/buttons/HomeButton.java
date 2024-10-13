@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 
 public class HomeButton extends JButton implements ActionListener
@@ -29,7 +29,7 @@ public class HomeButton extends JButton implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        directory.setSelectedItem(FileSuka.configData.getScreenBaseDir());
+        directory.setSelectedItem(FileSucker.configData.getScreenBaseDir());
 
     }
 

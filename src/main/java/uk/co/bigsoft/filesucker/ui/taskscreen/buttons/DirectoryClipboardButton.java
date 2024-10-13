@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.Utility;
 
@@ -44,7 +44,7 @@ public class DirectoryClipboardButton extends JButton implements ActionListener
         }
         newDir.append(s);
         if (curDir.equals(""))
-            newDir.insert(0, FileSuka.configData.getScreenBaseDir());
+            newDir.insert(0, FileSucker.configData.getScreenBaseDir());
         else
             newDir.insert(0, curDir);
 

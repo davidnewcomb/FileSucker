@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.TransferHandler;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Looper;
 import uk.co.bigsoft.filesucker.Utility;
 
@@ -48,19 +48,19 @@ class UrlKeyListener extends KeyAdapter
         switch (c)
         {
             case 'c':
-                FileSuka.taskScreen.copyB.actionPerformed(null);
+                FileSucker.taskScreen.copyB.actionPerformed(null);
             break;
             case 'l':
-                FileSuka.taskScreen.listB.actionPerformed(null);
+                FileSucker.taskScreen.listB.actionPerformed(null);
             break;
             case 'n':
-                FileSuka.taskScreen.numberB.actionPerformed(null);
+                FileSucker.taskScreen.numberB.actionPerformed(null);
             break;
             case 's':
-                FileSuka.taskScreen.staticB.actionPerformed(null);
+                FileSucker.taskScreen.staticB.actionPerformed(null);
             break;
             case 't':
-                FileSuka.taskScreen.textB.actionPerformed(null);
+                FileSucker.taskScreen.textB.actionPerformed(null);
             break;
         }
     }

@@ -147,20 +147,20 @@ public abstract class Looper extends JPanel // implements Iterator
 
     public void resetLooper()
     {
-        FileSuka.taskScreen.numberB.setEnabled(true);
-        FileSuka.taskScreen.textB.setEnabled(true);
-        FileSuka.taskScreen.listB.setEnabled(true);
-        FileSuka.taskScreen.copyB.setEnabled(true);
-        FileSuka.taskScreen.staticB.setEnabled(true);
+        FileSucker.taskScreen.numberB.setEnabled(true);
+        FileSucker.taskScreen.textB.setEnabled(true);
+        FileSucker.taskScreen.listB.setEnabled(true);
+        FileSucker.taskScreen.copyB.setEnabled(true);
+        FileSucker.taskScreen.staticB.setEnabled(true);
 
-        FileSuka.taskScreen.numberB.setVisible(true);
-        FileSuka.taskScreen.textB.setVisible(true);
-        FileSuka.taskScreen.listB.setVisible(true);
-        FileSuka.taskScreen.copyB.setVisible(true);
-        FileSuka.taskScreen.staticB.setVisible(true);
+        FileSucker.taskScreen.numberB.setVisible(true);
+        FileSucker.taskScreen.textB.setVisible(true);
+        FileSucker.taskScreen.listB.setVisible(true);
+        FileSucker.taskScreen.copyB.setVisible(true);
+        FileSucker.taskScreen.staticB.setVisible(true);
 
-        FileSuka.taskScreen.iteratorJP.removeAll();
-        FileSuka.taskScreen.iteratorJP.repaint();
+        FileSucker.taskScreen.iteratorJP.removeAll();
+        FileSucker.taskScreen.iteratorJP.repaint();
         active = false;
         TaskScreen.enableRunButton(!active);
     }

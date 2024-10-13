@@ -267,12 +267,12 @@ public class ConfigData extends Properties
     {
         StringBuffer header = new StringBuffer();
         header.append("FileSuka ");
-        header.append(FileSuka.version);
+        header.append(FileSucker.version);
         header.append(" (");
-        header.append(FileSuka.versionDate);
+        header.append(FileSucker.versionDate);
         header.append(")");
 
-        setProperty(LAB_VERSION, FileSuka.version);
+        setProperty(LAB_VERSION, FileSucker.version);
         setProperty(LAB_BASE, base.getPath());
         setProperty(LAB_NUMBERTO, "" + numberTo);
         setProperty(LAB_NUMBERFROM, "" + numberFrom);
@@ -323,14 +323,14 @@ public class ConfigData extends Properties
         //
         // setScreenBaseDir (f) ;
         base = new File(s);
-        FileSuka.configScreen.setBaseDirectory(s);
+        FileSucker.configScreen.setBaseDirectory(s);
         return true;
     }
 
     public void setScreenBaseDir(File f)
     {
         base = f;
-        FileSuka.configScreen.setBaseDirectory(f.toString());
+        FileSucker.configScreen.setBaseDirectory(f.toString());
     }
 
     // Web Helper directory

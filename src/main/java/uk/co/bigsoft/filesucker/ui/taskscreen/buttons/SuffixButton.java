@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import uk.co.bigsoft.filesucker.FileSuka;
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
 
 public class SuffixButton extends JButton implements ActionListener
@@ -36,7 +36,7 @@ public class SuffixButton extends JButton implements ActionListener
 
         url_s = Utility.getSukaLable(url_s);
         url_s = Utility.cleanString(url_s);
-        url_s = FileSuka.configData.getPostPrefix() + url_s;
+        url_s = FileSucker.configData.getPostPrefix() + url_s;
 
         suffix.replaceSelection(url_s);
     }

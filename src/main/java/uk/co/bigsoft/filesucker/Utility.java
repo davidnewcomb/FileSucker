@@ -262,7 +262,7 @@ public class Utility
 
         try
         {
-            String helper = FileSuka.configData.getHelperWeb().replaceAll("%s",
+            String helper = FileSucker.configData.getHelperWeb().replaceAll("%s",
                     u);
             Runtime.getRuntime().exec(helper);
         }
@@ -276,7 +276,7 @@ public class Utility
     {
         try
         {
-            String helper = FileSuka.configData.getHelperText();
+            String helper = FileSucker.configData.getHelperText();
             String local = realDirectory(file.toString());
             String sub = helper.replaceAll("%s", local);
             Runtime.getRuntime().exec(sub);

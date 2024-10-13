@@ -57,7 +57,7 @@ public class LaunchProfilePanel extends JPanel
 
                     try
                     {
-                        String helper = FileSuka.configData.getHelperWeb()
+                        String helper = FileSucker.configData.getHelperWeb()
                                 .replaceAll("%s", url);
                         Runtime.getRuntime().exec(helper);
                     }
@@ -78,7 +78,7 @@ public class LaunchProfilePanel extends JPanel
     private void refresh()
     {
         list.removeAllItems();
-        List<String> opts = FileSuka.configData.getLaunchProfiles();
+        List<String> opts = FileSucker.configData.getLaunchProfiles();
         for (String s : opts)
         {
             list.addItem(s);

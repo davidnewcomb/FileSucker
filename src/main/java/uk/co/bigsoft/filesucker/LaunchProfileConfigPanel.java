@@ -31,7 +31,7 @@ public class LaunchProfileConfigPanel extends JPanel
     LaunchProfileConfigPanel()
     {
         super(new GridLayout(1, 3));
-        List<String> l = FileSuka.configData.getLaunchProfiles();
+        List<String> l = FileSucker.configData.getLaunchProfiles();
         model = new LaunchListModel(l);
         current = new JList(model);
         current.addKeyListener(new KeyListener()
