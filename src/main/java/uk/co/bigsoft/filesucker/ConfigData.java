@@ -290,21 +290,21 @@ public class ConfigData extends Properties {
 		return sb.toString();
 	}
 
-	public boolean setScreenBaseDir(String s) {
-		// File f = new File (s) ;
-		// if (f.exists () == false || f.isDirectory () == false)
-		// return false ;
-		//
-		// setScreenBaseDir (f) ;
-		base = new File(s);
-		FileSucker.configScreen.setBaseDirectory(s);
-		return true;
-	}
-
-	public void setScreenBaseDir(File f) {
-		base = f;
-		FileSucker.configScreen.setBaseDirectory(f.toString());
-	}
+//	public boolean setScreenBaseDir(String s) {
+//		// File f = new File (s) ;
+//		// if (f.exists () == false || f.isDirectory () == false)
+//		// return false ;
+//		//
+//		// setScreenBaseDir (f) ;
+//		base = new File(s);
+//		FileSucker.configScreen.setBaseDirectory(s);
+//		return true;
+//	}
+//
+//	public void setScreenBaseDir(File f) {
+//		base = f;
+//		FileSucker.configScreen.setBaseDirectory(f.toString());
+//	}
 
 	// Web Helper directory
 	public String getScreenHelperWeb() {

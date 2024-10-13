@@ -70,7 +70,7 @@ public class ConfigScreen extends JPanel {
 			public void actionPerformed(ActionEvent ae) {
 				saveB.setEnabled(false);
 
-				FileSucker.configData.setScreenBaseDir(baseTF.getText());
+				//FileSucker.configData.setScreenBaseDir(baseTF.getText());
 				FileSucker.configData.setNumberFrom(numberFromTF.getText());
 				FileSucker.configData.setNumberTo(numberToTF.getText());
 				FileSucker.configData.setNumberPad(numberPadTF.getText());
@@ -103,23 +103,23 @@ public class ConfigScreen extends JPanel {
 		baseTF.setEditable(true);
 
 		final JButton baseBrowseButton = new JButton("Browse");
-		baseBrowseButton.addActionListener(
-
-				new ActionListener() // which does the actual
-				// Delete operation
-				{
-					public void actionPerformed(ActionEvent e) {
-						JFileChooser fc = new JFileChooser(FileSucker.configData.getBaseDir());
-						fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-						int returnVal = fc.showOpenDialog(baseBrowseButton);
-
-						if (returnVal == JFileChooser.APPROVE_OPTION) {
-							File file = fc.getSelectedFile();
-							FileSucker.configData.setScreenBaseDir(file);
-							// System.out.println("File="+file.toString()+"|");
-						}
-					}
-				});
+//		baseBrowseButton.addActionListener(
+//
+//				new ActionListener() // which does the actual
+//				// Delete operation
+//				{
+//					public void actionPerformed(ActionEvent e) {
+//						JFileChooser fc = new JFileChooser(FileSucker.configData.getBaseDir());
+//						fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//						int returnVal = fc.showOpenDialog(baseBrowseButton);
+//
+//						if (returnVal == JFileChooser.APPROVE_OPTION) {
+//							File file = fc.getSelectedFile();
+//							FileSucker.configData.setScreenBaseDir(file);
+//							// System.out.println("File="+file.toString()+"|");
+//						}
+//					}
+//				});
 		hbox.add(baseTF);
 		hbox.add(baseBrowseButton);
 

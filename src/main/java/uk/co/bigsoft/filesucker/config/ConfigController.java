@@ -1,5 +1,9 @@
 package uk.co.bigsoft.filesucker.config;
 
+import java.io.File;
+
+import javax.swing.JFileChooser;
+
 
 public class ConfigController {
 
@@ -80,6 +84,8 @@ public class ConfigController {
 		view.getDelayFilesMsTextField().addKeyListener((KeyReleasedListener) e -> updateDelayFilesMs());
 
 		view.getSaveButton().addActionListener(e -> saveConfig());
+		
+		view.getBaseBrowseButton().addActionListener(e -> baseBrowse());
 	}
 
 	private int toInt(String num, int def) {
@@ -153,5 +159,18 @@ public class ConfigController {
 	private void saveConfig() {
 		saver.save(editingModel);
 		model = editingModel.clone();
+	}
+	
+	private void baseBrowse() {
+		JFileChooser fc = new JFileChooser(model.getBaseDir());
+		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		int returnVal = fc.showOpenDialog(view);
+
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			model.setBaseDir(file.toString());
+//			FileSucker.configData.setScreenBaseDir(file);
+			// System.out.println("File="+file.toString()+"|");
+		}	
 	}
 }

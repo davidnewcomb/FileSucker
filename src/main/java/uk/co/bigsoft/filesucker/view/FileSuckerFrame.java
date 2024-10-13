@@ -10,6 +10,7 @@ import javax.swing.JTabbedPane;
 
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.config.ConfigView;
+import uk.co.bigsoft.filesucker.credits.CreditsView;
 
 public class FileSuckerFrame extends JFrame {
 
@@ -22,7 +23,7 @@ public class FileSuckerFrame extends JFrame {
 
 	public static JTabbedPane tabPane;
 
-	public FileSuckerFrame(ConfigView configView) {
+	public FileSuckerFrame(ConfigView configView, CreditsView creditsView) {
 		super("FileSucker");
 		// setIconImage (icon.getImage ()) ;
 		addWindowListener(new WindowAdapter() // which exits when the
@@ -57,7 +58,7 @@ public class FileSuckerFrame extends JFrame {
 		tabPane.addTab("Transfer", null, FileSucker.transferScreen, "View tasks in progress");
 		tabPane.addTab("Tools", null, FileSucker.toolsScreen, "Text tools");
 		tabPane.addTab("Options", null, configView, "Change default options");
-		tabPane.addTab("Credits", null, FileSucker.creditScreen, "Statistics & Credits");
+		tabPane.addTab("Credits", null, creditsView, "Statistics & Credits");
 
 		pack();
 

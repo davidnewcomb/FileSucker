@@ -13,7 +13,6 @@ import javax.swing.border.LineBorder;
 import uk.co.bigsoft.filesucker.FileSucker;
 
 public class CreditsView extends JPanel {
-	private static final BytesToString bytesToString = new BytesToString();
 
 	private JLabel numFiles = new JLabel("0");
 	private JLabel numBytes = new JLabel("0");

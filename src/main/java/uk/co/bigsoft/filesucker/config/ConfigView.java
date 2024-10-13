@@ -4,20 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.view.LaunchProfileConfigPanel;
 
 public class ConfigView extends JPanel {
@@ -40,6 +35,7 @@ public class ConfigView extends JPanel {
 	private JTextField helperTextTF = new JTextField();
 	private JTextField helperDirectoryTF = new JTextField();
 	//private LaunchProfileConfigPanel launchProfileConfig = new LaunchProfileConfigPanel();
+	private JButton baseBrowseButton = new JButton("Browse");
 
 	public ConfigView() {
 		super(new BorderLayout());
@@ -58,24 +54,24 @@ public class ConfigView extends JPanel {
 		baseTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		baseTF.setEditable(true);
 
-		final JButton baseBrowseButton = new JButton("Browse");
-		baseBrowseButton.addActionListener(
-
-				new ActionListener() // which does the actual
-				// Delete operation
-				{
-					public void actionPerformed(ActionEvent e) {
-						JFileChooser fc = new JFileChooser(FileSucker.configData.getBaseDir());
-						fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-						int returnVal = fc.showOpenDialog(baseBrowseButton);
-
-						if (returnVal == JFileChooser.APPROVE_OPTION) {
-							File file = fc.getSelectedFile();
-							FileSucker.configData.setScreenBaseDir(file);
-							// System.out.println("File="+file.toString()+"|");
-						}
-					}
-				});
+		//final JButton baseBrowseButton = new JButton("Browse");
+//		baseBrowseButton.addActionListener(
+//
+//				new ActionListener() // which does the actual
+//				// Delete operation
+//				{
+//					public void actionPerformed(ActionEvent e) {
+//						JFileChooser fc = new JFileChooser(FileSucker.configData.getBaseDir());
+//						fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//						int returnVal = fc.showOpenDialog(baseBrowseButton);
+//
+//						if (returnVal == JFileChooser.APPROVE_OPTION) {
+//							File file = fc.getSelectedFile();
+//							FileSucker.configData.setScreenBaseDir(file);
+//							// System.out.println("File="+file.toString()+"|");
+//						}
+//					}
+//				});
 		hbox.add(baseTF);
 		hbox.add(baseBrowseButton);
 
@@ -265,5 +261,13 @@ public class ConfigView extends JPanel {
 	public LaunchProfileConfigPanel getLaunchProfileConfig() {
 		// TODO
 		return null; // launchProfileConfig;
+	}
+
+	public JButton getBaseBrowseButton() {
+		return baseBrowseButton;
+	}
+
+	public void setBaseBrowseButton(JButton baseBrowseButton) {
+		this.baseBrowseButton = baseBrowseButton;
 	}
 }
