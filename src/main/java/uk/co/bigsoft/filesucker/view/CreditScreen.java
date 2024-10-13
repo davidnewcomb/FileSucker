@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import uk.co.bigsoft.filesucker.FileSucker;
 
 public class CreditScreen extends JPanel {
 	private static final long DIV_K = 1024L;
@@ -39,7 +41,7 @@ public class CreditScreen extends JPanel {
 
 	private static JButton resetCounters;
 
-	CreditScreen() {
+	public CreditScreen() {
 		super(new BorderLayout());
 
 		jlNumFiles = new JLabel("" + numFiles);

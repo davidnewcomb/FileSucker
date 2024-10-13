@@ -28,7 +28,6 @@ import javax.swing.border.LineBorder;
 import uk.co.bigsoft.filesucker.BasicAuth;
 import uk.co.bigsoft.filesucker.FileAndTextTransferHandler;
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.FileSuckerFrame;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.PrefixJTextField;
 import uk.co.bigsoft.filesucker.RunYetComponent;
@@ -63,6 +62,7 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixClearButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixCopyButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixLowerButton;
+import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskScreen extends JPanel {
 	protected static JLabel errorMessages;

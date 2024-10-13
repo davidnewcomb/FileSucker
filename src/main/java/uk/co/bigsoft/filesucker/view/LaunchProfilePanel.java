@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.view;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -14,6 +14,8 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import uk.co.bigsoft.filesucker.FileSucker;
+import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class LaunchProfilePanel extends JPanel {

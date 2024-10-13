@@ -8,6 +8,11 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipException;
 
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.view.ConfigScreen;
+import uk.co.bigsoft.filesucker.view.CreditScreen;
+import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
+import uk.co.bigsoft.filesucker.view.ToolsScreen;
+import uk.co.bigsoft.filesucker.view.TransferScreen;
 
 public class FileSucker {
 	public static String version = "";

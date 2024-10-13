@@ -245,7 +245,7 @@ public class ConfigData extends Properties {
 		return s.toString();
 	}
 
-	void save() {
+	public void save() {
 		StringBuffer header = new StringBuffer();
 		header.append("FileSucker ");
 		header.append(FileSucker.version);

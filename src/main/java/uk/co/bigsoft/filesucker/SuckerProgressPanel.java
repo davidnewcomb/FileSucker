@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.view.CreditScreen;
 
 public class SuckerProgressPanel extends JPanel {
 	private static final int TRANSFER_ROW_HEIGHT = 20;

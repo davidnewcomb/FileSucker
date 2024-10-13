@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,6 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import uk.co.bigsoft.filesucker.FileSucker;
+import uk.co.bigsoft.filesucker.Utility;
 
 public class ConfigScreen extends JPanel {
 	private final static int MAX_WID_HEIGHT = 15;
@@ -54,7 +57,7 @@ public class ConfigScreen extends JPanel {
 
 	protected LaunchProfileConfigPanel launchProfileConfig;
 
-	ConfigScreen() {
+	public ConfigScreen() {
 		super(new BorderLayout());
 
 		JPanel centre = new JPanel();
@@ -252,7 +255,7 @@ public class ConfigScreen extends JPanel {
 		centre.add(jp);
 	}
 
-	void setBaseDirectory(String b) {
+	public void setBaseDirectory(String b) {
 		baseTF.setText(b);
 	}
 }

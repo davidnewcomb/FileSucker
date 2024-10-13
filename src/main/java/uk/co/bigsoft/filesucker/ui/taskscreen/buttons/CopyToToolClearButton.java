@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.FileSuckerFrame;
-import uk.co.bigsoft.filesucker.ToolsScreen;
+import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
+import uk.co.bigsoft.filesucker.view.ToolsScreen;
 
 public class CopyToToolClearButton extends JButton implements ActionListener {
 	private JTextField url;

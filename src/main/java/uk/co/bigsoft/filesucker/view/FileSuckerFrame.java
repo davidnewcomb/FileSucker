@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.view;
 
 import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
@@ -7,6 +7,8 @@ import java.util.prefs.Preferences;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+
+import uk.co.bigsoft.filesucker.FileSucker;
 
 public class FileSuckerFrame extends JFrame {
 

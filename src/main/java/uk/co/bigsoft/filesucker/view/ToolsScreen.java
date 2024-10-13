@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -21,13 +21,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import uk.co.bigsoft.filesucker.FileSucker;
+import uk.co.bigsoft.filesucker.UrlSequenceIteration;
+import uk.co.bigsoft.filesucker.UrlSequencer;
+import uk.co.bigsoft.filesucker.Utility;
 //import net.iharder.Base64;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class ToolsScreen extends JPanel {
 	public static JTextField convertUrlText;
 
-	ToolsScreen() {
+	public ToolsScreen() {
 		super(new BorderLayout());
 
 		Box hbox = Box.createHorizontalBox();
