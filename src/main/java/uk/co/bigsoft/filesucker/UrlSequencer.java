@@ -4,86 +4,78 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class UrlSequencer
-{
-    private String orginalString;
+import uk.co.bigsoft.filesucker.sucker_types.CopySuckerType;
+import uk.co.bigsoft.filesucker.sucker_types.LabelSuckerType;
+import uk.co.bigsoft.filesucker.sucker_types.SuckerType;
 
-    private ArrayList<SuckerType> urlChunks = new ArrayList<SuckerType>();
+public class UrlSequencer {
+	private String orginalString;
 
-    private HashMap<Integer, SuckerType> lineParms = new HashMap<Integer, SuckerType>();
+	private ArrayList<SuckerType> urlChunks = new ArrayList<SuckerType>();
 
-    private int totalFilesToGet = 1;
+	private HashMap<Integer, SuckerType> lineParms = new HashMap<Integer, SuckerType>();
 
-    /**
-     * Create a url sequencer
-     * 
-     * @param s
-     *            url sequence
-     */
-    public UrlSequencer(String s)
-    {
-        orginalString = s;
+	private int totalFilesToGet = 1;
 
-        urlChunks = new ArrayList<SuckerType>();
-        StringBuffer tok = new StringBuffer();
-        SuckerType stype;
-        boolean inBrackets = false;
+	/**
+	 * Create a url sequencer
+	 * 
+	 * @param s url sequence
+	 */
+	public UrlSequencer(String s) {
+		orginalString = s;
 
-        for (int i = 0 ; i < orginalString.length() ; i++)
-        {
-            if (orginalString.charAt(i) == '{'
-                    || orginalString.charAt(i) == '}')
-            {
-                stype = getSuckerType(inBrackets, tok.toString());
-                if (orginalString.charAt(i) == '{')
-                    inBrackets = true;
-                else
-                    inBrackets = false;
+		urlChunks = new ArrayList<SuckerType>();
+		StringBuffer tok = new StringBuffer();
+		SuckerType stype;
+		boolean inBrackets = false;
 
-                if (stype == null)
-                    continue;
+		for (int i = 0; i < orginalString.length(); i++) {
+			if (orginalString.charAt(i) == '{' || orginalString.charAt(i) == '}') {
+				stype = getSuckerType(inBrackets, tok.toString());
+				if (orginalString.charAt(i) == '{')
+					inBrackets = true;
+				else
+					inBrackets = false;
 
-                Integer saveB = stype.getSaveBuffer();
-                if (!(stype instanceof CopySuckerType))
-                {
-                    if (saveB != null && saveB.intValue() != 0)
-                    {
-                        lineParms.put(saveB, stype);
-                    }
-                    totalFilesToGet *= stype.numberOfIterations();
-                }
-                urlChunks.add(stype);
-                tok = new StringBuffer();
-                continue;
-            }
+				if (stype == null)
+					continue;
 
-            tok.append(orginalString.charAt(i));
-        }
+				Integer saveB = stype.getSaveBuffer();
+				if (!(stype instanceof CopySuckerType)) {
+					if (saveB != null && saveB.intValue() != 0) {
+						lineParms.put(saveB, stype);
+					}
+					totalFilesToGet *= stype.numberOfIterations();
+				}
+				urlChunks.add(stype);
+				tok = new StringBuffer();
+				continue;
+			}
 
-        if (tok.toString().length() > 0)
-        {
-            stype = getSuckerType(inBrackets, tok.toString());
-            urlChunks.add(stype);
-        }
-    }
+			tok.append(orginalString.charAt(i));
+		}
 
-    private SuckerType getSuckerType(boolean inBrackets, String tok)
-    {
-        if (inBrackets)
-            return SuckerType.getSuckerType(tok.toString());
-        if ("".equals(tok))
-            return null;
-        return new LabelSuckerType(tok.toString());
-    }
+		if (tok.toString().length() > 0) {
+			stype = getSuckerType(inBrackets, tok.toString());
+			urlChunks.add(stype);
+		}
+	}
 
-    public Iterator<UrlSequenceIteration> iterator()
-    {
-        CIterator ci = new CIterator(urlChunks);
-        return ci.iterator();
-    }
+	private SuckerType getSuckerType(boolean inBrackets, String tok) {
+		if (inBrackets)
+			return SuckerType.getSuckerType(tok.toString());
+		if ("".equals(tok))
+			return null;
+		return new LabelSuckerType(tok);
+	}
 
-    public int size()
-    {
-        return totalFilesToGet;
-    }
+	public Iterator<UrlSequenceIteration> iterator() {
+		CIterator ci = new CIterator(urlChunks);
+		return ci.iterator();
+	}
+
+	public int size() {
+		return totalFilesToGet;
+	}
 }

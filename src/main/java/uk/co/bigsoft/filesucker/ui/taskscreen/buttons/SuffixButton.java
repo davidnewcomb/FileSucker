@@ -9,35 +9,32 @@ import javax.swing.JTextField;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
 
-public class SuffixButton extends JButton implements ActionListener
-{
+public class SuffixButton extends JButton implements ActionListener {
 
-    private JTextField url;
-    private JTextField suffix;
+	private JTextField url;
+	private JTextField suffix;
 
-    public SuffixButton(JTextField url, JTextField suffix)
-    {
-        super("Suffix");
+	public SuffixButton(JTextField url, JTextField suffix) {
+		super("Suffix");
 
-        this.url = url;
-        this.suffix = suffix;
+		this.url = url;
+		this.suffix = suffix;
 
-        setToolTipText("Copy highlighted text from url suffix");
+		setToolTipText("Copy highlighted text from url suffix");
 
-        addActionListener(this);
-    }
+		addActionListener(this);
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent ae)
-    {
-        String url_s = url.getSelectedText();
-        if (url_s == null)
-            return;
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		String url_s = url.getSelectedText();
+		if (url_s == null)
+			return;
 
-        url_s = Utility.getSuckerLable(url_s);
-        url_s = Utility.cleanString(url_s);
-        url_s = FileSucker.configData.getPostPrefix() + url_s;
+		url_s = Utility.getSuckerLable(url_s);
+		url_s = Utility.cleanString(url_s);
+		url_s = FileSucker.configData.getPostPrefix() + url_s;
 
-        suffix.replaceSelection(url_s);
-    }
+		suffix.replaceSelection(url_s);
+	}
 }

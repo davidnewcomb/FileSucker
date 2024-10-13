@@ -8,26 +8,22 @@ import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.Utility;
 
-public class OriginalAddressLaunchButton extends JButton implements
-        ActionListener
-{
-    private JTextField originalAddress;
+public class OriginalAddressLaunchButton extends JButton implements ActionListener {
+	private JTextField originalAddress;
 
-    public OriginalAddressLaunchButton(JTextField originalAddress)
-    {
-        super("L");
+	public OriginalAddressLaunchButton(JTextField originalAddress) {
+		super("L");
 
-        this.originalAddress = originalAddress;
+		this.originalAddress = originalAddress;
 
-        setToolTipText("Launch original address in web browser");
-        addActionListener(this);
-    }
+		setToolTipText("Launch original address in web browser");
+		addActionListener(this);
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        String url = originalAddress.getText();
-        Utility.launchBrowser(url);
-    }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String url = originalAddress.getText();
+		Utility.launchBrowser(url);
+	}
 
 }

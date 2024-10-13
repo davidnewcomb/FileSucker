@@ -9,28 +9,25 @@ import javax.swing.JButton;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 
-public class HomeButton extends JButton implements ActionListener
-{
-    private HistoryJComboBox directory;
+public class HomeButton extends JButton implements ActionListener {
+	private HistoryJComboBox directory;
 
-    public HomeButton(HistoryJComboBox directory)
-    {
-        super("H");
-        
-        this.directory = directory;
-        
-        setToolTipText("Initialises the directory to base directory");
-        setMinimumSize(new Dimension(0, 0));
-        setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-        
-        addActionListener(this);
-    }
+	public HomeButton(HistoryJComboBox directory) {
+		super("H");
 
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        directory.setSelectedItem(FileSucker.configData.getScreenBaseDir());
+		this.directory = directory;
 
-    }
+		setToolTipText("Initialises the directory to base directory");
+		setMinimumSize(new Dimension(0, 0));
+		setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		directory.setSelectedItem(FileSucker.configData.getScreenBaseDir());
+
+	}
 
 }

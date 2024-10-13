@@ -9,37 +9,34 @@ import javax.swing.JTextField;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
 
-public class PrefixButton extends JButton implements ActionListener
-{
+public class PrefixButton extends JButton implements ActionListener {
 
-    private JTextField url;
-    private JTextField prefix;
+	private JTextField url;
+	private JTextField prefix;
 
-    public PrefixButton(JTextField url, JTextField prefix)
-    {
-        super("Prefix");
+	public PrefixButton(JTextField url, JTextField prefix) {
+		super("Prefix");
 
-        this.url = url;
-        this.prefix = prefix;
+		this.url = url;
+		this.prefix = prefix;
 
-        setToolTipText("Copy highlighted text from url prefix");
-        
-        addActionListener(this);
-    }
+		setToolTipText("Copy highlighted text from url prefix");
 
-    @Override
-    public void actionPerformed(ActionEvent ae)
-    {
+		addActionListener(this);
+	}
 
-        String url_s = url.getSelectedText();
-        if (url_s == null)
-            return;
+	@Override
+	public void actionPerformed(ActionEvent ae) {
 
-        url_s = Utility.getSuckerLable(url_s);
-        url_s = Utility.cleanString(url_s);
-        url_s = url_s + FileSucker.configData.getPostPrefix();
+		String url_s = url.getSelectedText();
+		if (url_s == null)
+			return;
 
-        prefix.replaceSelection(url_s);
+		url_s = Utility.getSuckerLable(url_s);
+		url_s = Utility.cleanString(url_s);
+		url_s = url_s + FileSucker.configData.getPostPrefix();
 
-    }
+		prefix.replaceSelection(url_s);
+
+	}
 }

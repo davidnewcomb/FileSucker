@@ -7,27 +7,24 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class LooperBox extends JPanel
-{
-    ArrayList<JButton> commands = new ArrayList<JButton>();
+public class LooperBox extends JPanel {
+	ArrayList<JButton> commands = new ArrayList<JButton>();
 
-    LooperBox()
-    {
-        super(new BorderLayout());
+	LooperBox() {
+		super(new BorderLayout());
 
-        commands.add(new NumberLooperButton());
-        commands.add(new TextLooperButton());
-        commands.add(new ListLooperButton());
-        commands.add(new CopyLooperButton());
-        commands.add(new StaticLooperButton());
+		commands.add(new NumberLooperButton());
+		commands.add(new TextLooperButton());
+		commands.add(new ListLooperButton());
+		commands.add(new CopyLooperButton());
+		commands.add(new StaticLooperButton());
 
-        Box hbox = Box.createHorizontalBox();
-        for (JButton a : commands)
-        {
-            hbox.add(a);
-        }
+		Box hbox = Box.createHorizontalBox();
+		for (JButton a : commands) {
+			hbox.add(a);
+		}
 
-        add(BorderLayout.NORTH, hbox);
-    }
+		add(BorderLayout.NORTH, hbox);
+	}
 
 }

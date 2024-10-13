@@ -6,32 +6,27 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class PrefixLowerButton extends JButton implements ActionListener
-{
+public class PrefixLowerButton extends JButton implements ActionListener {
 
-    private JTextField prefix;
+	private JTextField prefix;
 
-    public PrefixLowerButton(JTextField prefix)
-    {
-        super("Lower");
+	public PrefixLowerButton(JTextField prefix) {
+		super("Lower");
 
-        this.prefix = prefix;
+		this.prefix = prefix;
 
-        setToolTipText("Changes highlighted suffix text to lowercase");
-        
-        addActionListener(this);
-    }
+		setToolTipText("Changes highlighted suffix text to lowercase");
 
-    @Override
-    public void actionPerformed(ActionEvent ae)
-    {
-        String url_s = prefix.getSelectedText();
-        if (url_s == null)
-        {
-            url_s = prefix.getText().toLowerCase();
-            prefix.setText(url_s);
-        }
-        else
-            prefix.replaceSelection(url_s.toLowerCase());
-    }
+		addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		String url_s = prefix.getSelectedText();
+		if (url_s == null) {
+			url_s = prefix.getText().toLowerCase();
+			prefix.setText(url_s);
+		} else
+			prefix.replaceSelection(url_s.toLowerCase());
+	}
 }

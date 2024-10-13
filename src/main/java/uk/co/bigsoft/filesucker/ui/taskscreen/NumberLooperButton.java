@@ -8,41 +8,37 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.NumberLooper;
+import uk.co.bigsoft.filesucker.looper.number.NumberLooper;
 
-public class NumberLooperButton extends JButton implements ActionListener
-{
+public class NumberLooperButton extends JButton implements ActionListener {
 
-    NumberLooperButton()
-    {
-        super("N");
+	NumberLooperButton() {
+		super("N");
 
-        addActionListener(this);
-        setToolTipText("Creates a number looper");
-        setMinimumSize(new Dimension(10, 20));
-        setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-    }
+		addActionListener(this);
+		setToolTipText("Creates a number looper");
+		setMinimumSize(new Dimension(10, 20));
+		setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        int caretpos = TaskScreen.urlTF.getCaretPosition();
-        if (caretpos == 0)
-            return;
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		int caretpos = TaskScreen.urlTF.getCaretPosition();
+		if (caretpos == 0)
+			return;
 
-        String selected = TaskScreen.urlTF.getSelectedText();
-        if (selected == null)
-            return;
+		String selected = TaskScreen.urlTF.getSelectedText();
+		if (selected == null)
+			return;
 
-        FileSucker.taskScreen.numberB.setEnabled(false);
-        FileSucker.taskScreen.textB.setVisible(false);
-        FileSucker.taskScreen.listB.setVisible(false);
-        FileSucker.taskScreen.copyB.setVisible(false);
-        FileSucker.taskScreen.staticB.setVisible(false);
+		FileSucker.taskScreen.numberB.setEnabled(false);
+		FileSucker.taskScreen.textB.setVisible(false);
+		FileSucker.taskScreen.listB.setVisible(false);
+		FileSucker.taskScreen.copyB.setVisible(false);
+		FileSucker.taskScreen.staticB.setVisible(false);
 
-        FileSucker.taskScreen.iteratorJP.removeAll();
-        FileSucker.taskScreen.iteratorJP.add(new NumberLooper(selected),
-                BorderLayout.CENTER);
-        FileSucker.taskScreen.iteratorJP.repaint();
-    }
+		FileSucker.taskScreen.iteratorJP.removeAll();
+		FileSucker.taskScreen.iteratorJP.add(new NumberLooper(selected), BorderLayout.CENTER);
+		FileSucker.taskScreen.iteratorJP.repaint();
+	}
 }

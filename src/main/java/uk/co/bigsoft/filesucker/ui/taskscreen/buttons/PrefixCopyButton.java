@@ -8,28 +8,25 @@ import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.Utility;
 
-public class PrefixCopyButton extends JButton implements ActionListener
-{
+public class PrefixCopyButton extends JButton implements ActionListener {
 
-    private JTextField prefix;
+	private JTextField prefix;
 
-    public PrefixCopyButton(JTextField prefix)
-    {
-        super("CP");
+	public PrefixCopyButton(JTextField prefix) {
+		super("CP");
 
-        this.prefix = prefix;
+		this.prefix = prefix;
 
-        setToolTipText("Replace highlighted prefix text with clipboard text");
-        
-        addActionListener(this);
-    }
+		setToolTipText("Replace highlighted prefix text with clipboard text");
 
-    @Override
-    public void actionPerformed(ActionEvent ae)
-    {
-        String s = Utility.getClipboard();
-        s = Utility.getSuckerLable(s);
-        s = Utility.cleanString(s);
-        prefix.replaceSelection(s + "_");
-    }
+		addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		String s = Utility.getClipboard();
+		s = Utility.getSuckerLable(s);
+		s = Utility.cleanString(s);
+		prefix.replaceSelection(s + "_");
+	}
 }

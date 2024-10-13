@@ -4,117 +4,104 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-public class CIterator implements Iterator<UrlSequenceIteration>
-{
-    private int[] iter;
+import uk.co.bigsoft.filesucker.sucker_types.CopySuckerType;
+import uk.co.bigsoft.filesucker.sucker_types.LabelSuckerType;
+import uk.co.bigsoft.filesucker.sucker_types.StaticSuckerType;
+import uk.co.bigsoft.filesucker.sucker_types.SuckerType;
 
-    private int current;
+public class CIterator implements Iterator<UrlSequenceIteration> {
+	private int[] iter;
 
-    private HashMap<Integer, String> ivariables;
+	private HashMap<Integer, String> ivariables;
 
-    private boolean hasnext;
+	private boolean hasnext;
 
-    private List<SuckerType> urlChunks;
+	private List<SuckerType> urlChunks;
 
-    public CIterator(List<SuckerType> uc)
-    {
-        urlChunks = uc;
-    }
+	public CIterator(List<SuckerType> uc) {
+		urlChunks = uc;
+	}
 
-    public Iterator<UrlSequenceIteration> iterator()
-    {
-        iter = new int[urlChunks.size()];
-        current = 0;
-        hasnext = true;
+	public Iterator<UrlSequenceIteration> iterator() {
+		iter = new int[urlChunks.size()];
+		hasnext = true;
 
-        for (int i = 0 ; i < iter.length ; ++i)
-            iter[i] = 0;
+		for (int i = 0; i < iter.length; ++i)
+			iter[i] = 0;
 
-        ivariables = new HashMap<Integer, String>();
+		ivariables = new HashMap<Integer, String>();
 
-        return this;
-    }
+		return this;
+	}
 
-    public boolean hasNext()
-    {
-        return hasnext; // (current < totalFilesToGet);
-    }
+	public boolean hasNext() {
+		return hasnext; // (current < totalFilesToGet);
+	}
 
-    public UrlSequenceIteration next()
-    {
-        current += 1;
+	public UrlSequenceIteration next() {
 
-        // rotate iterators
-        String remoteFile = convert();
-        UrlSequenceIteration usi = new UrlSequenceIteration(remoteFile,
-                ivariables);
+		// rotate iterators
+		String remoteFile = convert();
+		UrlSequenceIteration usi = new UrlSequenceIteration(remoteFile, ivariables);
 
-        hasnext = rotate(iter.length - 1);
-        return usi;
-    }
+		hasnext = rotate(iter.length - 1);
+		return usi;
+	}
 
-    public void remove()
-    {
-        /* empty */
-    }
+	public void remove() {
+		/* empty */
+	}
 
-    private boolean rotate(int idx)
-    {
-        if (idx == 0)
-        {
-            return false;
-        }
+	private boolean rotate(int idx) {
+		if (idx == 0) {
+			return false;
+		}
 
-        SuckerType st = urlChunks.get(idx);
+		SuckerType st = urlChunks.get(idx);
 
-        if (st instanceof LabelSuckerType == true
-                || st instanceof CopySuckerType == true
-                || st instanceof StaticSuckerType == true)
-            return rotate(--idx);
+		if (st instanceof LabelSuckerType == true || st instanceof CopySuckerType == true
+				|| st instanceof StaticSuckerType == true)
+			return rotate(--idx);
 
-        if (st.numberOfIterations() > iter[idx])
-        {
-            iter[idx] += 1;
-            return true;
-        }
+		if (st.numberOfIterations() > iter[idx]) {
+			iter[idx] += 1;
+			return true;
+		}
 
-        iter[idx] = 0;
+		iter[idx] = 0;
 
-        return rotate(--idx);
-    }
+		return rotate(--idx);
+	}
 
-    public String convert()
-    {
-        StringBuffer sb = new StringBuffer();
-        int k = 0;
+	public String convert() {
+		StringBuffer sb = new StringBuffer();
+		int k = 0;
 
-        for (Iterator<SuckerType> i = urlChunks.iterator() ; i.hasNext() ; k++)
-        {
-            SuckerType st = i.next();
+		for (Iterator<SuckerType> i = urlChunks.iterator(); i.hasNext(); k++) {
+			SuckerType st = i.next();
 
-            if (st instanceof CopySuckerType == true)
-                continue;
+			if (st instanceof CopySuckerType == true)
+				continue;
 
-            if (st.getSaveBuffer().intValue() != 0)
-                ivariables.put(st.getSaveBuffer(), st.indexOf(iter[k]));
-        }
+			if (st.getSaveBuffer() != 0)
+				ivariables.put(st.getSaveBuffer(), st.indexOf(iter[k]));
+		}
 
-        String s;
-        k = 0;
-        for (Iterator<SuckerType> i = urlChunks.iterator() ; i.hasNext() ; k++)
-        {
-            SuckerType st = i.next();
+		String s;
+		k = 0;
+		for (Iterator<SuckerType> i = urlChunks.iterator(); i.hasNext(); k++) {
+			SuckerType st = i.next();
 
-            if (st instanceof StaticSuckerType)
-                continue;
+			if (st instanceof StaticSuckerType)
+				continue;
 
-            if (st instanceof CopySuckerType)
-                s = ivariables.get(st.getSaveBuffer());
-            else
-                s = st.indexOf(iter[k]);
+			if (st instanceof CopySuckerType)
+				s = ivariables.get(st.getSaveBuffer());
+			else
+				s = st.indexOf(iter[k]);
 
-            sb.append(s);
-        }
-        return sb.toString();
-    }
+			sb.append(s);
+		}
+		return sb.toString();
+	}
 }

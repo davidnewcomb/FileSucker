@@ -6,25 +6,22 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class SuffixClearButton extends JButton implements ActionListener
-{
+public class SuffixClearButton extends JButton implements ActionListener {
 
-    private JTextField suffix;
+	private JTextField suffix;
 
-    public SuffixClearButton(JTextField suffix)
-    {
-        super("Clear");
+	public SuffixClearButton(JTextField suffix) {
+		super("Clear");
 
-        this.suffix = suffix;
+		this.suffix = suffix;
 
-        setToolTipText("Clears suffix box");
+		setToolTipText("Clears suffix box");
 
-        addActionListener(this);
-    }
+		addActionListener(this);
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent ae)
-    {
-        suffix.setText("");
-    }
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		suffix.setText("");
+	}
 }

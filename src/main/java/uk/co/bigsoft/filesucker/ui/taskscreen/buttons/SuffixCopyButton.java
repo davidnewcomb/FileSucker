@@ -8,28 +8,25 @@ import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.Utility;
 
-public class SuffixCopyButton extends JButton implements ActionListener
-{
+public class SuffixCopyButton extends JButton implements ActionListener {
 
-    private JTextField suffix;
+	private JTextField suffix;
 
-    public SuffixCopyButton(JTextField suffix)
-    {
-        super("CS");
+	public SuffixCopyButton(JTextField suffix) {
+		super("CS");
 
-        this.suffix = suffix;
+		this.suffix = suffix;
 
-        setToolTipText("Replace highlighted suffix text with clipboard text");
+		setToolTipText("Replace highlighted suffix text with clipboard text");
 
-        addActionListener(this);
-    }
+		addActionListener(this);
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent ae)
-    {
-        String s = Utility.getClipboard();
-        s = Utility.getSuckerLable(s);
-        s = Utility.cleanString(s);
-        suffix.replaceSelection("_" + s);
-    }
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		String s = Utility.getClipboard();
+		s = Utility.getSuckerLable(s);
+		s = Utility.cleanString(s);
+		suffix.replaceSelection("_" + s);
+	}
 }

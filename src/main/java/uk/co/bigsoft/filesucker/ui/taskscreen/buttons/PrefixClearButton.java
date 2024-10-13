@@ -6,25 +6,22 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class PrefixClearButton extends JButton implements ActionListener
-{
+public class PrefixClearButton extends JButton implements ActionListener {
 
-    private JTextField prefix;
+	private JTextField prefix;
 
-    public PrefixClearButton(JTextField prefix)
-    {
-        super("Clear");
+	public PrefixClearButton(JTextField prefix) {
+		super("Clear");
 
-        this.prefix = prefix;
+		this.prefix = prefix;
 
-        setToolTipText("Clears prefix box");
-        
-        addActionListener(this);
-    }
+		setToolTipText("Clears prefix box");
 
-    @Override
-    public void actionPerformed(ActionEvent ae)
-    {
-        prefix.setText("");
-    }
+		addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		prefix.setText("");
+	}
 }

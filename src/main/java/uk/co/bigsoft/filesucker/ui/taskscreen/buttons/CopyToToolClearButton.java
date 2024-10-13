@@ -10,25 +10,22 @@ import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.FileSuckerFrame;
 import uk.co.bigsoft.filesucker.ToolsScreen;
 
-public class CopyToToolClearButton extends JButton implements ActionListener
-{
-    private JTextField url;
+public class CopyToToolClearButton extends JButton implements ActionListener {
+	private JTextField url;
 
-    public CopyToToolClearButton(JTextField url)
-    {
-        super("CT");
-        
-        this.url = url;
-        
-        setToolTipText("Copy text to ToolScreen");
-        
-        addActionListener(this);
-    }
+	public CopyToToolClearButton(JTextField url) {
+		super("CT");
 
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        ToolsScreen.setConvertUrlText(url.getText());
-        FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.toolsScreen);
-    }
+		this.url = url;
+
+		setToolTipText("Copy text to ToolScreen");
+
+		addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		ToolsScreen.setConvertUrlText(url.getText());
+		FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.toolsScreen);
+	}
 }
