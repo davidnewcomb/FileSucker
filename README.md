@@ -3,11 +3,11 @@ Generates URLs from a pattern and downloads all the files.
 
 # Screenshots
 ![Configuration page](doc/images/configuration-page.jpg)
-![Download completed time](download-completed-time.jpg)
-![Downloading redarrows1.jpg to redarrows12.jpg](download-redarrows1.jpg-to-redarrows12.jpg.jpg)
-![Start downloading in groups of 10](start-downloading-in-groups-of-10.jpg)
-![Statistics page](statistics.jpg)
-![URL manipulation tools and utilities page](url-manipulation-tools-and-utilities-page.jpg)
+![Download completed time](doc/images/download-completed-time.jpg)
+![Downloading redarrows1.jpg to redarrows12.jpg](doc/images/download-redarrows1.jpg-to-redarrows12.jpg.jpg)
+![Start downloading in groups of 10](doc/images/start-downloading-in-groups-of-10.jpg)
+![Statistics page](doc/images/statistics.jpg)
+![URL manipulation tools and utilities page](doc/images/url-manipulation-tools-and-utilities-page.jpg)
 
 
 ## History
