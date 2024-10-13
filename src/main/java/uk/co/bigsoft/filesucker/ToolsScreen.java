@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import net.iharder.Base64;
+//import net.iharder.Base64;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class ToolsScreen extends JPanel
@@ -169,8 +170,7 @@ public class ToolsScreen extends JPanel
                         if (selected == null)
                             return;
 
-                        byte[] decodedBytes = Base64.decode(selected,
-                                Base64.DECODE);
+                        byte[] decodedBytes = Base64.getDecoder().decode(selected);
                         String decoded = new String(decodedBytes);
 
                         convertUrlText.setText(decoded);
@@ -204,8 +204,7 @@ public class ToolsScreen extends JPanel
                         String selected = text.substring(start, end);
                         System.out.println("substring:" + selected + "|");
 
-                        byte[] decodedBytes = Base64.decode(selected,
-                                Base64.DECODE);
+                        byte[] decodedBytes = Base64.getDecoder().decode(selected);
                         String decoded = new String(decodedBytes);
 
                         convertUrlText.setText(decoded);
