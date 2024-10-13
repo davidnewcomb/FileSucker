@@ -11,6 +11,7 @@ import uk.co.bigsoft.filesucker.config.ConfigController;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.ConfigSaver;
 import uk.co.bigsoft.filesucker.config.ConfigView;
+import uk.co.bigsoft.filesucker.credits.CreditsModel;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 import uk.co.bigsoft.filesucker.view.ConfigScreen;
 import uk.co.bigsoft.filesucker.view.CreditScreen;
@@ -60,6 +61,8 @@ public class FileSucker {
 		ConfigController configController = new ConfigController(configModel, configView);
 		configController.initController();
 		
+		CreditsModel creditsModel = new CreditsModel();
+		CreditsView creditsView = new Cred
 		// Build tabs
 		activeFileSuckerThreads = new LinkedList<SuckerThread>();
 		configData = new ConfigData();
