@@ -5,21 +5,21 @@ import java.util.List;
 
 public class ConfigModel implements Cloneable {
 
-	private String screenBaseDir = "";
+	private String baseDir = System.getenv("HOME") + "/FileSuker";
+	private String helperWeb = "firefox %s";
+	private String helperText = "textPad %s";
+	private String openDirectory = "explorer %s";
 	private int numberFrom = 1;
 	private int numberTo = 15;
 	private int numberPad = 1;
 	private String textFrom = "a";
 	private String textTo = "z";
 	private String postPrefix = "_";
+	private String findExtn = ".jpg";
 	private int maxTasks = 10;
 	private int maxSubTasks = 2;
-	private String findExtn = ".jpg";
 	private int delaySockReadMs = 5000;
 	private int delayFilesMs = 5000;
-	private String helperWeb = "";
-	private String helperText = "";
-	private String openDirectory = "";
 	private List<String> numberLooperHistory = new ArrayList<>();
 	private List<String> textLooperHistory = new ArrayList<>();
 	private List<String> launchProfiles = new ArrayList<>();
@@ -30,33 +30,33 @@ public class ConfigModel implements Cloneable {
 	
 	public ConfigModel clone() {
 		ConfigModel cm = new ConfigModel();
-		cm.setScreenBaseDir(screenBaseDir);
+		cm.setBaseDir(baseDir);
+		cm.setHelperWeb(helperWeb);
+		cm.setHelperText(helperText);
+		cm.setOpenDirectory(openDirectory);
 		cm.setNumberFrom(numberFrom);
 		cm.setNumberTo(numberTo);
 		cm.setNumberPad(numberPad);
 		cm.setTextFrom(textFrom);
 		cm.setTextTo(textTo);
 		cm.setPostPrefix(postPrefix);
+		cm.setFindExtn(findExtn);
 		cm.setMaxTasks(maxTasks);
 		cm.setMaxSubTasks(maxSubTasks);
-		cm.setFindExtn(findExtn);
 		cm.setDelaySockReadMs(delaySockReadMs);
 		cm.setDelayFilesMs(delayFilesMs);
-		cm.setHelperWeb(helperWeb);
-		cm.setHelperText(helperText);
-		cm.setOpenDirectory(openDirectory);
 		cm.setNumberLooperHistory(numberLooperHistory);
 		cm.setTextLooperHistory(textLooperHistory);
 		cm.setLaunchProfiles(launchProfiles);
 		return cm;
 	}
 	
-	public String getScreenBaseDir() {
-		return screenBaseDir;
+	public String getBaseDir() {
+		return baseDir;
 	}
 
-	public void setScreenBaseDir(String screenBaseDir) {
-		this.screenBaseDir = screenBaseDir;
+	public void setBaseDir(String baseDir) {
+		this.baseDir = baseDir;
 	}
 
 	public int getNumberFrom() {
@@ -163,7 +163,7 @@ public class ConfigModel implements Cloneable {
 		this.helperText = helperText;
 	}
 
-	public String getOpenDirectory() {
+	public String getHelperDirectory() {
 		return openDirectory;
 	}
 

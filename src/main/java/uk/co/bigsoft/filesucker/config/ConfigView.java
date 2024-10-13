@@ -38,7 +38,7 @@ public class ConfigView extends JPanel {
 	private JTextField delayFilesMsTF = new JTextField();
 	private JTextField helperWebTF = new JTextField();
 	private JTextField helperTextTF = new JTextField();
-	private JTextField openDirectoryTF = new JTextField();
+	private JTextField helperDirectoryTF = new JTextField();
 	//private LaunchProfileConfigPanel launchProfileConfig = new LaunchProfileConfigPanel();
 
 	public ConfigView() {
@@ -111,12 +111,12 @@ public class ConfigView extends JPanel {
 		centre.add(new JLabel("Open directory helper (%s for the directory name)"));
 		hbox = Box.createHorizontalBox();
 
-		openDirectoryTF.setMinimumSize(new Dimension(10, 20));
-		openDirectoryTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		openDirectoryTF.setEditable(true);
-		openDirectoryTF.setToolTipText("File location of web browser (%s for url substitution)");
+		helperDirectoryTF.setMinimumSize(new Dimension(10, 20));
+		helperDirectoryTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+		helperDirectoryTF.setEditable(true);
+		helperDirectoryTF.setToolTipText("File location of web browser (%s for url substitution)");
 
-		hbox.add(openDirectoryTF);
+		hbox.add(helperDirectoryTF);
 
 		centre.add(hbox);
 
@@ -258,8 +258,8 @@ public class ConfigView extends JPanel {
 		return helperTextTF;
 	}
 
-	public JTextField getOpenDirectoryTextField() {
-		return openDirectoryTF;
+	public JTextField getHelperDirectoryTextField() {
+		return helperDirectoryTF;
 	}
 
 	public LaunchProfileConfigPanel getLaunchProfileConfig() {

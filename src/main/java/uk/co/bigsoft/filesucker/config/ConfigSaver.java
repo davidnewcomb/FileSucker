@@ -34,7 +34,7 @@ public class ConfigSaver extends Properties {
 	private final String LAB_TEXTLOOPHISTORY = "textLooperHistory"; //$NON-NLS-1$
 	private final String LAB_LAUNCHPROFILES = "LaunchProfiles"; //$NON-NLS-1$
 	private final String LAB_VERSION = "Version"; //$NON-NLS-1$
-	private final String LAB_OPENDIRECTORY = "OpenDirectory"; //$NON-NLS-1$
+	private final String LAB_HELPER_DIRECTORY = "OpenDirectory"; //$NON-NLS-1$
 
 	public ConfigSaver() {
 		//
@@ -54,7 +54,7 @@ public class ConfigSaver extends Properties {
 		// String s = Utility.implode(cm.getFindExtn(), ",");
 
 		p.setProperty(LAB_VERSION, FileSucker.version);
-		p.setProperty(LAB_BASE, cm.getScreenBaseDir());
+		p.setProperty(LAB_BASE, cm.getBaseDir());
 		p.setProperty(LAB_NUMBERTO, String.valueOf(cm.getNumberTo()));
 		p.setProperty(LAB_NUMBERFROM, String.valueOf(cm.getNumberFrom()));
 		p.setProperty(LAB_NUMBERPAD, String.valueOf(cm.getNumberPad()));
@@ -66,7 +66,7 @@ public class ConfigSaver extends Properties {
 		p.setProperty(LAB_FINDEXTN, cm.getFindExtn());
 		p.setProperty(LAB_HELPER_WEB, cm.getHelperWeb());
 		p.setProperty(LAB_HELPER_TEXT, cm.getHelperText());
-		p.setProperty(LAB_OPENDIRECTORY, cm.getOpenDirectory());
+		p.setProperty(LAB_HELPER_DIRECTORY, cm.getHelperDirectory());
 		p.setProperty(LAB_DELAYSOCKREADMS, String.valueOf(cm.getDelaySockReadMs()));
 		p.setProperty(LAB_DELAYFILESMS, String.valueOf(cm.getDelayFilesMs()));
 
@@ -119,11 +119,11 @@ public class ConfigSaver extends Properties {
 		cm.setNumberLooperHistory(getStringListProperty(p, LAB_NUMBERLOOPHISTORY, cm.getNumberLooperHistory()));
 		cm.setTextLooperHistory(getStringListProperty(p, LAB_TEXTLOOPHISTORY, cm.getTextLooperHistory()));
 		
-		cm.setOpenDirectory(getStringProperty(p, LAB_OPENDIRECTORY, cm.getOpenDirectory()));
+		cm.setOpenDirectory(getStringProperty(p, LAB_HELPER_DIRECTORY, cm.getHelperDirectory()));
 		cm.setFindExtn(getStringProperty(p, LAB_FINDEXTN, cm.getFindExtn()));
 
 		cm.setPostPrefix(getStringProperty(p, LAB_POSTPREFIX, cm.getPostPrefix()));
-		cm.setScreenBaseDir(getStringProperty(p, LAB_BASE, cm.getScreenBaseDir()));
+		cm.setBaseDir(getStringProperty(p, LAB_BASE, cm.getBaseDir()));
 
 		return cm;
 	}
