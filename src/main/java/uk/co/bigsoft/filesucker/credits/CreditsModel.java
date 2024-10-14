@@ -1,6 +1,5 @@
 package uk.co.bigsoft.filesucker.credits;
 
-
 public class CreditsModel {
 
 	private long numFiles = 0;

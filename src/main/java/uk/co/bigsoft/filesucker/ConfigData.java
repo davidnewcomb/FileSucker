@@ -15,73 +15,39 @@ public class ConfigData extends Properties {
 	private static final String listSeperator = "�"; //$NON-NLS-1$
 
 	private final String CONFIG_FILE = "FileSucker.cfg.txt"; //$NON-NLS-1$
-
 	private final String LAB_BASE = "base"; //$NON-NLS-1$
-
 	private final String DEF_BASE = "c:\\tmp"; //$NON-NLS-1$
-
 	private final String LAB_NUMBERFROM = "numberFrom"; //$NON-NLS-1$
-
 	private final String DEF_NUMBERFROM = "1"; //$NON-NLS-1$
-
 	private final String LAB_NUMBERTO = "numberTo"; //$NON-NLS-1$
-
 	private final String DEF_NUMBERTO = "15"; //$NON-NLS-1$
-
 	private final String LAB_NUMBERPAD = "numberPad"; //$NON-NLS-1$
-
 	private final String DEF_NUMBERPAD = "2"; //$NON-NLS-1$
-
 	private final String LAB_TEXTFROM = "TextFrom"; //$NON-NLS-1$
-
 	private final String DEF_TEXTFROM = "a"; //$NON-NLS-1$
-
 	private final String LAB_TEXTTO = "TextTo"; //$NON-NLS-1$
-
 	private final String DEF_TEXTTO = "z"; //$NON-NLS-1$
-
 	private final String LAB_POSTPREFIX = "postPrefix"; //$NON-NLS-1$
-
 	private final String DEF_POSTPREFIX = "_"; //$NON-NLS-1$
-
 	private final String LAB_MAXTASKS = "maxTasks"; //$NON-NLS-1$
-
 	private final String DEF_MAXTASKS = "1"; //$NON-NLS-1$
-
 	private final String LAB_MAXSUBTASKS = "maxSubTasks"; //$NON-NLS-1$
-
 	private final String DEF_MAXSUBTASKS = "1"; //$NON-NLS-1$
-
 	private final String LAB_HELPER_WEB = "helperWeb"; //$NON-NLS-1$
-
 	private final String DEF_HELPER_WEB = "cmd /c \"C:\\Program Files\\Internet Explorer\\iexplore.exe\" %s"; //$NON-NLS-1$
-
 	private final String LAB_HELPER_TEXT = "helperText"; //$NON-NLS-1$
-
 	private final String DEF_HELPER_TEXT = "cmd /c \"notepad %s\""; //$NON-NLS-1$
-
 	private final String LAB_DELAYSOCKREADMS = "delaySockReadMs"; //$NON-NLS-1$
-
 	private final String DEF_DELAYSOCKREADMS = "0"; //$NON-NLS-1$
-
 	private final String LAB_DELAYFILESMS = "delayFilesMs"; //$NON-NLS-1$
-
 	private final String DEF_DELAYFILESMS = "0"; //$NON-NLS-1$
-
 	private final String LAB_FINDEXTN = "findExtension"; //$NON-NLS-1$
-
 	private final String DEF_FINDEXTN = "jpg"; //$NON-NLS-1$
-
 	private final String LAB_NUMBERLOOPHISTORY = "numberLooperHistory"; //$NON-NLS-1$
-
 	private final String LAB_TEXTLOOPHISTORY = "textLooperHistory"; //$NON-NLS-1$
-
 	private final String LAB_LAUNCHPROFILES = "LaunchProfiles"; //$NON-NLS-1$
-
 	private final String LAB_VERSION = "Version"; //$NON-NLS-1$
-
 	private final String LAB_OPENDIRECTORY = "OpenDirectory"; //$NON-NLS-1$
-
 	private final String DEF_OPENDIRECTORY = "explorer %s"; //$NON-NLS-1$
 
 	private File base;
@@ -155,20 +121,20 @@ public class ConfigData extends Properties {
 		String[] ta;
 		String t = getProperty(LAB_BASE);
 		base = new File(t);
-		numberTo = new Integer(getIntProperty(LAB_NUMBERTO));
-		numberFrom = new Integer(getIntProperty(LAB_NUMBERFROM));
-		numberPad = new Integer(getIntProperty(LAB_NUMBERPAD));
+		numberTo = Integer.valueOf(getIntProperty(LAB_NUMBERTO));
+		numberFrom = Integer.valueOf(getIntProperty(LAB_NUMBERFROM));
+		numberPad = Integer.valueOf(getIntProperty(LAB_NUMBERPAD));
 		textTo = getProperty(LAB_TEXTTO);
 		textFrom = getProperty(LAB_TEXTFROM);
 		postPrefix = getProperty(LAB_POSTPREFIX);
-		maxTasks = new Integer(getIntProperty(LAB_MAXTASKS));
-		maxSubTasks = new Integer(getIntProperty(LAB_MAXSUBTASKS));
+		maxTasks = Integer.valueOf(getIntProperty(LAB_MAXTASKS));
+		maxSubTasks = Integer.valueOf(getIntProperty(LAB_MAXSUBTASKS));
 		t = getProperty(LAB_FINDEXTN);
 		setFindExtn(t);
 		helperWeb = getProperty(LAB_HELPER_WEB);
 		helperText = getProperty(LAB_HELPER_TEXT);
-		delaySockReadMs = new Integer(getIntProperty(LAB_DELAYSOCKREADMS));
-		delayFilesMs = new Integer(getIntProperty(LAB_DELAYFILESMS));
+		delaySockReadMs = Integer.valueOf(getIntProperty(LAB_DELAYSOCKREADMS));
+		delayFilesMs = Integer.valueOf(getIntProperty(LAB_DELAYFILESMS));
 
 		List<String> l = getListProperty(LAB_NUMBERLOOPHISTORY);
 		numberLooperHistory = new HistoryDropDown(new NumberLooperSort());
@@ -408,15 +374,15 @@ public class ConfigData extends Properties {
 	}
 
 	public void setNumberFrom(String s) {
-		numberFrom = new Integer(s);
+		numberFrom = Integer.valueOf(s);
 	}
 
 	public void setNumberTo(String s) {
-		numberTo = new Integer(s);
+		numberTo = Integer.valueOf(s);
 	}
 
 	public void setNumberPad(String s) {
-		numberPad = new Integer(s);
+		numberPad = Integer.valueOf(s);
 	}
 
 	public void setTextFrom(String s) {
@@ -433,11 +399,11 @@ public class ConfigData extends Properties {
 
 	// Threads
 	public void setMaxTasks(String s) {
-		maxTasks = new Integer(s);
+		maxTasks = Integer.valueOf(s);
 	}
 
 	public void setMaxSubTasks(String s) {
-		maxSubTasks = new Integer(s);
+		maxSubTasks = Integer.valueOf(s);
 	}
 
 	public void setFindExtn(String s) {
@@ -468,7 +434,7 @@ public class ConfigData extends Properties {
 	}
 
 	public void setDelaySockReadMs(String i) {
-		delaySockReadMs = new Integer(i);
+		delaySockReadMs = Integer.valueOf(i);
 	}
 
 	public Integer getDelayFilesMs() {
@@ -480,7 +446,7 @@ public class ConfigData extends Properties {
 	}
 
 	public void setDelayFilesMs(String i) {
-		delayFilesMs = new Integer(i);
+		delayFilesMs = Integer.valueOf(i);
 	}
 
 	public HistoryDropDown getNumberLooperHistory() {

@@ -27,7 +27,7 @@ public class ConfigModel implements Cloneable {
 	public ConfigModel() {
 		//
 	}
-	
+
 	public ConfigModel clone() {
 		ConfigModel cm = new ConfigModel();
 		cm.setBaseDir(baseDir);
@@ -50,7 +50,7 @@ public class ConfigModel implements Cloneable {
 		cm.setLaunchProfiles(launchProfiles);
 		return cm;
 	}
-	
+
 	public String getBaseDir() {
 		return baseDir;
 	}
@@ -174,15 +174,15 @@ public class ConfigModel implements Cloneable {
 	public List<String> getNumberLooperHistory() {
 		return numberLooperHistory;
 	}
-	
+
 	public void setNumberLooperHistory(List<String> numberLooperHistory) {
 		this.numberLooperHistory = numberLooperHistory;
 	}
-	
+
 	public List<String> getTextLooperHistory() {
 		return textLooperHistory;
 	}
-	
+
 	public void setTextLooperHistory(List<String> textLooperHistory) {
 		this.textLooperHistory = textLooperHistory;
 	}
@@ -190,7 +190,7 @@ public class ConfigModel implements Cloneable {
 	public List<String> getLaunchProfiles() {
 		return launchProfiles;
 	}
-	
+
 	public void setLaunchProfiles(List<String> launchProfiles) {
 		this.launchProfiles = launchProfiles;
 	}

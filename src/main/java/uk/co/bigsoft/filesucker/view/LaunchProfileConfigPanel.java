@@ -21,7 +21,7 @@ import javax.swing.event.ListDataListener;
 import uk.co.bigsoft.filesucker.FileSucker;
 
 public class LaunchProfileConfigPanel extends JPanel {
-	protected JList current;
+	protected JList<String> current;
 
 	protected JTextField toAdd;
 
@@ -33,7 +33,7 @@ public class LaunchProfileConfigPanel extends JPanel {
 		super(new GridLayout(1, 3));
 		List<String> l = FileSucker.configData.getLaunchProfiles();
 		model = new LaunchListModel(l);
-		current = new JList(model);
+		current = new JList<>(model);
 		current.addKeyListener(new KeyListener() {
 
 			public void keyTyped(KeyEvent e) {
@@ -70,7 +70,7 @@ public class LaunchProfileConfigPanel extends JPanel {
 	}
 }
 
-class LaunchListModel implements ListModel {
+class LaunchListModel implements ListModel<String> {
 	private TreeSet<String> data;
 
 	private List<ListDataListener> listeners;
@@ -90,9 +90,9 @@ class LaunchListModel implements ListModel {
 		listeners.add(l);
 	}
 
-	public Object getElementAt(int index) {
+	public String getElementAt(int index) {
 		int c = 0;
-		for (Object o : data) {
+		for (String o : data) {
 			if (c == index)
 				return o;
 			c++;

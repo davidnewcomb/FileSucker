@@ -18,33 +18,19 @@ public class RunnableSucker implements Runnable {
 	// private static int maxFollowDepth = 5 ; // TODO move to config
 
 	private ProtocolURL url;
-
 	private File localFile;
-
 	private HashMap<String, String> sendHeaders = new HashMap<String, String>();
-
 	private Map<String, String> replyHeaders = new HashMap<String, String>();
-
 	private int returnCode;
-
 	private boolean cancel = false;
-
 	private boolean paused = false;
-
 	private long bytesDownloaded = 0;
-
 	private long expectedDownloadLoadsize = 0;
-
 	private SuckeringFileJProgressBar transfer = null;
-
 	private long localFileLength = 0;
-
 	private SuckerProgressPanel display = null;
-
 	private FileOutputStream fos = null;
-
 	private Socket socket = null;
-
 	private SuckerThread completedNotifier;
 
 	// private int followDepth = 0;
@@ -474,7 +460,7 @@ public class RunnableSucker implements Runnable {
 		}
 
 		try {
-			return new Integer(len).intValue();
+			return Integer.parseInt(len);
 		} catch (Exception e) {
 			return -1;
 		}

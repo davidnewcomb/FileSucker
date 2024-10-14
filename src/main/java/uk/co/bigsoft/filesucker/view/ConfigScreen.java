@@ -6,12 +6,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -24,37 +22,21 @@ public class ConfigScreen extends JPanel {
 	private final static int MAX_WID_HEIGHT = 15;
 
 	protected final JButton saveB;
-
 	protected JTextField baseTF;
-
 	protected JTextField numberFromTF;
-
 	protected JTextField numberToTF;
-
 	protected JTextField numberPadTF;
-
 	protected JTextField textPostPrefixTF;
-
 	protected JTextField textFromTF;
-
 	protected JTextField textToTF;
-
 	protected JTextField maxTasksFT;
-
 	protected JTextField maxSubTaskFT;
-
 	protected JTextField findFilesFT;
-
 	protected JTextField delaySockReadMsTF;
-
 	protected JTextField delayFilesMsTF;
-
 	protected JTextField helperWebTF;
-
 	protected JTextField helperTextTF;
-
 	protected JTextField openDirectoryTF;
-
 	protected LaunchProfileConfigPanel launchProfileConfig;
 
 	public ConfigScreen() {
@@ -70,7 +52,7 @@ public class ConfigScreen extends JPanel {
 			public void actionPerformed(ActionEvent ae) {
 				saveB.setEnabled(false);
 
-				//FileSucker.configData.setScreenBaseDir(baseTF.getText());
+				// FileSucker.configData.setScreenBaseDir(baseTF.getText());
 				FileSucker.configData.setNumberFrom(numberFromTF.getText());
 				FileSucker.configData.setNumberTo(numberToTF.getText());
 				FileSucker.configData.setNumberPad(numberPadTF.getText());

@@ -2,8 +2,6 @@ package uk.co.bigsoft.filesucker.sucker_types;
 
 import java.util.StringTokenizer;
 
-import uk.co.bigsoft.filesucker.sucker_types.CopySuckerType;
-
 public abstract class SuckerType {
 	String format;
 

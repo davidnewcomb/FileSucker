@@ -1,6 +1,5 @@
 package uk.co.bigsoft.filesucker.credits;
 
-
 public class BytesToString {
 	private static final long DIV_K = 1024L;
 	private static final long DIV_MB = 1024L * 1024L;

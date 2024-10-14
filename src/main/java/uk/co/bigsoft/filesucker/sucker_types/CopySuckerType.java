@@ -1,6 +1,5 @@
 package uk.co.bigsoft.filesucker.sucker_types;
 
-
 public class CopySuckerType extends SuckerType {
 
 	CopySuckerType(String f) {

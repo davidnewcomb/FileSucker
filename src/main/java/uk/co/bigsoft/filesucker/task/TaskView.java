@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen;
+package uk.co.bigsoft.filesucker.task;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,17 +31,24 @@ import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.PrefixJTextField;
 import uk.co.bigsoft.filesucker.RunYetComponent;
-import uk.co.bigsoft.filesucker.SuffixJTextField;
 import uk.co.bigsoft.filesucker.SuckerParams;
 import uk.co.bigsoft.filesucker.SuckerThread;
+import uk.co.bigsoft.filesucker.SuffixJTextField;
 import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.looper.Looper;
 import uk.co.bigsoft.filesucker.looper.list.ListLooper;
+import uk.co.bigsoft.filesucker.ui.taskscreen.CopyLooperButton;
+import uk.co.bigsoft.filesucker.ui.taskscreen.ListLooperButton;
+import uk.co.bigsoft.filesucker.ui.taskscreen.NumberLooperButton;
+import uk.co.bigsoft.filesucker.ui.taskscreen.OriginalAddressTextField;
+import uk.co.bigsoft.filesucker.ui.taskscreen.StaticLooperButton;
+import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.ui.taskscreen.TextLooperButton;
+import uk.co.bigsoft.filesucker.ui.taskscreen.UrlTextField;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.AkaButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.BrowseButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.ClipboardAsDirectoryButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.CopyToToolClearButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DescriptionButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryAndPrefixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryClipboardButton;
@@ -64,37 +71,39 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixCopyButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixLowerButton;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
-public class TaskScreen extends JPanel {
-	protected static JLabel errorMessages;
-	protected static RunYetComponent runYet;
-	public static JButton runB;
-	public static JCheckBox saveOnly;
-	protected static JButton findFilesB;
-	protected static JButton openDir;
-	protected static JButton tools;
-	public static JTextField urlTF;
-	public static OriginalAddressTextField originalAddress;
-	protected static JTextField prefixTF;
-	protected static JTextField suffixTF;
-	protected static JCheckBox saveUrl;
-	protected static JCheckBox suffixEndCB;
-	protected static HistoryJComboBox directoryCB;
-	public JPanel iteratorJP;
-	public NumberLooperButton numberB;
-	public TextLooperButton textB;
-	public ListLooperButton listB;
-	public CopyLooperButton copyB;
-	public StaticLooperButton staticB;
+public class TaskView extends JPanel {
 
 	// Drag & Drop
-	protected FileAndTextTransferHandler ddHandler;
+	private FileAndTextTransferHandler ddHandler = new FileAndTextTransferHandler();
 
-	public TaskScreen() {
+	private JLabel errorMessages = new JLabel();
+	private RunYetComponent runYet = new RunYetComponent();
+	private JButton runB = new JButton("Run Task");
+	private JCheckBox saveOnly = new JCheckBox();
+	private JButton findFilesB = new JButton("FindFiles");
+	private JButton openDir;
+	private JButton tools = new JButton("CT");
+	private JTextField urlTF = new JTextField();
+	private OriginalAddressTextField originalAddress;
+	private JTextField prefixTF = new PrefixJTextField(ddHandler);
+	private JTextField suffixTF = new SuffixJTextField(ddHandler);
+
+	private JCheckBox saveUrl;
+	private JCheckBox suffixEndCB = new JCheckBox("B4Extn");
+	private HistoryJComboBox directoryCB = new HistoryJComboBox("directory", ddHandler);
+	private JPanel iteratorJP;
+
+	// Loopers
+	private NumberLooperButton numberB = new NumberLooperButton();
+	private TextLooperButton textB = new TextLooperButton();
+	private ListLooperButton listB = new ListLooperButton();
+	private CopyLooperButton copyB = new CopyLooperButton();
+	private StaticLooperButton staticB = new StaticLooperButton();
+
+	public TaskView() {
 		super(new BorderLayout());
-
 		JButton t;
 
-		ddHandler = new FileAndTextTransferHandler();
 		setTransferHandler(ddHandler);
 
 		JPanel centre = new JPanel();
@@ -103,20 +112,16 @@ public class TaskScreen extends JPanel {
 		add(centre, BorderLayout.CENTER);
 
 		// Base Directory
-		directoryCB = new HistoryJComboBox("directory", ddHandler);
+
 		directoryCB.setMinimumSize(new Dimension(10, 20));
 		directoryCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		directoryCB.setSelectedItem(FileSucker.configData.getBaseDir().toString());
 
 		// Prefix and Suffix
-		prefixTF = new PrefixJTextField(ddHandler);
-		suffixTF = new SuffixJTextField(ddHandler);
 
-		saveOnly = new JCheckBox();
 		saveOnly.setToolTipText("RunTask - save but without running");
 		saveOnly.setSelected(false);
 
-		runB = new JButton("Run Task");
 		runB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
 		runB.addActionListener(new ActionListener() {
@@ -243,7 +248,6 @@ public class TaskScreen extends JPanel {
 			}
 		});
 
-		runYet = new RunYetComponent();
 		openDir = new OpenDirectoryButton(directoryCB);
 		errorMessages = new JLabel();
 		setErrorMessage("");
@@ -275,13 +279,12 @@ public class TaskScreen extends JPanel {
 		originalAddress = new OriginalAddressTextField();
 		// findFileTF.setEditable (false) ;
 
-		tools = new CopyToToolClearButton(urlTF);
+		// tools = new CopyToToolClearButton(urlTF);
 
 		saveUrl = new JCheckBox();
 		saveUrl.setToolTipText("Save download instructions");
 		saveUrl.setSelected(true);
 
-		findFilesB = new JButton("FindFiles");
 		findFilesB.setToolTipText("Suck down webpage, fish out all the filenames and fill up 'L'");
 		// which does the actual Delete operation
 		findFilesB.addActionListener(new ActionListener() {
@@ -400,29 +403,17 @@ public class TaskScreen extends JPanel {
 		centre.add(new JLabel("Save To"));
 
 		JButton browseButton = new BrowseButton(directoryCB);
-
 		JButton hButton = new HomeButton(directoryCB);
-
 		JButton dButton = new SubDirectoryPathButton(urlTF, directoryCB);
-
 		JButton dsButton = new DirectoryExtensionButton(urlTF, directoryCB);
-
 		JButton dpButton = new SubDirectoryAndPrefixButton(urlTF, directoryCB, prefixTF);
-
 		JButton pdpButton = new DirectoryAndPrefixButton(urlTF, directoryCB, prefixTF);
-
 		JButton cButton = new ClipboardAsDirectoryButton(directoryCB);
-
 		JButton cpButton = new SubDirectoryAndPrefixFromClipboardButton(directoryCB, prefixTF);
-
 		JButton cdButton = new SubDirectoryFromClipboardButton(directoryCB);
-
 		JButton csButton = new DirectoryClipboardButton(directoryCB);
-
 		JButton akaButton = new AkaButton(directoryCB);
-
 		JButton descButton = new DescriptionButton(directoryCB);
-
 		JButton hpdpButton = new HomeDirectoryPrefix(urlTF, directoryCB, prefixTF);
 
 		hbox = Box.createHorizontalBox();
@@ -476,7 +467,6 @@ public class TaskScreen extends JPanel {
 
 		JPanel jp = new JPanel(new GridLayout(1, 2));
 
-		suffixEndCB = new JCheckBox("B4Extn");
 		suffixEndCB.setToolTipText("Do you want the suffux to go at the end?");
 		suffixEndCB.setMinimumSize(new Dimension(10, 20));
 		suffixEndCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
@@ -526,13 +516,6 @@ public class TaskScreen extends JPanel {
 
 		jp.add(hbox);
 
-		// Loopers
-		numberB = new NumberLooperButton();
-		textB = new TextLooperButton();
-		listB = new ListLooperButton();
-		copyB = new CopyLooperButton();
-		staticB = new StaticLooperButton();
-
 		iteratorJP = new JPanel(new BorderLayout());
 
 		hbox = Box.createHorizontalBox();
@@ -551,14 +534,14 @@ public class TaskScreen extends JPanel {
 		centre.add(jp);
 	}
 
-	public static void setErrorMessage(String m) {
+	public void setErrorMessage(String m) {
 		System.err.println(m);
 		StringBuffer s = new StringBuffer("Message: ");
 		s.append(m);
 		errorMessages.setText(s.toString());
 	}
 
-	public static void load(SuckerParams p) {
+	public void load(SuckerParams p) {
 		System.out.println(p.getOrginalAddress());
 		urlTF.setText(p.getOrginalUrl());
 		prefixTF.setText(p.getPrefix());
@@ -569,19 +552,19 @@ public class TaskScreen extends JPanel {
 		runYet.setModifed();
 	}
 
-	public static void enableRunButton(boolean e) {
+	public void enableRunButton(boolean e) {
 		runB.setEnabled(e);
 	}
 
-	public static String getUrlText() {
+	public String getUrlText() {
 		return urlTF.getText();
 	}
 
-	public static void setUrlText(String x) {
+	public void setUrlText(String x) {
 		urlTF.setText(x);
 	}
 
-	public static void replaceUrlText(String braces) {
+	public void replaceUrlText(String braces) {
 		StringBuffer sb = new StringBuffer(urlTF.getText());
 		int carpos = urlTF.getCaretPosition();
 		int startSel = urlTF.getSelectionStart();
@@ -594,7 +577,7 @@ public class TaskScreen extends JPanel {
 		urlTF.setText(sb.toString());
 	}
 
-	public static void changed() {
+	public void changed() {
 		runYet.setModifed();
 	}
 }

@@ -15,7 +15,7 @@ public class StaticLooper extends Looper {
 	public StaticLooper(String sel) {
 		super(sel);
 		if (setParameters() == false) {
-			from = new Integer(0);
+			from = Integer.valueOf(0);
 		}
 		createLayout();
 	}
@@ -41,9 +41,9 @@ public class StaticLooper extends Looper {
 
 		String s = parameters[2];
 		try {
-			from = new Integer(s);
+			from = Integer.valueOf(s);
 		} catch (NumberFormatException e) {
-			from = new Integer(0);
+			from = Integer.valueOf(0);
 		}
 
 		return true;

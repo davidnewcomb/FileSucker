@@ -13,33 +13,28 @@ import uk.co.bigsoft.filesucker.UpDownNumberJTextField;
 import uk.co.bigsoft.filesucker.looper.Looper;
 
 public class NumberLooper extends Looper implements MenuButtonListOwner {
+
 	public Integer from;
-
 	public Integer to;
-
 	public Integer pad;
-
 	public UpDownNumberJTextField toTF;
-
 	public UpDownNumberJTextField padTF;
-
 	public UpDownNumberJTextField fromTF;
-
 	public MenuButton history;
 
 	public NumberLooper(String sel) {
 		super(sel);
 		if (setParameters() == false) {
 			try {
-				int s = Integer.parseInt(selectedUrl);
-				from = new Integer(s);
+				from = Integer.valueOf(selectedUrl);
 			} catch (NumberFormatException nfe) {
-				from = new Integer(FileSucker.configData.getNumberFrom());
+				from = Integer.valueOf(FileSucker.configData.getNumberFrom());
 			}
-			if (from.intValue() > 1)
-				to = new Integer(from.intValue() + FileSucker.configData.getNumberTo());
-			else
-				to = new Integer(FileSucker.configData.getNumberTo());
+			if (from.intValue() > 1) {
+				to = Integer.valueOf(from.intValue() + FileSucker.configData.getNumberTo());
+			} else {
+				to = Integer.valueOf(FileSucker.configData.getNumberTo());
+			}
 			pad = Integer.valueOf(selectedUrl.length());
 		}
 		createLayout();
@@ -83,9 +78,9 @@ public class NumberLooper extends Looper implements MenuButtonListOwner {
 	}
 
 	private void convert() {
-		from = new Integer(fromTF.toString());
-		to = new Integer(toTF.toString());
-		pad = new Integer(padTF.toString());
+		from = Integer.valueOf(fromTF.toString());
+		to = Integer.valueOf(toTF.toString());
+		pad = Integer.valueOf(padTF.toString());
 
 		// Make sure from and to are in the correct order
 		if (to.intValue() < from.intValue()) {
@@ -125,9 +120,9 @@ public class NumberLooper extends Looper implements MenuButtonListOwner {
 		if (parameters.length == 0 || parameters[0].equals("n") == false)
 			return false;
 
-		from = new Integer(Integer.parseInt(parameters[2]));
-		to = new Integer(Integer.parseInt(parameters[3]));
-		pad = new Integer(Integer.parseInt(parameters[4]));
+		from = Integer.valueOf(parameters[2]);
+		to = Integer.valueOf(parameters[3]);
+		pad = Integer.valueOf(parameters[4]);
 
 		// Make sure from and to are in the correct order
 		if (to.intValue() < from.intValue()) {

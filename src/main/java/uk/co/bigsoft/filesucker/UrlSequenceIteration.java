@@ -4,11 +4,8 @@ import java.util.HashMap;
 
 public class UrlSequenceIteration {
 	private String remotefile = "";
-
 	private String basename = "";
-
 	private String extname = "";
-
 	private HashMap<Integer, String> variables = new HashMap<Integer, String>();
 
 	public UrlSequenceIteration(String r, HashMap<Integer, String> v) {
@@ -61,7 +58,7 @@ public class UrlSequenceIteration {
 
 			int nextParentiseas = toExpand.indexOf('}', i);
 			String xx = toExpand.substring(i + 1, nextParentiseas);
-			Integer num = new Integer(xx);
+			Integer num = Integer.valueOf(xx);
 			i = nextParentiseas;
 			Object o = variables.get(num);
 			if (o == null) {

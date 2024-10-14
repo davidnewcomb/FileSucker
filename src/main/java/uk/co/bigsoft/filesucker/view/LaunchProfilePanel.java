@@ -19,26 +19,21 @@ import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class LaunchProfilePanel extends JPanel {
-	protected JComboBox list;
+	private JComboBox<String> list = new JComboBox<String>();
+	private JButton submit = new JButton("LaunchProfile");
 
-	private JButton submit;
-
-	LaunchProfilePanel() {
+	public LaunchProfilePanel() {
 		super(new BorderLayout());
 
-		list = new JComboBox();
 		list.setEditable(true);
 
-		submit = new JButton("LaunchProfile");
 		submit.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				String sub = ToolsScreen.convertUrlText.getText();
-				if (sub == null)
+				String sub = ToolsScreen.convertUrlText.getText().trim();
+				if (sub.equals("")) {
 					return;
-				sub = sub.trim();
-				if (sub.equals(""))
-					return;
+				}
 
 				try {
 					sub = sub.replace(' ', '+');

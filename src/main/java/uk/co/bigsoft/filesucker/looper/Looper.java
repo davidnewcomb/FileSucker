@@ -16,19 +16,12 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 public abstract class Looper extends JPanel // implements Iterator
 {
 	static int countingIndex = 0;
-
 	protected String selectedUrl;
-
-	protected Integer index = new Integer(0);
-
+	protected Integer index = Integer.valueOf(0);
 	JPanel centre;
-
 	protected AddLooper addB;
-
 	JButton cancelB;
-
 	protected String[] parameters = new String[0];
-
 	static boolean active;
 
 	public Looper(String sel) {
@@ -131,8 +124,8 @@ public abstract class Looper extends JPanel // implements Iterator
 
 	public static Integer getIndex(int i) {
 		if (i == 0)
-			return new Integer(++countingIndex);
-		return new Integer(i);
+			return Integer.valueOf(++countingIndex);
+		return Integer.valueOf(i);
 	}
 
 	public void resetLooper() {

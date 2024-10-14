@@ -4,7 +4,7 @@ public class CreditsController {
 
 	private CreditsModel model;
 	private CreditsView view;
-	
+
 	public CreditsController(CreditsModel m, CreditsView v) {
 		model = m;
 		view = v;
@@ -17,11 +17,11 @@ public class CreditsController {
 		view.getTotalNumBytesLabel().setText(String.valueOf(model.getTotalNumBytes()));
 		view.getTotalNumFilesLabel().setText(String.valueOf(model.getTotalNumFiles()));
 	}
-	
+
 	public void initController() {
 		view.getResetCountersButton().addActionListener(e -> resetCounters());
 	}
-	
+
 	public void resetCounters() {
 		model.setNumBytes(0L);
 		model.setNumFiles(0L);
@@ -29,7 +29,7 @@ public class CreditsController {
 		model.setTotalNumFiles(0L);
 		initView();
 	}
-	
+
 	public void addBytes(long b) {
 		model.addBytes(b);
 		redrawBytes();

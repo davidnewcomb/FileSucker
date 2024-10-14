@@ -34,7 +34,8 @@ public class ConfigView extends JPanel {
 	private JTextField helperWebTF = new JTextField();
 	private JTextField helperTextTF = new JTextField();
 	private JTextField helperDirectoryTF = new JTextField();
-	//private LaunchProfileConfigPanel launchProfileConfig = new LaunchProfileConfigPanel();
+	// private LaunchProfileConfigPanel launchProfileConfig = new
+	// LaunchProfileConfigPanel();
 	private JButton baseBrowseButton = new JButton("Browse");
 
 	public ConfigView() {
@@ -54,7 +55,7 @@ public class ConfigView extends JPanel {
 		baseTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		baseTF.setEditable(true);
 
-		//final JButton baseBrowseButton = new JButton("Browse");
+		// final JButton baseBrowseButton = new JButton("Browse");
 //		baseBrowseButton.addActionListener(
 //
 //				new ActionListener() // which does the actual
@@ -119,8 +120,8 @@ public class ConfigView extends JPanel {
 		// Open directory launch
 		centre.add(new JLabel("Launch Profiles"));
 		hbox = Box.createHorizontalBox();
-		//launchProfileConfig = new LaunchProfileConfigPanel();
-		//hbox.add(launchProfileConfig);
+		// launchProfileConfig = new LaunchProfileConfigPanel();
+		// hbox.add(launchProfileConfig);
 		hbox.add(new JLabel("TODO LaunchProfileConfigPanel"));
 		centre.add(hbox);
 
@@ -193,7 +194,7 @@ public class ConfigView extends JPanel {
 	public JButton getSaveButton() {
 		return saveB;
 	}
-	
+
 	public void setBaseDirectory(String b) {
 		baseTF.setText(b);
 	}

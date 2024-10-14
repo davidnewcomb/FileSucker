@@ -42,7 +42,7 @@ public class DDTest extends JPanel {
 
 		MyTransferHandler ddHandler = new MyTransferHandler();
 
-		JComboBox directory = new JComboBox();
+		JComboBox<String> directory = new JComboBox<>();
 		directory.setEditable(true);
 		directory.setTransferHandler(ddHandler);
 

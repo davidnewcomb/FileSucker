@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
-public class HistoryComboBox extends JComboBox {
+public class HistoryComboBox extends JComboBox<String> {
 	private static final int HISTORY_LENGTH = 15;
 
 	public HistoryComboBox() {

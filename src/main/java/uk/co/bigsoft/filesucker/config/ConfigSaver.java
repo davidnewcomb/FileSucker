@@ -111,14 +111,14 @@ public class ConfigSaver extends Properties {
 
 		cm.setMaxSubTasks(getIntProperty(p, LAB_MAXSUBTASKS, cm.getMaxTasks()));
 		cm.setMaxTasks(getIntProperty(p, LAB_MAXTASKS, cm.getMaxTasks()));
-		
+
 		cm.setHelperText(getStringProperty(p, LAB_HELPER_TEXT, cm.getHelperText()));
 		cm.setHelperWeb(getStringProperty(p, LAB_HELPER_WEB, cm.getHelperWeb()));
-		
+
 		cm.setLaunchProfiles(getStringListProperty(p, LAB_LAUNCHPROFILES, cm.getLaunchProfiles()));
 		cm.setNumberLooperHistory(getStringListProperty(p, LAB_NUMBERLOOPHISTORY, cm.getNumberLooperHistory()));
 		cm.setTextLooperHistory(getStringListProperty(p, LAB_TEXTLOOPHISTORY, cm.getTextLooperHistory()));
-		
+
 		cm.setOpenDirectory(getStringProperty(p, LAB_HELPER_DIRECTORY, cm.getHelperDirectory()));
 		cm.setFindExtn(getStringProperty(p, LAB_FINDEXTN, cm.getFindExtn()));
 
@@ -151,22 +151,19 @@ public class ConfigSaver extends Properties {
 
 		return def;
 	}
-	
+
 	private List<String> getStringListProperty(Properties p, String lab, List<String> def) {
-		
+
 		String txt = p.getProperty(lab, "");
 		if ("".equals(txt))
 			return def;
-		
-		List<String> l = Arrays.asList(txt.split(listSeperator))
-			.stream()
-			.map(s -> s.trim())
-			.filter(f -> !"".equals(f))
-			.collect(Collectors.toList());
+
+		List<String> l = Arrays.asList(txt.split(listSeperator)).stream().map(s -> s.trim()).filter(f -> !"".equals(f))
+				.collect(Collectors.toList());
 
 		return l;
 	}
-	
+
 	private String stringListToString(List<String> list) {
 		if (list.size() == 0) {
 			return "";

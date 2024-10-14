@@ -4,7 +4,6 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-
 public class ConfigController {
 
 	private ConfigModel model;
@@ -43,7 +42,6 @@ public class ConfigController {
 		view.getDelayFilesMsTextField().setText(String.valueOf(model.getDelayFilesMs()));
 	}
 
-
 	public void initController() {
 		view.getBaseTextField().addActionListener(e -> updateBaseDir());
 		view.getBaseTextField().addKeyListener((KeyReleasedListener) e -> updateBaseDir());
@@ -79,12 +77,12 @@ public class ConfigController {
 
 		view.getDelaySockReadMsTextField().addActionListener(e -> updateDelaySockReadMs());
 		view.getDelaySockReadMsTextField().addKeyListener((KeyReleasedListener) e -> updateDelaySockReadMs());
-		
+
 		view.getDelayFilesMsTextField().addActionListener(e -> updateDelayFilesMs());
 		view.getDelayFilesMsTextField().addKeyListener((KeyReleasedListener) e -> updateDelayFilesMs());
 
 		view.getSaveButton().addActionListener(e -> saveConfig());
-		
+
 		view.getBaseBrowseButton().addActionListener(e -> baseBrowse());
 	}
 
@@ -160,7 +158,7 @@ public class ConfigController {
 		saver.save(editingModel);
 		model = editingModel.clone();
 	}
-	
+
 	private void baseBrowse() {
 		JFileChooser fc = new JFileChooser(model.getBaseDir());
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -171,6 +169,6 @@ public class ConfigController {
 			model.setBaseDir(file.toString());
 //			FileSucker.configData.setScreenBaseDir(file);
 			// System.out.println("File="+file.toString()+"|");
-		}	
+		}
 	}
 }

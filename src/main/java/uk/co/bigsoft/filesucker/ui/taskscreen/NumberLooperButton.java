@@ -12,7 +12,7 @@ import uk.co.bigsoft.filesucker.looper.number.NumberLooper;
 
 public class NumberLooperButton extends JButton implements ActionListener {
 
-	NumberLooperButton() {
+	public NumberLooperButton() {
 		super("N");
 
 		addActionListener(this);
