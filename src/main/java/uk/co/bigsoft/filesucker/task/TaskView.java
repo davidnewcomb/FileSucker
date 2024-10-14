@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.TreeMap;
@@ -70,25 +71,30 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixLowerButton;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskView extends JPanel {
-
 	// Drag & Drop
 	private FileAndTextTransferHandler ddHandler = new FileAndTextTransferHandler();
+
+	// Wired in
+
+	private JTextField urlTF = new JTextField();
+	private JTextField originalAddressTF = new JTextField();
+	private JButton helperDirectoryButton = new JButton("LD");
+	private HistoryJComboBox directoryCB = new HistoryJComboBox("directory", ddHandler);
+
+	// Not wired in!
 
 	private JLabel errorMessages = new JLabel("");
 	private RunYetComponent runYet = new RunYetComponent();
 	private JButton runB = new JButton("Run Task");
 	private JCheckBox saveOnly = new JCheckBox();
 	private JButton findFilesB = new JButton("FindFiles");
-	private JButton openDir;
-	private JButton tools = new JButton("CT");
-	private JTextField urlTF = new JTextField();
-	private OriginalAddressTextField originalAddress;
+
+	private JButton copyToToolsButton = new JButton("CT");
 	private JTextField prefixTF = new PrefixJTextField(ddHandler);
 	private JTextField suffixTF = new SuffixJTextField(ddHandler);
 
 	private JCheckBox saveUrl = new JCheckBox();
 	private JCheckBox suffixEndCB = new JCheckBox("B4Extn");
-	private HistoryJComboBox directoryCB = new HistoryJComboBox("directory", ddHandler);
 	private JPanel iteratorJP;
 
 	// Loopers
@@ -112,7 +118,8 @@ public class TaskView extends JPanel {
 		// Base Directory
 		directoryCB.setMinimumSize(new Dimension(10, 20));
 		directoryCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		directoryCB.setSelectedItem(FileSucker.configData.getBaseDir().toString());
+		// TODO
+		// directoryCB.setSelectedItem(FileSucker.configData.getBaseDir().toString());
 
 		// Prefix and Suffix
 		saveOnly.setToolTipText("RunTask - save but without running");
@@ -209,7 +216,7 @@ public class TaskView extends JPanel {
 				selectedDir = Utility.expandsPercentVars(selectedDir);
 
 				SuckerParams sp = new SuckerParams("name", urlTF.getText(), selectedDir, prefix, suffix, hm,
-						suffixEndCB.isSelected(), originalAddress.getText());
+						suffixEndCB.isSelected(), originalAddressTF.getText());
 				if (saveUrl.isSelected()) {
 					TaskScreenParams.save(sp);
 					if (saveOnly.isSelected()) {
@@ -241,13 +248,13 @@ public class TaskView extends JPanel {
 				// ==
 				// FileSucker.transferScreen)
 				//
-				originalAddress.setText("");
+				originalAddressTF.setText("");
 				runYet.setReset();
 			}
 		});
 
-		openDir = new OpenDirectoryButton(directoryCB);
-		
+//		openDir = new OpenDirectoryButton(directoryCB);
+
 		setErrorMessage("");
 		// errorMessages.setFont()
 		JPanel bot = new JPanel();
@@ -274,10 +281,10 @@ public class TaskView extends JPanel {
 		// ddHandler);
 		urlTF = new UrlTextField(ddHandler);
 
-		originalAddress = new OriginalAddressTextField();
+		// originalAddressTF = new OriginalAddressTextField();
 		// findFileTF.setEditable (false) ;
 
-		// tools = new CopyToToolClearButton(urlTF);
+		copyToToolsButton.setToolTipText("Copy text to ToolScreen");
 
 		saveUrl.setToolTipText("Save download instructions");
 		saveUrl.setSelected(true);
@@ -292,8 +299,8 @@ public class TaskView extends JPanel {
 						TaskScreen.setErrorMessage("URL is empty");
 						return;
 					}
-					originalAddress.setText(findFileAddress);
-					URL url = new URL(findFileAddress);
+					originalAddressTF.setText(findFileAddress);
+					URL url = URI.create(findFileAddress).toURL();
 					java.net.URLConnection urlc = url.openConnection();
 					String userinfo = url.getUserInfo();
 					if (userinfo != null) {
@@ -383,17 +390,17 @@ public class TaskView extends JPanel {
 		hbox.add(urlTF);
 		hbox.add(saveUrl);
 		hbox.add(findFilesB);
-		hbox.add(tools);
+		hbox.add(copyToToolsButton);
 		centre.add(hbox);
 
-		OriginalAddressLaunchButton findFileLaunchB = new OriginalAddressLaunchButton(originalAddress);
+		OriginalAddressLaunchButton findFileLaunchB = new OriginalAddressLaunchButton(originalAddressTF);
 
 		centre.add(new JLabel(" "));
 
 		JPanel findFileJP = new JPanel(new BorderLayout());
 		findFileJP.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		findFileJP.add(new JLabel("Orginal Address"), BorderLayout.WEST);
-		findFileJP.add(originalAddress, BorderLayout.CENTER);
+		findFileJP.add(originalAddressTF, BorderLayout.CENTER);
 		findFileJP.add(findFileLaunchB, BorderLayout.EAST);
 		centre.add(findFileJP);
 
@@ -413,7 +420,7 @@ public class TaskView extends JPanel {
 
 		hbox = Box.createHorizontalBox();
 		hbox.setBorder(new LineBorder(Color.BLUE));
-		hbox.add(openDir);
+		hbox.add(helperDirectoryButton);
 		hbox.add(new JLabel("Directory"));
 		hbox.add(directoryCB);
 		hbox.add(hButton);
@@ -527,6 +534,26 @@ public class TaskView extends JPanel {
 		centre.add(jp);
 	}
 
+	// Below: New getters
+
+	public JButton getCopyToToolsButton() {
+		return copyToToolsButton;
+	}
+
+	public JTextField getOriginalAddressTextField() {
+		return originalAddressTF;
+	}
+
+	public JButton getHelperDirectoryButton() {
+		return helperDirectoryButton;
+	}
+
+	public HistoryJComboBox getDirectoryComboBox() {
+		return directoryCB;
+	}
+
+	// Below: waiting for refactor
+
 	public void setErrorMessage(String m) {
 		System.err.println(m);
 		StringBuffer s = new StringBuffer("Message: ");
@@ -541,12 +568,16 @@ public class TaskView extends JPanel {
 		suffixTF.setText(p.getSuffix());
 		directoryCB.setSelectedItem(p.getIntoDir());
 		suffixEndCB.setSelected(p.isSuffixEnd());
-		originalAddress.setText(p.getOrginalAddress());
+		originalAddressTF.setText(p.getOrginalAddress());
 		runYet.setModifed();
 	}
 
 	public void enableRunButton(boolean e) {
 		runB.setEnabled(e);
+	}
+
+	public JTextField getUrlTextField() {
+		return urlTF;
 	}
 
 	public String getUrlText() {
@@ -573,4 +604,5 @@ public class TaskView extends JPanel {
 	public void changed() {
 		runYet.setModifed();
 	}
+
 }

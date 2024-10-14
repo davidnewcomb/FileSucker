@@ -1,6 +1,7 @@
 package uk.co.bigsoft.filesucker;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 public class ProtocolURL {
@@ -9,7 +10,7 @@ public class ProtocolURL {
 	private int port;
 
 	ProtocolURL(String u) throws MalformedURLException {
-		url = new URL(u);
+		url = URI.create(u).toURL();
 		port = url.getPort();
 		if (port == -1) {
 			if (url.getProtocol().equalsIgnoreCase("http"))
@@ -57,7 +58,7 @@ public class ProtocolURL {
 		sb.append(url.getPath());
 
 		try {
-			url = new URL(sb.toString());
+			url = URI.create(sb.toString()).toURL();
 		} catch (Exception e) {
 			System.out.println("setUserInfo:");
 			e.printStackTrace();

@@ -8,7 +8,7 @@ public class ConfigModel implements Cloneable {
 	private String baseDir = System.getenv("HOME") + "/FileSuker";
 	private String helperWeb = "firefox %s";
 	private String helperText = "textPad %s";
-	private String openDirectory = "explorer %s";
+	private String openDirectory = "/usr/bin/nautilus %s";
 	private int numberFrom = 1;
 	private int numberTo = 15;
 	private int numberPad = 1;

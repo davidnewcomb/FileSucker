@@ -2,6 +2,8 @@ package uk.co.bigsoft.filesucker.ui.taskscreen.buttons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
+import java.net.URL;
 
 import javax.swing.JButton;
 
@@ -23,7 +25,7 @@ public class FindFilesButton extends JButton implements ActionListener {
 			// return;
 			// }
 			// originalAddress.setText(findFileAddress);
-			// URL url = new URL(findFileAddress);
+			// URL url = URI.create(findFileAddress).toURL();
 			// java.net.URLConnection urlc = url.openConnection();
 			// String userinfo = url.getUserInfo();
 			// if (userinfo != null)

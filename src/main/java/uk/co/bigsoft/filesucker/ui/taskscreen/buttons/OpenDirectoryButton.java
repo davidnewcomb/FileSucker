@@ -29,7 +29,7 @@ public class OpenDirectoryButton extends JButton implements ActionListener {
 		try {
 			String od = FileSucker.configData.getOpenDirectory();
 			String helper = od.replaceAll("%s", dirEpanded);
-			Runtime.getRuntime().exec(helper);
+			Utility.runShellCommand(helper);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

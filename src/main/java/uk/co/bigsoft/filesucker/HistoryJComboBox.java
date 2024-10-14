@@ -18,19 +18,13 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 public class HistoryJComboBox extends JComboBox<String> {
 
 	private static final String clearHistory = "--Clear history--";
-
 	private static final String culHistory = "--Cul history--";
-
 	private static final String prefix = "hjcb_";
-
 	public static final String ITEM_SEPERATOR = "\t";
-
 	public static final String ITEM_SUB_SEPERATOR = ";";
 
 	private String preferenceName = null;
-
 	private Preferences preferences = null;
-
 	private String p_items = null;
 
 	/**

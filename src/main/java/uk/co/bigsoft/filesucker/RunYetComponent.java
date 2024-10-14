@@ -28,6 +28,7 @@ public class RunYetComponent extends JLabel {
 
 	private void change() {
 		setText(modifed ? "modifed" : "same");
-		TaskScreen.runB.setEnabled(modifed);
+		// TODO
+		// TaskScreen.runB.setEnabled(modifed);
 	}
 }

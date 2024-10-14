@@ -63,7 +63,7 @@ public class MenuButton extends JButton {
 		if (entries.size() > maxEntries)
 			entries.removeOldest();
 
-		FileSucker.configData.save();
+		// TODO FileSucker.configData.save();
 		listOwner.setList(entries);
 	}
 

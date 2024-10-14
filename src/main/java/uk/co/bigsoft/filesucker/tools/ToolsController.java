@@ -15,6 +15,7 @@ import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.UrlSequenceIteration;
 import uk.co.bigsoft.filesucker.UrlSequencer;
 import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
@@ -34,27 +35,26 @@ public class ToolsController {
 		view.getWorkingTF().setText(model.getWorking());
 	}
 
-	private Object modelListener(PropertyChangeEvent evt) {
+	private void modelListener(PropertyChangeEvent evt) {
 		String propName = evt.getPropertyName();
 		Object newVal = evt.getNewValue();
 
 		switch (propName) {
-			case ToolsProps.F_WORKING: {
-				view.getWorkingTF().setText((String)newVal);
-				break;
-			}
-			case ToolsProps.F_SELECTED_WORKING: {
-				//
-				break;
-			}
-			default: {
-				System.out.println("Unknown ToolsProp: " + propName);
-			}
+		case ToolsProps.F_WORKING: {
+			view.getWorkingTF().setText((String) newVal);
+			break;
 		}
-		return null;
+		case ToolsProps.F_SELECTED_WORKING: {
+			//
+			break;
+		}
+		default: {
+			System.out.println("Unknown ToolsProp: " + propName);
+		}
+		}
 	}
 
-	public void initController() {
+	public void initController(ConfigModel configModel) {
 		view.getWorkingTF().addKeyListener((KeyReleasedListener) e -> keyReleased());
 		view.getWorkingTF().addCaretListener(e -> caretMoved());
 		view.getWorkingTF().addMouseListener((MousePressListener) e -> pasteIntoWorking(e));
@@ -65,7 +65,7 @@ public class ToolsController {
 		view.getGenerateWebPage().addActionListener(e -> generateWebPage());
 		view.getGenerateImageWebPage().addActionListener(e -> generateImageWebPage());
 		view.getLinksPageButton().addActionListener(e -> linksPage());
-		view.getLaunchButton().addActionListener(e -> launch());
+		view.getLaunchButton().addActionListener(e -> launch(configModel.getHelperWeb()));
 		view.getLaunchProfileButton().addActionListener(e -> launchProfile());
 	}
 
@@ -380,9 +380,9 @@ public class ToolsController {
 		}
 	}
 
-	private void launch() {
+	private void launch(String helperWeb) {
 		String url = model.getWorking();
-		Utility.launchBrowser(url);
+		Utility.launchBrowser(helperWeb, url);
 	}
 
 	private void launchProfile() {

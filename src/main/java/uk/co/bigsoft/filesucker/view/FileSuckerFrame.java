@@ -6,6 +6,7 @@ import javax.swing.JTabbedPane;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.config.ConfigView;
 import uk.co.bigsoft.filesucker.credits.CreditsView;
+import uk.co.bigsoft.filesucker.task.TaskView;
 import uk.co.bigsoft.filesucker.tools.ToolsView;
 
 public class FileSuckerFrame extends JFrame {
@@ -14,7 +15,7 @@ public class FileSuckerFrame extends JFrame {
 
 	public static JTabbedPane tabPane;
 
-	public FileSuckerFrame(ConfigView configView, CreditsView creditsView, ToolsView toolsView) {
+	public FileSuckerFrame(TaskView taskView, ConfigView configView, CreditsView creditsView, ToolsView toolsView) {
 		super("FileSucker");
 		// setIconImage (icon.getImage ()) ;
 		addWindowListener(new FileSuckerWindowAdaptor());
@@ -23,10 +24,9 @@ public class FileSuckerFrame extends JFrame {
 		getContentPane().add(tabPane);
 
 		// Set up page
-		tabPane.addTab("NewTask", null, FileSucker.taskScreen, "Create new task");
+		tabPane.addTab("NewTask", null, taskView, "Create new task");
 		tabPane.addTab("Transfer", null, FileSucker.transferScreen, "View tasks in progress");
-		tabPane.addTab("Tools", null, FileSucker.toolsScreen, "Text tools");
-		tabPane.addTab("Tools(new)", null, toolsView, "Text tools");
+		tabPane.addTab("Tools", null, toolsView, "Text tools");
 		tabPane.addTab("Options", null, configView, "Change default options");
 		tabPane.addTab("Credits", null, creditsView, "Statistics & Credits");
 

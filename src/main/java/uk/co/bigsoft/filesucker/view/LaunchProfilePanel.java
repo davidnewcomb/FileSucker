@@ -47,7 +47,7 @@ public class LaunchProfilePanel extends JPanel {
 
 				try {
 					String helper = FileSucker.configData.getHelperWeb().replaceAll("%s", url);
-					Runtime.getRuntime().exec(helper);
+					Utility.runShellCommand(helper);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}

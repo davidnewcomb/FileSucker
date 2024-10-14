@@ -16,9 +16,9 @@ public class ToolsModel {
 	}
 
 	public void addListener(PropertyChangeListener prop) {
-        propChangeFirer.addPropertyChangeListener(prop);
-    }
-	
+		propChangeFirer.addPropertyChangeListener(prop);
+	}
+
 	public String getWorking() {
 		return working;
 	}

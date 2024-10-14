@@ -4,12 +4,10 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 
@@ -218,6 +216,18 @@ public class Utility {
 	// return n.toString () ;
 	// }
 
+	public static void launchBrowser(String helperWeb, String url) {
+		if ("".equals(url)) {
+			return;
+		}
+		try {
+			String helper = helperWeb.replaceAll("%s", url);
+			runShellCommand(helper);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
 	public static void launchBrowser(String url) {
 		if (url == null)
 			return;
@@ -227,7 +237,7 @@ public class Utility {
 
 		try {
 			String helper = FileSucker.configData.getHelperWeb().replaceAll("%s", u);
-			Runtime.getRuntime().exec(helper);
+			runShellCommand(helper);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -238,7 +248,7 @@ public class Utility {
 			String helper = FileSucker.configData.getHelperText();
 			String local = realDirectory(file.toString());
 			String sub = helper.replaceAll("%s", local);
-			Runtime.getRuntime().exec(sub);
+			runShellCommand(sub);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -247,7 +257,7 @@ public class Utility {
 	public static StringBuffer downloadFile(String url) {
 		StringBuffer sb = new StringBuffer();
 		try {
-			URL u = new URL(url);
+			URL u = URI.create(url).toURL();
 			java.net.URLConnection urlc = u.openConnection();
 			String userinfo = u.getUserInfo();
 			if (userinfo != null) {
@@ -319,4 +329,9 @@ public class Utility {
 		return sb.toString();
 	}
 
+	@SuppressWarnings(value = "deprecation")
+	public static void runShellCommand(String cmd) throws IOException {
+		System.out.println("Running: '" + cmd + "'");
+		Runtime.getRuntime().exec(cmd);
+	}
 }

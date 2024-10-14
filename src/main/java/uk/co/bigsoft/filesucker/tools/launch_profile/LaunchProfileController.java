@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import uk.co.bigsoft.filesucker.FileSucker;
+import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
 
 public class LaunchProfileController extends JPanel {
@@ -48,7 +49,7 @@ public class LaunchProfileController extends JPanel {
 
 		try {
 			String helper = FileSucker.configData.getHelperWeb().replaceAll("%s", url);
-			Runtime.getRuntime().exec(helper);
+			Utility.runShellCommand(helper);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

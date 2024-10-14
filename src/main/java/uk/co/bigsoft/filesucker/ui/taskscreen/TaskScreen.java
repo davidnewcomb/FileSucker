@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.TreeMap;
@@ -40,7 +41,7 @@ import uk.co.bigsoft.filesucker.looper.Looper;
 import uk.co.bigsoft.filesucker.looper.list.ListLooper;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.BrowseButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.ClipboardAsDirectoryButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.CopyToToolClearButton;
+//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.CopyToToolClearButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryAndPrefixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryClipboardButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryExtensionButton;
@@ -69,7 +70,7 @@ public class TaskScreen extends JPanel {
 	public static JCheckBox saveOnly;
 	protected static JButton findFilesB;
 	protected static JButton openDir;
-	protected static JButton tools;
+	// protected static JButton tools;
 	public static JTextField urlTF;
 	public static OriginalAddressTextField originalAddress;
 	protected static JTextField prefixTF;
@@ -273,7 +274,7 @@ public class TaskScreen extends JPanel {
 		originalAddress = new OriginalAddressTextField();
 		// findFileTF.setEditable (false) ;
 
-		tools = new CopyToToolClearButton(urlTF);
+		// tools = new CopyToToolClearButton(urlTF);
 
 		saveUrl = new JCheckBox();
 		saveUrl.setToolTipText("Save download instructions");
@@ -291,7 +292,7 @@ public class TaskScreen extends JPanel {
 						return;
 					}
 					originalAddress.setText(findFileAddress);
-					URL url = new URL(findFileAddress);
+					URL url = URI.create(findFileAddress).toURL();
 					java.net.URLConnection urlc = url.openConnection();
 					String userinfo = url.getUserInfo();
 					if (userinfo != null) {
@@ -381,7 +382,7 @@ public class TaskScreen extends JPanel {
 		hbox.add(urlTF);
 		hbox.add(saveUrl);
 		hbox.add(findFilesB);
-		hbox.add(tools);
+		// hbox.add(tools);
 		centre.add(hbox);
 
 		OriginalAddressLaunchButton findFileLaunchB = new OriginalAddressLaunchButton(originalAddress);

@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URI;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -495,7 +496,7 @@ public class RunnableSucker implements Runnable {
 		try {
 			long toFileLength = localFile.length();
 
-			URL urlt = new URL(remoteFile);
+			URL urlt = URI.create(remoteFile).toURL();
 			java.net.URLConnection urlc = urlt.openConnection();
 
 			if (toFileLength != 0) {
