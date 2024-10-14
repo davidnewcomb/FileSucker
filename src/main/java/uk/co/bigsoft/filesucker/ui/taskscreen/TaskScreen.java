@@ -38,11 +38,9 @@ import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.looper.Looper;
 import uk.co.bigsoft.filesucker.looper.list.ListLooper;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.AkaButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.BrowseButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.ClipboardAsDirectoryButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.CopyToToolClearButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DescriptionButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryAndPrefixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryClipboardButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryExtensionButton;
@@ -419,10 +417,6 @@ public class TaskScreen extends JPanel {
 
 		JButton csButton = new DirectoryClipboardButton(directoryCB);
 
-		JButton akaButton = new AkaButton(directoryCB);
-
-		JButton descButton = new DescriptionButton(directoryCB);
-
 		JButton hpdpButton = new HomeDirectoryPrefix(urlTF, directoryCB, prefixTF);
 
 		hbox = Box.createHorizontalBox();
@@ -441,8 +435,6 @@ public class TaskScreen extends JPanel {
 		hbox.add(cpButton);
 		hbox.add(cdButton);
 		hbox.add(csButton);
-		hbox.add(akaButton);
-		hbox.add(descButton);
 
 		hbox.addMouseListener(new MouseListener() {
 			public void mousePressed(MouseEvent me) {

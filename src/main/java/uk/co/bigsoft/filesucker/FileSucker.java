@@ -54,25 +54,27 @@ public class FileSucker {
 		}
 
 		ConfigSaver cs = new ConfigSaver();
+		
 		ConfigModel configModel = cs.load();
-
-		ConfigView configView = new ConfigView();
-
-		ConfigController configController = new ConfigController(configModel, configView);
-		configController.initController();
-
 		CreditsModel creditsModel = new CreditsModel();
-		CreditsView creditsView = new CreditsView();
-		CreditsController creditsController = new CreditsController(creditsModel, creditsView);
-
-		LaunchProfileView launchProfileView = new LaunchProfileView();
 		LaunchProfileModel launchProfileModel = new LaunchProfileModel();
+		ToolsModel toolsModel = new ToolsModel();
+		
+		ConfigView configView = new ConfigView();
+		CreditsView creditsView = new CreditsView();
+		LaunchProfileView launchProfileView = new LaunchProfileView();
+		ToolsView toolsView = new ToolsView(launchProfileView);
+		
+		ConfigController configController = new ConfigController(configModel, configView);
+		CreditsController creditsController = new CreditsController(creditsModel, creditsView);
 		LaunchProfileController launchProfileController = new LaunchProfileController(launchProfileModel,
 				launchProfileView);
-
-		ToolsView toolsView = new ToolsView(launchProfileView);
-		ToolsModel toolsModel = new ToolsModel();
 		ToolsController toolsController = new ToolsController(toolsModel, toolsView);
+
+		configController.initController();
+		creditsController.initController();
+		launchProfileController.initController(toolsModel);
+		toolsController.initController();
 
 		// Build tabs
 		activeFileSuckerThreads = new LinkedList<SuckerThread>();

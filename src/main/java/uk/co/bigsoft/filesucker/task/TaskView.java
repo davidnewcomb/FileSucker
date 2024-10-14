@@ -46,10 +46,8 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.StaticLooperButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TextLooperButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.UrlTextField;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.AkaButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.BrowseButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.ClipboardAsDirectoryButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DescriptionButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryAndPrefixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryClipboardButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryExtensionButton;
@@ -76,7 +74,7 @@ public class TaskView extends JPanel {
 	// Drag & Drop
 	private FileAndTextTransferHandler ddHandler = new FileAndTextTransferHandler();
 
-	private JLabel errorMessages = new JLabel();
+	private JLabel errorMessages = new JLabel("");
 	private RunYetComponent runYet = new RunYetComponent();
 	private JButton runB = new JButton("Run Task");
 	private JCheckBox saveOnly = new JCheckBox();
@@ -88,7 +86,7 @@ public class TaskView extends JPanel {
 	private JTextField prefixTF = new PrefixJTextField(ddHandler);
 	private JTextField suffixTF = new SuffixJTextField(ddHandler);
 
-	private JCheckBox saveUrl;
+	private JCheckBox saveUrl = new JCheckBox();
 	private JCheckBox suffixEndCB = new JCheckBox("B4Extn");
 	private HistoryJComboBox directoryCB = new HistoryJComboBox("directory", ddHandler);
 	private JPanel iteratorJP;
@@ -112,13 +110,11 @@ public class TaskView extends JPanel {
 		add(centre, BorderLayout.CENTER);
 
 		// Base Directory
-
 		directoryCB.setMinimumSize(new Dimension(10, 20));
 		directoryCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		directoryCB.setSelectedItem(FileSucker.configData.getBaseDir().toString());
 
 		// Prefix and Suffix
-
 		saveOnly.setToolTipText("RunTask - save but without running");
 		saveOnly.setSelected(false);
 
@@ -147,10 +143,12 @@ public class TaskView extends JPanel {
 				String prefix = null;
 				String suffix = null;
 
-				if (prefixTF.getText().length() > 0)
+				if (prefixTF.getText().length() > 0) {
 					prefix = prefixTF.getText();
-				if (suffixTF.getText().length() > 0)
+				}
+				if (suffixTF.getText().length() > 0) {
 					suffix = suffixTF.getText();
+				}
 
 				// // Is selectedDir in the list already
 				// boolean inList = false;
@@ -249,7 +247,7 @@ public class TaskView extends JPanel {
 		});
 
 		openDir = new OpenDirectoryButton(directoryCB);
-		errorMessages = new JLabel();
+		
 		setErrorMessage("");
 		// errorMessages.setFont()
 		JPanel bot = new JPanel();
@@ -281,7 +279,6 @@ public class TaskView extends JPanel {
 
 		// tools = new CopyToToolClearButton(urlTF);
 
-		saveUrl = new JCheckBox();
 		saveUrl.setToolTipText("Save download instructions");
 		saveUrl.setSelected(true);
 
@@ -412,8 +409,6 @@ public class TaskView extends JPanel {
 		JButton cpButton = new SubDirectoryAndPrefixFromClipboardButton(directoryCB, prefixTF);
 		JButton cdButton = new SubDirectoryFromClipboardButton(directoryCB);
 		JButton csButton = new DirectoryClipboardButton(directoryCB);
-		JButton akaButton = new AkaButton(directoryCB);
-		JButton descButton = new DescriptionButton(directoryCB);
 		JButton hpdpButton = new HomeDirectoryPrefix(urlTF, directoryCB, prefixTF);
 
 		hbox = Box.createHorizontalBox();
@@ -432,8 +427,6 @@ public class TaskView extends JPanel {
 		hbox.add(cpButton);
 		hbox.add(cdButton);
 		hbox.add(csButton);
-		hbox.add(akaButton);
-		hbox.add(descButton);
 
 		hbox.addMouseListener(new MouseListener() {
 			public void mousePressed(MouseEvent me) {

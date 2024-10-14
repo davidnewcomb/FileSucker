@@ -288,60 +288,6 @@ public class Utility {
 		return new StringBuffer();
 	}
 
-	public static void createAka(File file, File directory) {
-		try {
-			if (file.exists())
-				return;
-
-			file.createNewFile();
-
-			String s = directory.getName();
-			s = s.replaceAll("-", " ");
-			s = s.replaceAll("_", " ");
-			s = s.replaceAll(":", " ");
-
-			BufferedWriter out = new BufferedWriter(new FileWriter(file));
-			out.write(s);
-			out.newLine();
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
-		return;
-	}
-
-	public static void createDescription(File file) {
-		try {
-			if (file.exists())
-				return;
-
-			file.createNewFile();
-
-			File template = new File("description.template.txt");
-
-			if (!template.exists())
-				return;
-
-			FileInputStream reader = new FileInputStream(template);
-			FileOutputStream writer = new FileOutputStream(file);
-
-			byte[] buffer = new byte[1024];
-			int red;
-			do {
-				red = reader.read(buffer);
-				if (red == -1)
-					break;
-				writer.write(buffer, 0, red);
-			} while (true);
-			reader.close();
-			writer.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return;
-	}
-
 	public static String getSuckerLable(String sel) {
 		StringBuffer sb = new StringBuffer();
 

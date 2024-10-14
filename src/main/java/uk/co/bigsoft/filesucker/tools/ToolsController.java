@@ -1,6 +1,7 @@
 package uk.co.bigsoft.filesucker.tools;
 
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Base64;
@@ -29,7 +30,28 @@ public class ToolsController {
 	}
 
 	public void initView() {
+		model.addListener(e -> modelListener(e));
 		view.getWorkingTF().setText(model.getWorking());
+	}
+
+	private Object modelListener(PropertyChangeEvent evt) {
+		String propName = evt.getPropertyName();
+		Object newVal = evt.getNewValue();
+
+		switch (propName) {
+			case ToolsProps.F_WORKING: {
+				view.getWorkingTF().setText((String)newVal);
+				break;
+			}
+			case ToolsProps.F_SELECTED_WORKING: {
+				//
+				break;
+			}
+			default: {
+				System.out.println("Unknown ToolsProp: " + propName);
+			}
+		}
+		return null;
 	}
 
 	public void initController() {
@@ -54,6 +76,9 @@ public class ToolsController {
 
 	private void caretMoved() {
 		String s = view.getWorkingTF().getSelectedText();
+		if (s == null) {
+			s = "";
+		}
 		model.setSelectedWorking(s);
 	}
 
@@ -134,8 +159,9 @@ public class ToolsController {
 	private void convertB64() {
 		try {
 			String selected = model.getSelectedWorking();
-			if ("".equals(selected))
+			if ("".equals(selected)) {
 				return;
+			}
 
 			byte[] decodedBytes = Base64.getDecoder().decode(selected);
 			String decoded = new String(decodedBytes);
@@ -152,12 +178,13 @@ public class ToolsController {
 			String text = model.getWorking();
 			// int start = text.indexOf("aHR0cDovL");
 			int start = text.indexOf("aHR0c");
-			if (start == -1)
+			if (start == -1) {
 				return;
+			}
 			int end = text.indexOf("&", start + 1);
-			if (end == -1)
+			if (end == -1) {
 				end = text.length();
-
+			}
 			String selected = text.substring(start, end);
 			System.out.println("substring:" + selected + "|");
 
@@ -175,8 +202,9 @@ public class ToolsController {
 		try {
 			String text = model.getWorking();
 			text = text.trim();
-			if (text.length() == 0)
+			if (text.length() == 0) {
 				return;
+			}
 
 			File f = File.createTempFile("FileSucker-", ".html");
 
@@ -226,8 +254,9 @@ public class ToolsController {
 		try {
 			String text = model.getWorking();
 			text = text.trim();
-			if (text.length() == 0)
+			if (text.length() == 0) {
 				return;
+			}
 
 			File f = File.createTempFile("FileSucker-", ".html");
 
@@ -284,12 +313,14 @@ public class ToolsController {
 			StringBuffer s;
 			String text = model.getWorking();
 			text = text.trim();
-			if (text.length() == 0)
+			if (text.length() == 0) {
 				return;
+			}
 
 			StringBuffer sb = Utility.downloadFile(text);
-			if (sb.length() == 0)
+			if (sb.length() == 0) {
 				return;
+			}
 
 			List<String> links = getLinks(sb);
 
@@ -386,15 +417,17 @@ public class ToolsController {
 		Matcher m = p.matcher(initialText);
 		while (m.find()) {
 			String href = m.group();
-			if (href.length() < 8)
+			if (href.length() < 8) {
 				continue;
+			}
 
 			String h = href.substring(0, 7).toLowerCase();
 			if (!h.equals("http://")) {
 				continue;
 			}
-			if (!list.contains(href))
+			if (!list.contains(href)) {
 				list.add(href);
+			}
 		}
 		return list;
 	}
