@@ -39,6 +39,7 @@ import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.looper.Looper;
 import uk.co.bigsoft.filesucker.looper.list.ListLooper;
+import uk.co.bigsoft.filesucker.task.looper.LooperPanel;
 import uk.co.bigsoft.filesucker.ui.taskscreen.CopyLooperButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.ListLooperButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.NumberLooperButton;
@@ -99,13 +100,13 @@ public class TaskView extends JPanel {
 	private JPanel iteratorJP;
 
 	// Loopers
-	private NumberLooperButton numberB = new NumberLooperButton();
-	private TextLooperButton textB = new TextLooperButton();
-	private ListLooperButton listB = new ListLooperButton();
-	private CopyLooperButton copyB = new CopyLooperButton();
-	private StaticLooperButton staticB = new StaticLooperButton();
+//	private NumberLooperButton numberB = new NumberLooperButton();
+//	private TextLooperButton textB = new TextLooperButton();
+//	private ListLooperButton listB = new ListLooperButton();
+//	private CopyLooperButton copyB = new CopyLooperButton();
+//	private StaticLooperButton staticB = new StaticLooperButton();
 
-	public TaskView() {
+	public TaskView(LooperPanel looperPanel) {
 		super(new BorderLayout());
 		JButton t;
 
@@ -316,8 +317,9 @@ public class TaskView extends JPanel {
 					int len = 69;
 					while (len > 0) {
 						len = is.read(buffer, 0, buffer.length);
-						if (len <= 0)
+						if (len <= 0) {
 							break;
+						}
 						sb.append(new String(buffer));
 					}
 					is.close();
@@ -366,11 +368,11 @@ public class TaskView extends JPanel {
 
 					found.append("}");
 
-					numberB.setVisible(false);
-					textB.setVisible(false);
-					listB.setEnabled(false);
-					copyB.setVisible(false);
-					staticB.setVisible(false);
+//					numberB.setVisible(false);
+//					textB.setVisible(false);
+//					listB.setEnabled(false);
+//					copyB.setVisible(false);
+//					staticB.setVisible(false);
 
 					iteratorJP.removeAll();
 					iteratorJP.add(new ListLooper(found.toString()), BorderLayout.CENTER);
@@ -570,22 +572,26 @@ public class TaskView extends JPanel {
 
 		jp.add(hbox);
 
-		iteratorJP = new JPanel(new BorderLayout());
+//		iteratorJP = new JPanel(new BorderLayout());
+//
+//		hbox = Box.createHorizontalBox();
+//		hbox.add(numberB);
+//		hbox.add(textB);
+//		hbox.add(listB);
+//		hbox.add(copyB);
+//		hbox.add(staticB);
+//
+//		JPanel iter_jp = new JPanel(new BorderLayout());
+//		iter_jp.setBorder(new LineBorder(Color.BLUE));
+//		iter_jp.add(hbox, BorderLayout.NORTH);
+//		iter_jp.add(iteratorJP, BorderLayout.CENTER);
+//
+//		jp.add(iter_jp);
+//		centre.add(jp);
 
-		hbox = Box.createHorizontalBox();
-		hbox.add(numberB);
-		hbox.add(textB);
-		hbox.add(listB);
-		hbox.add(copyB);
-		hbox.add(staticB);
-
-		JPanel iter_jp = new JPanel(new BorderLayout());
-		iter_jp.setBorder(new LineBorder(Color.BLUE));
-		iter_jp.add(hbox, BorderLayout.NORTH);
-		iter_jp.add(iteratorJP, BorderLayout.CENTER);
-
-		jp.add(iter_jp);
+		jp.add(looperPanel);
 		centre.add(jp);
+
 	}
 
 	// Below: New getters
@@ -669,7 +675,7 @@ public class TaskView extends JPanel {
 	public JButton getRunTaskButton() {
 		return runTaskButton;
 	}
-	
+
 	// Below: waiting for refactor
 
 	public void setErrorMessage(String m) {
@@ -722,6 +728,5 @@ public class TaskView extends JPanel {
 	public void changed() {
 		runYet.setModifed();
 	}
-
 
 }

@@ -399,7 +399,7 @@ public class TaskScreen extends JPanel {
 		centre.add(new JLabel("Save To"));
 
 		JButton browseButton = new BrowseButton(directoryCB);
-		//JButton hButton = new HomeButton(directoryCB);
+		// JButton hButton = new HomeButton(directoryCB);
 		JButton dButton = new SubDirectoryPathButton(urlTF, directoryCB);
 		JButton dsButton = new DirectoryExtensionButton(urlTF, directoryCB);
 		JButton dpButton = new SubDirectoryAndPrefixButton(urlTF, directoryCB, prefixTF);
@@ -415,7 +415,7 @@ public class TaskScreen extends JPanel {
 		hbox.add(openDir);
 		hbox.add(new JLabel("Directory"));
 		hbox.add(directoryCB);
-		//hbox.add(hButton);
+		// hbox.add(hButton);
 		hbox.add(browseButton);
 		hbox.add(dButton);
 		hbox.add(hpdpButton);
@@ -569,10 +569,11 @@ public class TaskScreen extends JPanel {
 		int carpos = urlTF.getCaretPosition();
 		int startSel = urlTF.getSelectionStart();
 		int endSel = urlTF.getSelectionEnd();
-		if (startSel != endSel)
+		if (startSel != endSel) {
 			sb.replace(startSel, endSel, braces);
-		else
+		} else {
 			sb.insert(carpos, braces);
+		}
 
 		urlTF.setText(sb.toString());
 	}

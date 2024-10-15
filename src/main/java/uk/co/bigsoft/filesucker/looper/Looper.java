@@ -1,8 +1,6 @@
 package uk.co.bigsoft.filesucker.looper;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -54,64 +52,9 @@ public abstract class Looper extends JPanel // implements Iterator
 
 		addB = new AddLooper();
 
-		// addB.addKeyListener (new KeyListener ()
-		// {
-		//
-		// public void keyTyped (KeyEvent e)
-		// {
-		// //System.out.println ("typed") ;
-		// TaskScreen.changed () ;
-		//
-		// if (!e.isAltDown())
-		// return;
-		//
-		// // if (Looper.isActive ())
-		// // {
-		// // TaskScreen.setErrorMessage ("Looper is active") ;
-		// // return ;
-		// // }
-		//
-		// char c = Character.toLowerCase (e.getKeyChar ());
-		// switch (c)
-		// {
-		// case 'c': FileSucker.taskScreen.copyB.actionPerformed ();
-		// break;
-		// case 'l': FileSucker.taskScreen.listB.actionPerformed ();
-		// break;
-		// case 'n': FileSucker.taskScreen.numberB.actionPerformed ();
-		// break;
-		// case 's': FileSucker.taskScreen.staticB.actionPerformed ();
-		// break;
-		// case 't': FileSucker.taskScreen.textB.actionPerformed ();
-		// break;
-		// }
-		//
-		// }
-		//
-		// public void keyReleased (KeyEvent e)
-		// {
-		// // Auto-generated method stub
-		//
-		// }
-		//
-		// public void keyPressed (KeyEvent e)
-		// {
-		// // Auto-generated method stub
-		//
-		// }
-		//
-		// });
 		cancelB = new JButton("Cancel");
 		cancelB.setToolTipText("Cancel, no action taken");
-		cancelB.addActionListener(
-				// {{{
-				new ActionListener() // which does the actual
-				// Delete operation
-				{
-					public void actionPerformed(ActionEvent e) {
-						resetLooper();
-					}
-				});
+		cancelB.addActionListener(e -> resetLooper());
 
 		Box bot = Box.createHorizontalBox();
 		bot.add(addB);
@@ -123,8 +66,9 @@ public abstract class Looper extends JPanel // implements Iterator
 	}
 
 	public static Integer getIndex(int i) {
-		if (i == 0)
+		if (i == 0) {
 			return Integer.valueOf(++countingIndex);
+		}
 		return Integer.valueOf(i);
 	}
 
@@ -159,3 +103,51 @@ public abstract class Looper extends JPanel // implements Iterator
 
 	public abstract boolean setParameters();
 }
+
+// addB.addKeyListener (new KeyListener ()
+// {
+//
+// public void keyTyped (KeyEvent e)
+// {
+// //System.out.println ("typed") ;
+// TaskScreen.changed () ;
+//
+// if (!e.isAltDown())
+// return;
+//
+// // if (Looper.isActive ())
+// // {
+// // TaskScreen.setErrorMessage ("Looper is active") ;
+// // return ;
+// // }
+//
+// char c = Character.toLowerCase (e.getKeyChar ());
+// switch (c)
+// {
+// case 'c': FileSucker.taskScreen.copyB.actionPerformed ();
+// break;
+// case 'l': FileSucker.taskScreen.listB.actionPerformed ();
+// break;
+// case 'n': FileSucker.taskScreen.numberB.actionPerformed ();
+// break;
+// case 's': FileSucker.taskScreen.staticB.actionPerformed ();
+// break;
+// case 't': FileSucker.taskScreen.textB.actionPerformed ();
+// break;
+// }
+//
+// }
+//
+// public void keyReleased (KeyEvent e)
+// {
+// // Auto-generated method stub
+//
+// }
+//
+// public void keyPressed (KeyEvent e)
+// {
+// // Auto-generated method stub
+//
+// }
+//
+// });

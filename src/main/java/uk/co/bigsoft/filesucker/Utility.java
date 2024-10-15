@@ -337,7 +337,7 @@ public class Utility {
 		String s = toExpand.replaceAll("%T", timeStr);
 		return s;
 	}
-	
+
 	@SuppressWarnings(value = "deprecation")
 	public static void runShellCommand(String cmd) throws IOException {
 		System.out.println("Running: '" + cmd + "'");

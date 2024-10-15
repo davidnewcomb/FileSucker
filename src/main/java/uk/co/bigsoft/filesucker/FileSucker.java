@@ -17,6 +17,7 @@ import uk.co.bigsoft.filesucker.credits.CreditsView;
 import uk.co.bigsoft.filesucker.task.TaskController;
 import uk.co.bigsoft.filesucker.task.TaskModel;
 import uk.co.bigsoft.filesucker.task.TaskView;
+import uk.co.bigsoft.filesucker.task.looper.LooperPanel;
 import uk.co.bigsoft.filesucker.tools.ToolsController;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
 import uk.co.bigsoft.filesucker.tools.ToolsView;
@@ -60,7 +61,8 @@ public class FileSucker {
 		CreditsView creditsView = new CreditsView();
 		LaunchProfileView launchProfileView = new LaunchProfileView();
 		ToolsView toolsView = new ToolsView(launchProfileView);
-		TaskView taskView = new TaskView();
+		LooperPanel looperPanel = new LooperPanel(taskModel);
+		TaskView taskView = new TaskView(looperPanel);
 
 		ConfigController configController = new ConfigController(configModel, configView);
 		CreditsController creditsController = new CreditsController(creditsModel, creditsView);

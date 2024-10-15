@@ -25,8 +25,9 @@ public class ListLooper extends Looper {
 
 	private void createLayout() {
 		if (list.length() != 0) {
-			if (list.charAt(list.length() - 1) != '\n')
+			if (list.charAt(list.length() - 1) != '\n') {
 				list = list + "\n";
+			}
 		}
 		listTA = new JTextArea(list);
 		listTA.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));

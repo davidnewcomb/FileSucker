@@ -13,21 +13,25 @@ public class UpDownNumberJTextField extends JSpinner {
 
 	public UpDownNumberJTextField(int start) {
 		super();
+
 		setModel(new SpinnerNumberModel(start, 0, Integer.MAX_VALUE, 1));
 
 		textbox = ((JSpinner.DefaultEditor) getEditor()).getTextField();
 		textbox.setHorizontalAlignment(SwingConstants.LEFT);
 		textbox.setEditable(true);
+
 		addMouseWheelListener(new MouseWheelListener() {
 			public void mouseWheelMoved(MouseWheelEvent e) {
 				int notches = e.getWheelRotation();
 				Object newVal;
-				if (notches > 0)
+				if (notches > 0) {
 					newVal = getModel().getNextValue();
-				else
+				} else {
 					newVal = getModel().getPreviousValue();
-				if (newVal != null)
+				}
+				if (newVal != null) {
 					setValue(newVal);
+				}
 			}
 		});
 	}

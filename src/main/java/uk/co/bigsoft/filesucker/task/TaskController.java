@@ -300,6 +300,24 @@ public class TaskController {
 			// TODO enable/disable buttons
 			break;
 		}
+		case TaskProps.F_SET_SELECTED_URL: {
+			int start = view.getUrlTextField().getSelectionStart();
+			int end = view.getUrlTextField().getSelectionEnd();
+			String url = view.getUrlTextField().getText();
+
+			String oldSel = url.substring(start, end);
+			if (oldSel.equals(newVal)) {
+				return;
+			}
+
+			StringBuilder sb = new StringBuilder(url);
+			sb.delete(start, end);
+			sb.insert(start, newVal);
+			view.getUrlTextField().setText(sb.toString());
+			view.getUrlTextField().setSelectionStart(start);
+			view.getUrlTextField().setSelectionEnd(start + newVal.length());
+			break;
+		}
 		case TaskProps.F_ORIGINAL_ADDRESS: {
 			view.getOriginalAddressTextField().setText(newVal);
 			break;
@@ -344,8 +362,8 @@ public class TaskController {
 
 	private void caretMovedUrl() {
 		String s = view.getUrlTextField().getSelectedText();
-		if (s == null) {
-			s = "";
+		if (s == null || "".equals(s)) {
+			return;
 		}
 		model.setSelectedUrl(s);
 	}

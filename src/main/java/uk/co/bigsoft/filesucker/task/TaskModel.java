@@ -14,8 +14,7 @@ public class TaskModel {
 	private String errorMessage = "";
 	private String prefix = "";
 	private String suffix = "";
-	
-	
+
 	public TaskModel() {
 		propChangeFirer = new SwingPropertyChangeSupport(this);
 	}
@@ -39,9 +38,15 @@ public class TaskModel {
 	}
 
 	public void setSelectedUrl(String selectedUrl) {
+		System.out.println("---");
+		System.out.println("new..selectedUrl:" + selectedUrl);
+		System.out.println("this.selectedUrl:" + this.selectedUrl);
+//		if ("".equals(selectedUrl) || selectedUrl.equals(this.selectedUrl)) {
+//			return;
+//		}
 		String oldVal = this.selectedUrl;
 		this.selectedUrl = selectedUrl;
-		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_URL, oldVal, this.selectedUrl);
+		propChangeFirer.firePropertyChange(TaskProps.F_SET_SELECTED_URL, oldVal, this.selectedUrl);
 	}
 
 	public String getOriginalAddress() {
