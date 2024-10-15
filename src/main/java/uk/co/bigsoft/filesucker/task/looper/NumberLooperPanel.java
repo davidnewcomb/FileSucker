@@ -7,16 +7,16 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import uk.co.bigsoft.filesucker.MenuButton;
+// import uk.co.bigsoft.filesucker.MenuButton;
 import uk.co.bigsoft.filesucker.UpDownNumberJTextField;
 
 
 public class NumberLooperPanel extends JPanel implements ILooperPanel { //, MenuButtonListOwner {
 
-	public UpDownNumberJTextField toTF = new UpDownNumberJTextField();
-	public UpDownNumberJTextField padTF = new UpDownNumberJTextField();
-	public UpDownNumberJTextField fromTF = new UpDownNumberJTextField();
-	public MenuButton history;
+	private UpDownNumberJTextField toTF = new UpDownNumberJTextField();
+	private UpDownNumberJTextField padTF = new UpDownNumberJTextField();
+	private UpDownNumberJTextField fromTF = new UpDownNumberJTextField();
+	//private MenuButton history;
 	private JLabel looperTitle = new JLabel();
 	private int looperId = -1;
 

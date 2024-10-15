@@ -27,8 +27,8 @@ public class LooperPanel extends JPanel {
 	private ILooperPanel currentPanel;
 	private ListLooperPanel listPanel = new ListLooperPanel();
 	private NumberLooperPanel numberPanel = new NumberLooperPanel();
+	private TextLooperPanel textPanel = new TextLooperPanel();
 
-	private JLabel textPanel = new JLabel();
 	private JLabel copyPanel = new JLabel();
 	private JLabel staticPanel = new JLabel();
 
@@ -87,7 +87,6 @@ public class LooperPanel extends JPanel {
 		cancelOkBox.setVisible(false);
 		remove((JPanel) currentPanel);
 		add(EMPTY, BorderLayout.CENTER);
-		// validate();
 	}
 
 	private void cancelButton() {
@@ -116,6 +115,11 @@ public class LooperPanel extends JPanel {
 		case LooperCmd.L_NUMBER: {
 			currentPanel = numberPanel;
 			jpanel = numberPanel;
+			break;
+		}
+		case LooperCmd.L_TEXT: {
+			currentPanel = textPanel;
+			jpanel = textPanel;
 			break;
 		}
 		default: {
@@ -174,6 +178,15 @@ public class LooperPanel extends JPanel {
 
 	private void showTextLooper() {
 		showSingleButton(LooperCmd.L_TEXT);
+		String sel = taskModel.getSelectedUrl();
+		if (!sel.startsWith("{")) {
+			sel = String.format("{%s,%d,%s,%s}",
+					LooperCmd.L_TEXT,
+					currentLooperId++,
+					configModel.getTextFrom(),
+					configModel.getTextTo());
+		}
+		openLooper(sel);
 	}
 
 }

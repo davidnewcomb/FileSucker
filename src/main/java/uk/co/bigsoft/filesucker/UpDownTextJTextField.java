@@ -1,7 +1,6 @@
 package uk.co.bigsoft.filesucker;
 
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
@@ -10,28 +9,32 @@ import javax.swing.SwingConstants;
 public class UpDownTextJTextField extends JSpinner {
 	private JFormattedTextField textbox;
 
-	public UpDownTextJTextField(String start) {
+	public UpDownTextJTextField() {
 		super();
-		setModel(new SpinnerCharacterModel(start));
-		// setValue (start) ;
 
 		textbox = ((JSpinner.DefaultEditor) getEditor()).getTextField();
 		textbox.setHorizontalAlignment(SwingConstants.LEFT);
 		textbox.setEditable(true);
-		addMouseWheelListener(new MouseWheelListener() {
-			public void mouseWheelMoved(MouseWheelEvent e) {
-				int notches = e.getWheelRotation();
-				Object newVal;
-				if (notches > 0)
-					newVal = getModel().getNextValue();
-				else
-					newVal = getModel().getPreviousValue();
-				if (newVal != null)
-					setValue(newVal);
-			}
-		});
+		
+		addMouseWheelListener(e -> mouseWheelMoved(e));
 	}
 
+	public void setStartingValue(String val) {
+		setModel(new SpinnerCharacterModel(val));
+	}
+	
+	public String getVal() {
+		return (String) getModel().getValue();
+	}
+	
+	private void mouseWheelMoved(MouseWheelEvent e) {
+		int notches = e.getWheelRotation();
+		Object newVal = notches > 0 ? getModel().getNextValue() : getModel().getPreviousValue();
+		if (newVal != null) {
+			getModel().setValue(newVal);
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return textbox.getText();
