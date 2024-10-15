@@ -73,20 +73,20 @@ public abstract class Looper extends JPanel // implements Iterator
 	}
 
 	public void resetLooper() {
-		FileSucker.taskScreen.numberB.setEnabled(true);
-		FileSucker.taskScreen.textB.setEnabled(true);
-		FileSucker.taskScreen.listB.setEnabled(true);
-		FileSucker.taskScreen.copyB.setEnabled(true);
-		FileSucker.taskScreen.staticB.setEnabled(true);
-
-		FileSucker.taskScreen.numberB.setVisible(true);
-		FileSucker.taskScreen.textB.setVisible(true);
-		FileSucker.taskScreen.listB.setVisible(true);
-		FileSucker.taskScreen.copyB.setVisible(true);
-		FileSucker.taskScreen.staticB.setVisible(true);
-
-		FileSucker.taskScreen.iteratorJP.removeAll();
-		FileSucker.taskScreen.iteratorJP.repaint();
+//		FileSucker.taskScreen.numberB.setEnabled(true);
+//		FileSucker.taskScreen.textB.setEnabled(true);
+//		FileSucker.taskScreen.listB.setEnabled(true);
+//		FileSucker.taskScreen.copyB.setEnabled(true);
+//		FileSucker.taskScreen.staticB.setEnabled(true);
+//
+//		FileSucker.taskScreen.numberB.setVisible(true);
+//		FileSucker.taskScreen.textB.setVisible(true);
+//		FileSucker.taskScreen.listB.setVisible(true);
+//		FileSucker.taskScreen.copyB.setVisible(true);
+//		FileSucker.taskScreen.staticB.setVisible(true);
+//
+//		FileSucker.taskScreen.iteratorJP.removeAll();
+//		FileSucker.taskScreen.iteratorJP.repaint();
 		active = false;
 		TaskScreen.enableRunButton(!active);
 	}

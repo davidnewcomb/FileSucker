@@ -27,14 +27,14 @@ public class StaticLooperButton extends JButton implements ActionListener {
 		if (caretpos == 0)
 			return;
 
-		FileSucker.taskScreen.numberB.setVisible(false);
-		FileSucker.taskScreen.textB.setVisible(false);
-		FileSucker.taskScreen.listB.setVisible(false);
-		FileSucker.taskScreen.copyB.setVisible(false);
-		FileSucker.taskScreen.staticB.setEnabled(false);
-
-		FileSucker.taskScreen.iteratorJP.removeAll();
-		FileSucker.taskScreen.iteratorJP.add(new StaticLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
-		FileSucker.taskScreen.iteratorJP.repaint();
+//		FileSucker.taskScreen.numberB.setVisible(false);
+//		FileSucker.taskScreen.textB.setVisible(false);
+//		FileSucker.taskScreen.listB.setVisible(false);
+//		FileSucker.taskScreen.copyB.setVisible(false);
+//		FileSucker.taskScreen.staticB.setEnabled(false);
+//
+//		FileSucker.taskScreen.iteratorJP.removeAll();
+//		FileSucker.taskScreen.iteratorJP.add(new StaticLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
+//		FileSucker.taskScreen.iteratorJP.repaint();
 	}
 }

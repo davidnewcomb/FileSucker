@@ -27,85 +27,79 @@ public class TaskModel {
 		return url;
 	}
 
-	public void setUrl(String url) {
-		String oldVal = this.url;
-		this.url = url;
-		propChangeFirer.firePropertyChange(TaskProps.F_URL, oldVal, this.url);
+	public void setUrl(String x) {
+		String oldVal = url;
+		url = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_URL, oldVal, url);
 	}
 
 	public String getSelectedUrl() {
 		return selectedUrl;
 	}
 
-	public void setSelectedUrl(String selectedUrl) {
-		System.out.println("---");
-		System.out.println("new..selectedUrl:" + selectedUrl);
-		System.out.println("this.selectedUrl:" + this.selectedUrl);
-//		if ("".equals(selectedUrl) || selectedUrl.equals(this.selectedUrl)) {
-//			return;
-//		}
-		String oldVal = this.selectedUrl;
-		this.selectedUrl = selectedUrl;
-		propChangeFirer.firePropertyChange(TaskProps.F_SET_SELECTED_URL, oldVal, this.selectedUrl);
+	public void setSelectedUrl(String x) {
+		String oldVal = selectedUrl;
+		selectedUrl = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_SET_SELECTED_URL, oldVal, selectedUrl);
 	}
 
 	public String getOriginalAddress() {
 		return this.originalAddress;
 	}
 
-	public void setOriginalAddress(String originalAddress) {
-		String oldVal = this.originalAddress;
-		this.originalAddress = originalAddress;
-		propChangeFirer.firePropertyChange(TaskProps.F_ORIGINAL_ADDRESS, oldVal, this.originalAddress);
+	public void setOriginalAddress(String x) {
+		String oldVal = originalAddress;
+		originalAddress = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_ORIGINAL_ADDRESS, oldVal, originalAddress);
 	}
 
 	public String getSelectedOriginalAddress() {
 		return selectedOriginalAddress;
 	}
 
-	public void setSelectedOriginalAddress(String selectedOriginalAddress) {
-		String oldVal = this.selectedOriginalAddress;
-		this.selectedOriginalAddress = selectedOriginalAddress;
-		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_ORIGINAL_ADDRESS, oldVal, this.selectedOriginalAddress);
+	public void setSelectedOriginalAddress(String x) {
+		String oldVal = selectedOriginalAddress;
+		selectedOriginalAddress = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_ORIGINAL_ADDRESS, oldVal, selectedOriginalAddress);
 	}
 
 	public String getDirectory() {
 		return directory;
 	}
 
-	public void setDirectory(String directory) {
-		String oldVal = this.directory;
-		this.directory = directory;
-		propChangeFirer.firePropertyChange(TaskProps.F_DIRECTORY, oldVal, this.directory);
+	public void setDirectory(String x) {
+		String oldVal = directory;
+		directory = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_DIRECTORY, oldVal, directory);
 	}
 
 	public String getErrorMessage() {
 		return errorMessage;
 	}
 
-	public void setErrorMessage(String errorMessage) {
-		String oldVal = this.errorMessage;
-		this.errorMessage = errorMessage;
-		propChangeFirer.firePropertyChange(TaskProps.F_ERROR_MESSAGE, oldVal, this.errorMessage);
+	public void setErrorMessage(String x) {
+		String oldVal = errorMessage;
+		errorMessage = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_ERROR_MESSAGE, oldVal, errorMessage);
 	}
 
 	public String getPrefix() {
 		return prefix;
 	}
 
-	public void setPrefix(String prefix) {
-		String oldVal = this.prefix;
-		this.prefix = prefix;
-		propChangeFirer.firePropertyChange(TaskProps.F_PREFIX, oldVal, this.prefix);
+	public void setPrefix(String x) {
+		String oldVal = prefix;
+		prefix = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_PREFIX, oldVal, prefix);
 	}
 
 	public String getSuffix() {
 		return suffix;
 	}
 
-	public void setSuffix(String suffix) {
-		String oldVal = this.suffix;
-		this.suffix = suffix;
-		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX, oldVal, this.suffix);
+	public void setSuffix(String x) {
+		String oldVal = suffix;
+		suffix = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX, oldVal, suffix);
 	}
 }

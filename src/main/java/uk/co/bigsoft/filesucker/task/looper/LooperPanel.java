@@ -10,28 +10,24 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.task.TaskModel;
 
 public class LooperPanel extends JPanel {
 
-	public static final String L_NUMBER = "N";
-	public static final String L_TEXT = "T";
-	public static final String L_LIST = "L";
-	public static final String L_COPY = "C";
-	public static final String L_STATIC = "S";
 	private static int currentLooperId = 1;
 
 	private JPanel EMPTY = new JPanel();
-	private JButton numberButton = new JButton(L_NUMBER);
-	private JButton textButton = new JButton(L_TEXT);
-	private JButton listButton = new JButton(L_LIST);
-	private JButton copyButton = new JButton(L_COPY);
-	private JButton staticButton = new JButton(L_STATIC);
+	private JButton numberButton = new JButton(LooperCmd.L_NUMBER);
+	private JButton textButton = new JButton(LooperCmd.L_TEXT);
+	private JButton listButton = new JButton(LooperCmd.L_LIST);
+	private JButton copyButton = new JButton(LooperCmd.L_COPY);
+	private JButton staticButton = new JButton(LooperCmd.L_STATIC);
 
 	private ILooperPanel currentPanel;
 	private ListLooperPanel listPanel = new ListLooperPanel();
+	private NumberLooperPanel numberPanel = new NumberLooperPanel();
 
-	private JLabel numberPanel = new JLabel();
 	private JLabel textPanel = new JLabel();
 	private JLabel copyPanel = new JLabel();
 	private JLabel staticPanel = new JLabel();
@@ -44,11 +40,13 @@ public class LooperPanel extends JPanel {
 	// private JPanel centre = new JPanel();
 	private Box cancelOkBox = Box.createHorizontalBox();
 	private TaskModel taskModel;
+	private ConfigModel configModel;
 
-	public LooperPanel(TaskModel taskModel) {
+	public LooperPanel(ConfigModel configModel, TaskModel taskModel) {
 		super(new BorderLayout());
 
 		this.taskModel = taskModel;
+		this.configModel = configModel;
 
 		Box buttonsBox = Box.createHorizontalBox();
 		for (JButton jb : commandButtons) {
@@ -107,30 +105,29 @@ public class LooperPanel extends JPanel {
 		String[] parameters = noBrackets.split(",");
 		String looperType = parameters[0];
 		List<String> p = Arrays.asList(parameters);
-
+		JPanel jpanel;
+		
 		switch (looperType) {
-		case LooperPanel.L_LIST: {
+		case LooperCmd.L_LIST: {
 			currentPanel = listPanel;
-			listPanel.fill(p);
-
-			// works -
-			// https://stackoverflow.com/questions/2711104/swapping-out-the-center-jpanel-in-a-borderlayout
-//				remove(EMPTY);
-//				add(listPanel, BorderLayout.CENTER);
-//				repaint();
-//				revalidate();
-
-			// Also works
-			remove(EMPTY);
-			add(listPanel, BorderLayout.CENTER);
-			validate();
+			jpanel = listPanel;
+			break;
+		}
+		case LooperCmd.L_NUMBER: {
+			currentPanel = numberPanel;
+			jpanel = numberPanel;
 			break;
 		}
 		default: {
 			System.out.println("Bad looper type: " + looperType);
+			return;
 		}
 		}
 
+		currentPanel.fill(p);
+		remove(EMPTY);
+		add(jpanel, BorderLayout.CENTER);
+		validate();
 	}
 
 	private void showSingleButton(String ref) {
@@ -145,29 +142,49 @@ public class LooperPanel extends JPanel {
 	}
 
 	private void showNumberLooper() {
-		showSingleButton(L_NUMBER);
+		showSingleButton(LooperCmd.L_NUMBER);
+		String sel = taskModel.getSelectedUrl();
+		if (!sel.startsWith("{")) {
+			sel = String.format("{%s,%d,%d,%d,%d}",
+					LooperCmd.L_NUMBER,
+					currentLooperId++,
+					configModel.getNumberFrom(),
+					configModel.getNumberTo(),
+					configModel.getNumberPad());
+		}
+		openLooper(sel);
 	}
 
 	private void showStaticLooper() {
-		showSingleButton(L_STATIC);
+		showSingleButton(LooperCmd.L_STATIC);
 	}
 
 	private void showCopyLooper() {
-		showSingleButton(L_COPY);
+		showSingleButton(LooperCmd.L_COPY);
 	}
 
 	private void showListLooper() {
-		showSingleButton(L_LIST);
+		showSingleButton(LooperCmd.L_LIST);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = "{" + L_LIST + "," + currentLooperId++ + "," + sel + "}";
+			sel = String.format("{%s,%d,%s}", LooperCmd.L_LIST, currentLooperId++, sel);
 		}
 		openLooper(sel);
-
 	}
 
 	private void showTextLooper() {
-		showSingleButton(L_TEXT);
+		showSingleButton(LooperCmd.L_TEXT);
 	}
 
 }
+
+
+// works -
+// https://stackoverflow.com/questions/2711104/swapping-out-the-center-jpanel-in-a-borderlayout
+//	remove(EMPTY);
+//	add(listPanel, BorderLayout.CENTER);
+//	repaint();
+//	revalidate();
+
+// Also works
+

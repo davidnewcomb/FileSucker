@@ -23,18 +23,18 @@ public class ListLooperButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int caretpos = TaskScreen.urlTF.getCaretPosition();
-		if (caretpos == 0)
-			return;
-
-		FileSucker.taskScreen.numberB.setVisible(false);
-		FileSucker.taskScreen.textB.setVisible(false);
-		FileSucker.taskScreen.listB.setEnabled(false);
-		FileSucker.taskScreen.copyB.setVisible(false);
-		FileSucker.taskScreen.staticB.setVisible(false);
-
-		FileSucker.taskScreen.iteratorJP.removeAll();
-		FileSucker.taskScreen.iteratorJP.add(new ListLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
-		FileSucker.taskScreen.iteratorJP.repaint();
+//		int caretpos = TaskScreen.urlTF.getCaretPosition();
+//		if (caretpos == 0)
+//			return;
+//
+//		FileSucker.taskScreen.numberB.setVisible(false);
+//		FileSucker.taskScreen.textB.setVisible(false);
+//		FileSucker.taskScreen.listB.setEnabled(false);
+//		FileSucker.taskScreen.copyB.setVisible(false);
+//		FileSucker.taskScreen.staticB.setVisible(false);
+//
+//		FileSucker.taskScreen.iteratorJP.removeAll();
+//		FileSucker.taskScreen.iteratorJP.add(new ListLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
+//		FileSucker.taskScreen.iteratorJP.repaint();
 	}
 }

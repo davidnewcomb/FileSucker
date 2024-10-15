@@ -41,15 +41,15 @@ public class NumberLooper extends Looper implements MenuButtonListOwner {
 	}
 
 	private void createLayout() {
-		fromTF = new UpDownNumberJTextField(from.intValue());
+		//fromTF = new UpDownNumberJTextField(from.intValue());
 		fromTF.setMinimumSize(new Dimension(10, 20));
 		fromTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		toTF = new UpDownNumberJTextField(to.intValue());
+		//toTF = new UpDownNumberJTextField(to.intValue());
 		toTF.setMinimumSize(new Dimension(10, 20));
 		toTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		padTF = new UpDownNumberJTextField(pad.intValue());
+		//padTF = new UpDownNumberJTextField(pad.intValue());
 		padTF.setMinimumSize(new Dimension(10, 20));
 		padTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 

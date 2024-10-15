@@ -20,7 +20,7 @@ public class UrlTextField extends JTextField {
 
 		setDragEnabled(true);
 		setTransferHandler(transferHandler);
-		addMouseListener(m);
+		//addMouseListener(m);
 		addKeyListener(k);
 	}
 }
@@ -29,7 +29,7 @@ class UrlKeyListener extends KeyAdapter {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// System.out.println ("typed") ;
-		TaskScreen.changed();
+		// TODO TaskScreen.changed();
 
 		if (!e.isAltDown())
 			return;
@@ -41,21 +41,21 @@ class UrlKeyListener extends KeyAdapter {
 
 		char c = Character.toLowerCase(e.getKeyChar());
 		switch (c) {
-		case 'c':
-			FileSucker.taskScreen.copyB.actionPerformed(null);
-			break;
-		case 'l':
-			FileSucker.taskScreen.listB.actionPerformed(null);
-			break;
-		case 'n':
-			FileSucker.taskScreen.numberB.actionPerformed(null);
-			break;
-		case 's':
-			FileSucker.taskScreen.staticB.actionPerformed(null);
-			break;
-		case 't':
-			FileSucker.taskScreen.textB.actionPerformed(null);
-			break;
+//		case 'c':
+//			FileSucker.taskScreen.copyB.actionPerformed(null);
+//			break;
+//		case 'l':
+//			FileSucker.taskScreen.listB.actionPerformed(null);
+//			break;
+//		case 'n':
+//			FileSucker.taskScreen.numberB.actionPerformed(null);
+//			break;
+//		case 's':
+//			FileSucker.taskScreen.staticB.actionPerformed(null);
+//			break;
+//		case 't':
+//			FileSucker.taskScreen.textB.actionPerformed(null);
+//			break;
 		}
 	}
 

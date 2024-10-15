@@ -38,7 +38,7 @@ public class FileSucker {
 
 	public static ConfigData configData = null;
 	// public static ConfigScreen configScreen = null;
-	public static TaskScreen taskScreen = null;
+	//public static TaskScreen taskScreen = null;
 	public static TransferScreen transferScreen = null;
 	public static CreditScreen creditScreen = null;
 	// public static ToolsScreen toolsScreen = null;
@@ -61,7 +61,7 @@ public class FileSucker {
 		CreditsView creditsView = new CreditsView();
 		LaunchProfileView launchProfileView = new LaunchProfileView();
 		ToolsView toolsView = new ToolsView(launchProfileView);
-		LooperPanel looperPanel = new LooperPanel(taskModel);
+		LooperPanel looperPanel = new LooperPanel(configModel, taskModel);
 		TaskView taskView = new TaskView(looperPanel);
 
 		ConfigController configController = new ConfigController(configModel, configView);
@@ -81,7 +81,7 @@ public class FileSucker {
 		activeFileSuckerThreads = new LinkedList<SuckerThread>();
 		configData = new ConfigData();
 		// configScreen = new ConfigScreen();
-		taskScreen = new TaskScreen();
+		//taskScreen = new TaskScreen();
 		transferScreen = new TransferScreen();
 		creditScreen = new CreditScreen();
 		// toolsScreen = new ToolsScreen();

@@ -4,10 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
@@ -39,14 +36,10 @@ import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.looper.Looper;
 import uk.co.bigsoft.filesucker.looper.list.ListLooper;
+import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 import uk.co.bigsoft.filesucker.task.looper.LooperPanel;
-import uk.co.bigsoft.filesucker.ui.taskscreen.CopyLooperButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.ListLooperButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.NumberLooperButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.StaticLooperButton;
+import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
-import uk.co.bigsoft.filesucker.ui.taskscreen.TextLooperButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.UrlTextField;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.OriginalAddressLaunchButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixClearButton;
@@ -99,13 +92,6 @@ public class TaskView extends JPanel {
 	private JCheckBox suffixEndCB = new JCheckBox("B4Extn");
 	private JPanel iteratorJP;
 
-	// Loopers
-//	private NumberLooperButton numberB = new NumberLooperButton();
-//	private TextLooperButton textB = new TextLooperButton();
-//	private ListLooperButton listB = new ListLooperButton();
-//	private CopyLooperButton copyB = new CopyLooperButton();
-//	private StaticLooperButton staticB = new StaticLooperButton();
-
 	public TaskView(LooperPanel looperPanel) {
 		super(new BorderLayout());
 		JButton t;
@@ -129,131 +115,7 @@ public class TaskView extends JPanel {
 
 		runTaskButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		runTaskButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (Looper.isActive()) {
-					TaskScreen.setErrorMessage("Looper is active");
-					return;
-				}
-
-				String selectedDir = directoryCB.getSelectedItem().toString().trim();
-				if (selectedDir.equals("")) {
-					TaskScreen.setErrorMessage("You must provide a directory to store the files");
-					return;
-				}
-
-				if (!selectedDir.endsWith(File.separator)) {
-					selectedDir = selectedDir + File.separator;
-					directoryCB.setSelectedItem(selectedDir);
-				}
-
-				directoryCB.savePrefs(selectedDir);
-
-				String prefix = null;
-				String suffix = null;
-
-				if (prefixTF.getText().length() > 0) {
-					prefix = prefixTF.getText();
-				}
-				if (suffixTF.getText().length() > 0) {
-					suffix = suffixTF.getText();
-				}
-
-				// // Is selectedDir in the list already
-				// boolean inList = false;
-				// int listEntries =
-				// directoryCB.getItemCount();
-				// for (int i = 0 ; i < listEntries ;
-				// ++i)
-				// {
-				// String item = (String)
-				// directoryCB.getItemAt(i);
-				// if (item.equals(selectedDir))
-				// inList = true;
-				// }
-				// if (inList == false)
-				// {
-				// directoryCB.addItem(selectedDir);
-				// }
-
-				// File f = new File (selectedDir) ;
-				// String name = f.getName () ;
-
-				if (selectedDir.endsWith(File.separator) == false) {
-					selectedDir = selectedDir + File.separator;
-					directoryCB.setSelectedItem(selectedDir);
-				}
-
-				// Cookie
-				// StringTokenizer st = new
-				// StringTokenizer(cookieTA.getText().trim(),
-				// "\n");
-				Hashtable<String, String> hm = new Hashtable<String, String>();
-				// while (st.hasMoreTokens())
-				// {
-				// String[] kv =
-				// st.nextToken().trim().split(":", 2);
-				// String k = kv[0].trim();
-				// String v = kv[1].trim();
-				// hm.put(k, v);
-				// }
-
-				// Referer
-				// String ref = refererTF.getText();
-				// if (ref.equals("") == false)
-				// {
-				// hm.put("Referer", ref);
-				// }
-				String refs[] = urlTF.getText().split("/", 4);
-				if (refs.length < 3) {
-					TaskScreen.setErrorMessage("You must enter a url");
-					return;
-				}
-
-				runYet.setReset();
-
-				String ref = refs[0] + "//" + refs[2];
-				hm.put("Referer", ref);
-
-				selectedDir = Utility.expandsPercentVars(selectedDir);
-
-				SuckerParams sp = new SuckerParams("name", urlTF.getText(), selectedDir, prefix, suffix, hm,
-						suffixEndCB.isSelected(), originalAddressTF.getText());
-				if (saveUrl.isSelected()) {
-					TaskScreenParams.save(sp);
-					if (saveOnly.isSelected()) {
-						setErrorMessage("Saved");
-						return;
-					}
-				}
-				// SuckerThread sth =
-				new SuckerThread(sp);
-
-				// SuckerThread sth = new SuckerThread (sp)
-				// ;
-				// synchronized
-				// (FileSucker.activeFileSuckerThreads)
-				// {
-				// FileSucker.activeFileSuckerThreads.add
-				// (sth) ;
-				// }
-				// TransferScreen.updateScreen () ;
-				// // Switch to other tab
-				FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
-
-				// for (int t = 0 ; t <
-				// FileSuckerFrame.tabPane.getComponentCount()
-				// ;
-				// t++)
-				// if
-				// (FileSuckerFrame.tabPane.getComponent(t)
-				// ==
-				// FileSucker.transferScreen)
-				//
-				originalAddressTF.setText("");
-				runYet.setReset();
-			}
-		});
+		runTaskButton.addActionListener(e -> runTask());
 
 //		openDir = new OpenDirectoryButton(directoryCB);
 
@@ -262,6 +124,7 @@ public class TaskView extends JPanel {
 		JPanel bot = new JPanel();
 		bot.setLayout(new BoxLayout(bot, BoxLayout.Y_AXIS));
 		bot.add(errorMessagesLabel);
+
 		JPanel rp = new JPanel(new BorderLayout());
 		rp.add(BorderLayout.CENTER, runTaskButton);
 		rp.add(BorderLayout.EAST, saveOnly);
@@ -270,6 +133,8 @@ public class TaskView extends JPanel {
 		add(bot, BorderLayout.SOUTH);
 
 		centre.add(new JLabel("Get"));
+
+		urlTF = new UrlTextField(ddHandler);
 
 		// URL
 		// urlTF = new JTextField
@@ -281,7 +146,7 @@ public class TaskView extends JPanel {
 		// urlTF = new JTextField
 		// ("http://www.pornstar-galaxy.com/pornstars/hungarian_pantera/images/full/panrdchrbg028.jpg",
 		// ddHandler);
-		urlTF = new UrlTextField(ddHandler);
+//		urlTF = new UrlTextField(ddHandler);
 
 		// originalAddressTF = new OriginalAddressTextField();
 		// findFileTF.setEditable (false) ;
@@ -291,101 +156,9 @@ public class TaskView extends JPanel {
 		saveUrl.setToolTipText("Save download instructions");
 		saveUrl.setSelected(true);
 
-		findFilesButton.setToolTipText("Suck down webpage, fish out all the filenames and fill up 'L'");
-		// which does the actual Delete operation
-		findFilesButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					String findFileAddress = urlTF.getText();
-					if (findFileAddress.length() == 0) {
-						TaskScreen.setErrorMessage("URL is empty");
-						return;
-					}
-					originalAddressTF.setText(findFileAddress);
-					URL url = URI.create(findFileAddress).toURL();
-					java.net.URLConnection urlc = url.openConnection();
-					String userinfo = url.getUserInfo();
-					if (userinfo != null) {
-						String[] auth = userinfo.split(":");
-						urlc.setRequestProperty("Authorization", "Basic " + BasicAuth.encode(auth[0], auth[1]));
-					}
-					// To download
-					InputStream is = urlc.getInputStream();
-					byte[] buffer = new byte[4096];
-					StringBuffer sb = new StringBuffer();
-					// Map header = urlc.getHeaderFields();
-					int len = 69;
-					while (len > 0) {
-						len = is.read(buffer, 0, buffer.length);
-						if (len <= 0) {
-							break;
-						}
-						sb.append(new String(buffer));
-					}
-					is.close();
-
-					// For debug - to load from a file
-					// byte[] buffer = new byte[4096];
-					// StringBuffer sb = new StringBuffer();
-					//
-					// FileInputStream is = new FileInputStream(
-					// "Z:\\dev\\FileSucker\\test_find_files_bug_index.php.html");
-					// int len = 69;
-					// while (len > 0)
-					// {
-					// len = is.read(buffer, 0, buffer.length);
-					// if (len <= 0)
-					// break;
-					// sb.append(new String(buffer));
-					// }
-					// is.close();
-
-					TreeMap<String, String> map = new TreeMap<String, String>();
-					String[] extns = FileSucker.configData.getFindExtn();
-					for (int i = 0; i < extns.length; ++i) {
-						Pattern p = Pattern.compile("[\\[\\]a-zA-Z%$./0-9_-]+." + extns[i]);
-						Matcher m = p.matcher(sb);
-
-						while (m.find()) {
-							String s = sb.substring(m.start(), m.end());
-							map.put(s, s);
-						}
-					}
-
-					if (map.size() == 0) {
-						TaskScreen.setErrorMessage("No matches found");
-						return;
-					}
-
-					StringBuffer found = new StringBuffer();
-					found.append("{l,");
-					found.append(Looper.getIndex(0));
-					for (String s : map.keySet()) {
-						found.append(",");
-						found.append(s);
-					}
-					sb = null;
-
-					found.append("}");
-
-//					numberB.setVisible(false);
-//					textB.setVisible(false);
-//					listB.setEnabled(false);
-//					copyB.setVisible(false);
-//					staticB.setVisible(false);
-
-					iteratorJP.removeAll();
-					iteratorJP.add(new ListLooper(found.toString()), BorderLayout.CENTER);
-					iteratorJP.repaint();
-
-					int lastSlash = urlTF.getText().lastIndexOf("/");
-					urlTF.setText(urlTF.getText().substring(0, lastSlash + 1));
-				} catch (Exception ex) {
-					TaskScreen.setErrorMessage(ex.getMessage());
-				}
-
-			}
-		});
+		findFilesButton
+				.setToolTipText("Suck down webpage, fish out all the filenames and fill up '" + LooperCmd.L_LIST + "'");
+		findFilesButton.addActionListener(e -> findFiles());
 
 		Box hbox = Box.createHorizontalBox();
 		hbox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
@@ -491,33 +264,7 @@ public class TaskView extends JPanel {
 		hbox.add(subDirectoryFromClipboardButton);
 		hbox.add(directoryClipboardButton);
 
-		hbox.addMouseListener(new MouseListener() {
-			public void mousePressed(MouseEvent me) {
-				int clickedButton = me.getButton();
-				if (clickedButton == 3) // r-click
-				{
-					String s = Utility.getClipboard();
-					if (s != null)
-						directoryCB.setSelectedItem(s);
-				}
-			}
-
-			public void mouseClicked(MouseEvent me) {
-				/* empty */
-			}
-
-			public void mouseReleased(MouseEvent me) {
-				/* empty */
-			}
-
-			public void mouseEntered(MouseEvent me) {
-				/* empty */
-			}
-
-			public void mouseExited(MouseEvent me) {
-				/* empty */
-			}
-		});
+		hbox.addMouseListener((MousePressListener)e -> mousePressed(e));
 
 		centre.add(hbox);
 
@@ -592,6 +339,235 @@ public class TaskView extends JPanel {
 		jp.add(looperPanel);
 		centre.add(jp);
 
+	}
+
+	private void mousePressed(MouseEvent me) {
+		int clickedButton = me.getButton();
+		if (clickedButton == 3) // r-click
+		{
+			String s = Utility.getClipboard();
+			if (s != null) {
+				directoryCB.setSelectedItem(s);
+			}
+		}
+	}
+	
+	private void findFiles() {
+		try {
+			String findFileAddress = urlTF.getText();
+			if (findFileAddress.length() == 0) {
+				TaskScreen.setErrorMessage("URL is empty");
+				return;
+			}
+			originalAddressTF.setText(findFileAddress);
+			URL url = URI.create(findFileAddress).toURL();
+			java.net.URLConnection urlc = url.openConnection();
+			String userinfo = url.getUserInfo();
+			if (userinfo != null) {
+				String[] auth = userinfo.split(":");
+				urlc.setRequestProperty("Authorization", "Basic " + BasicAuth.encode(auth[0], auth[1]));
+			}
+			// To download
+			InputStream is = urlc.getInputStream();
+			byte[] buffer = new byte[4096];
+			StringBuffer sb = new StringBuffer();
+			// Map header = urlc.getHeaderFields();
+			int len = 69;
+			while (len > 0) {
+				len = is.read(buffer, 0, buffer.length);
+				if (len <= 0) {
+					break;
+				}
+				sb.append(new String(buffer));
+			}
+			is.close();
+
+			// For debug - to load from a file
+			// byte[] buffer = new byte[4096];
+			// StringBuffer sb = new StringBuffer();
+			//
+			// FileInputStream is = new FileInputStream(
+			// "Z:\\dev\\FileSucker\\test_find_files_bug_index.php.html");
+			// int len = 69;
+			// while (len > 0)
+			// {
+			// len = is.read(buffer, 0, buffer.length);
+			// if (len <= 0)
+			// break;
+			// sb.append(new String(buffer));
+			// }
+			// is.close();
+
+			TreeMap<String, String> map = new TreeMap<String, String>();
+			String[] extns = FileSucker.configData.getFindExtn();
+			for (int i = 0; i < extns.length; ++i) {
+				Pattern p = Pattern.compile("[\\[\\]a-zA-Z%$./0-9_-]+." + extns[i]);
+				Matcher m = p.matcher(sb);
+
+				while (m.find()) {
+					String s = sb.substring(m.start(), m.end());
+					map.put(s, s);
+				}
+			}
+
+			if (map.size() == 0) {
+				TaskScreen.setErrorMessage("No matches found");
+				return;
+			}
+
+			StringBuffer found = new StringBuffer();
+			found.append("{l,");
+			found.append(Looper.getIndex(0));
+			for (String s : map.keySet()) {
+				found.append(",");
+				found.append(s);
+			}
+			sb = null;
+
+			found.append("}");
+
+//			numberB.setVisible(false);
+//			textB.setVisible(false);
+//			listB.setEnabled(false);
+//			copyB.setVisible(false);
+//			staticB.setVisible(false);
+
+			iteratorJP.removeAll();
+			iteratorJP.add(new ListLooper(found.toString()), BorderLayout.CENTER);
+			iteratorJP.repaint();
+
+			int lastSlash = urlTF.getText().lastIndexOf("/");
+			urlTF.setText(urlTF.getText().substring(0, lastSlash + 1));
+		} catch (Exception ex) {
+			TaskScreen.setErrorMessage(ex.getMessage());
+		}
+
+	}
+
+	// New actions
+
+	private void runTask() {
+		if (Looper.isActive()) {
+			TaskScreen.setErrorMessage("Looper is active");
+			return;
+		}
+
+		String selectedDir = directoryCB.getSelectedItem().toString().trim();
+		if (selectedDir.equals("")) {
+			TaskScreen.setErrorMessage("You must provide a directory to store the files");
+			return;
+		}
+
+		if (!selectedDir.endsWith(File.separator)) {
+			selectedDir = selectedDir + File.separator;
+			directoryCB.setSelectedItem(selectedDir);
+		}
+
+		directoryCB.savePrefs(selectedDir);
+
+		String prefix = null;
+		String suffix = null;
+
+		if (prefixTF.getText().length() > 0) {
+			prefix = prefixTF.getText();
+		}
+		if (suffixTF.getText().length() > 0) {
+			suffix = suffixTF.getText();
+		}
+
+		// // Is selectedDir in the list already
+		// boolean inList = false;
+		// int listEntries =
+		// directoryCB.getItemCount();
+		// for (int i = 0 ; i < listEntries ;
+		// ++i)
+		// {
+		// String item = (String)
+		// directoryCB.getItemAt(i);
+		// if (item.equals(selectedDir))
+		// inList = true;
+		// }
+		// if (inList == false)
+		// {
+		// directoryCB.addItem(selectedDir);
+		// }
+
+		// File f = new File (selectedDir) ;
+		// String name = f.getName () ;
+
+		if (selectedDir.endsWith(File.separator) == false) {
+			selectedDir = selectedDir + File.separator;
+			directoryCB.setSelectedItem(selectedDir);
+		}
+
+		// Cookie
+		// StringTokenizer st = new
+		// StringTokenizer(cookieTA.getText().trim(),
+		// "\n");
+		Hashtable<String, String> hm = new Hashtable<String, String>();
+		// while (st.hasMoreTokens())
+		// {
+		// String[] kv =
+		// st.nextToken().trim().split(":", 2);
+		// String k = kv[0].trim();
+		// String v = kv[1].trim();
+		// hm.put(k, v);
+		// }
+
+		// Referer
+		// String ref = refererTF.getText();
+		// if (ref.equals("") == false)
+		// {
+		// hm.put("Referer", ref);
+		// }
+		String refs[] = urlTF.getText().split("/", 4);
+		if (refs.length < 3) {
+			TaskScreen.setErrorMessage("You must enter a url");
+			return;
+		}
+
+		runYet.setReset();
+
+		String ref = refs[0] + "//" + refs[2];
+		hm.put("Referer", ref);
+
+		selectedDir = Utility.expandsPercentVars(selectedDir);
+
+		SuckerParams sp = new SuckerParams("name", urlTF.getText(), selectedDir, prefix, suffix, hm,
+				suffixEndCB.isSelected(), originalAddressTF.getText());
+		if (saveUrl.isSelected()) {
+			TaskScreenParams.save(sp);
+			if (saveOnly.isSelected()) {
+				setErrorMessage("Saved");
+				return;
+			}
+		}
+		// SuckerThread sth =
+		new SuckerThread(sp);
+
+		// SuckerThread sth = new SuckerThread (sp)
+		// ;
+		// synchronized
+		// (FileSucker.activeFileSuckerThreads)
+		// {
+		// FileSucker.activeFileSuckerThreads.add
+		// (sth) ;
+		// }
+		// TransferScreen.updateScreen () ;
+		// // Switch to other tab
+		FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
+
+		// for (int t = 0 ; t <
+		// FileSuckerFrame.tabPane.getComponentCount()
+		// ;
+		// t++)
+		// if
+		// (FileSuckerFrame.tabPane.getComponent(t)
+		// ==
+		// FileSucker.transferScreen)
+		//
+		originalAddressTF.setText("");
+		runYet.setReset();
 	}
 
 	// Below: New getters
@@ -680,9 +656,7 @@ public class TaskView extends JPanel {
 
 	public void setErrorMessage(String m) {
 		System.err.println(m);
-		StringBuffer s = new StringBuffer("Message: ");
-		s.append(m);
-		errorMessagesLabel.setText(s.toString());
+		errorMessagesLabel.setText("Message: " + m);
 	}
 
 	public void load(SuckerParams p) {

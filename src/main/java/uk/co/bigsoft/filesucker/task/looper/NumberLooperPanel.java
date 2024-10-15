@@ -1,61 +1,46 @@
 package uk.co.bigsoft.filesucker.task.looper;
 
 import java.awt.Dimension;
+import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.HistoryDropDown;
 import uk.co.bigsoft.filesucker.MenuButton;
-import uk.co.bigsoft.filesucker.MenuButtonListOwner;
-import uk.co.bigsoft.filesucker.MenuButtonListener;
 import uk.co.bigsoft.filesucker.UpDownNumberJTextField;
-import uk.co.bigsoft.filesucker.looper.Looper;
 
-public class NumberLooperPanel extends Looper implements MenuButtonListOwner {
 
-	public Integer from;
-	public Integer to;
-	public Integer pad;
-	public UpDownNumberJTextField toTF;
-	public UpDownNumberJTextField padTF;
-	public UpDownNumberJTextField fromTF;
+public class NumberLooperPanel extends JPanel implements ILooperPanel { //, MenuButtonListOwner {
+
+	public UpDownNumberJTextField toTF = new UpDownNumberJTextField();
+	public UpDownNumberJTextField padTF = new UpDownNumberJTextField();
+	public UpDownNumberJTextField fromTF = new UpDownNumberJTextField();
 	public MenuButton history;
+	private JLabel looperTitle = new JLabel();
+	private int looperId = -1;
 
-	public NumberLooperPanel(String sel) {
-		super(sel);
-		if (setParameters() == false) {
-			try {
-				from = Integer.valueOf(selectedUrl);
-			} catch (NumberFormatException nfe) {
-				from = Integer.valueOf(FileSucker.configData.getNumberFrom());
-			}
-			if (from.intValue() > 1) {
-				to = Integer.valueOf(from.intValue() + FileSucker.configData.getNumberTo());
-			} else {
-				to = Integer.valueOf(FileSucker.configData.getNumberTo());
-			}
-			pad = Integer.valueOf(selectedUrl.length());
-		}
-		createLayout();
-	}
+	public NumberLooperPanel() {
+		super();
+		
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-	private void createLayout() {
-		fromTF = new UpDownNumberJTextField(from.intValue());
+		//fromTF = new UpDownNumberJTextField();
 		fromTF.setMinimumSize(new Dimension(10, 20));
 		fromTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		toTF = new UpDownNumberJTextField(to.intValue());
+		//toTF = new UpDownNumberJTextField();
 		toTF.setMinimumSize(new Dimension(10, 20));
 		toTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		padTF = new UpDownNumberJTextField(pad.intValue());
+		//padTF = new UpDownNumberJTextField();
 		padTF.setMinimumSize(new Dimension(10, 20));
 		padTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		history = new MenuButton(this);
-		history.setMinimumSize(new Dimension(10, 20));
-		history.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+//		history = new MenuButton(this);
+//		history.setMinimumSize(new Dimension(10, 20));
+//		history.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+		
 //		history.addMenuButtonListener(new MenuButtonListener() {
 //			public void changed(String newText) {
 //				NumberLooperParms p = new NumberLooperParms(newText);
@@ -66,79 +51,52 @@ public class NumberLooperPanel extends Looper implements MenuButtonListOwner {
 //
 //		});
 
-		getCentrePanel().add(new JLabel("From:"));
-		getCentrePanel().add(fromTF);
-		getCentrePanel().add(new JLabel("To:"));
-		getCentrePanel().add(toTF);
-		getCentrePanel().add(new JLabel("Pad:"));
-		getCentrePanel().add(padTF);
-		getCentrePanel().add(new JLabel("History:"));
-		getCentrePanel().add(history);
+		add(looperTitle);
+		add(new JLabel("From:"));
+		add(fromTF);
+		add(new JLabel("To:"));
+		add(toTF);
+		add(new JLabel("Pad:"));
+		add(padTF);
+//		add(new JLabel("History:"));
+//		add(history);
 
-	}
-
-	private void convert() {
-		from = Integer.valueOf(fromTF.toString());
-		to = Integer.valueOf(toTF.toString());
-		pad = Integer.valueOf(padTF.toString());
-
-		// Make sure from and to are in the correct order
-		if (to.intValue() < from.intValue()) {
-			Integer i = from;
-			from = to;
-			to = i;
-		}
 	}
 
 	@Override
 	public String toStringBraces() {
-		convert();
 
-		StringBuffer s = new StringBuffer();
-		s.append(from.toString());
-		s.append(",");
-		s.append(to.toString());
-		s.append(",");
-		s.append(pad.toString());
-		history.addEntry(s.toString());
+		int from = fromTF.getVal();
+		int to = toTF.getVal();
+		int pad = padTF.getVal();
+		
+		String guts = String.format("%d,%d,%d", from, to, pad);
+		//history.addEntry(s.toString());
 
-		s = new StringBuffer();
-		s.append("{n,");
-		s.append(index.toString());
-		s.append(",");
-		s.append(from.toString());
-		s.append(",");
-		s.append(to.toString());
-		s.append(",");
-		s.append(pad.toString());
-		s.append("}");
-		return s.toString();
+		String full = String.format("{%s,%d,%s}", LooperCmd.L_NUMBER, looperId, guts);
+		return full;
 	}
 
 	@Override
-	public boolean setParameters() {
-		if (parameters.length == 0 || parameters[0].equals("n") == false)
-			return false;
-
-		from = Integer.valueOf(parameters[2]);
-		to = Integer.valueOf(parameters[3]);
-		pad = Integer.valueOf(parameters[4]);
-
-		// Make sure from and to are in the correct order
-		if (to.intValue() < from.intValue()) {
-			Integer i = from;
-			from = to;
-			to = i;
-		}
-
-		return true;
+	public void fill(List<String> parameters) {
+		looperId = Integer.parseInt(parameters.get(1));
+		looperTitle.setText("Number: " + looperId);
+		
+		int from = Integer.parseInt(parameters.get(2));
+		int to = Integer.parseInt(parameters.get(3));
+		int pad = Integer.parseInt(parameters.get(4));
+		
+		fromTF.setStartingValue(from);
+		toTF.setStartingValue(to);
+		padTF.setStartingValue(pad);
 	}
+	
+//	public HistoryDropDown getList() {
+//		return FileSucker.configData.getNumberLooperHistory();
+//	}
+//
+//	public void setList(HistoryDropDown l) {
+//		FileSucker.configData.setNumberLooperHistory(l);
+//	}
 
-	public HistoryDropDown getList() {
-		return FileSucker.configData.getNumberLooperHistory();
-	}
-
-	public void setList(HistoryDropDown l) {
-		FileSucker.configData.setNumberLooperHistory(l);
-	}
 }

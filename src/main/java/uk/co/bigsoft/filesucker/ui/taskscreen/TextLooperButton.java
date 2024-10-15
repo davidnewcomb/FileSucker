@@ -27,15 +27,15 @@ public class TextLooperButton extends JButton implements ActionListener {
 		if (caretpos == 0)
 			return;
 
-		FileSucker.taskScreen.numberB.setVisible(false);
-		FileSucker.taskScreen.textB.setEnabled(false);
-		FileSucker.taskScreen.listB.setVisible(false);
-		FileSucker.taskScreen.copyB.setVisible(false);
-		FileSucker.taskScreen.staticB.setVisible(false);
-
-		FileSucker.taskScreen.iteratorJP.removeAll();
-		FileSucker.taskScreen.iteratorJP.add(new TextLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
-		FileSucker.taskScreen.iteratorJP.repaint();
+//		FileSucker.taskScreen.numberB.setVisible(false);
+//		FileSucker.taskScreen.textB.setEnabled(false);
+//		FileSucker.taskScreen.listB.setVisible(false);
+//		FileSucker.taskScreen.copyB.setVisible(false);
+//		FileSucker.taskScreen.staticB.setVisible(false);
+//
+//		FileSucker.taskScreen.iteratorJP.removeAll();
+//		FileSucker.taskScreen.iteratorJP.add(new TextLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
+//		FileSucker.taskScreen.iteratorJP.repaint();
 	}
 
 }

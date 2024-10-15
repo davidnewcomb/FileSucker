@@ -23,20 +23,20 @@ public class CopyLooperButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int caretpos = TaskScreen.urlTF.getCaretPosition();
-		if (caretpos == 0)
-			return;
-
-		FileSucker.taskScreen.numberB.setVisible(false);
-		FileSucker.taskScreen.textB.setVisible(false);
-		FileSucker.taskScreen.listB.setVisible(false);
-		FileSucker.taskScreen.copyB.setEnabled(false);
-		FileSucker.taskScreen.staticB.setVisible(false);
-
-		FileSucker.taskScreen.iteratorJP.removeAll();
-		CopyLooper cl = new CopyLooper(TaskScreen.urlTF.getSelectedText());
-		FileSucker.taskScreen.iteratorJP.add(cl, BorderLayout.CENTER);
-		FileSucker.taskScreen.iteratorJP.repaint();
+//		int caretpos = TaskScreen.urlTF.getCaretPosition();
+//		if (caretpos == 0)
+//			return;
+//
+//		FileSucker.taskScreen.numberB.setVisible(false);
+//		FileSucker.taskScreen.textB.setVisible(false);
+//		FileSucker.taskScreen.listB.setVisible(false);
+//		FileSucker.taskScreen.copyB.setEnabled(false);
+//		FileSucker.taskScreen.staticB.setVisible(false);
+//
+//		FileSucker.taskScreen.iteratorJP.removeAll();
+//		CopyLooper cl = new CopyLooper(TaskScreen.urlTF.getSelectedText());
+//		FileSucker.taskScreen.iteratorJP.add(cl, BorderLayout.CENTER);
+//		FileSucker.taskScreen.iteratorJP.repaint();
 	}
 
 }
