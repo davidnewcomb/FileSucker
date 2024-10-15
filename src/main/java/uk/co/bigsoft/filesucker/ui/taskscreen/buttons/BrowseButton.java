@@ -44,7 +44,7 @@ public class BrowseButton extends JButton implements ActionListener {
 		}
 	}
 
-	public String unexpandsPercentVars(String what, String toExpand) {
+	public String unexpandsPercentVars(String debug, String toExpand) {
 		java.util.Date d = new java.util.Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String timeStr = sdf.format(d);

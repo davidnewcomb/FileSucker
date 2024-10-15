@@ -329,6 +329,15 @@ public class Utility {
 		return sb.toString();
 	}
 
+	public static String unexpandsPercentVars(String what, String toExpand) {
+		java.util.Date d = new java.util.Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String timeStr = sdf.format(d);
+
+		String s = toExpand.replaceAll("%T", timeStr);
+		return s;
+	}
+	
 	@SuppressWarnings(value = "deprecation")
 	public static void runShellCommand(String cmd) throws IOException {
 		System.out.println("Running: '" + cmd + "'");

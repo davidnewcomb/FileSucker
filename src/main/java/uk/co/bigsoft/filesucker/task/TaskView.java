@@ -42,28 +42,16 @@ import uk.co.bigsoft.filesucker.looper.list.ListLooper;
 import uk.co.bigsoft.filesucker.ui.taskscreen.CopyLooperButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.ListLooperButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.NumberLooperButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.OriginalAddressTextField;
 import uk.co.bigsoft.filesucker.ui.taskscreen.StaticLooperButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TextLooperButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.UrlTextField;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.BrowseButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.ClipboardAsDirectoryButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryAndPrefixButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryClipboardButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryExtensionButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.HomeButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.HomeDirectoryPrefix;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.OpenDirectoryButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.OriginalAddressLaunchButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixClearButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixCopyButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixLowerButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SubDirectoryAndPrefixButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SubDirectoryAndPrefixFromClipboardButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SubDirectoryFromClipboardButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SubDirectoryPathButton;
+
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixClearButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixCopyButton;
@@ -78,20 +66,33 @@ public class TaskView extends JPanel {
 
 	private JTextField urlTF = new JTextField();
 	private JTextField originalAddressTF = new JTextField();
+
 	private JButton helperDirectoryButton = new JButton("LD");
+	private JButton homeButton = new JButton("H");
+	private JButton copyToToolsButton = new JButton("CT");
+	private JButton subDirectoryPathButton = new JButton("/D");
+	private JButton homeDirectoryPrefixButton = new JButton("HDP");
+	private JButton subDirectoryAndPrefixButton = new JButton("/DP_");
+	private JButton directoryAndPrefixButton = new JButton("_DP");
+	private JButton directoryExtensionButton = new JButton("_D");
+	private JButton clipboardAsDirectoryButton = new JButton("C");
+	private JButton subDirectoryAndPrefixFromClipboardButton = new JButton("/CP_");
+	private JButton subDirectoryFromClipboardButton = new JButton("/C");
+	private JButton directoryClipboardButton = new JButton("_C");
+	private JButton directoryBrowseButton = new JButton("Browse");
+	private JLabel errorMessagesLabel = new JLabel("");
+
+	private JTextField prefixTF = new PrefixJTextField(ddHandler);
+	private JTextField suffixTF = new SuffixJTextField(ddHandler);
+
 	private HistoryJComboBox directoryCB = new HistoryJComboBox("directory", ddHandler);
 
 	// Not wired in!
 
-	private JLabel errorMessages = new JLabel("");
 	private RunYetComponent runYet = new RunYetComponent();
-	private JButton runB = new JButton("Run Task");
+	private JButton runTaskButton = new JButton("Run Task");
 	private JCheckBox saveOnly = new JCheckBox();
-	private JButton findFilesB = new JButton("FindFiles");
-
-	private JButton copyToToolsButton = new JButton("CT");
-	private JTextField prefixTF = new PrefixJTextField(ddHandler);
-	private JTextField suffixTF = new SuffixJTextField(ddHandler);
+	private JButton findFilesButton = new JButton("FindFiles");
 
 	private JCheckBox saveUrl = new JCheckBox();
 	private JCheckBox suffixEndCB = new JCheckBox("B4Extn");
@@ -125,9 +126,9 @@ public class TaskView extends JPanel {
 		saveOnly.setToolTipText("RunTask - save but without running");
 		saveOnly.setSelected(false);
 
-		runB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+		runTaskButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		runB.addActionListener(new ActionListener() {
+		runTaskButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (Looper.isActive()) {
 					TaskScreen.setErrorMessage("Looper is active");
@@ -259,9 +260,9 @@ public class TaskView extends JPanel {
 		// errorMessages.setFont()
 		JPanel bot = new JPanel();
 		bot.setLayout(new BoxLayout(bot, BoxLayout.Y_AXIS));
-		bot.add(errorMessages);
+		bot.add(errorMessagesLabel);
 		JPanel rp = new JPanel(new BorderLayout());
-		rp.add(BorderLayout.CENTER, runB);
+		rp.add(BorderLayout.CENTER, runTaskButton);
 		rp.add(BorderLayout.EAST, saveOnly);
 		bot.add(rp);
 		bot.add(runYet);
@@ -289,9 +290,9 @@ public class TaskView extends JPanel {
 		saveUrl.setToolTipText("Save download instructions");
 		saveUrl.setSelected(true);
 
-		findFilesB.setToolTipText("Suck down webpage, fish out all the filenames and fill up 'L'");
+		findFilesButton.setToolTipText("Suck down webpage, fish out all the filenames and fill up 'L'");
 		// which does the actual Delete operation
-		findFilesB.addActionListener(new ActionListener() {
+		findFilesButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String findFileAddress = urlTF.getText();
@@ -389,7 +390,7 @@ public class TaskView extends JPanel {
 		hbox.add(new JLabel("URL"));
 		hbox.add(urlTF);
 		hbox.add(saveUrl);
-		hbox.add(findFilesB);
+		hbox.add(findFilesButton);
 		hbox.add(copyToToolsButton);
 		centre.add(hbox);
 
@@ -406,34 +407,87 @@ public class TaskView extends JPanel {
 
 		centre.add(new JLabel("Save To"));
 
-		JButton browseButton = new BrowseButton(directoryCB);
-		JButton hButton = new HomeButton(directoryCB);
-		JButton dButton = new SubDirectoryPathButton(urlTF, directoryCB);
-		JButton dsButton = new DirectoryExtensionButton(urlTF, directoryCB);
-		JButton dpButton = new SubDirectoryAndPrefixButton(urlTF, directoryCB, prefixTF);
-		JButton pdpButton = new DirectoryAndPrefixButton(urlTF, directoryCB, prefixTF);
-		JButton cButton = new ClipboardAsDirectoryButton(directoryCB);
-		JButton cpButton = new SubDirectoryAndPrefixFromClipboardButton(directoryCB, prefixTF);
-		JButton cdButton = new SubDirectoryFromClipboardButton(directoryCB);
-		JButton csButton = new DirectoryClipboardButton(directoryCB);
-		JButton hpdpButton = new HomeDirectoryPrefix(urlTF, directoryCB, prefixTF);
+		// JButton browseButton = new BrowseButton(directoryCB);
+		// JButton hButton = new HomeButton(directoryCB);
+
+		homeButton.setToolTipText("Initialises the directory to base directory");
+		homeButton.setMinimumSize(new Dimension(0, 0));
+		homeButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton dButton = new SubDirectoryPathButton(urlTF, directoryCB);
+
+		subDirectoryPathButton.setToolTipText("Appends highlighted url text as new sub-directory");
+		subDirectoryPathButton.setMinimumSize(new Dimension(0, 0));
+		subDirectoryPathButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton dsButton = new DirectoryExtensionButton(urlTF, directoryCB);
+
+		directoryExtensionButton.setToolTipText("Appends highlighted url text to directory");
+		directoryExtensionButton.setMinimumSize(new Dimension(0, 0));
+		directoryExtensionButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton dpButton = new SubDirectoryAndPrefixButton(urlTF, directoryCB,
+		// prefixTF);
+
+		subDirectoryAndPrefixButton.setToolTipText("Appends highlighted url text to /directory and prefix_");
+		subDirectoryAndPrefixButton.setMinimumSize(new Dimension(0, 0));
+		subDirectoryAndPrefixButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton pdpButton = new DirectoryAndPrefixButton(urlTF, directoryCB,
+		// prefixTF);
+
+		directoryAndPrefixButton.setToolTipText("Appends highlighted url text to _directory and _prefix");
+		directoryAndPrefixButton.setMinimumSize(new Dimension(0, 0));
+		directoryAndPrefixButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton cButton = new ClipboardAsDirectoryButton(directoryCB);
+
+		clipboardAsDirectoryButton.setToolTipText("Paste clipboard as new sub-directory");
+		clipboardAsDirectoryButton.setMinimumSize(new Dimension(0, 0));
+		clipboardAsDirectoryButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton cpButton = new SubDirectoryAndPrefixFromClipboardButton(directoryCB,
+		// prefixTF);
+
+		subDirectoryAndPrefixFromClipboardButton.setToolTipText("Appends clipboard text to /directory and prefix_");
+		subDirectoryAndPrefixFromClipboardButton.setMinimumSize(new Dimension(0, 0));
+		subDirectoryAndPrefixFromClipboardButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton cdButton = new SubDirectoryFromClipboardButton(directoryCB);
+
+		subDirectoryFromClipboardButton.setToolTipText("Appends clipboard as new sub-directory");
+		subDirectoryFromClipboardButton.setMinimumSize(new Dimension(0, 0));
+		subDirectoryFromClipboardButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton csButton = new DirectoryClipboardButton(directoryCB);
+
+		directoryClipboardButton.setToolTipText("Appends clipboard to end of directory");
+		directoryClipboardButton.setMinimumSize(new Dimension(0, 0));
+		directoryClipboardButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+		// JButton hpdpButton = new HomeDirectoryPrefix(urlTF, directoryCB, prefixTF);
+
+		homeDirectoryPrefixButton
+				.setToolTipText("Clears defaults and prefix then appends highlighted url text to directory and prefix");
+		homeDirectoryPrefixButton.setMinimumSize(new Dimension(0, 0));
+		homeDirectoryPrefixButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
 		hbox = Box.createHorizontalBox();
 		hbox.setBorder(new LineBorder(Color.BLUE));
 		hbox.add(helperDirectoryButton);
 		hbox.add(new JLabel("Directory"));
 		hbox.add(directoryCB);
-		hbox.add(hButton);
-		hbox.add(browseButton);
-		hbox.add(dButton);
-		hbox.add(hpdpButton);
-		hbox.add(dpButton);
-		hbox.add(pdpButton);
-		hbox.add(dsButton);
-		hbox.add(cButton);
-		hbox.add(cpButton);
-		hbox.add(cdButton);
-		hbox.add(csButton);
+		hbox.add(homeButton);
+		hbox.add(directoryBrowseButton);
+		hbox.add(subDirectoryPathButton);
+		hbox.add(homeDirectoryPrefixButton);
+		hbox.add(subDirectoryAndPrefixButton);
+		hbox.add(directoryAndPrefixButton);
+		hbox.add(directoryExtensionButton);
+		hbox.add(clipboardAsDirectoryButton);
+		hbox.add(subDirectoryAndPrefixFromClipboardButton);
+		hbox.add(subDirectoryFromClipboardButton);
+		hbox.add(directoryClipboardButton);
 
 		hbox.addMouseListener(new MouseListener() {
 			public void mousePressed(MouseEvent me) {
@@ -552,13 +606,77 @@ public class TaskView extends JPanel {
 		return directoryCB;
 	}
 
+	public JButton getHomeButton() {
+		return homeButton;
+	}
+
+	public JLabel getErrorMessagesLabel() {
+		return errorMessagesLabel;
+	}
+
+	public FileAndTextTransferHandler getDdHandler() {
+		return ddHandler;
+	}
+
+	public JButton getSubDirectoryPathButton() {
+		return subDirectoryPathButton;
+	}
+
+	public JButton getHomeDirectoryPrefixButton() {
+		return homeDirectoryPrefixButton;
+	}
+
+	public JButton getSubDirectoryAndPrefixButton() {
+		return subDirectoryAndPrefixButton;
+	}
+
+	public JButton getDirectoryAndPrefixButton() {
+		return directoryAndPrefixButton;
+	}
+
+	public JButton getDirectoryExtensionButton() {
+		return directoryExtensionButton;
+	}
+
+	public JButton getClipboardAsDirectoryButton() {
+		return clipboardAsDirectoryButton;
+	}
+
+	public JButton getSubDirectoryAndPrefixFromClipboardButton() {
+		return subDirectoryAndPrefixFromClipboardButton;
+	}
+
+	public JButton getSubDirectoryFromClipboardButton() {
+		return subDirectoryFromClipboardButton;
+	}
+
+	public JButton getDirectoryClipboardButton() {
+		return directoryClipboardButton;
+	}
+
+	public JButton getDirectoryBrowseButton() {
+		return directoryBrowseButton;
+	}
+
+	public JTextField getPrefixTextField() {
+		return prefixTF;
+	}
+
+	public JTextField getSuffixTextField() {
+		return suffixTF;
+	}
+
+	public JButton getRunTaskButton() {
+		return runTaskButton;
+	}
+	
 	// Below: waiting for refactor
 
 	public void setErrorMessage(String m) {
 		System.err.println(m);
 		StringBuffer s = new StringBuffer("Message: ");
 		s.append(m);
-		errorMessages.setText(s.toString());
+		errorMessagesLabel.setText(s.toString());
 	}
 
 	public void load(SuckerParams p) {
@@ -573,7 +691,7 @@ public class TaskView extends JPanel {
 	}
 
 	public void enableRunButton(boolean e) {
-		runB.setEnabled(e);
+		runTaskButton.setEnabled(e);
 	}
 
 	public JTextField getUrlTextField() {
@@ -604,5 +722,6 @@ public class TaskView extends JPanel {
 	public void changed() {
 		runYet.setModifed();
 	}
+
 
 }

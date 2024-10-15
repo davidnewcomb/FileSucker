@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class LooperBox extends JPanel {
-	ArrayList<JButton> commands = new ArrayList<JButton>();
+	private ArrayList<JButton> commands = new ArrayList<JButton>();
 
 	LooperBox() {
 		super(new BorderLayout());

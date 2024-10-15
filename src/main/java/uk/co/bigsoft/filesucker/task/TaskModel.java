@@ -11,7 +11,11 @@ public class TaskModel {
 	private String originalAddress = "";
 	private String selectedOriginalAddress = "";
 	private String directory = "";
-
+	private String errorMessage = "";
+	private String prefix = "";
+	private String suffix = "";
+	
+	
 	public TaskModel() {
 		propChangeFirer = new SwingPropertyChangeSupport(this);
 	}
@@ -70,4 +74,33 @@ public class TaskModel {
 		propChangeFirer.firePropertyChange(TaskProps.F_DIRECTORY, oldVal, this.directory);
 	}
 
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		String oldVal = this.errorMessage;
+		this.errorMessage = errorMessage;
+		propChangeFirer.firePropertyChange(TaskProps.F_ERROR_MESSAGE, oldVal, this.errorMessage);
+	}
+
+	public String getPrefix() {
+		return prefix;
+	}
+
+	public void setPrefix(String prefix) {
+		String oldVal = this.prefix;
+		this.prefix = prefix;
+		propChangeFirer.firePropertyChange(TaskProps.F_PREFIX, oldVal, this.prefix);
+	}
+
+	public String getSuffix() {
+		return suffix;
+	}
+
+	public void setSuffix(String suffix) {
+		String oldVal = this.suffix;
+		this.suffix = suffix;
+		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX, oldVal, this.suffix);
+	}
 }

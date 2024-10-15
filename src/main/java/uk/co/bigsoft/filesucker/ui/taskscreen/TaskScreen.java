@@ -45,7 +45,7 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.ClipboardAsDirectoryButton
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryAndPrefixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryClipboardButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryExtensionButton;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.HomeButton;
+//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.HomeButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.HomeDirectoryPrefix;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.OpenDirectoryButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.OriginalAddressLaunchButton;
@@ -399,25 +399,15 @@ public class TaskScreen extends JPanel {
 		centre.add(new JLabel("Save To"));
 
 		JButton browseButton = new BrowseButton(directoryCB);
-
-		JButton hButton = new HomeButton(directoryCB);
-
+		//JButton hButton = new HomeButton(directoryCB);
 		JButton dButton = new SubDirectoryPathButton(urlTF, directoryCB);
-
 		JButton dsButton = new DirectoryExtensionButton(urlTF, directoryCB);
-
 		JButton dpButton = new SubDirectoryAndPrefixButton(urlTF, directoryCB, prefixTF);
-
 		JButton pdpButton = new DirectoryAndPrefixButton(urlTF, directoryCB, prefixTF);
-
 		JButton cButton = new ClipboardAsDirectoryButton(directoryCB);
-
 		JButton cpButton = new SubDirectoryAndPrefixFromClipboardButton(directoryCB, prefixTF);
-
 		JButton cdButton = new SubDirectoryFromClipboardButton(directoryCB);
-
 		JButton csButton = new DirectoryClipboardButton(directoryCB);
-
 		JButton hpdpButton = new HomeDirectoryPrefix(urlTF, directoryCB, prefixTF);
 
 		hbox = Box.createHorizontalBox();
@@ -425,7 +415,7 @@ public class TaskScreen extends JPanel {
 		hbox.add(openDir);
 		hbox.add(new JLabel("Directory"));
 		hbox.add(directoryCB);
-		hbox.add(hButton);
+		//hbox.add(hButton);
 		hbox.add(browseButton);
 		hbox.add(dButton);
 		hbox.add(hpdpButton);

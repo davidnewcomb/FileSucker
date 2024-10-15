@@ -209,7 +209,7 @@ public class HistoryJComboBox extends JComboBox<String> {
 	/**
 	 * actionPerformed: Required to intercept clicking on "Clear History"
 	 * 
-	 * @param e what has happend
+	 * @param e what has happened
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
