@@ -10,22 +10,17 @@ import javax.swing.JPanel;
 // import uk.co.bigsoft.filesucker.MenuButton;
 import uk.co.bigsoft.filesucker.UpDownTextJTextField;
 
+public class TextLooperPanel extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
 
-public class TextLooperPanel extends JPanel implements ILooperPanel { //, MenuButtonListOwner {
-	
 	private UpDownTextJTextField toTF = new UpDownTextJTextField();
 	private UpDownTextJTextField fromTF = new UpDownTextJTextField();
-	//private MenuButton history;
+	// private MenuButton history;
 	private JLabel looperTitle = new JLabel();
 	private int looperId = -1;
-	
-//	String from;
-//	String to;
-
 
 	public TextLooperPanel() {
 		super();
-		
+
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		// fromTF = new UpDownTextJTextField(from);
@@ -62,10 +57,10 @@ public class TextLooperPanel extends JPanel implements ILooperPanel { //, MenuBu
 
 		String from = fromTF.getVal();
 		String to = toTF.getVal();
-		
+
 		String guts = String.format("%s,%s", from, to);
 //		history.addEntry(s.toString());
-		
+
 		String full = String.format("{%s,%d,%s}", LooperCmd.L_TEXT, looperId, guts);
 		return full;
 //		StringBuffer s = new StringBuffer();
@@ -89,7 +84,7 @@ public class TextLooperPanel extends JPanel implements ILooperPanel { //, MenuBu
 	public void fill(List<String> parameters) {
 		looperId = Integer.parseInt(parameters.get(1));
 		looperTitle.setText("Text: " + looperId);
-		
+
 		String from = parameters.get(2);
 		String to = parameters.get(3);
 

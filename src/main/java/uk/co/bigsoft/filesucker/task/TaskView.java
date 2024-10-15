@@ -264,7 +264,7 @@ public class TaskView extends JPanel {
 		hbox.add(subDirectoryFromClipboardButton);
 		hbox.add(directoryClipboardButton);
 
-		hbox.addMouseListener((MousePressListener)e -> mousePressed(e));
+		hbox.addMouseListener((MousePressListener) e -> mousePressed(e));
 
 		centre.add(hbox);
 
@@ -351,7 +351,7 @@ public class TaskView extends JPanel {
 			}
 		}
 	}
-	
+
 	private void findFiles() {
 		try {
 			String findFileAddress = urlTF.getText();

@@ -15,18 +15,18 @@ public class UpDownTextJTextField extends JSpinner {
 		textbox = ((JSpinner.DefaultEditor) getEditor()).getTextField();
 		textbox.setHorizontalAlignment(SwingConstants.LEFT);
 		textbox.setEditable(true);
-		
+
 		addMouseWheelListener(e -> mouseWheelMoved(e));
 	}
 
 	public void setStartingValue(String val) {
 		setModel(new SpinnerCharacterModel(val));
 	}
-	
+
 	public String getVal() {
 		return (String) getModel().getValue();
 	}
-	
+
 	private void mouseWheelMoved(MouseWheelEvent e) {
 		int notches = e.getWheelRotation();
 		Object newVal = notches > 0 ? getModel().getNextValue() : getModel().getPreviousValue();
@@ -34,7 +34,7 @@ public class UpDownTextJTextField extends JSpinner {
 			getModel().setValue(newVal);
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		return textbox.getText();

@@ -18,7 +18,7 @@ public class AddLooper extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Looper lp = null; //(Looper) FileSucker.taskScreen.iteratorJP.getComponent(0);
+		Looper lp = null; // (Looper) FileSucker.taskScreen.iteratorJP.getComponent(0);
 		String braces = lp.toStringBraces();
 		TaskScreen.replaceUrlText(braces);
 		lp.resetLooper();

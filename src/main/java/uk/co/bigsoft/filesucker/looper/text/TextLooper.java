@@ -31,11 +31,11 @@ public class TextLooper extends Looper implements MenuButtonListOwner {
 	}
 
 	private void createLayout() {
-		//fromTF = new UpDownTextJTextField(from);
+		// fromTF = new UpDownTextJTextField(from);
 		fromTF.setMinimumSize(new Dimension(10, 20));
 		fromTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		//toTF = new UpDownTextJTextField(to);
+		// toTF = new UpDownTextJTextField(to);
 		toTF.setMinimumSize(new Dimension(10, 20));
 		toTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 

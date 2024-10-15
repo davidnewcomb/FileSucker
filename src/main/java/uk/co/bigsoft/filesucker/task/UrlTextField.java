@@ -10,7 +10,6 @@ import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
 import uk.co.bigsoft.filesucker.looper.Looper;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 
-
 public class UrlTextField extends JTextField {
 	public UrlTextField(TransferHandler transferHandler) {
 		super();
@@ -20,7 +19,7 @@ public class UrlTextField extends JTextField {
 		addMouseListener((MousePressListener) e -> mousePressed(e));
 		addKeyListener((KeyReleasedListener) e -> keyPressed(e));
 	}
-	
+
 	private void mousePressed(MouseEvent e) {
 		int clickedButton = e.getButton();
 		if (clickedButton == 3) {
@@ -29,7 +28,7 @@ public class UrlTextField extends JTextField {
 			leftClick();
 		}
 	}
-	
+
 	private void keyPressed(KeyEvent e) {
 		// System.out.println ("typed") ;
 		// TODO TaskScreen.changed();

@@ -1,23 +1,23 @@
-package uk.co.bigsoft.filesucker.looper.fixed;
+package uk.co.bigsoft.filesucker.task.looper;
 
 import java.awt.Dimension;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import uk.co.bigsoft.filesucker.task.looper.ILooperPanel;
-import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
-
-public class StaticLooper extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
+public class StaticLooperPanel extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
 
 	private JTextField idTF = new JTextField();
 	private JLabel looperTitle = new JLabel();
 	private int looperId = -1;
 
-	public StaticLooper() {
+	public StaticLooperPanel() {
 		super();
+
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		idTF = new JTextField();
 		idTF.setMinimumSize(new Dimension(10, 20));

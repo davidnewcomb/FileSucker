@@ -1,6 +1,5 @@
 package uk.co.bigsoft.filesucker.task.looper;
 
-
 public class LooperCmd {
 
 	public static final String L_NUMBER = "N";

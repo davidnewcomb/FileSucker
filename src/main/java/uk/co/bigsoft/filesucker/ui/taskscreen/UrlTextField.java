@@ -20,7 +20,7 @@ public class UrlTextField extends JTextField {
 
 		setDragEnabled(true);
 		setTransferHandler(transferHandler);
-		//addMouseListener(m);
+		// addMouseListener(m);
 		addKeyListener(k);
 	}
 }

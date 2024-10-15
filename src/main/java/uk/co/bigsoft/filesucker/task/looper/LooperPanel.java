@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import uk.co.bigsoft.filesucker.config.ConfigModel;
+import uk.co.bigsoft.filesucker.looper.fixed.StaticLooper;
 import uk.co.bigsoft.filesucker.task.TaskModel;
 
 public class LooperPanel extends JPanel {
@@ -28,9 +29,9 @@ public class LooperPanel extends JPanel {
 	private ListLooperPanel listPanel = new ListLooperPanel();
 	private NumberLooperPanel numberPanel = new NumberLooperPanel();
 	private TextLooperPanel textPanel = new TextLooperPanel();
+	private StaticLooperPanel staticPanel = new StaticLooperPanel();
 
 	private JLabel copyPanel = new JLabel();
-	private JLabel staticPanel = new JLabel();
 
 	private JButton cancelButton = new JButton("Cancel");
 	private JButton okButton = new JButton("Ok");
@@ -105,7 +106,7 @@ public class LooperPanel extends JPanel {
 		String looperType = parameters[0];
 		List<String> p = Arrays.asList(parameters);
 		JPanel jpanel;
-		
+
 		switch (looperType) {
 		case LooperCmd.L_LIST: {
 			currentPanel = listPanel;
@@ -120,6 +121,11 @@ public class LooperPanel extends JPanel {
 		case LooperCmd.L_TEXT: {
 			currentPanel = textPanel;
 			jpanel = textPanel;
+			break;
+		}
+		case LooperCmd.L_STATIC: {
+			currentPanel = staticPanel;
+			jpanel = staticPanel;
 			break;
 		}
 		default: {
@@ -149,18 +155,19 @@ public class LooperPanel extends JPanel {
 		showSingleButton(LooperCmd.L_NUMBER);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%d,%d,%d}",
-					LooperCmd.L_NUMBER,
-					currentLooperId++,
-					configModel.getNumberFrom(),
-					configModel.getNumberTo(),
-					configModel.getNumberPad());
+			sel = String.format("{%s,%d,%d,%d,%d}", LooperCmd.L_NUMBER, currentLooperId++, configModel.getNumberFrom(),
+					configModel.getNumberTo(), configModel.getNumberPad());
 		}
 		openLooper(sel);
 	}
 
 	private void showStaticLooper() {
 		showSingleButton(LooperCmd.L_STATIC);
+		String sel = taskModel.getSelectedUrl();
+		if (!sel.startsWith("{")) {
+			sel = String.format("{%s,%d,%s}", LooperCmd.L_STATIC, currentLooperId++, sel);
+		}
+		openLooper(sel);
 	}
 
 	private void showCopyLooper() {
@@ -180,17 +187,13 @@ public class LooperPanel extends JPanel {
 		showSingleButton(LooperCmd.L_TEXT);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%s,%s}",
-					LooperCmd.L_TEXT,
-					currentLooperId++,
-					configModel.getTextFrom(),
+			sel = String.format("{%s,%d,%s,%s}", LooperCmd.L_TEXT, currentLooperId++, configModel.getTextFrom(),
 					configModel.getTextTo());
 		}
 		openLooper(sel);
 	}
 
 }
-
 
 // works -
 // https://stackoverflow.com/questions/2711104/swapping-out-the-center-jpanel-in-a-borderlayout
@@ -200,4 +203,3 @@ public class LooperPanel extends JPanel {
 //	revalidate();
 
 // Also works
-
