@@ -101,7 +101,7 @@ public class TaskScreen extends JPanel {
 		directoryCB = new HistoryJComboBox("directory", ddHandler);
 		directoryCB.setMinimumSize(new Dimension(10, 20));
 		directoryCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		//directoryCB.setSelectedItem(FileSucker.configData.getBaseDir().toString());
+		// directoryCB.setSelectedItem(FileSucker.configData.getBaseDir().toString());
 
 		// Prefix and Suffix
 		prefixTF = new PrefixJTextField(ddHandler);
@@ -326,7 +326,7 @@ public class TaskScreen extends JPanel {
 					// is.close();
 
 					TreeMap<String, String> map = new TreeMap<String, String>();
-					String[] extns = new String[0]; //FileSucker.configData.getFindExtn();
+					String[] extns = new String[0]; // FileSucker.configData.getFindExtn();
 					for (int i = 0; i < extns.length; ++i) {
 						Pattern p = Pattern.compile("[\\[\\]a-zA-Z%$./0-9_-]+." + extns[i]);
 						Matcher m = p.matcher(sb);

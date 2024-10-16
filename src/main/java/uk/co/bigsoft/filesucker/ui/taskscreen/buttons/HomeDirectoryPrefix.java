@@ -39,13 +39,13 @@ public class HomeDirectoryPrefix extends JButton implements ActionListener {
 
 		url_s = Utility.cleanString(url_s);
 
-		StringBuffer newDir = new StringBuffer(); //FileSucker.configData.getScreenBaseDir());
+		StringBuffer newDir = new StringBuffer(); // FileSucker.configData.getScreenBaseDir());
 		newDir.append(url_s);
 
 		directory.setSelectedItem(newDir.toString());
 
 		// Add to prefix
-		//url_s = url_s + FileSucker.configData.getPostPrefix();
+		// url_s = url_s + FileSucker.configData.getPostPrefix();
 		prefix.setText(url_s.toLowerCase());
 
 	}

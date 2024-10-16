@@ -10,6 +10,9 @@ public class TaskProps {
 	public static final String F_ERROR_MESSAGE = "errorMessage";
 	public static final String F_PREFIX = "prefix";
 	public static final String F_SUFFIX = "suffix";
+	public static final String F_SUFFIX_END = "suffixEnd";
 	public static final String F_SET_SELECTED_URL = "setSelectedUrl";
+	public static final String F_SAVE_URL = "saveUrl";
+	public static final String F_SAVE_ONLY = "saveOnly";
 
 }

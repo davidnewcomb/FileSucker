@@ -42,7 +42,7 @@ public class SuckerThread extends Thread {
 		urlsequence = new UrlSequencer(parms.getOrginalUrl());
 		int ulen = urlsequence.size();
 
-		int maxTasks = 10; //FileSucker.configData.getMaxTasks();
+		int maxTasks = 10; // FileSucker.configData.getMaxTasks();
 		queue = new LinkedBlockingQueue<Runnable>(maxTasks);
 		int corePoolSize = maxTasks;
 		int maximumPoolSize = maxTasks;

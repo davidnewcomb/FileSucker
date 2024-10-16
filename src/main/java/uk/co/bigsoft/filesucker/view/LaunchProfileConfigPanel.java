@@ -32,7 +32,7 @@ public class LaunchProfileConfigPanel extends JPanel {
 
 	public LaunchProfileConfigPanel() {
 		super(new GridLayout(1, 3));
-		List<String> l = new ArrayList<>(); //FileSucker.configData.getLaunchProfiles();
+		List<String> l = new ArrayList<>(); // FileSucker.configData.getLaunchProfiles();
 		model = new LaunchListModel(l);
 		current = new JList<>(model);
 		current.addKeyListener(new KeyListener() {

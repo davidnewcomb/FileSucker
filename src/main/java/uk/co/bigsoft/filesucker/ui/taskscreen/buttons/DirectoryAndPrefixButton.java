@@ -54,7 +54,7 @@ public class DirectoryAndPrefixButton extends JButton implements ActionListener 
 		directory.setSelectedItem(newDir.toString());
 
 		// Add to prefix
-		//url_s = url_s + FileSucker.configData.getPostPrefix();
+		// url_s = url_s + FileSucker.configData.getPostPrefix();
 		prefix.setText(prefix.getText() + url_s.toLowerCase());
 	}
 }

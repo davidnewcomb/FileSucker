@@ -31,7 +31,7 @@ import uk.co.bigsoft.filesucker.view.TransferScreen;
 
 public class FileSucker {
 	private static final FileSuckerPrefHandler fileSuckerPrefHandler = new FileSuckerPrefHandler();
-	
+
 	public static String version = "";
 	public static String versionDate = "";
 
@@ -41,21 +41,21 @@ public class FileSucker {
 	// public static ConfigScreen configScreen = null;
 	// public static TaskScreen taskScreen = null;
 	public static TransferScreen transferScreen = null;
-	//public static CreditScreen creditScreen = null;
+	// public static CreditScreen creditScreen = null;
 	// public static ToolsScreen toolsScreen = null;
 
 	public static void main(String args[]) {
 
 		setUpVersion();
 		FileSuckerPrefs p = fileSuckerPrefHandler.load();
-		
+
 		ConfigSaver cs = new ConfigSaver();
 
 		ConfigModel configModel = cs.load();
 		CreditsModel creditsModel = new CreditsModel();
 		creditsModel.setTotalNumBytes(p.getTotalDownloadedBytes());
 		creditsModel.setTotalNumFiles(p.getTotalDownloadedFiles());
-		
+
 		LaunchProfileModel launchProfileModel = new LaunchProfileModel();
 		ToolsModel toolsModel = new ToolsModel();
 		TaskModel taskModel = new TaskModel();

@@ -20,6 +20,9 @@ public class TaskModel {
 	private String errorMessage = "";
 	private String prefix = "";
 	private String suffix = "";
+	private boolean suffixEnd = false;
+	private boolean saveUrl = false;
+	private boolean saveOnly = false;
 
 	public TaskModel() {
 		propChangeFirer = new SwingPropertyChangeSupport(this);
@@ -27,6 +30,20 @@ public class TaskModel {
 
 	public void addListener(PropertyChangeListener listener) {
 		propChangeFirer.addPropertyChangeListener(listener);
+	}
+
+	public List<Integer> getLooperIds() {
+		ArrayList<Integer> l = new ArrayList<>();
+		Pattern p = Pattern.compile("\\{[^}]*\\}");
+		Matcher matcher = p.matcher(url);
+		while (matcher.find()) {
+			String s = matcher.group();
+			List<String> params = Utility.splitLooperText(s);
+			if (params != null) {
+				l.add(Integer.valueOf(params.get(1)));
+			}
+		}
+		return l;
 	}
 
 	public String getUrl() {
@@ -109,17 +126,33 @@ public class TaskModel {
 		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX, oldVal, suffix);
 	}
 
-	public List<Integer> getLooperIds() {
-		ArrayList<Integer> l = new ArrayList<>();
-		Pattern p = Pattern.compile("\\{[^}]*\\}");
-		Matcher matcher = p.matcher(url);
-		while (matcher.find()) {
-			String s = matcher.group();
-			List<String> params = Utility.splitLooperText(s);
-			if (params != null) {
-				l.add(Integer.valueOf(params.get(1)));
-			}
-		}
-		return l;
+	public boolean isSuffixEnd() {
+		return suffixEnd;
+	}
+
+	public void setSuffixEnd(boolean x) {
+		boolean oldVal = suffixEnd;
+		suffixEnd = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX_END, oldVal, suffixEnd);
+	}
+
+	public boolean isSaveUrl() {
+		return saveUrl;
+	}
+
+	public void setSaveUrl(boolean x) {
+		boolean oldVal = saveUrl;
+		saveUrl = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_URL, oldVal, saveUrl);
+	}
+
+	public boolean isSaveOnly() {
+		return saveOnly;
+	}
+
+	public void setSaveOnly(boolean x) {
+		boolean oldVal = saveOnly;
+		saveOnly = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_ONLY, oldVal, saveOnly);
 	}
 }

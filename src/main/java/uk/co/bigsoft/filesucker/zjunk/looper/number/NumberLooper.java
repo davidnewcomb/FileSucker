@@ -30,12 +30,12 @@ public class NumberLooper extends Looper implements MenuButtonListOwner {
 			try {
 				from = Integer.valueOf(selectedUrl);
 			} catch (NumberFormatException nfe) {
-				from = Integer.valueOf(0); //FileSucker.configData.getNumberFrom());
+				from = Integer.valueOf(0); // FileSucker.configData.getNumberFrom());
 			}
 			if (from.intValue() > 1) {
-				to = Integer.valueOf(from.intValue() + 0); //FileSucker.configData.getNumberTo());
+				to = Integer.valueOf(from.intValue() + 0); // FileSucker.configData.getNumberTo());
 			} else {
-				to = Integer.valueOf(0); //FileSucker.configData.getNumberTo());
+				to = Integer.valueOf(0); // FileSucker.configData.getNumberTo());
 			}
 			pad = Integer.valueOf(selectedUrl.length());
 		}
@@ -137,10 +137,10 @@ public class NumberLooper extends Looper implements MenuButtonListOwner {
 	}
 
 	public HistoryDropDown getList() {
-		return new HistoryDropDown((a,b) -> a.toHistoryString().compareTo(b.toHistoryString()));
+		return new HistoryDropDown((a, b) -> a.toHistoryString().compareTo(b.toHistoryString()));
 	}
 
 	public void setList(HistoryDropDown l) {
-		//FileSucker.configData.setNumberLooperHistory(l);
+		// FileSucker.configData.setNumberLooperHistory(l);
 	}
 }

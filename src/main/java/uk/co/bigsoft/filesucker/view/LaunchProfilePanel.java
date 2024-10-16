@@ -64,7 +64,7 @@ public class LaunchProfilePanel extends JPanel {
 
 	private void refresh() {
 		list.removeAllItems();
-		List<String> opts = new ArrayList<>(); //FileSucker.configData.getLaunchProfiles();
+		List<String> opts = new ArrayList<>(); // FileSucker.configData.getLaunchProfiles();
 		for (String s : opts) {
 			list.addItem(s);
 		}

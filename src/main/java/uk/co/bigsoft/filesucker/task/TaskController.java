@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -14,6 +15,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.Downloader;
+import uk.co.bigsoft.filesucker.FileSucker;
+import uk.co.bigsoft.filesucker.SuckerParams;
+import uk.co.bigsoft.filesucker.SuckerThread;
+import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
@@ -21,6 +26,7 @@ import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 import uk.co.bigsoft.filesucker.task.looper.LooperId;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
+import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskController {
 
@@ -62,17 +68,196 @@ public class TaskController {
 		view.getHomeButton().addActionListener(e -> directoryToHome(configModel.getBaseDir()));
 		view.getHomeDirectoryPrefixButton().addActionListener(e -> homeDirectoryPrefix(configModel));
 		view.getSubDirectoryAndPrefixButton().addActionListener(e -> subDirectoryAndPrefix(configModel));
-		view.getSubDirectoryAndPrefixFromClipboardButton().addActionListener(e -> subDirectoryAndPrefixFromClipboard(configModel));
+		view.getSubDirectoryAndPrefixFromClipboardButton()
+				.addActionListener(e -> subDirectoryAndPrefixFromClipboard(configModel));
 		view.getSubDirectoryFromClipboardButton().addActionListener(e -> subDirectoryFromClipboard());
 		view.getSubDirectoryPathButton().addActionListener(e -> subDirectoryPath(configModel));
 
 		view.getRunTaskButton().addActionListener(e -> runTask());
 		view.getFindFilesButton().addActionListener(e -> findFiles(configModel));
+
+		view.getSaveOnly().addActionListener(e -> saveOnly());
+		view.getSaveUrl().addActionListener(e -> saveUrl());
+
+		view.getPrefixButton().addActionListener(e -> prefix(configModel));
+		view.getPrefixLowerButton().addActionListener(e -> prefixLower());
+		view.getPrefixClipButton().addActionListener(e -> prefixClip(configModel));
+		view.getPrefixClearButton().addActionListener(e -> prefixClear());
+
+		view.getSuffixButton().addActionListener(e -> suffix(configModel));
+		view.getSuffixEndCB().addActionListener(e -> suffixEnd());
+		view.getSuffixLowerButton().addActionListener(e -> suffixLower());
+		view.getSuffixClipButton().addActionListener(e -> suffixClip(configModel));
+		view.getSuffixClearButton().addActionListener(e -> suffixClear());
 	}
 
-	private Object runTask() {
-		// TODO Auto-generated method stub
-		return null;
+	private void suffixClear() {
+		model.setSuffix("");
+	}
+
+	private void suffixClip(ConfigModel configModel) {
+		String s = model.getSuffix() + configModel.getPostPrefix() + Utility.getClipboard();
+		model.setSuffix(s);
+	}
+
+	private void suffixLower() {
+		model.setSuffix(model.getSuffix().toLowerCase());
+	}
+
+	private void suffixEnd() {
+		model.setSuffixEnd(view.getSuffixEndCB().isSelected());
+	}
+
+	private void suffix(ConfigModel configModel) {
+		String s = model.getSuffix() + configModel.getPostPrefix() + model.getSelectedUrl();
+		model.setSuffix(s);
+	}
+
+	private void prefixClear() {
+		model.setPrefix("");
+	}
+
+	private void prefixClip(ConfigModel configModel) {
+		String s = model.getPrefix() + Utility.getClipboard() + configModel.getPostPrefix();
+		model.setPrefix(s);
+	}
+
+	private void prefixLower() {
+		model.setPrefix(model.getPrefix().toLowerCase());
+	}
+
+	private void prefix(ConfigModel configModel) {
+		String s = model.getPrefix() + model.getSelectedUrl() + configModel.getPostPrefix();
+		model.setPrefix(s);
+	}
+
+	private void saveOnly() {
+		boolean x = view.getSaveOnly().isSelected();
+		model.setSaveOnly(x);
+	}
+
+	private void saveUrl() {
+		boolean x = view.getSaveUrl().isSelected();
+		model.setSaveUrl(x);
+	}
+
+	private void runTask() {
+//		if (Looper.isActive()) {
+//		TaskScreen.setErrorMessage("Looper is active");
+//		return;
+//	}
+
+		String selectedDir = model.getDirectory().trim(); // directoryCB.getSelectedItem().toString().trim();
+		if (selectedDir.equals("")) {
+			model.setErrorMessage("You must provide a directory to store the files");
+			return;
+		}
+
+		if (!selectedDir.endsWith(File.separator)) {
+			selectedDir = selectedDir + File.separator;
+			model.setDirectory(selectedDir);
+		}
+
+		// directoryCB.savePrefs(selectedDir);
+
+//	String prefix = null;
+//	String suffix = null;
+//
+//	if (prefixTF.getText().length() > 0) {
+//		prefix = prefixTF.getText();
+//	}
+//	if (suffixTF.getText().length() > 0) {
+//		suffix = suffixTF.getText();
+//	}
+
+		// // Is selectedDir in the list already
+		// boolean inList = false;
+		// int listEntries =
+		// directoryCB.getItemCount();
+		// for (int i = 0 ; i < listEntries ;
+		// ++i)
+		// {
+		// String item = (String)
+		// directoryCB.getItemAt(i);
+		// if (item.equals(selectedDir))
+		// inList = true;
+		// }
+		// if (inList == false)
+		// {
+		// directoryCB.addItem(selectedDir);
+		// }
+
+		// File f = new File (selectedDir) ;
+		// String name = f.getName () ;
+
+		// Cookie
+		// StringTokenizer st = new
+		// StringTokenizer(cookieTA.getText().trim(),
+		// "\n");
+		Hashtable<String, String> hm = new Hashtable<String, String>();
+		// while (st.hasMoreTokens())
+		// {
+		// String[] kv =
+		// st.nextToken().trim().split(":", 2);
+		// String k = kv[0].trim();
+		// String v = kv[1].trim();
+		// hm.put(k, v);
+		// }
+
+		// Referer
+		// String ref = refererTF.getText();
+		// if (ref.equals("") == false)
+		// {
+		// hm.put("Referer", ref);
+		// }
+		String refs[] = model.getUrl().split("/", 4);
+		if (refs.length < 3) {
+			model.setErrorMessage("You must enter a url");
+			return;
+		}
+
+		view.getRunYet().setReset();
+
+		String ref = refs[0] + "//" + refs[2];
+		hm.put("Referer", ref);
+
+		selectedDir = Utility.expandsPercentVars(selectedDir);
+
+		SuckerParams sp = new SuckerParams("name", model.getUrl(), selectedDir, model.getPrefix(), model.getSuffix(),
+				hm, model.isSuffixEnd(), model.getOriginalAddress());
+		if (model.isSaveUrl()) {
+			TaskScreenParams.save(sp);
+			if (model.isSaveOnly()) {
+				model.setErrorMessage("Saved");
+				return;
+			}
+		}
+		// SuckerThread sth =
+		new SuckerThread(sp);
+
+		// SuckerThread sth = new SuckerThread (sp)
+		// ;
+		// synchronized
+		// (FileSucker.activeFileSuckerThreads)
+		// {
+		// FileSucker.activeFileSuckerThreads.add
+		// (sth) ;
+		// }
+		// TransferScreen.updateScreen () ;
+		// // Switch to other tab
+		FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
+
+		// for (int t = 0 ; t <
+		// FileSuckerFrame.tabPane.getComponentCount()
+		// ;
+		// t++)
+		// if
+		// (FileSuckerFrame.tabPane.getComponent(t)
+		// ==
+		// FileSucker.transferScreen)
+		//
+		model.setOriginalAddress("");
+		view.getRunYet().setReset();
 	}
 
 	private void findFiles(ConfigModel configModel) {
