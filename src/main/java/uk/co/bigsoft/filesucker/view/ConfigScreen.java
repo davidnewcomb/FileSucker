@@ -53,22 +53,22 @@ public class ConfigScreen extends JPanel {
 				saveB.setEnabled(false);
 
 				// FileSucker.configData.setScreenBaseDir(baseTF.getText());
-				FileSucker.configData.setNumberFrom(numberFromTF.getText());
-				FileSucker.configData.setNumberTo(numberToTF.getText());
-				FileSucker.configData.setNumberPad(numberPadTF.getText());
-				FileSucker.configData.setTextFrom(textFromTF.getText());
-				FileSucker.configData.setTextTo(textToTF.getText());
-				FileSucker.configData.setPostPrefix(textPostPrefixTF.getText());
-				FileSucker.configData.setMaxTasks(maxTasksFT.getText());
-				FileSucker.configData.setMaxSubTasks(maxSubTaskFT.getText());
-				FileSucker.configData.setFindExtn(findFilesFT.getText());
-				FileSucker.configData.setDelaySockReadMs(delaySockReadMsTF.getText());
-				FileSucker.configData.setDelayFilesMs(delayFilesMsTF.getText());
-				FileSucker.configData.setHelperWeb(helperWebTF.getText());
-				FileSucker.configData.setHelperWeb(helperTextTF.getText());
-				FileSucker.configData.setOpenDirectory(openDirectoryTF.getText());
+//				FileSucker.configData.setNumberFrom(numberFromTF.getText());
+//				FileSucker.configData.setNumberTo(numberToTF.getText());
+//				FileSucker.configData.setNumberPad(numberPadTF.getText());
+//				FileSucker.configData.setTextFrom(textFromTF.getText());
+//				FileSucker.configData.setTextTo(textToTF.getText());
+//				FileSucker.configData.setPostPrefix(textPostPrefixTF.getText());
+//				FileSucker.configData.setMaxTasks(maxTasksFT.getText());
+//				FileSucker.configData.setMaxSubTasks(maxSubTaskFT.getText());
+//				FileSucker.configData.setFindExtn(findFilesFT.getText());
+//				FileSucker.configData.setDelaySockReadMs(delaySockReadMsTF.getText());
+//				FileSucker.configData.setDelayFilesMs(delayFilesMsTF.getText());
+//				FileSucker.configData.setHelperWeb(helperWebTF.getText());
+//				FileSucker.configData.setHelperWeb(helperTextTF.getText());
+//				FileSucker.configData.setOpenDirectory(openDirectoryTF.getText());
 
-				FileSucker.configData.save();
+//				FileSucker.configData.save();
 
 				saveB.setEnabled(true);
 			}
@@ -79,7 +79,7 @@ public class ConfigScreen extends JPanel {
 		centre.add(new JLabel("Home directory"));
 		Box hbox = Box.createHorizontalBox();
 
-		baseTF = new JTextField(FileSucker.configData.getScreenBaseDir());
+		baseTF = new JTextField(); //FileSucker.configData.getScreenBaseDir());
 		baseTF.setMinimumSize(new Dimension(10, 20));
 		baseTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		baseTF.setEditable(true);
@@ -111,7 +111,7 @@ public class ConfigScreen extends JPanel {
 		centre.add(new JLabel("Web browser helper (%s for url)"));
 		hbox = Box.createHorizontalBox();
 
-		helperWebTF = new JTextField(FileSucker.configData.getHelperWeb());
+		helperWebTF = new JTextField(); //FileSucker.configData.getHelperWeb());
 		helperWebTF.setMinimumSize(new Dimension(10, 20));
 		helperWebTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		helperWebTF.setEditable(true);
@@ -125,7 +125,7 @@ public class ConfigScreen extends JPanel {
 		centre.add(new JLabel("Text file helper (%s for file)"));
 		hbox = Box.createHorizontalBox();
 
-		helperTextTF = new JTextField(FileSucker.configData.getHelperText());
+		helperTextTF = new JTextField(); //FileSucker.configData.getHelperText());
 		helperTextTF.setMinimumSize(new Dimension(10, 20));
 		helperTextTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		helperTextTF.setEditable(true);
@@ -139,7 +139,7 @@ public class ConfigScreen extends JPanel {
 		centre.add(new JLabel("Open directory helper (%s for the directory name)"));
 		hbox = Box.createHorizontalBox();
 
-		openDirectoryTF = new JTextField(FileSucker.configData.getOpenDirectory());
+		openDirectoryTF = new JTextField(); //FileSucker.configData.getOpenDirectory());
 		openDirectoryTF.setMinimumSize(new Dimension(10, 20));
 		openDirectoryTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		openDirectoryTF.setEditable(true);
@@ -164,15 +164,15 @@ public class ConfigScreen extends JPanel {
 		jp.setMinimumSize(new Dimension(10, MAX_WID_HEIGHT));
 		jp.setMaximumSize(new Dimension(Integer.MAX_VALUE, MAX_WID_HEIGHT * 6));
 
-		numberFromTF = new JTextField(FileSucker.configData.getScreenNumberFrom());
-		numberToTF = new JTextField(FileSucker.configData.getScreenNumberTo());
-		numberPadTF = new JTextField(FileSucker.configData.getScreenNumberPad());
+		numberFromTF = new JTextField(); //FileSucker.configData.getScreenNumberFrom());
+		numberToTF = new JTextField(); //FileSucker.configData.getScreenNumberTo());
+		numberPadTF = new JTextField(); //FileSucker.configData.getScreenNumberPad());
 
-		textFromTF = new JTextField(FileSucker.configData.getScreenTextFrom());
-		textToTF = new JTextField(FileSucker.configData.getScreenTextTo());
-		textPostPrefixTF = new JTextField(FileSucker.configData.getScreenPostPrefix());
+		textFromTF = new JTextField(); //FileSucker.configData.getScreenTextFrom());
+		textToTF = new JTextField(); //FileSucker.configData.getScreenTextTo());
+		textPostPrefixTF = new JTextField(); //FileSucker.configData.getScreenPostPrefix());
 
-		findFilesFT = new JTextField(Utility.implode(FileSucker.configData.getFindExtn(), ","));
+		findFilesFT = new JTextField(); //Utility.implode(FileSucker.configData.getFindExtn(), ","));
 		jp.add(new JLabel("")); // blank
 		jp.add(new JLabel("From"));
 		jp.add(new JLabel("To"));
@@ -208,8 +208,8 @@ public class ConfigScreen extends JPanel {
 		jp.setMinimumSize(new Dimension(10, MAX_WID_HEIGHT));
 		jp.setMaximumSize(new Dimension(Integer.MAX_VALUE, MAX_WID_HEIGHT * 4));
 
-		maxTasksFT = new JTextField(FileSucker.configData.getScreenMaxTasks());
-		maxSubTaskFT = new JTextField(FileSucker.configData.getScreenMaxSubTasks());
+		maxTasksFT = new JTextField(); //FileSucker.configData.getScreenMaxTasks());
+		maxSubTaskFT = new JTextField(); //FileSucker.configData.getScreenMaxSubTasks());
 
 		jp.add(new JLabel("Concurrent Tasks"));
 		jp.add(new JLabel("Concurrent sub Tasks"));
@@ -226,8 +226,8 @@ public class ConfigScreen extends JPanel {
 		jp.setMinimumSize(new Dimension(10, MAX_WID_HEIGHT));
 		jp.setMaximumSize(new Dimension(Integer.MAX_VALUE, MAX_WID_HEIGHT * 4));
 
-		delaySockReadMsTF = new JTextField(FileSucker.configData.getScreenDelaySockReadMs());
-		delayFilesMsTF = new JTextField(FileSucker.configData.getScreenDelayFilesMs());
+		delaySockReadMsTF = new JTextField(); //FileSucker.configData.getScreenDelaySockReadMs());
+		delayFilesMsTF = new JTextField(); //FileSucker.configData.getScreenDelayFilesMs());
 
 		jp.add(new JLabel("Delay between socket reads (ms)"));
 		jp.add(new JLabel("Delay between file downloads (ms)"));

@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -46,7 +47,7 @@ public class LaunchProfilePanel extends JPanel {
 				url = url.replaceAll("%s", sub);
 
 				try {
-					String helper = FileSucker.configData.getHelperWeb().replaceAll("%s", url);
+					String helper = ""; // FileSucker.configData.getHelperWeb().replaceAll("%s", url);
 					Utility.runShellCommand(helper);
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -63,7 +64,7 @@ public class LaunchProfilePanel extends JPanel {
 
 	private void refresh() {
 		list.removeAllItems();
-		List<String> opts = FileSucker.configData.getLaunchProfiles();
+		List<String> opts = new ArrayList<>(); //FileSucker.configData.getLaunchProfiles();
 		for (String s : opts) {
 			list.addItem(s);
 		}

@@ -39,10 +39,11 @@ public class DirectoryClipboardButton extends JButton implements ActionListener 
 			newDir.append('_');
 		}
 		newDir.append(s);
-		if (curDir.equals(""))
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
-		else
+		if (curDir.equals("")) {
+//			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+		} else {
 			newDir.insert(0, curDir);
+		}
 
 		directory.setSelectedItem(newDir.toString());
 

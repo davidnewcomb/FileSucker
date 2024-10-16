@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class LaunchProfileConfigPanel extends JPanel {
 
 	public LaunchProfileConfigPanel() {
 		super(new GridLayout(1, 3));
-		List<String> l = FileSucker.configData.getLaunchProfiles();
+		List<String> l = new ArrayList<>(); //FileSucker.configData.getLaunchProfiles();
 		model = new LaunchListModel(l);
 		current = new JList<>(model);
 		current.addKeyListener(new KeyListener() {

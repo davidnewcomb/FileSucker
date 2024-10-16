@@ -48,15 +48,16 @@ public class SubDirectoryAndPrefixButton extends JButton implements ActionListen
 				newDir.append(File.separator);
 		}
 		newDir.append(url_s);
-		if (curDir.equals(""))
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
-		else
+		if (curDir.equals("")) {
+//			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+		} else {
 			newDir.insert(0, curDir);
+		}
 
 		directory.setSelectedItem(newDir.toString());
 
 		// Add to prefix
-		url_s = url_s + FileSucker.configData.getPostPrefix();
+//		url_s = url_s + FileSucker.configData.getPostPrefix();
 		prefix.setText(url_s.toLowerCase());
 	}
 

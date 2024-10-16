@@ -24,8 +24,8 @@ public class TextLooper extends Looper implements MenuButtonListOwner {
 	public TextLooper(String sel) {
 		super(sel);
 		if (setParameters() == false) {
-			from = FileSucker.configData.getTextFrom();
-			to = FileSucker.configData.getTextTo();
+			from = "a"; //FileSucker.configData.getTextFrom();
+			to = "z"; //FileSucker.configData.getTextTo();
 		}
 		createLayout();
 	}
@@ -97,11 +97,12 @@ public class TextLooper extends Looper implements MenuButtonListOwner {
 	}
 
 	public void setList(HistoryDropDown l) {
-		FileSucker.configData.setTextLooperHistory(l);
+		//FileSucker.configData.setTextLooperHistory(l);
 	}
 
 	public HistoryDropDown getList() {
-		return FileSucker.configData.getTextLooperHistory();
+		return new HistoryDropDown((a,b) -> a.toHistoryString().compareTo(b.toHistoryString()));
+		//return FileSucker.configData.getTextLooperHistory();
 	}
 
 }

@@ -62,9 +62,9 @@ public class ToolsController {
 		view.getConvertMiddle().addActionListener(e -> convertMiddle());
 		view.getConvertB64().addActionListener(e -> convertB64());
 		view.getConvertB64auto().addActionListener(e -> convertB64Auto());
-		view.getGenerateWebPage().addActionListener(e -> generateWebPage());
-		view.getGenerateImageWebPage().addActionListener(e -> generateImageWebPage());
-		view.getLinksPageButton().addActionListener(e -> linksPage());
+		view.getGenerateWebPage().addActionListener(e -> generateWebPage(configModel));
+		view.getGenerateImageWebPage().addActionListener(e -> generateImageWebPage(configModel));
+		view.getLinksPageButton().addActionListener(e -> linksPage(configModel));
 		view.getLaunchButton().addActionListener(e -> launch(configModel.getHelperWeb()));
 		view.getLaunchProfileButton().addActionListener(e -> launchProfile());
 	}
@@ -198,7 +198,7 @@ public class ToolsController {
 		}
 	}
 
-	private void generateWebPage() {
+	private void generateWebPage(ConfigModel configModel) {
 		try {
 			String text = model.getWorking();
 			text = text.trim();
@@ -242,7 +242,7 @@ public class ToolsController {
 			// ("\\\\", "\\\\\\\\")
 			// + "\"";
 			String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
-			Utility.launchBrowser(path);
+			Utility.launchBrowser(configModel, path);
 			f.deleteOnExit();
 		} catch (Exception ex) {
 			System.out.println("GenWebPage");
@@ -250,7 +250,7 @@ public class ToolsController {
 		}
 	}
 
-	private void generateImageWebPage() {
+	private void generateImageWebPage(ConfigModel configModel) {
 		try {
 			String text = model.getWorking();
 			text = text.trim();
@@ -299,7 +299,7 @@ public class ToolsController {
 			// ("\\\\", "\\\\\\\\")
 			// + "\"";
 			String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
-			Utility.launchBrowser(path);
+			Utility.launchBrowser(configModel, path);
 			f.deleteOnExit();
 		} catch (Exception ex) {
 			System.out.println("GenImageWebPage");
@@ -307,7 +307,7 @@ public class ToolsController {
 		}
 	}
 
-	private void linksPage() {
+	private void linksPage(ConfigModel configModel) {
 		try {
 			int idx;
 			StringBuffer s;
@@ -373,7 +373,7 @@ public class ToolsController {
 			// ("\\\\", "\\\\\\\\")
 			// + "\"";
 			String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
-			Utility.launchBrowser(path);
+			Utility.launchBrowser(configModel, path);
 			f.deleteOnExit();
 		} catch (Exception ex) {
 			TaskScreen.setErrorMessage(ex.getMessage());

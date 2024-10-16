@@ -45,10 +45,11 @@ public class SubDirectoryPathButton extends JButton implements ActionListener {
 				newDir.append(File.separator);
 		}
 		newDir.append(url_s);
-		if (curDir.equals(""))
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
-		else
+		if (curDir.equals("")) {
+//			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+		} else {
 			newDir.insert(0, curDir);
+		}
 
 		directory.setSelectedItem(newDir.toString());
 	}

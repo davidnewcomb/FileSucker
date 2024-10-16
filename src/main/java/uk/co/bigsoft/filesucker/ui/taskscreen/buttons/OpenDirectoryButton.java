@@ -27,7 +27,7 @@ public class OpenDirectoryButton extends JButton implements ActionListener {
 		String dir = directory.getSelectedItem().toString();
 		String dirEpanded = Utility.realDirectory(dir);
 		try {
-			String od = FileSucker.configData.getOpenDirectory();
+			String od = ""; //FileSucker.configData.getOpenDirectory();
 			String helper = od.replaceAll("%s", dirEpanded);
 			Utility.runShellCommand(helper);
 		} catch (Exception ex) {

@@ -1,11 +1,13 @@
 package uk.co.bigsoft.filesucker.zjunk.looper.number;
 
 import java.awt.Dimension;
+import java.util.Comparator;
 
 import javax.swing.JLabel;
 
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryDropDown;
+import uk.co.bigsoft.filesucker.HistoryElement;
 import uk.co.bigsoft.filesucker.MenuButton;
 import uk.co.bigsoft.filesucker.MenuButtonListOwner;
 import uk.co.bigsoft.filesucker.MenuButtonListener;
@@ -28,12 +30,12 @@ public class NumberLooper extends Looper implements MenuButtonListOwner {
 			try {
 				from = Integer.valueOf(selectedUrl);
 			} catch (NumberFormatException nfe) {
-				from = Integer.valueOf(FileSucker.configData.getNumberFrom());
+				from = Integer.valueOf(0); //FileSucker.configData.getNumberFrom());
 			}
 			if (from.intValue() > 1) {
-				to = Integer.valueOf(from.intValue() + FileSucker.configData.getNumberTo());
+				to = Integer.valueOf(from.intValue() + 0); //FileSucker.configData.getNumberTo());
 			} else {
-				to = Integer.valueOf(FileSucker.configData.getNumberTo());
+				to = Integer.valueOf(0); //FileSucker.configData.getNumberTo());
 			}
 			pad = Integer.valueOf(selectedUrl.length());
 		}
@@ -135,10 +137,10 @@ public class NumberLooper extends Looper implements MenuButtonListOwner {
 	}
 
 	public HistoryDropDown getList() {
-		return FileSucker.configData.getNumberLooperHistory();
+		return new HistoryDropDown((a,b) -> a.toHistoryString().compareTo(b.toHistoryString()));
 	}
 
 	public void setList(HistoryDropDown l) {
-		FileSucker.configData.setNumberLooperHistory(l);
+		//FileSucker.configData.setNumberLooperHistory(l);
 	}
 }

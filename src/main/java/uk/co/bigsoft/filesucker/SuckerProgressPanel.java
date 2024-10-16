@@ -48,7 +48,7 @@ public class SuckerProgressPanel extends JPanel {
 
 		files = Box.createVerticalBox();
 
-		int th = TRANSFER_ROW_HEIGHT * FileSucker.configData.getMaxTasks();
+		int th = TRANSFER_ROW_HEIGHT * 20; //FileSucker.configData.getMaxTasks();
 
 		files.setMinimumSize(new Dimension(0, th));
 		files.setMaximumSize(new Dimension(Integer.MAX_VALUE, th));

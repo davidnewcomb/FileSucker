@@ -34,7 +34,7 @@ public class FileSucker {
 
 	public static LinkedList<SuckerThread> activeFileSuckerThreads = null;
 
-	public static ConfigData configData = null;
+	// public static ConfigData configData = null;
 	// public static ConfigScreen configScreen = null;
 	// public static TaskScreen taskScreen = null;
 	public static TransferScreen transferScreen = null;
@@ -71,7 +71,7 @@ public class FileSucker {
 
 		configController.initController();
 		creditsController.initController();
-		launchProfileController.initController(toolsModel);
+		launchProfileController.initController(configModel, toolsModel);
 		toolsController.initController(configModel);
 		taskController.initController(configModel, toolsModel);
 
@@ -79,7 +79,7 @@ public class FileSucker {
 
 		// Build tabs
 		activeFileSuckerThreads = new LinkedList<SuckerThread>();
-		configData = new ConfigData();
+		// configData = new ConfigData();
 		// configScreen = new ConfigScreen();
 		// taskScreen = new TaskScreen();
 		transferScreen = new TransferScreen();

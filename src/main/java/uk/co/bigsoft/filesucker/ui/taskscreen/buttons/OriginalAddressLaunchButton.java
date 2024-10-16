@@ -23,7 +23,7 @@ public class OriginalAddressLaunchButton extends JButton implements ActionListen
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String url = originalAddress.getText();
-		Utility.launchBrowser(url);
+		Utility.launchBrowser("", url);
 	}
 
 }

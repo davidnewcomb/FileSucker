@@ -8,8 +8,8 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
 
 public class LaunchProfileController extends JPanel {
@@ -26,11 +26,11 @@ public class LaunchProfileController extends JPanel {
 		refreshCombo(view.getLaunchProfileComboBox());
 	}
 
-	public void initController(ToolsModel toolsModel) {
-		view.getLaunchProfileButton().addActionListener(e -> runLaunchProfile(toolsModel));
+	public void initController(ConfigModel configModel, ToolsModel toolsModel) {
+		view.getLaunchProfileButton().addActionListener(e -> runLaunchProfile(configModel, toolsModel));
 	}
 
-	private void runLaunchProfile(ToolsModel toolsModel) {
+	private void runLaunchProfile(ConfigModel configModel, ToolsModel toolsModel) {
 
 		String sub = toolsModel.getWorking();
 		if (sub.equals("")) {
@@ -48,7 +48,7 @@ public class LaunchProfileController extends JPanel {
 		url = url.replaceAll("%s", sub);
 
 		try {
-			String helper = FileSucker.configData.getHelperWeb().replaceAll("%s", url);
+			String helper = configModel.getHelperWeb().replaceAll("%s", url);
 			Utility.runShellCommand(helper);
 		} catch (Exception ex) {
 			ex.printStackTrace();

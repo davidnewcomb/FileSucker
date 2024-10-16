@@ -12,6 +12,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class Utility {
@@ -230,7 +231,7 @@ public class Utility {
 		}
 	}
 
-	public static void launchBrowser(String url) {
+	public static void launchBrowser(ConfigModel configModel, String url) {
 		if (url == null)
 			return;
 		String u = url.trim();
@@ -239,16 +240,16 @@ public class Utility {
 		}
 
 		try {
-			String helper = FileSucker.configData.getHelperWeb().replaceAll("%s", u);
+			String helper = configModel.getHelperWeb().replaceAll("%s", u);
 			runShellCommand(helper);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	public static void launchTextFile(File file) {
+	public static void launchTextFile(ConfigModel configModel, File file) {
 		try {
-			String helper = FileSucker.configData.getHelperText();
+			String helper = configModel.getHelperText();
 			String local = realDirectory(file.toString());
 			String sub = helper.replaceAll("%s", local);
 			runShellCommand(sub);

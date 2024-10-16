@@ -14,7 +14,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.Downloader;
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
@@ -55,17 +54,17 @@ public class TaskController {
 
 		view.getClipboardAsDirectoryButton().addActionListener(e -> clipboardAsDirectory());
 		view.getCopyToToolsButton().addActionListener(e -> copyWorkingToTools(toolsModel));
-		view.getDirectoryAndPrefixButton().addActionListener(e -> directoryAndPrefix());
+		view.getDirectoryAndPrefixButton().addActionListener(e -> directoryAndPrefix(configModel));
 		view.getDirectoryBrowseButton().addActionListener(e -> directoryBrowse());
-		view.getDirectoryClipboardButton().addActionListener(e -> directoryClipboard());
-		view.getDirectoryExtensionButton().addActionListener(e -> directoryExtension());
+		view.getDirectoryClipboardButton().addActionListener(e -> directoryClipboard(configModel));
+		view.getDirectoryExtensionButton().addActionListener(e -> directoryExtension(configModel));
 		view.getHelperDirectoryButton().addActionListener(e -> helperDirectory(configModel.getHelperDirectory()));
 		view.getHomeButton().addActionListener(e -> directoryToHome(configModel.getBaseDir()));
-		view.getHomeDirectoryPrefixButton().addActionListener(e -> homeDirectoryPrefix());
-		view.getSubDirectoryAndPrefixButton().addActionListener(e -> subDirectoryAndPrefix());
-		view.getSubDirectoryAndPrefixFromClipboardButton().addActionListener(e -> subDirectoryAndPrefixFromClipboard());
+		view.getHomeDirectoryPrefixButton().addActionListener(e -> homeDirectoryPrefix(configModel));
+		view.getSubDirectoryAndPrefixButton().addActionListener(e -> subDirectoryAndPrefix(configModel));
+		view.getSubDirectoryAndPrefixFromClipboardButton().addActionListener(e -> subDirectoryAndPrefixFromClipboard(configModel));
 		view.getSubDirectoryFromClipboardButton().addActionListener(e -> subDirectoryFromClipboard());
-		view.getSubDirectoryPathButton().addActionListener(e -> subDirectoryPath());
+		view.getSubDirectoryPathButton().addActionListener(e -> subDirectoryPath(configModel));
 
 		view.getRunTaskButton().addActionListener(e -> runTask());
 		view.getFindFilesButton().addActionListener(e -> findFiles(configModel));
@@ -127,7 +126,7 @@ public class TaskController {
 
 	}
 
-	private void subDirectoryPath() {
+	private void subDirectoryPath(ConfigModel configModel) {
 		String url_s = model.getSelectedUrl();
 		if ("".equals(url_s)) {
 			return;
@@ -144,7 +143,7 @@ public class TaskController {
 		}
 		newDir.append(url_s);
 		if (curDir.equals("")) {
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+			newDir.insert(0, configModel.getBaseDir()); // FileSucker.configData.getScreenBaseDir());
 		} else {
 			newDir.insert(0, curDir);
 		}
@@ -167,7 +166,7 @@ public class TaskController {
 		model.setDirectory(sb.toString());
 	}
 
-	private void subDirectoryAndPrefixFromClipboard() {
+	private void subDirectoryAndPrefixFromClipboard(ConfigModel configModel) {
 		// Add to dir
 		String url_s = Utility.getClipboard();
 		if (url_s == null)
@@ -184,18 +183,18 @@ public class TaskController {
 		}
 		newDir.append(url_s);
 		if (curDir.equals(""))
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+			newDir.insert(0, configModel.getBaseDir());
 		else
 			newDir.insert(0, curDir);
 
 		model.setDirectory(newDir.toString());
 
 		// Add to prefix
-		url_s = url_s + FileSucker.configData.getPostPrefix();
+		url_s = url_s + configModel.getPostPrefix();
 		model.setPrefix(url_s.toLowerCase());
 	}
 
-	private void subDirectoryAndPrefix() {
+	private void subDirectoryAndPrefix(ConfigModel configModel) {
 		// Add to dir
 		String url_s = model.getSelectedUrl();
 		if (url_s == null)
@@ -213,7 +212,7 @@ public class TaskController {
 		}
 		newDir.append(url_s);
 		if (curDir.equals("")) {
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+			newDir.insert(0, configModel.getBaseDir());
 		} else {
 			newDir.insert(0, curDir);
 		}
@@ -221,11 +220,11 @@ public class TaskController {
 		model.setDirectory(newDir.toString());
 
 		// Add to prefix
-		url_s = url_s + FileSucker.configData.getPostPrefix();
+		url_s = url_s + configModel.getPostPrefix();
 		model.setPrefix(url_s.toLowerCase());
 	}
 
-	private void homeDirectoryPrefix() {
+	private void homeDirectoryPrefix(ConfigModel configModel) {
 		String url_s = model.getSelectedUrl();
 		if (url_s == null)
 			return;
@@ -233,17 +232,17 @@ public class TaskController {
 
 		url_s = Utility.cleanString(url_s);
 
-		StringBuffer newDir = new StringBuffer(FileSucker.configData.getScreenBaseDir());
+		StringBuffer newDir = new StringBuffer(configModel.getBaseDir());
 		newDir.append(url_s);
 
 		model.setDirectory(newDir.toString());
 
 		// Add to prefix
-		url_s = url_s + FileSucker.configData.getPostPrefix();
+		url_s = url_s + configModel.getPostPrefix();
 		model.setPrefix(url_s.toLowerCase());
 	}
 
-	private void directoryExtension() {
+	private void directoryExtension(ConfigModel configModel) {
 		String url_s = model.getSelectedUrl();
 		if (url_s == null) {
 			return;
@@ -258,7 +257,7 @@ public class TaskController {
 		}
 		newDir.append(url_s);
 		if (curDir.equals("")) {
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+			newDir.insert(0, configModel.getBaseDir());
 		} else {
 			newDir.insert(0, curDir);
 		}
@@ -266,7 +265,7 @@ public class TaskController {
 		model.setDirectory(newDir.toString());
 	}
 
-	private void directoryClipboard() {
+	private void directoryClipboard(ConfigModel configModel) {
 		String s = Utility.getClipboard();
 		if (s == null)
 			return;
@@ -280,7 +279,7 @@ public class TaskController {
 		}
 		newDir.append(s);
 		if (curDir.equals("")) {
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+			newDir.insert(0, configModel.getBaseDir());
 		} else {
 			newDir.insert(0, curDir);
 		}
@@ -303,7 +302,7 @@ public class TaskController {
 		}
 	}
 
-	private void directoryAndPrefix() {
+	private void directoryAndPrefix(ConfigModel configModel) {
 		String url_s = model.getSelectedUrl();
 		if (url_s == null) {
 			return;
@@ -319,7 +318,7 @@ public class TaskController {
 		}
 		newDir.append(url_s);
 		if (curDir.equals("")) {
-			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+			newDir.insert(0, configModel.getBaseDir());
 		} else {
 			newDir.insert(0, curDir);
 		}
@@ -327,7 +326,7 @@ public class TaskController {
 		model.setDirectory(newDir.toString());
 
 		// Add to prefix
-		url_s = url_s + FileSucker.configData.getPostPrefix();
+		url_s = url_s + configModel.getPostPrefix();
 		model.setPrefix(model.getPrefix() + url_s.toLowerCase());
 	}
 

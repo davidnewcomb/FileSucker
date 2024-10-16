@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.TreeSet;
 
 public class HistoryDropDown extends TreeSet<HistoryElement> {
-	HistoryDropDown(Comparator<HistoryElement> c) {
+	public HistoryDropDown(Comparator<HistoryElement> c) {
 		super(c);
 	}
 

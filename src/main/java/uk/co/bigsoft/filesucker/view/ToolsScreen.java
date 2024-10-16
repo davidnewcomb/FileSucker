@@ -235,7 +235,7 @@ public class ToolsScreen extends JPanel {
 					// ("\\\\", "\\\\\\\\")
 					// + "\"";
 					String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
-					Utility.launchBrowser(path);
+					Utility.launchBrowser("", path);
 					f.deleteOnExit();
 				} catch (Exception ex) {
 					System.out.println("GenWebPage");
@@ -295,7 +295,7 @@ public class ToolsScreen extends JPanel {
 					// ("\\\\", "\\\\\\\\")
 					// + "\"";
 					String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
-					Utility.launchBrowser(path);
+					Utility.launchBrowser("", path);
 					f.deleteOnExit();
 				} catch (Exception ex) {
 					System.out.println("GenImageWebPage");
@@ -371,7 +371,7 @@ public class ToolsScreen extends JPanel {
 					// ("\\\\", "\\\\\\\\")
 					// + "\"";
 					String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
-					Utility.launchBrowser(path);
+					Utility.launchBrowser("", path);
 					f.deleteOnExit();
 				} catch (Exception ex) {
 					TaskScreen.setErrorMessage(ex.getMessage());
@@ -385,7 +385,7 @@ public class ToolsScreen extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				String url = convertUrlText.getText();
-				Utility.launchBrowser(url);
+				Utility.launchBrowser("", url);
 			}
 		});
 

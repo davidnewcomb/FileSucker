@@ -33,7 +33,7 @@ public class SuffixButton extends JButton implements ActionListener {
 
 		url_s = Utility.getSuckerLable(url_s);
 		url_s = Utility.cleanString(url_s);
-		url_s = FileSucker.configData.getPostPrefix() + url_s;
+//		url_s = FileSucker.configData.getPostPrefix() + url_s;
 
 		suffix.replaceSelection(url_s);
 	}
