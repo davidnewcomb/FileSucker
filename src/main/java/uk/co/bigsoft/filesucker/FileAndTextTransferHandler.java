@@ -23,7 +23,8 @@ import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 @SuppressWarnings("all")
 public class FileAndTextTransferHandler extends TransferHandler {
-	private DataFlavor fileFlavor, stringFlavor;
+	private DataFlavor fileFlavor;
+	private DataFlavor stringFlavor;
 
 	private JTextField source;
 

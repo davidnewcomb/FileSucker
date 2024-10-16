@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.drag;
+package uk.co.bigsoft.filesucker.zjunk.drag;
 
 import java.awt.BorderLayout;
 import java.awt.datatransfer.DataFlavor;

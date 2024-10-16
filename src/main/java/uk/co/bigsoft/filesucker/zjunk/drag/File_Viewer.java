@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.drag;
+package uk.co.bigsoft.filesucker.zjunk.drag;
 
 /*
  * File_Viewer.java

@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.drag;
+package uk.co.bigsoft.filesucker.zjunk.drag;
 
 /**
  * FileAndTextTransferHandler is used by File_Viewer
