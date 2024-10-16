@@ -54,7 +54,8 @@ public class TaskController {
 		view.getOriginalAddressTextField().addKeyListener((KeyReleasedListener) e -> keyReleasedOrigAddr());
 		view.getOriginalAddressTextField().addCaretListener(e -> caretMovedOrigAddr());
 		view.getOriginalAddressTextField().addMouseListener((MousePressListener) e -> pasteIntoWorkingOrigAddr(e));
-
+		view.getOriginalAddressLaunchButton().addActionListener(e -> originalAddressLaunch(configModel));
+		
 		view.getDirectoryComboBox().getEditor().getEditorComponent()
 				.addKeyListener((KeyReleasedListener) e -> keyReleasedDirectory());
 
@@ -89,6 +90,15 @@ public class TaskController {
 		view.getSuffixLowerButton().addActionListener(e -> suffixLower());
 		view.getSuffixClipButton().addActionListener(e -> suffixClip(configModel));
 		view.getSuffixClearButton().addActionListener(e -> suffixClear());
+	}
+
+	private void originalAddressLaunch(ConfigModel configModel) {
+		String url = model.getOriginalAddress().trim();
+		if ("".equals(url)) {
+			model.setErrorMessage("Original address is empty");
+			return;
+		}
+		Utility.launchBrowser(configModel, url);
 	}
 
 	private void suffixClear() {

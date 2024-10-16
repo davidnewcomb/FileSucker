@@ -25,15 +25,6 @@ import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 import uk.co.bigsoft.filesucker.task.looper.LooperPanel;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
-import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.OriginalAddressLaunchButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixClearButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixCopyButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.PrefixLowerButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixClearButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixCopyButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.SuffixLowerButton;
 
 public class TaskView extends JPanel {
 	// Drag & Drop
@@ -43,7 +34,7 @@ public class TaskView extends JPanel {
 
 	private JTextField urlTF = new JTextField();
 	private JTextField originalAddressTF = new JTextField();
-
+	private JButton originalAddressLaunchButton = new JButton("L");
 	private JButton helperDirectoryButton = new JButton("LD");
 	private JButton homeButton = new JButton("H");
 	private JButton copyToToolsButton = new JButton("CT");
@@ -159,7 +150,7 @@ public class TaskView extends JPanel {
 		hbox.add(copyToToolsButton);
 		centre.add(hbox);
 
-		OriginalAddressLaunchButton findFileLaunchB = new OriginalAddressLaunchButton(originalAddressTF);
+		//OriginalAddressLaunchButton findFileLaunchB = new OriginalAddressLaunchButton(originalAddressTF);
 
 		centre.add(new JLabel(" "));
 
@@ -167,7 +158,7 @@ public class TaskView extends JPanel {
 		findFileJP.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		findFileJP.add(new JLabel("Orginal Address"), BorderLayout.WEST);
 		findFileJP.add(originalAddressTF, BorderLayout.CENTER);
-		findFileJP.add(findFileLaunchB, BorderLayout.EAST);
+		findFileJP.add(originalAddressLaunchButton, BorderLayout.EAST);
 		centre.add(findFileJP);
 
 		centre.add(new JLabel("Save To"));
@@ -641,6 +632,10 @@ public class TaskView extends JPanel {
 
 	public JCheckBox getSuffixEndCB() {
 		return suffixEndCB;
+	}
+
+	public JButton getOriginalAddressLaunchButton() {
+		return originalAddressLaunchButton;
 	}
 
 }

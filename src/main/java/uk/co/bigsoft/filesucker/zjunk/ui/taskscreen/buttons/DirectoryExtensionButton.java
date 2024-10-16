@@ -1,9 +1,8 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen.buttons;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.buttons;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -12,17 +11,17 @@ import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.Utility;
 
-public class SubDirectoryPathButton extends JButton implements ActionListener {
-	private HistoryJComboBox directory;
+public class DirectoryExtensionButton extends JButton implements ActionListener {
 	private JTextField url;
+	private HistoryJComboBox directory;
 
-	public SubDirectoryPathButton(JTextField url, HistoryJComboBox directory) {
-		super("/D");
+	public DirectoryExtensionButton(JTextField url, HistoryJComboBox directory) {
+		super("_D");
 
-		this.directory = directory;
 		this.url = url;
+		this.directory = directory;
 
-		setToolTipText("Appends highlighted url text as new sub-directory");
+		setToolTipText("Appends highlighted url text to directory");
 		setMinimumSize(new Dimension(0, 0));
 		setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
@@ -30,7 +29,7 @@ public class SubDirectoryPathButton extends JButton implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent arg0) {
 		String url_s = url.getSelectedText();
 		if (url_s == null)
 			return;
@@ -40,9 +39,8 @@ public class SubDirectoryPathButton extends JButton implements ActionListener {
 
 		String curDir = directory.getSelectedItem().toString();
 		StringBuffer newDir = new StringBuffer();
-		if (curDir.length() > 1) {
-			if (curDir.charAt(curDir.length() - 1) != File.separatorChar)
-				newDir.append(File.separator);
+		if (curDir.length() > 1 && !curDir.endsWith("_")) {
+			newDir.append('_');
 		}
 		newDir.append(url_s);
 		if (curDir.equals("")) {

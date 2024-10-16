@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen.buttons;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.buttons;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -6,18 +6,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
-import uk.co.bigsoft.filesucker.Utility;
 
-public class ClipboardAsDirectoryButton extends JButton implements ActionListener {
+public class HomeButton extends JButton implements ActionListener {
 	private HistoryJComboBox directory;
 
-	public ClipboardAsDirectoryButton(HistoryJComboBox directory) {
-		super("C");
+	public HomeButton(HistoryJComboBox directory) {
+		super("H");
 
 		this.directory = directory;
 
-		setToolTipText("Paste clipboard as new sub-directory");
+		setToolTipText("Initialises the directory to base directory");
 		setMinimumSize(new Dimension(0, 0));
 		setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
@@ -26,9 +26,7 @@ public class ClipboardAsDirectoryButton extends JButton implements ActionListene
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String s = Utility.getClipboard();
-		if (s == null)
-			return;
-		directory.setSelectedItem(s);
+		//directory.setSelectedItem(FileSucker.configData.getScreenBaseDir());
 	}
+
 }

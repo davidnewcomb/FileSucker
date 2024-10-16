@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen.buttons;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.buttons;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

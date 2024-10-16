@@ -1,8 +1,9 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen.buttons;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.buttons;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -11,19 +12,17 @@ import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.Utility;
 
-public class HomeDirectoryPrefix extends JButton implements ActionListener {
-	private JTextField url;
+public class SubDirectoryPathButton extends JButton implements ActionListener {
 	private HistoryJComboBox directory;
-	private JTextField prefix;
+	private JTextField url;
 
-	public HomeDirectoryPrefix(JTextField url, HistoryJComboBox directory, JTextField prefix) {
-		super("HDP");
+	public SubDirectoryPathButton(JTextField url, HistoryJComboBox directory) {
+		super("/D");
 
-		this.url = url;
 		this.directory = directory;
-		this.prefix = prefix;
+		this.url = url;
 
-		setToolTipText("Clears defaults and prefix then appends highlighted url text to directory and prefix");
+		setToolTipText("Appends highlighted url text as new sub-directory");
 		setMinimumSize(new Dimension(0, 0));
 		setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
@@ -39,15 +38,20 @@ public class HomeDirectoryPrefix extends JButton implements ActionListener {
 
 		url_s = Utility.cleanString(url_s);
 
-		StringBuffer newDir = new StringBuffer(); // FileSucker.configData.getScreenBaseDir());
+		String curDir = directory.getSelectedItem().toString();
+		StringBuffer newDir = new StringBuffer();
+		if (curDir.length() > 1) {
+			if (curDir.charAt(curDir.length() - 1) != File.separatorChar)
+				newDir.append(File.separator);
+		}
 		newDir.append(url_s);
+		if (curDir.equals("")) {
+//			newDir.insert(0, FileSucker.configData.getScreenBaseDir());
+		} else {
+			newDir.insert(0, curDir);
+		}
 
 		directory.setSelectedItem(newDir.toString());
-
-		// Add to prefix
-		// url_s = url_s + FileSucker.configData.getPostPrefix();
-		prefix.setText(url_s.toLowerCase());
-
 	}
 
 }

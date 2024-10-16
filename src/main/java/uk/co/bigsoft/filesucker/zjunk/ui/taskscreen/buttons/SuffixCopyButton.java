@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen.buttons;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.buttons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,16 +8,16 @@ import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.Utility;
 
-public class PrefixCopyButton extends JButton implements ActionListener {
+public class SuffixCopyButton extends JButton implements ActionListener {
 
-	private JTextField prefix;
+	private JTextField suffix;
 
-	public PrefixCopyButton(JTextField prefix) {
-		super("CP");
+	public SuffixCopyButton(JTextField suffix) {
+		super("CS");
 
-		this.prefix = prefix;
+		this.suffix = suffix;
 
-		setToolTipText("Replace highlighted prefix text with clipboard text");
+		setToolTipText("Replace highlighted suffix text with clipboard text");
 
 		addActionListener(this);
 	}
@@ -27,6 +27,6 @@ public class PrefixCopyButton extends JButton implements ActionListener {
 		String s = Utility.getClipboard();
 		s = Utility.getSuckerLable(s);
 		s = Utility.cleanString(s);
-		prefix.replaceSelection(s + "_");
+		suffix.replaceSelection("_" + s);
 	}
 }
