@@ -36,8 +36,8 @@ public class FileSuckerFrame extends JFrame {
 
 		setBounds(p.getBoundX(), p.getBoundY(), p.getBoundWidth(), p.getBoundHeight());
 
-		CreditScreen.setTotalDownloadedFiles(p.getTotalDownloadedFiles());
-		CreditScreen.setTotalDownloadedBytes(p.getTotalDownloadedBytes());
+//		CreditScreen.setTotalDownloadedFiles(p.getTotalDownloadedFiles());
+//		CreditScreen.setTotalDownloadedBytes(p.getTotalDownloadedBytes());
 
 		setVisible(true);
 	}
