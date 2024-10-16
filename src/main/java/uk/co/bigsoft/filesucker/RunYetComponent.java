@@ -2,8 +2,6 @@ package uk.co.bigsoft.filesucker;
 
 import javax.swing.JLabel;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
-
 public class RunYetComponent extends JLabel {
 	private boolean modifed;
 

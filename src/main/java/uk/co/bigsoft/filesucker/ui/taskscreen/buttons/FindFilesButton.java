@@ -2,9 +2,6 @@ package uk.co.bigsoft.filesucker.ui.taskscreen.buttons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
-import java.net.URL;
-
 import javax.swing.JButton;
 
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;

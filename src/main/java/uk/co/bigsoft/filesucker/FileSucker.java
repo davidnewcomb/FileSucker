@@ -24,10 +24,8 @@ import uk.co.bigsoft.filesucker.tools.ToolsView;
 import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileController;
 import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileModel;
 import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileView;
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 import uk.co.bigsoft.filesucker.view.CreditScreen;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
-import uk.co.bigsoft.filesucker.view.ToolsScreen;
 import uk.co.bigsoft.filesucker.view.TransferScreen;
 
 public class FileSucker {

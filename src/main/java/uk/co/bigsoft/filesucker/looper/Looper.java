@@ -7,7 +7,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.ui.taskscreen.AddLooper;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
