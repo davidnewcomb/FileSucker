@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
@@ -114,8 +115,9 @@ public class Utility {
 			sb.append(a[i]);
 			sb.append(sep);
 		}
-		if (sb.length() > 0)
+		if (sb.length() > 0) {
 			sb.deleteCharAt(sb.length() - 1);
+		}
 		return sb.toString();
 	}
 
@@ -232,8 +234,9 @@ public class Utility {
 		if (url == null)
 			return;
 		String u = url.trim();
-		if (u.trim().equals(""))
+		if (u.trim().equals("")) {
 			return;
+		}
 
 		try {
 			String helper = FileSucker.configData.getHelperWeb().replaceAll("%s", u);
@@ -336,6 +339,16 @@ public class Utility {
 
 		String s = toExpand.replaceAll("%T", timeStr);
 		return s;
+	}
+
+	public static List<String> splitLooperText(String looperText) {
+		if (!looperText.startsWith("{") && !looperText.endsWith("}")) {
+			return null;
+		}
+		String guts = looperText.substring(1, looperText.length() - 1);
+		String[] bits = guts.split(",");
+		List<String> l = List.of(bits);
+		return l;
 	}
 
 	@SuppressWarnings(value = "deprecation")

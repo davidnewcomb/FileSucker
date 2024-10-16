@@ -1,8 +1,14 @@
 package uk.co.bigsoft.filesucker.task;
 
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.event.SwingPropertyChangeSupport;
+
+import uk.co.bigsoft.filesucker.Utility;
 
 public class TaskModel {
 	private SwingPropertyChangeSupport propChangeFirer;
@@ -101,5 +107,19 @@ public class TaskModel {
 		String oldVal = suffix;
 		suffix = x;
 		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX, oldVal, suffix);
+	}
+
+	public List<Integer> getLooperIds() {
+		ArrayList<Integer> l = new ArrayList<>();
+		Pattern p = Pattern.compile("\\{[^}]*\\}");
+		Matcher matcher = p.matcher(url);
+		while (matcher.find()) {
+			String s = matcher.group();
+			List<String> params = Utility.splitLooperText(s);
+			if (params != null) {
+				l.add(Integer.valueOf(params.get(1)));
+			}
+		}
+		return l;
 	}
 }

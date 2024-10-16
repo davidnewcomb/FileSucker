@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import uk.co.bigsoft.filesucker.config.ConfigModel;
@@ -29,16 +28,15 @@ public class LooperPanel extends JPanel {
 	private NumberLooperPanel numberPanel = new NumberLooperPanel();
 	private TextLooperPanel textPanel = new TextLooperPanel();
 	private FixedLooperPanel fixedPanel = new FixedLooperPanel();
-
-	private JLabel copyPanel = new JLabel();
+	private CopyLooperPanel copyPanel = new CopyLooperPanel();
 
 	private JButton cancelButton = new JButton("Cancel");
 	private JButton okButton = new JButton("Ok");
 
 	private JButton commandButtons[] = { numberButton, textButton, listButton, copyButton, fixedButton };
 
-	// private JPanel centre = new JPanel();
 	private Box cancelOkBox = Box.createHorizontalBox();
+
 	private TaskModel taskModel;
 	private ConfigModel configModel;
 
@@ -127,6 +125,13 @@ public class LooperPanel extends JPanel {
 			jpanel = fixedPanel;
 			break;
 		}
+		case LooperCmd.L_COPY: {
+			List<Integer> ids = taskModel.getLooperIds();
+			copyPanel.setOptions(ids);
+			currentPanel = copyPanel;
+			jpanel = copyPanel;
+			break;
+		}
 		default: {
 			System.out.println("Bad looper type: " + looperType);
 			return;
@@ -171,6 +176,11 @@ public class LooperPanel extends JPanel {
 
 	private void showCopyLooper() {
 		showSingleButton(LooperCmd.L_COPY);
+		String sel = taskModel.getSelectedUrl();
+		if (!sel.startsWith("{")) {
+			sel = String.format("{%s,%d,%s}", LooperCmd.L_COPY, currentLooperId++, sel);
+		}
+		openLooper(sel);
 	}
 
 	private void showListLooper() {
