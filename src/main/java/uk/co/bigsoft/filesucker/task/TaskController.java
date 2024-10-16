@@ -4,14 +4,22 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 
+import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
+import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
+import uk.co.bigsoft.filesucker.task.looper.LooperId;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
 
@@ -60,11 +68,63 @@ public class TaskController {
 		view.getSubDirectoryPathButton().addActionListener(e -> subDirectoryPath());
 
 		view.getRunTaskButton().addActionListener(e -> runTask());
+		view.getFindFilesButton().addActionListener(e -> findFiles(configModel));
 	}
 
 	private Object runTask() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	private void findFiles(ConfigModel configModel) {
+		try {
+			String findFileAddress = model.getUrl();
+			if (findFileAddress.length() == 0) {
+				model.setErrorMessage("URL is empty");
+				return;
+			}
+			model.setOriginalAddress(findFileAddress);
+
+			String content = Downloader.getInstance().downloadTextFile(findFileAddress);
+			List<String> extns = configModel.getFindExtn();
+
+			Set<String> map = new TreeSet<>();
+			for (String extn : extns) {
+				Pattern p = Pattern.compile("[\\[\\]a-zA-Z%$./0-9_-]+." + extn);
+				Matcher m = p.matcher(content);
+
+				while (m.find()) {
+					String s = m.group();
+					map.add(s);
+				}
+			}
+
+			if (map.size() == 0) {
+				model.setErrorMessage("No matches found");
+				return;
+			}
+
+			StringBuffer listLooper = new StringBuffer();
+			String guts = String.join(",", map);
+			listLooper.append("{");
+			listLooper.append(LooperCmd.L_LIST);
+			listLooper.append(",");
+			listLooper.append(LooperId.getNext());
+			listLooper.append(",");
+			listLooper.append(guts);
+			listLooper.append("}");
+
+			view.getLooperPanel().openLooper(listLooper.toString());
+//			iteratorJP.removeAll();
+//			iteratorJP.add(new ListLooper(found.toString()), BorderLayout.CENTER);
+//			iteratorJP.repaint();
+
+//			int lastSlash = urlTF.getText().lastIndexOf("/");
+//			urlTF.setText(urlTF.getText().substring(0, lastSlash + 1));
+		} catch (Exception ex) {
+			model.setErrorMessage(ex.getMessage());
+		}
+
 	}
 
 	private void subDirectoryPath() {
@@ -298,9 +358,18 @@ public class TaskController {
 		}
 		case TaskProps.F_SELECTED_URL: {
 			// TODO enable/disable buttons
+
+			// TODO check this
+			if (newVal.startsWith("{") && newVal.endsWith("}")) {
+				view.getLooperPanel().openLooper(newVal);
+			}
 			break;
 		}
 		case TaskProps.F_SET_SELECTED_URL: {
+			// TODO check this
+			if (newVal.startsWith("{") && newVal.endsWith("}")) {
+				view.getLooperPanel().openLooper(newVal);
+			}
 			int start = view.getUrlTextField().getSelectionStart();
 			int end = view.getUrlTextField().getSelectionEnd();
 			String url = view.getUrlTextField().getText();

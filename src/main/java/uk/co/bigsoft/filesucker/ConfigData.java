@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-import uk.co.bigsoft.filesucker.looper.number.NumberLooperSort;
-import uk.co.bigsoft.filesucker.looper.text.TextLooperSort;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class ConfigData extends Properties {
@@ -137,7 +135,7 @@ public class ConfigData extends Properties {
 		delayFilesMs = Integer.valueOf(getIntProperty(LAB_DELAYFILESMS));
 
 		List<String> l = getListProperty(LAB_NUMBERLOOPHISTORY);
-		numberLooperHistory = new HistoryDropDown(new NumberLooperSort());
+		// numberLooperHistory = new HistoryDropDown(new NumberLooperSort());
 		for (String s : l) {
 			ta = s.split(":", 2);
 			if (ta.length == 1)
@@ -147,7 +145,7 @@ public class ConfigData extends Properties {
 		}
 
 		l = getListProperty(LAB_TEXTLOOPHISTORY);
-		textLooperHistory = new HistoryDropDown(new TextLooperSort());
+		// textLooperHistory = new HistoryDropDown(new TextLooperSort());
 		for (String s : l) {
 			ta = s.split(":", 2);
 			if (ta.length == 1)
@@ -237,10 +235,9 @@ public class ConfigData extends Properties {
 		setProperty(LAB_DELAYSOCKREADMS, "" + delaySockReadMs);
 		setProperty(LAB_DELAYFILESMS, "" + delayFilesMs);
 
-		setProperty(LAB_NUMBERLOOPHISTORY, getPropertyFromList(numberLooperHistory));
-		setProperty(LAB_TEXTLOOPHISTORY, getPropertyFromList(textLooperHistory));
-
-		setProperty(LAB_LAUNCHPROFILES, getPropertyFromList(launchProfiles));
+//		setProperty(LAB_NUMBERLOOPHISTORY, getPropertyFromList(numberLooperHistory));
+//		setProperty(LAB_TEXTLOOPHISTORY, getPropertyFromList(textLooperHistory));
+//		setProperty(LAB_LAUNCHPROFILES, getPropertyFromList(launchProfiles));
 
 		try {
 			store(new FileOutputStream(CONFIG_FILE), header.toString());

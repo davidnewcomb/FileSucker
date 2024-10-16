@@ -7,7 +7,6 @@ import javax.swing.TransferHandler;
 
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
-import uk.co.bigsoft.filesucker.looper.Looper;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 
 public class UrlTextField extends JTextField {
@@ -37,10 +36,10 @@ public class UrlTextField extends JTextField {
 			return;
 		}
 
-		if (Looper.isActive()) {
-			// TODO TaskScreen.setErrorMessage("Looper is active");
-			return;
-		}
+//		if (Looper.isActive()) {
+//			// TODO TaskScreen.setErrorMessage("Looper is active");
+//			return;
+//		}
 
 		char c = Character.toLowerCase(e.getKeyChar());
 		switch (c) {

@@ -5,9 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.looper.Looper;
-
 public class AddLooper extends JButton implements ActionListener {
 	public AddLooper() {
 		super("Add");
@@ -18,11 +15,11 @@ public class AddLooper extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Looper lp = null; // (Looper) FileSucker.taskScreen.iteratorJP.getComponent(0);
-		String braces = lp.toStringBraces();
-		TaskScreen.replaceUrlText(braces);
-		lp.resetLooper();
-		TaskScreen.changed();
+//		Looper lp = null; // (Looper) FileSucker.taskScreen.iteratorJP.getComponent(0);
+//		String braces = lp.toStringBraces();
+//		TaskScreen.replaceUrlText(braces);
+//		lp.resetLooper();
+//		TaskScreen.changed();
 	}
 
 }

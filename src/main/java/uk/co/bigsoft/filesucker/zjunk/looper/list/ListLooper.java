@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.looper.list;
+package uk.co.bigsoft.filesucker.zjunk.looper.list;
 
 import java.awt.Dimension;
 import java.util.TreeSet;
@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import uk.co.bigsoft.filesucker.looper.Looper;
+import uk.co.bigsoft.filesucker.zjunk.looper.Looper;
 
 public class ListLooper extends Looper {
 	private String list;

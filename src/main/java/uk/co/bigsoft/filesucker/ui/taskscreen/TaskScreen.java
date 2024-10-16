@@ -37,15 +37,11 @@ import uk.co.bigsoft.filesucker.SuckerParams;
 import uk.co.bigsoft.filesucker.SuckerThread;
 import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
-import uk.co.bigsoft.filesucker.looper.Looper;
-import uk.co.bigsoft.filesucker.looper.list.ListLooper;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.BrowseButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.ClipboardAsDirectoryButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.CopyToToolClearButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryAndPrefixButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryClipboardButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.DirectoryExtensionButton;
-//import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.HomeButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.HomeDirectoryPrefix;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.OpenDirectoryButton;
 import uk.co.bigsoft.filesucker.ui.taskscreen.buttons.OriginalAddressLaunchButton;
@@ -120,10 +116,10 @@ public class TaskScreen extends JPanel {
 
 		runB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (Looper.isActive()) {
-					TaskScreen.setErrorMessage("Looper is active");
-					return;
-				}
+//				if (Looper.isActive()) {
+//					TaskScreen.setErrorMessage("Looper is active");
+//					return;
+//				}
 
 				String selectedDir = directoryCB.getSelectedItem().toString().trim();
 				if (selectedDir.equals("")) {
@@ -348,7 +344,7 @@ public class TaskScreen extends JPanel {
 
 					StringBuffer found = new StringBuffer();
 					found.append("{l,");
-					found.append(Looper.getIndex(0));
+					// found.append(Looper.getIndex(0));
 					for (String s : map.keySet()) {
 						found.append(",");
 						found.append(s);
@@ -364,7 +360,7 @@ public class TaskScreen extends JPanel {
 					staticB.setVisible(false);
 
 					iteratorJP.removeAll();
-					iteratorJP.add(new ListLooper(found.toString()), BorderLayout.CENTER);
+					// iteratorJP.add(new ListLooper(found.toString()), BorderLayout.CENTER);
 					iteratorJP.repaint();
 
 					int lastSlash = urlTF.getText().lastIndexOf("/");

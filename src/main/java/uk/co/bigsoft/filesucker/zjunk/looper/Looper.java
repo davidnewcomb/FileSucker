@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.looper;
+package uk.co.bigsoft.filesucker.zjunk.looper;
 
 import java.awt.BorderLayout;
 

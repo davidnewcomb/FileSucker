@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.looper.text;
+package uk.co.bigsoft.filesucker.zjunk.looper.text;
 
 import java.awt.Dimension;
 
@@ -10,7 +10,7 @@ import uk.co.bigsoft.filesucker.MenuButton;
 import uk.co.bigsoft.filesucker.MenuButtonListOwner;
 import uk.co.bigsoft.filesucker.MenuButtonListener;
 import uk.co.bigsoft.filesucker.UpDownTextJTextField;
-import uk.co.bigsoft.filesucker.looper.Looper;
+import uk.co.bigsoft.filesucker.zjunk.looper.Looper;
 
 public class TextLooper extends Looper implements MenuButtonListOwner {
 	String from;

@@ -7,9 +7,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 import javax.swing.TransferHandler;
 
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
-import uk.co.bigsoft.filesucker.looper.Looper;
 
 public class UrlTextField extends JTextField {
 	public UrlTextField(TransferHandler transferHandler) {
@@ -34,10 +32,10 @@ class UrlKeyListener extends KeyAdapter {
 		if (!e.isAltDown())
 			return;
 
-		if (Looper.isActive()) {
-			TaskScreen.setErrorMessage("Looper is active");
-			return;
-		}
+//		if (Looper.isActive()) {
+//			TaskScreen.setErrorMessage("Looper is active");
+//			return;
+//		}
 
 		char c = Character.toLowerCase(e.getKeyChar());
 		switch (c) {

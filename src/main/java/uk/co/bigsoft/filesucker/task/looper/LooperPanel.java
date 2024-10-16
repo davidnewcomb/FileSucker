@@ -14,8 +14,6 @@ import uk.co.bigsoft.filesucker.task.TaskModel;
 
 public class LooperPanel extends JPanel {
 
-	private static int currentLooperId = 1;
-
 	private JPanel EMPTY = new JPanel();
 	private JButton numberButton = new JButton(LooperCmd.L_NUMBER);
 	private JButton textButton = new JButton(LooperCmd.L_TEXT);
@@ -141,6 +139,7 @@ public class LooperPanel extends JPanel {
 		currentPanel.fill(p);
 		remove(EMPTY);
 		add(jpanel, BorderLayout.CENTER);
+		cancelOkBox.setVisible(true);
 		validate();
 	}
 
@@ -159,7 +158,7 @@ public class LooperPanel extends JPanel {
 		showSingleButton(LooperCmd.L_NUMBER);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%d,%d,%d}", LooperCmd.L_NUMBER, currentLooperId++, configModel.getNumberFrom(),
+			sel = String.format("{%s,%d,%d,%d,%d}", LooperCmd.L_NUMBER, LooperId.getNext(), configModel.getNumberFrom(),
 					configModel.getNumberTo(), configModel.getNumberPad());
 		}
 		openLooper(sel);
@@ -169,7 +168,7 @@ public class LooperPanel extends JPanel {
 		showSingleButton(LooperCmd.L_FIXED);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%s}", LooperCmd.L_FIXED, currentLooperId++, sel);
+			sel = String.format("{%s,%d,%s}", LooperCmd.L_FIXED, LooperId.getNext(), sel);
 		}
 		openLooper(sel);
 	}
@@ -178,7 +177,7 @@ public class LooperPanel extends JPanel {
 		showSingleButton(LooperCmd.L_COPY);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%s}", LooperCmd.L_COPY, currentLooperId++, sel);
+			sel = String.format("{%s,%d,%s}", LooperCmd.L_COPY, LooperId.getNext(), sel);
 		}
 		openLooper(sel);
 	}
@@ -187,7 +186,7 @@ public class LooperPanel extends JPanel {
 		showSingleButton(LooperCmd.L_LIST);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%s}", LooperCmd.L_LIST, currentLooperId++, sel);
+			sel = String.format("{%s,%d,%s}", LooperCmd.L_LIST, LooperId.getNext(), sel);
 		}
 		openLooper(sel);
 	}
@@ -196,7 +195,7 @@ public class LooperPanel extends JPanel {
 		showSingleButton(LooperCmd.L_TEXT);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%s,%s}", LooperCmd.L_TEXT, currentLooperId++, configModel.getTextFrom(),
+			sel = String.format("{%s,%d,%s,%s}", LooperCmd.L_TEXT, LooperId.getNext(), configModel.getTextFrom(),
 					configModel.getTextTo());
 		}
 		openLooper(sel);

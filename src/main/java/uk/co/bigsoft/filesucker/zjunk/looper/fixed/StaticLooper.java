@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.looper.fixed;
+package uk.co.bigsoft.filesucker.zjunk.looper.fixed;
 
 import java.awt.Dimension;
 import java.util.List;

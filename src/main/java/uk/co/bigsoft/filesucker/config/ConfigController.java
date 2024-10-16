@@ -1,6 +1,7 @@
 package uk.co.bigsoft.filesucker.config;
 
 import java.io.File;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 
@@ -33,7 +34,7 @@ public class ConfigController {
 		view.getTextToTextField().setText(model.getTextTo());
 
 		view.getTextPostPrefixTextField().setText(model.getPostPrefix());
-		view.getFindFilesTextField().setText(model.getFindExtn());
+		view.getFindFilesTextField().setText(String.join(",", model.getFindExtn()));
 
 		view.getMaxTasksTextField().setText(String.valueOf(model.getMaxTasks()));
 		view.getMaxSubTaskTextField().setText(String.valueOf(model.getMaxSubTasks()));
@@ -135,7 +136,10 @@ public class ConfigController {
 	}
 
 	private void updateFindFiles() {
-		editingModel.setFindExtn(view.getFindFilesTextField().getText());
+		String txt = view.getFindFilesTextField().getText();
+		String[] txts = txt.split(",");
+		List<String> l = List.of(txts);
+		editingModel.setFindExtn(l);
 	}
 
 	private void updateMaxTasks() {

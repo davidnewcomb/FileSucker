@@ -1,14 +1,10 @@
 package uk.co.bigsoft.filesucker.ui.taskscreen;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
-import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.looper.list.ListLooper;
 
 public class ListLooperButton extends JButton implements ActionListener {
 

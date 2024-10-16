@@ -63,7 +63,7 @@ public class ConfigSaver extends Properties {
 		p.setProperty(LAB_POSTPREFIX, cm.getPostPrefix());
 		p.setProperty(LAB_MAXTASKS, String.valueOf(cm.getMaxTasks()));
 		p.setProperty(LAB_MAXSUBTASKS, String.valueOf(cm.getMaxSubTasks()));
-		p.setProperty(LAB_FINDEXTN, cm.getFindExtn());
+		p.setProperty(LAB_FINDEXTN, stringListToString(cm.getFindExtn()));
 		p.setProperty(LAB_HELPER_WEB, cm.getHelperWeb());
 		p.setProperty(LAB_HELPER_TEXT, cm.getHelperText());
 		p.setProperty(LAB_HELPER_DIRECTORY, cm.getHelperDirectory());
@@ -120,7 +120,7 @@ public class ConfigSaver extends Properties {
 		cm.setTextLooperHistory(getStringListProperty(p, LAB_TEXTLOOPHISTORY, cm.getTextLooperHistory()));
 
 		cm.setOpenDirectory(getStringProperty(p, LAB_HELPER_DIRECTORY, cm.getHelperDirectory()));
-		cm.setFindExtn(getStringProperty(p, LAB_FINDEXTN, cm.getFindExtn()));
+		cm.setFindExtn(getStringListProperty(p, LAB_FINDEXTN, cm.getFindExtn()));
 
 		cm.setPostPrefix(getStringProperty(p, LAB_POSTPREFIX, cm.getPostPrefix()));
 		cm.setBaseDir(getStringProperty(p, LAB_BASE, cm.getBaseDir()));

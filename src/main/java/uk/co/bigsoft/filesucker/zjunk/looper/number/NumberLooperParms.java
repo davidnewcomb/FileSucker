@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.looper.number;
+package uk.co.bigsoft.filesucker.zjunk.looper.number;
 
 public class NumberLooperParms {
 

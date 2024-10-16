@@ -1,6 +1,7 @@
 package uk.co.bigsoft.filesucker.config;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ConfigModel implements Cloneable {
@@ -15,7 +16,7 @@ public class ConfigModel implements Cloneable {
 	private String textFrom = "a";
 	private String textTo = "z";
 	private String postPrefix = "_";
-	private String findExtn = ".jpg";
+	private List<String> findExtn = Arrays.asList(".jpg");
 	private int maxTasks = 10;
 	private int maxSubTasks = 2;
 	private int delaySockReadMs = 5000;
@@ -123,11 +124,11 @@ public class ConfigModel implements Cloneable {
 		this.maxSubTasks = maxSubTasks;
 	}
 
-	public String getFindExtn() {
+	public List<String> getFindExtn() {
 		return findExtn;
 	}
 
-	public void setFindExtn(String findExtn) {
+	public void setFindExtn(List<String> findExtn) {
 		this.findExtn = findExtn;
 	}
 

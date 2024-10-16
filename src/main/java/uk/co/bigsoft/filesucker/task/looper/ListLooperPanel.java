@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import uk.co.bigsoft.filesucker.stream.StringFi;
+
 public class ListLooperPanel extends JPanel implements ILooperPanel {
 
 	public JTextArea listTextArea = new JTextArea();
@@ -41,16 +43,36 @@ public class ListLooperPanel extends JPanel implements ILooperPanel {
 
 	@Override
 	public String toStringBraces() {
-		List<String> items = listTextArea.getText().lines().map(s -> s.trim()).filter(f -> !"".equals(f)).sorted()
-				.collect(Collectors.toList());
+		List<String> items = listTextArea.getText().lines().map(StringFi.trim).filter(StringFi.notEmpty)
+				.collect(Collectors.toSet()).stream().sorted().collect(Collectors.toList());
 
-		StringBuilder sb = new StringBuilder("{L,");
-		sb.append(looperId);
-		if (items.size() > 0) {
-			String joinItems = String.join(",", items);
-			sb.append(",");
-			sb.append(joinItems);
+		if (items.size() == 0) {
+			return String.format("{%s,%d}", LooperCmd.L_LIST, looperId);
 		}
+
+		// Can only be done when listlooper closes
+		String first = items.get(0);
+		String common = "";
+		if (first.contains("/")) {
+			int lastSlash = first.lastIndexOf("/");
+			String pref = first.substring(0, lastSlash + 1);
+			boolean hasSamePrefix = items.stream().allMatch(s -> s.startsWith(pref));
+			if (hasSamePrefix) {
+				items = items.stream().map(s -> s.substring(pref.length())).collect(Collectors.toList());
+				common = pref;
+			}
+		}
+
+		StringBuilder sb = new StringBuilder();
+		String guts = String.join(",", items);
+
+		sb.append(common);
+		sb.append("{");
+		sb.append(LooperCmd.L_LIST);
+		sb.append(",");
+		sb.append(looperId);
+		sb.append(",");
+		sb.append(guts);
 		sb.append("}");
 		return sb.toString();
 	}

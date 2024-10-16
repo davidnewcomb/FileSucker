@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.looper.copy;
+package uk.co.bigsoft.filesucker.zjunk.looper.copy;
 
 import java.awt.Dimension;
 import java.util.Vector;
@@ -6,8 +6,8 @@ import java.util.Vector;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
-import uk.co.bigsoft.filesucker.looper.Looper;
 import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.zjunk.looper.Looper;
 
 public class CopyLooper extends Looper {
 	private int id;

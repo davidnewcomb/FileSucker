@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.looper.text;
+package uk.co.bigsoft.filesucker.zjunk.looper.text;
 
 import java.util.Comparator;
 

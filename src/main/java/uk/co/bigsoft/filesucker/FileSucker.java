@@ -75,6 +75,8 @@ public class FileSucker {
 		toolsController.initController(configModel);
 		taskController.initController(configModel, toolsModel);
 
+		Downloader.getInstance(configModel);
+
 		// Build tabs
 		activeFileSuckerThreads = new LinkedList<SuckerThread>();
 		configData = new ConfigData();
