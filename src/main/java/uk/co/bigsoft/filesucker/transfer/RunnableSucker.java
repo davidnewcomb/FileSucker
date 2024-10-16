@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.transfer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.bigsoft.filesucker.BasicAuth;
 import uk.co.bigsoft.filesucker.view.CreditScreen;
 
 public class RunnableSucker implements Runnable {

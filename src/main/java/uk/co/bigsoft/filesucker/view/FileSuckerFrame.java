@@ -6,12 +6,14 @@ import javax.swing.JTabbedPane;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.config.ConfigView;
 import uk.co.bigsoft.filesucker.credits.CreditsView;
+import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefs;
+import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefsHandler;
 import uk.co.bigsoft.filesucker.task.TaskView;
 import uk.co.bigsoft.filesucker.tools.ToolsView;
 
 public class FileSuckerFrame extends JFrame {
 
-	private static final FileSuckerPrefHandler fileSuckerPrefHandler = new FileSuckerPrefHandler();
+	private static final FileSuckerPrefsHandler fileSuckerPrefHandler = new FileSuckerPrefsHandler();
 
 	public static JTabbedPane tabPane;
 

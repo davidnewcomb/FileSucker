@@ -1,16 +1,15 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.task.view;
 
 import java.awt.event.MouseWheelEvent;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
-public class UpDownNumberJTextField extends JSpinner {
+public class UpDownTextJTextField extends JSpinner {
 	private JFormattedTextField textbox;
 
-	public UpDownNumberJTextField() {
+	public UpDownTextJTextField() {
 		super();
 
 		textbox = ((JSpinner.DefaultEditor) getEditor()).getTextField();
@@ -20,12 +19,12 @@ public class UpDownNumberJTextField extends JSpinner {
 		addMouseWheelListener(e -> mouseWheelMoved(e));
 	}
 
-	public void setStartingValue(int val) {
-		setModel(new SpinnerNumberModel(val, 0, Integer.MAX_VALUE, 1));
+	public void setStartingValue(String val) {
+		setModel(new SpinnerCharacterModel(val));
 	}
 
-	public int getVal() {
-		return ((Integer) getModel().getValue()).intValue();
+	public String getVal() {
+		return (String) getModel().getValue();
 	}
 
 	private void mouseWheelMoved(MouseWheelEvent e) {
@@ -38,7 +37,7 @@ public class UpDownNumberJTextField extends JSpinner {
 
 	@Override
 	public String toString() {
-		return textbox.getText().replaceAll(",", "");
+		return textbox.getText();
 	}
 
 }

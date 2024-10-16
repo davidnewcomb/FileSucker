@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
-
 public class ConfigData extends Properties {
 	private static final String listSeperator = "�"; //$NON-NLS-1$
 
@@ -242,7 +240,7 @@ public class ConfigData extends Properties {
 		try {
 			store(new FileOutputStream(CONFIG_FILE), header.toString());
 		} catch (Exception e) {
-			TaskScreen.setErrorMessage("Could not save config: " + e.toString());
+			System.out.println("Could not save config: " + e.toString());
 		}
 	}
 

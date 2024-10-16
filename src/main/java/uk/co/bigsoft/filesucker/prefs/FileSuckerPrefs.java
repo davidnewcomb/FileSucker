@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.view;
+package uk.co.bigsoft.filesucker.prefs;
 
 public class FileSuckerPrefs {
 

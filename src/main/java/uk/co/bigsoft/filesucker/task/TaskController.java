@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.SuckerParams;
-import uk.co.bigsoft.filesucker.SuckerThread;
 import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
@@ -26,6 +25,7 @@ import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 import uk.co.bigsoft.filesucker.task.looper.LooperId;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
+import uk.co.bigsoft.filesucker.transfer.SuckerThread;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskController {
@@ -309,12 +309,7 @@ public class TaskController {
 			listLooper.append("}");
 
 			view.getLooperPanel().openLooper(listLooper.toString());
-//			iteratorJP.removeAll();
-//			iteratorJP.add(new ListLooper(found.toString()), BorderLayout.CENTER);
-//			iteratorJP.repaint();
 
-//			int lastSlash = urlTF.getText().lastIndexOf("/");
-//			urlTF.setText(urlTF.getText().substring(0, lastSlash + 1));
 		} catch (Exception ex) {
 			model.setErrorMessage(ex.getMessage());
 		}

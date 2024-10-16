@@ -55,24 +55,6 @@ public class ConfigView extends JPanel {
 		baseTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		baseTF.setEditable(true);
 
-		// final JButton baseBrowseButton = new JButton("Browse");
-//		baseBrowseButton.addActionListener(
-//
-//				new ActionListener() // which does the actual
-//				// Delete operation
-//				{
-//					public void actionPerformed(ActionEvent e) {
-//						JFileChooser fc = new JFileChooser(FileSucker.configData.getBaseDir());
-//						fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-//						int returnVal = fc.showOpenDialog(baseBrowseButton);
-//
-//						if (returnVal == JFileChooser.APPROVE_OPTION) {
-//							File file = fc.getSelectedFile();
-//							FileSucker.configData.setScreenBaseDir(file);
-//							// System.out.println("File="+file.toString()+"|");
-//						}
-//					}
-//				});
 		hbox.add(baseTF);
 		hbox.add(baseBrowseButton);
 

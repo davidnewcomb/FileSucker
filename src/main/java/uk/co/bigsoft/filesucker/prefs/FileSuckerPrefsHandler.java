@@ -1,10 +1,10 @@
-package uk.co.bigsoft.filesucker.view;
+package uk.co.bigsoft.filesucker.prefs;
 
 import java.util.prefs.Preferences;
 
-public class FileSuckerPrefHandler {
+public class FileSuckerPrefsHandler {
 
-	private static final Class<FileSuckerPrefHandler> key = FileSuckerPrefHandler.class;
+	private static final Class<FileSuckerPrefsHandler> key = FileSuckerPrefsHandler.class;
 	private static final String BOUND_X = "x";
 	private static final String BOUND_Y = "y";
 	private static final String BOUND_HEIGHT = "height";

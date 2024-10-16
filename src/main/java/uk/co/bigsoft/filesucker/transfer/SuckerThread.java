@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.transfer;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -12,8 +12,10 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.FileSucker;
+import uk.co.bigsoft.filesucker.SuckerParams;
 import uk.co.bigsoft.filesucker.view.TransferScreen;
+import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 public class SuckerThread extends Thread {
 
@@ -172,7 +174,7 @@ public class SuckerThread extends Thread {
 	}
 
 	public void cancelThread() {
-		TaskScreen.setErrorMessage("");
+		System.out.println("");
 		cancel = true;
 		threadPoolExecutor.shutdownNow();
 		removeFromTransfersList();

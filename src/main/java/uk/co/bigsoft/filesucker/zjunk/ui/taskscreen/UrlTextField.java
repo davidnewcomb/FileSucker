@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -18,7 +18,7 @@ public class UrlTextField extends JTextField {
 
 		setDragEnabled(true);
 		setTransferHandler(transferHandler);
-		// addMouseListener(m);
+		addMouseListener(m);
 		addKeyListener(k);
 	}
 }

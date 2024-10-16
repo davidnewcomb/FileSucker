@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;

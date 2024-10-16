@@ -13,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import uk.co.bigsoft.filesucker.config.ConfigModel;
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class Utility {
 	public static String getClipboard() {
@@ -29,14 +28,13 @@ public class Utility {
 				}
 				toolkit.beep();
 			} catch (Exception ee) {
-				TaskScreen.setErrorMessage("RClick: " + ee.toString());
+				System.out.println("RClick: " + ee.toString());
 			}
 		}
 		return null;
 	}
 
 	public static void setClipboard(String str) {
-		TaskScreen.setErrorMessage("setClipboard not implemented");
 		System.out.println("setClipboard not implemented");
 	}
 

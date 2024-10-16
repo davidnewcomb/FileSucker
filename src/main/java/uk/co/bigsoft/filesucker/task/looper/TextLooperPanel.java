@@ -7,8 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-// import uk.co.bigsoft.filesucker.MenuButton;
-import uk.co.bigsoft.filesucker.UpDownTextJTextField;
+import uk.co.bigsoft.filesucker.task.view.UpDownTextJTextField;
 
 public class TextLooperPanel extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
 

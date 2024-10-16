@@ -22,11 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.UrlSequenceIteration;
-import uk.co.bigsoft.filesucker.UrlSequencer;
 import uk.co.bigsoft.filesucker.Utility;
-//import net.iharder.Base64;
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.transfer.UrlSequenceIteration;
+import uk.co.bigsoft.filesucker.transfer.UrlSequencer;
 
 public class ToolsScreen extends JPanel {
 	public static JTextField convertUrlText;
@@ -374,7 +372,7 @@ public class ToolsScreen extends JPanel {
 					Utility.launchBrowser("", path);
 					f.deleteOnExit();
 				} catch (Exception ex) {
-					TaskScreen.setErrorMessage(ex.getMessage());
+					System.out.println(ex.getMessage());
 				}
 
 			}

@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.view;
+package uk.co.bigsoft.filesucker.zjunk.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,8 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.view.LaunchProfileConfigPanel;
 
 public class ConfigScreen extends JPanel {
 	private final static int MAX_WID_HEIGHT = 15;

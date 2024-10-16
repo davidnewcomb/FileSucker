@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

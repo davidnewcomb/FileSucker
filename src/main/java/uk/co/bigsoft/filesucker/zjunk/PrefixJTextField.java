@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.zjunk;
 
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -7,23 +7,23 @@ import java.awt.event.KeyListener;
 import javax.swing.JTextField;
 import javax.swing.TransferHandler;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
-public class SuffixJTextField extends JTextField {
-	public SuffixJTextField(TransferHandler transferHandler) {
+public class PrefixJTextField extends JTextField {
+	public PrefixJTextField(TransferHandler transferHandler) {
 		setDragEnabled(true);
 		setTransferHandler(transferHandler);
 		setMinimumSize(new Dimension(10, 20));
 		setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		SuffixKeyListener k = new SuffixKeyListener(this);
+		PrefixKeyListener k = new PrefixKeyListener(this);
 		addKeyListener(k);
 	}
 }
 
-class SuffixKeyListener implements KeyListener {
-	// private SuffixJTextField m_textfield ;
+class PrefixKeyListener implements KeyListener {
+	// private PrefixJTextField m_textfield ;
 
-	SuffixKeyListener(SuffixJTextField t) {
+	PrefixKeyListener(PrefixJTextField t) {
 		// m_textfield = t ;
 	}
 

@@ -12,12 +12,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.UrlSequenceIteration;
-import uk.co.bigsoft.filesucker.UrlSequencer;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.task.TaskModel;
+import uk.co.bigsoft.filesucker.transfer.UrlSequenceIteration;
+import uk.co.bigsoft.filesucker.transfer.UrlSequencer;
 
 public class ToolsController {
 
@@ -54,7 +54,7 @@ public class ToolsController {
 		}
 	}
 
-	public void initController(ConfigModel configModel) {
+	public void initController(ConfigModel configModel, TaskModel taskModel) {
 		view.getWorkingTF().addKeyListener((KeyReleasedListener) e -> keyReleased());
 		view.getWorkingTF().addCaretListener(e -> caretMoved());
 		view.getWorkingTF().addMouseListener((MousePressListener) e -> pasteIntoWorking(e));
@@ -64,7 +64,7 @@ public class ToolsController {
 		view.getConvertB64auto().addActionListener(e -> convertB64Auto());
 		view.getGenerateWebPage().addActionListener(e -> generateWebPage(configModel));
 		view.getGenerateImageWebPage().addActionListener(e -> generateImageWebPage(configModel));
-		view.getLinksPageButton().addActionListener(e -> linksPage(configModel));
+		view.getLinksPageButton().addActionListener(e -> linksPage(configModel, taskModel));
 		view.getLaunchButton().addActionListener(e -> launch(configModel.getHelperWeb()));
 		view.getLaunchProfileButton().addActionListener(e -> launchProfile());
 	}
@@ -307,7 +307,7 @@ public class ToolsController {
 		}
 	}
 
-	private void linksPage(ConfigModel configModel) {
+	private void linksPage(ConfigModel configModel, TaskModel taskModel) {
 		try {
 			int idx;
 			StringBuffer s;
@@ -376,7 +376,7 @@ public class ToolsController {
 			Utility.launchBrowser(configModel, path);
 			f.deleteOnExit();
 		} catch (Exception ex) {
-			TaskScreen.setErrorMessage(ex.getMessage());
+			taskModel.setErrorMessage(ex.getMessage());
 		}
 	}
 

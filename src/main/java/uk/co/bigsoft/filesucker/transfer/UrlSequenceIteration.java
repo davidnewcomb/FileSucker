@@ -1,6 +1,8 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.transfer;
 
 import java.util.HashMap;
+
+import uk.co.bigsoft.filesucker.SuckerParams;
 
 public class UrlSequenceIteration {
 	private String remotefile = "";

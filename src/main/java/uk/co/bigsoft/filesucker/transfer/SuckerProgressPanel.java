@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.transfer;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -19,22 +19,19 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.SuckerParams;
+import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.view.CreditScreen;
+import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 public class SuckerProgressPanel extends JPanel {
 	private static final int TRANSFER_ROW_HEIGHT = 20;
 
 	private JLabel currentURL;
-
 	protected final JProgressBar totalNumberOfFiles;
-
 	private int current;
-
 	private Box files;
-
 	protected SuckerThread suckerThread;
-
 	protected SuckerParams parms;
 
 	SuckerProgressPanel(SuckerThread spt, SuckerParams parm, int totalNoFiles) {
@@ -55,7 +52,7 @@ public class SuckerProgressPanel extends JPanel {
 
 		currentURL = new JLabel(parms.getOrginalUrl());
 
-		TaskScreen.setErrorMessage("xxx-totalNoFiles=" + totalNoFiles);
+		System.out.println("xxx-totalNoFiles=" + totalNoFiles);
 		totalNumberOfFiles = new JProgressBar(SwingConstants.HORIZONTAL, 0, totalNoFiles);
 		totalNumberOfFiles.setValue(0);
 		totalNumberOfFiles.setStringPainted(true);
@@ -146,7 +143,7 @@ public class SuckerProgressPanel extends JPanel {
 					t.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mousePressed(MouseEvent ee) {
-							TaskScreen.setErrorMessage("Save: ");
+							System.out.println("Save: ");
 							TaskScreenParams.save(parms);
 							// suckerThread.save();
 						}
@@ -157,7 +154,7 @@ public class SuckerProgressPanel extends JPanel {
 					t.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mousePressed(MouseEvent ee) {
-							TaskScreen.setErrorMessage("Load: " + "xxx");
+							System.out.println("Load: " + "xxx");
 							TaskScreen.load(parms);
 						}
 					});

@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.TransferHandler;
 import javax.swing.text.JTextComponent;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
-
 // TODO - Refactor so that combo box is a list of classes
 
 public class HistoryJComboBox extends JComboBox<String> {
@@ -191,7 +189,7 @@ public class HistoryJComboBox extends JComboBox<String> {
 			System.out.println(
 					"HistoryJCombo:" + preferenceName + " " + p_items.length() + " >= " + Preferences.MAX_VALUE_LENGTH);
 			culPrefs();
-			TaskScreen.setErrorMessage("History automatically culled");
+			System.out.println("History automatically culled");
 			return;
 		}
 		preferences.put(preferenceName, p_items);

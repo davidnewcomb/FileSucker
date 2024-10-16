@@ -2,9 +2,7 @@ package uk.co.bigsoft.filesucker;
 
 public class HistoryElement {
 	public char HISTORY_SEPERATER = ':';
-
 	private String element;
-
 	private long time;
 
 	HistoryElement(String _element) {

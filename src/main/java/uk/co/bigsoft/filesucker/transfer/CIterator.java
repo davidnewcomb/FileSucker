@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.transfer;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,11 +11,8 @@ import uk.co.bigsoft.filesucker.sucker_types.SuckerType;
 
 public class CIterator implements Iterator<UrlSequenceIteration> {
 	private int[] iter;
-
 	private HashMap<Integer, String> ivariables;
-
 	private boolean hasnext;
-
 	private List<SuckerType> urlChunks;
 
 	public CIterator(List<SuckerType> uc) {

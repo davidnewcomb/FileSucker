@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.transfer;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -13,10 +13,11 @@ public class ProtocolURL {
 		url = URI.create(u).toURL();
 		port = url.getPort();
 		if (port == -1) {
-			if (url.getProtocol().equalsIgnoreCase("http"))
+			if (url.getProtocol().equalsIgnoreCase("http")) {
 				port = 80;
-			else if (url.getProtocol().equalsIgnoreCase("https"))
+			} else if (url.getProtocol().equalsIgnoreCase("https")) {
 				port = 443;
+			}
 		}
 	}
 

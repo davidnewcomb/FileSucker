@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.transfer;
 
 import java.awt.Dimension;
 import java.awt.event.InputEvent;
@@ -9,7 +9,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class SuckeringFileJProgressBar extends JProgressBar {
 	private static final int TRANSFER_ROW_HEIGHT = 20;
@@ -36,7 +35,7 @@ public class SuckeringFileJProgressBar extends JProgressBar {
 						popUpMenuPause.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mousePressed(MouseEvent ee) {
-								TaskScreen.setErrorMessage("Pause clicked: " + getDownloadInfo().getRemoteUrl());
+								System.out.println("Pause clicked: " + getDownloadInfo().getRemoteUrl());
 								getDownloadInfo().pauseThread();
 								// setString
 							}
@@ -46,7 +45,7 @@ public class SuckeringFileJProgressBar extends JProgressBar {
 						popUpMenuPause.addMouseListener(new MouseAdapter() {
 							@Override
 							public void mousePressed(MouseEvent ee) {
-								TaskScreen.setErrorMessage("Resume clicked: " + getDownloadInfo().getRemoteUrl());
+								System.out.println("Resume clicked: " + getDownloadInfo().getRemoteUrl());
 								getDownloadInfo().resumeThread();
 							}
 						});
@@ -56,7 +55,7 @@ public class SuckeringFileJProgressBar extends JProgressBar {
 					popUpMenuCancelNow.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mousePressed(MouseEvent ee) {
-							TaskScreen.setErrorMessage("CancelNow clicked: " + getDownloadInfo().getRemoteUrl());
+							System.out.println("CancelNow clicked: " + getDownloadInfo().getRemoteUrl());
 							getDownloadInfo().cancelThread();
 						}
 					});

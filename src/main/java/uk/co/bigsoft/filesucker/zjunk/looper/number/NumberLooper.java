@@ -1,17 +1,14 @@
 package uk.co.bigsoft.filesucker.zjunk.looper.number;
 
 import java.awt.Dimension;
-import java.util.Comparator;
 
 import javax.swing.JLabel;
 
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.HistoryDropDown;
-import uk.co.bigsoft.filesucker.HistoryElement;
 import uk.co.bigsoft.filesucker.MenuButton;
 import uk.co.bigsoft.filesucker.MenuButtonListOwner;
 import uk.co.bigsoft.filesucker.MenuButtonListener;
-import uk.co.bigsoft.filesucker.UpDownNumberJTextField;
+import uk.co.bigsoft.filesucker.task.view.UpDownNumberJTextField;
 import uk.co.bigsoft.filesucker.zjunk.looper.Looper;
 
 public class NumberLooper extends Looper implements MenuButtonListOwner {

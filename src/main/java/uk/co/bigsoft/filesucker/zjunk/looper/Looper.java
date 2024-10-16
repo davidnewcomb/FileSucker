@@ -7,8 +7,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.AddLooper;
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.AddLooper;
+import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 public abstract class Looper extends JPanel // implements Iterator
 {

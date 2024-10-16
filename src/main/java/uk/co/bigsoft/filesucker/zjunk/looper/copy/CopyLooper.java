@@ -6,8 +6,8 @@ import java.util.Vector;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 import uk.co.bigsoft.filesucker.zjunk.looper.Looper;
+import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 public class CopyLooper extends Looper {
 	private int id;

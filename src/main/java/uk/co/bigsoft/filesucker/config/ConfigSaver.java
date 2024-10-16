@@ -9,7 +9,6 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
 
 public class ConfigSaver extends Properties {
 	private static final String listSeperator = "�"; //$NON-NLS-1$
@@ -79,7 +78,7 @@ public class ConfigSaver extends Properties {
 			p.store(fos, header.toString());
 			fos.close();
 		} catch (Exception e) {
-			TaskScreen.setErrorMessage("Could not save config: " + e.toString());
+			System.out.println("Could not save config: " + e.toString());
 		}
 	}
 

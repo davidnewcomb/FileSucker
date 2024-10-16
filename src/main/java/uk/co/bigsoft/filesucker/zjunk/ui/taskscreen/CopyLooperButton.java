@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class ListLooperButton extends JButton implements ActionListener {
+public class CopyLooperButton extends JButton implements ActionListener {
 
-	public ListLooperButton() {
-		super("L");
+	public CopyLooperButton() {
+		super("C");
 
 		addActionListener(this);
-		setToolTipText("Creates a list looper");
+		setToolTipText("Makes a copy of another looper's value");
 		setMinimumSize(new Dimension(10, 20));
 		setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 	}
@@ -25,12 +25,14 @@ public class ListLooperButton extends JButton implements ActionListener {
 //
 //		FileSucker.taskScreen.numberB.setVisible(false);
 //		FileSucker.taskScreen.textB.setVisible(false);
-//		FileSucker.taskScreen.listB.setEnabled(false);
-//		FileSucker.taskScreen.copyB.setVisible(false);
+//		FileSucker.taskScreen.listB.setVisible(false);
+//		FileSucker.taskScreen.copyB.setEnabled(false);
 //		FileSucker.taskScreen.staticB.setVisible(false);
 //
 //		FileSucker.taskScreen.iteratorJP.removeAll();
-//		FileSucker.taskScreen.iteratorJP.add(new ListLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
+//		CopyLooper cl = new CopyLooper(TaskScreen.urlTF.getSelectedText());
+//		FileSucker.taskScreen.iteratorJP.add(cl, BorderLayout.CENTER);
 //		FileSucker.taskScreen.iteratorJP.repaint();
 	}
+
 }

@@ -7,37 +7,23 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import uk.co.bigsoft.filesucker.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 public class TaskScreenParams {
 	private final static String PROGRESS_FILE = "z_FileSucker_progress";
-
 	private static final String LAB_VERSION = "Version";
-
 	private static final String VAL_VERSION = "2";
-
 	private static final String LAB_NAME = "Name";
-
 	private static final String LAB_URL = "OrginalUrl";
-
 	private static final String LAB_INTODIR = "IntoDir";
-
 	private static final String LAB_PREFIX = "Prefix";
-
 	private static final String LAB_SUFFIX = "Suffix";
-
 	private static final String LAB_HEADERS = "Headers";
-
 	private static final String LAB_SUFFIX_END = "SuffixEnd";
-
 	private static final String LAB_ORGINAL_ADDRESS = "OrginalAddress";
-
 	private static final String LAB_OLD_URL = "url";
-
 	private static final String LAB_OLD_PREFIX = "prefix";
-
 	private static final String LAB_OLD_INTODIR = "base";
-
 	private static final String LAB_OLD_SUFFIX = "suffix";
 
 	public static void save(SuckerParams parms) {
@@ -75,7 +61,7 @@ public class TaskScreenParams {
 				}
 			}
 		} catch (Exception e) {
-			TaskScreen.setErrorMessage("Exception: " + e.toString());
+			System.out.println("Exception: " + e.toString());
 		}
 	}
 

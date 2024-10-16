@@ -4,9 +4,12 @@ import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefs;
+import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefsHandler;
+
 public class FileSuckerWindowAdaptor extends WindowAdapter {
 
-	private static final FileSuckerPrefHandler fileSuckerPrefHandler = new FileSuckerPrefHandler();
+	private static final FileSuckerPrefsHandler fileSuckerPrefHandler = new FileSuckerPrefsHandler();
 
 	@Override
 	public void windowClosed(WindowEvent e) {

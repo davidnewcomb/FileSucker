@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.ui.taskscreen;
+package uk.co.bigsoft.filesucker.zjunk.ui.taskscreen;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class StaticLooperButton extends JButton implements ActionListener {
+public class TextLooperButton extends JButton implements ActionListener {
 
-	public StaticLooperButton() {
-		super("S");
+	public TextLooperButton() {
+		super("T");
 
 		addActionListener(this);
-		setToolTipText("Adds an incrementing number");
+		setToolTipText("Creates a text looper");
 		setMinimumSize(new Dimension(10, 20));
 		setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 	}
@@ -24,13 +24,14 @@ public class StaticLooperButton extends JButton implements ActionListener {
 			return;
 
 //		FileSucker.taskScreen.numberB.setVisible(false);
-//		FileSucker.taskScreen.textB.setVisible(false);
+//		FileSucker.taskScreen.textB.setEnabled(false);
 //		FileSucker.taskScreen.listB.setVisible(false);
 //		FileSucker.taskScreen.copyB.setVisible(false);
-//		FileSucker.taskScreen.staticB.setEnabled(false);
+//		FileSucker.taskScreen.staticB.setVisible(false);
 //
 //		FileSucker.taskScreen.iteratorJP.removeAll();
-//		FileSucker.taskScreen.iteratorJP.add(new StaticLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
+//		FileSucker.taskScreen.iteratorJP.add(new TextLooper(TaskScreen.urlTF.getSelectedText()), BorderLayout.CENTER);
 //		FileSucker.taskScreen.iteratorJP.repaint();
 	}
+
 }
