@@ -6,6 +6,6 @@ public class LooperCmd {
 	public static final String L_TEXT = "T";
 	public static final String L_LIST = "L";
 	public static final String L_COPY = "C";
-	public static final String L_STATIC = "S";
+	public static final String L_FIXED = "F";
 
 }

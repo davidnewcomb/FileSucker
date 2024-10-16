@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import uk.co.bigsoft.filesucker.config.ConfigModel;
-import uk.co.bigsoft.filesucker.looper.fixed.StaticLooper;
 import uk.co.bigsoft.filesucker.task.TaskModel;
 
 public class LooperPanel extends JPanel {
@@ -23,20 +22,20 @@ public class LooperPanel extends JPanel {
 	private JButton textButton = new JButton(LooperCmd.L_TEXT);
 	private JButton listButton = new JButton(LooperCmd.L_LIST);
 	private JButton copyButton = new JButton(LooperCmd.L_COPY);
-	private JButton staticButton = new JButton(LooperCmd.L_STATIC);
+	private JButton fixedButton = new JButton(LooperCmd.L_FIXED);
 
 	private ILooperPanel currentPanel;
 	private ListLooperPanel listPanel = new ListLooperPanel();
 	private NumberLooperPanel numberPanel = new NumberLooperPanel();
 	private TextLooperPanel textPanel = new TextLooperPanel();
-	private StaticLooperPanel staticPanel = new StaticLooperPanel();
+	private FixedLooperPanel fixedPanel = new FixedLooperPanel();
 
 	private JLabel copyPanel = new JLabel();
 
 	private JButton cancelButton = new JButton("Cancel");
 	private JButton okButton = new JButton("Ok");
 
-	private JButton commandButtons[] = { numberButton, textButton, listButton, copyButton, staticButton };
+	private JButton commandButtons[] = { numberButton, textButton, listButton, copyButton, fixedButton };
 
 	// private JPanel centre = new JPanel();
 	private Box cancelOkBox = Box.createHorizontalBox();
@@ -69,7 +68,7 @@ public class LooperPanel extends JPanel {
 		textButton.addActionListener(e -> showTextLooper());
 		listButton.addActionListener(e -> showListLooper());
 		copyButton.addActionListener(e -> showCopyLooper());
-		staticButton.addActionListener(e -> showStaticLooper());
+		fixedButton.addActionListener(e -> showFixedLooper());
 
 		cancelButton.addActionListener(e -> cancelButton());
 		okButton.addActionListener(e -> okButton());
@@ -123,9 +122,9 @@ public class LooperPanel extends JPanel {
 			jpanel = textPanel;
 			break;
 		}
-		case LooperCmd.L_STATIC: {
-			currentPanel = staticPanel;
-			jpanel = staticPanel;
+		case LooperCmd.L_FIXED: {
+			currentPanel = fixedPanel;
+			jpanel = fixedPanel;
 			break;
 		}
 		default: {
@@ -161,11 +160,11 @@ public class LooperPanel extends JPanel {
 		openLooper(sel);
 	}
 
-	private void showStaticLooper() {
-		showSingleButton(LooperCmd.L_STATIC);
+	private void showFixedLooper() {
+		showSingleButton(LooperCmd.L_FIXED);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%s}", LooperCmd.L_STATIC, currentLooperId++, sel);
+			sel = String.format("{%s,%d,%s}", LooperCmd.L_FIXED, currentLooperId++, sel);
 		}
 		openLooper(sel);
 	}

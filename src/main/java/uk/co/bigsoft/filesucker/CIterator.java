@@ -6,7 +6,7 @@ import java.util.List;
 
 import uk.co.bigsoft.filesucker.sucker_types.CopySuckerType;
 import uk.co.bigsoft.filesucker.sucker_types.LabelSuckerType;
-import uk.co.bigsoft.filesucker.sucker_types.StaticSuckerType;
+import uk.co.bigsoft.filesucker.sucker_types.FixedSuckerType;
 import uk.co.bigsoft.filesucker.sucker_types.SuckerType;
 
 public class CIterator implements Iterator<UrlSequenceIteration> {
@@ -60,7 +60,7 @@ public class CIterator implements Iterator<UrlSequenceIteration> {
 		SuckerType st = urlChunks.get(idx);
 
 		if (st instanceof LabelSuckerType == true || st instanceof CopySuckerType == true
-				|| st instanceof StaticSuckerType == true)
+				|| st instanceof FixedSuckerType == true)
 			return rotate(--idx);
 
 		if (st.numberOfIterations() > iter[idx]) {
@@ -92,7 +92,7 @@ public class CIterator implements Iterator<UrlSequenceIteration> {
 		for (Iterator<SuckerType> i = urlChunks.iterator(); i.hasNext(); k++) {
 			SuckerType st = i.next();
 
-			if (st instanceof StaticSuckerType)
+			if (st instanceof FixedSuckerType)
 				continue;
 
 			if (st instanceof CopySuckerType)

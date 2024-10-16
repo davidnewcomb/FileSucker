@@ -8,13 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class StaticLooperPanel extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
+public class FixedLooperPanel extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
 
 	private JTextField idTF = new JTextField();
 	private JLabel looperTitle = new JLabel();
 	private int looperId = -1;
 
-	public StaticLooperPanel() {
+	public FixedLooperPanel() {
 		super();
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -30,7 +30,7 @@ public class StaticLooperPanel extends JPanel implements ILooperPanel { // , Men
 
 	@Override
 	public String toStringBraces() {
-		String full = String.format("{%s,%d,%s}", LooperCmd.L_STATIC, looperId, idTF.getText());
+		String full = String.format("{%s,%d,%s}", LooperCmd.L_FIXED, looperId, idTF.getText());
 		return full;
 	}
 

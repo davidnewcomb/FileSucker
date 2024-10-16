@@ -30,7 +30,7 @@ public class StaticLooper extends JPanel implements ILooperPanel { // , MenuButt
 
 	@Override
 	public String toStringBraces() {
-		String full = String.format("{%s,%d,%s}", LooperCmd.L_STATIC, looperId, idTF.getText());
+		String full = String.format("{%s,%d,%s}", LooperCmd.L_FIXED, looperId, idTF.getText());
 		return full;
 	}
 

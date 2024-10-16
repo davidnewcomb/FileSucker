@@ -1,9 +1,9 @@
 package uk.co.bigsoft.filesucker.sucker_types;
 
-public class StaticSuckerType extends SuckerType {
+public class FixedSuckerType extends SuckerType {
 	private int from = 1;
 
-	public StaticSuckerType(String f) {
+	public FixedSuckerType(String f) {
 		super(f);
 
 		String t = formatTokens.nextToken();

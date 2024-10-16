@@ -52,7 +52,7 @@ public abstract class SuckerType {
 		if (f.charAt(0) == 'c')
 			return new CopySuckerType(typeFormat);
 		if (f.charAt(0) == 's')
-			return new StaticSuckerType(typeFormat);
+			return new FixedSuckerType(typeFormat);
 		if (f.charAt(0) == 'z')
 			return new CustomSuckerType(typeFormat);
 
