@@ -1,5 +1,7 @@
 package uk.co.bigsoft.filesucker.transfer;
 
+import uk.co.bigsoft.filesucker.SuckerParams;
+
 public class TransferController {
 
 	private TransferModel transferModel;
@@ -17,5 +19,9 @@ public class TransferController {
 
 	public void initController() {
 
+	}
+	
+	public void addTask(SuckerParams params) {
+		
 	}
 }

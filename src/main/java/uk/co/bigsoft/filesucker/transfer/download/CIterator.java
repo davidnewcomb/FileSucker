@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer;
+package uk.co.bigsoft.filesucker.transfer.download;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,8 +23,9 @@ public class CIterator implements Iterator<UrlSequenceIteration> {
 		iter = new int[urlChunks.size()];
 		hasnext = true;
 
-		for (int i = 0; i < iter.length; ++i)
+		for (int i = 0; i < iter.length; ++i) {
 			iter[i] = 0;
+		}
 
 		ivariables = new HashMap<Integer, String>();
 
@@ -57,8 +58,9 @@ public class CIterator implements Iterator<UrlSequenceIteration> {
 		SuckerType st = urlChunks.get(idx);
 
 		if (st instanceof LabelSuckerType == true || st instanceof CopySuckerType == true
-				|| st instanceof FixedSuckerType == true)
+				|| st instanceof FixedSuckerType == true) {
 			return rotate(--idx);
+		}
 
 		if (st.numberOfIterations() > iter[idx]) {
 			iter[idx] += 1;
@@ -77,11 +79,13 @@ public class CIterator implements Iterator<UrlSequenceIteration> {
 		for (Iterator<SuckerType> i = urlChunks.iterator(); i.hasNext(); k++) {
 			SuckerType st = i.next();
 
-			if (st instanceof CopySuckerType == true)
+			if (st instanceof CopySuckerType == true) {
 				continue;
+			}
 
-			if (st.getSaveBuffer() != 0)
+			if (st.getSaveBuffer() != 0) {
 				ivariables.put(st.getSaveBuffer(), st.indexOf(iter[k]));
+			}
 		}
 
 		String s;
@@ -89,13 +93,15 @@ public class CIterator implements Iterator<UrlSequenceIteration> {
 		for (Iterator<SuckerType> i = urlChunks.iterator(); i.hasNext(); k++) {
 			SuckerType st = i.next();
 
-			if (st instanceof FixedSuckerType)
+			if (st instanceof FixedSuckerType) {
 				continue;
+			}
 
-			if (st instanceof CopySuckerType)
+			if (st instanceof CopySuckerType) {
 				s = ivariables.get(st.getSaveBuffer());
-			else
+			} else {
 				s = st.indexOf(iter[k]);
+			}
 
 			sb.append(s);
 		}

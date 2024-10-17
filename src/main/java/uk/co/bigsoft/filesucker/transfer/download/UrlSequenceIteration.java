@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer;
+package uk.co.bigsoft.filesucker.transfer.download;
 
 import java.util.HashMap;
 
@@ -17,9 +17,9 @@ public class UrlSequenceIteration {
 		int s = remotefile.lastIndexOf("/");
 		int e = remotefile.lastIndexOf(".");
 
-		if (e == -1)
+		if (e == -1) {
 			basename = remotefile.substring(s + 1);
-		else if (s < e) {
+		} else if (s < e) {
 			basename = remotefile.substring(s + 1, e);
 			extname = remotefile.substring(e);
 		}
@@ -47,8 +47,9 @@ public class UrlSequenceIteration {
 	}
 
 	public String expandVars(String what, String toExpand) {
-		if (toExpand == null)
+		if (toExpand == null) {
 			return "";
+		}
 
 		StringBuffer newBuf = new StringBuffer();
 

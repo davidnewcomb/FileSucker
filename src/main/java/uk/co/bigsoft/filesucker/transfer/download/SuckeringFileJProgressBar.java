@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer;
+package uk.co.bigsoft.filesucker.transfer.download;
 
 import java.awt.Dimension;
 import java.awt.event.InputEvent;

@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer;
+package uk.co.bigsoft.filesucker.transfer.download;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

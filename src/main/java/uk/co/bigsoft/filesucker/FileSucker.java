@@ -26,10 +26,10 @@ import uk.co.bigsoft.filesucker.tools.ToolsView;
 import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileController;
 import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileModel;
 import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileView;
-import uk.co.bigsoft.filesucker.transfer.SuckerThread;
 import uk.co.bigsoft.filesucker.transfer.TransferController;
 import uk.co.bigsoft.filesucker.transfer.TransferModel;
 import uk.co.bigsoft.filesucker.transfer.TransferView;
+import uk.co.bigsoft.filesucker.transfer.download.SuckerThread;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class FileSucker {
@@ -43,7 +43,7 @@ public class FileSucker {
 	// public static TransferScreen transferScreen = null;
 
 	public static void main(String args[]) {
-
+		
 		setUpVersion();
 		FileSuckerPrefs p = fileSuckerPrefHandler.load();
 

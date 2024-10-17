@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer;
+package uk.co.bigsoft.filesucker.transfer.download;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,13 +33,11 @@ public class UrlSequencer {
 		for (int i = 0; i < orginalString.length(); i++) {
 			if (orginalString.charAt(i) == '{' || orginalString.charAt(i) == '}') {
 				stype = getSuckerType(inBrackets, tok.toString());
-				if (orginalString.charAt(i) == '{')
-					inBrackets = true;
-				else
-					inBrackets = false;
+				inBrackets = orginalString.charAt(i) == '{';
 
-				if (stype == null)
+				if (stype == null) {
 					continue;
+				}
 
 				Integer saveB = stype.getSaveBuffer();
 				if (!(stype instanceof CopySuckerType)) {
@@ -63,10 +61,12 @@ public class UrlSequencer {
 	}
 
 	private SuckerType getSuckerType(boolean inBrackets, String tok) {
-		if (inBrackets)
+		if (inBrackets) {
 			return SuckerType.getSuckerType(tok.toString());
-		if ("".equals(tok))
+		}
+		if ("".equals(tok)) {
 			return null;
+		}
 		return new LabelSuckerType(tok);
 	}
 

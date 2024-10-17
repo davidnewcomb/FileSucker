@@ -4,19 +4,12 @@ import java.util.Hashtable;
 
 public class SuckerParams {
 	private String name;
-
 	private String orginalUrl;
-
 	private String intoDir;
-
 	private String prefix;
-
 	private String suffix;
-
 	private Hashtable<String, String> headers;
-
 	private boolean suffixEnd;
-
 	private String orginalAddress;
 
 	public SuckerParams(String name_, String orginalurl_, String intodir_, String prefix_, String suffix_,

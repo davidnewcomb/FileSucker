@@ -25,7 +25,7 @@ import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 import uk.co.bigsoft.filesucker.task.looper.LooperId;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
-import uk.co.bigsoft.filesucker.transfer.SuckerThread;
+import uk.co.bigsoft.filesucker.transfer.download.SuckerThread;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskController {
@@ -168,6 +168,12 @@ public class TaskController {
 			model.setDirectory(selectedDir);
 		}
 
+		String refs[] = model.getUrl().split("/", 4);
+		if (refs.length < 3) {
+			model.setErrorMessage("You must enter a url");
+			return;
+		}
+		
 		// directoryCB.savePrefs(selectedDir);
 
 //	String prefix = null;
@@ -204,7 +210,9 @@ public class TaskController {
 		// StringTokenizer st = new
 		// StringTokenizer(cookieTA.getText().trim(),
 		// "\n");
-		Hashtable<String, String> hm = new Hashtable<String, String>();
+		Hashtable<String, String> headers = new Hashtable<String, String>();
+		String ref = refs[0] + "//" + refs[2];
+		headers.put("Referer", ref);		
 		// while (st.hasMoreTokens())
 		// {
 		// String[] kv =
@@ -220,21 +228,16 @@ public class TaskController {
 		// {
 		// hm.put("Referer", ref);
 		// }
-		String refs[] = model.getUrl().split("/", 4);
-		if (refs.length < 3) {
-			model.setErrorMessage("You must enter a url");
-			return;
-		}
+
 
 		view.getRunYet().setReset();
 
-		String ref = refs[0] + "//" + refs[2];
-		hm.put("Referer", ref);
+
 
 		selectedDir = Utility.expandsPercentVars(selectedDir);
 
 		SuckerParams sp = new SuckerParams("name", model.getUrl(), selectedDir, model.getPrefix(), model.getSuffix(),
-				hm, model.isSuffixEnd(), model.getOriginalAddress());
+				headers, model.isSuffixEnd(), model.getOriginalAddress());
 
 		if (model.isSaveUrl()) {
 			TaskScreenParams.save(sp);

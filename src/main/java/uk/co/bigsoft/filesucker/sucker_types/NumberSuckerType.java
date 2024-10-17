@@ -1,5 +1,7 @@
 package uk.co.bigsoft.filesucker.sucker_types;
 
+import java.util.List;
+
 public class NumberSuckerType extends SuckerType // implements Iterator
 {
 	/*

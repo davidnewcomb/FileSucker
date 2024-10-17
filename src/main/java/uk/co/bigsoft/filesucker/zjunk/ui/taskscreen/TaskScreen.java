@@ -34,7 +34,7 @@ import uk.co.bigsoft.filesucker.SuckerParams;
 import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.task.view.RunYetComponent;
-import uk.co.bigsoft.filesucker.transfer.SuckerThread;
+import uk.co.bigsoft.filesucker.transfer.download.SuckerThread;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 import uk.co.bigsoft.filesucker.zjunk.PrefixJTextField;
 import uk.co.bigsoft.filesucker.zjunk.SuffixJTextField;
