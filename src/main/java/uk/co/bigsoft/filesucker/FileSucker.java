@@ -27,8 +27,10 @@ import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileController;
 import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileModel;
 import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileView;
 import uk.co.bigsoft.filesucker.transfer.SuckerThread;
+import uk.co.bigsoft.filesucker.transfer.TransferController;
+import uk.co.bigsoft.filesucker.transfer.TransferModel;
+import uk.co.bigsoft.filesucker.transfer.TransferView;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
-import uk.co.bigsoft.filesucker.view.TransferScreen;
 
 public class FileSucker {
 	private static final FileSuckerPrefsHandler fileSuckerPrefHandler = new FileSuckerPrefsHandler();
@@ -38,7 +40,7 @@ public class FileSucker {
 
 	public static LinkedList<SuckerThread> activeFileSuckerThreads = null;
 
-	public static TransferScreen transferScreen = null;
+	// public static TransferScreen transferScreen = null;
 
 	public static void main(String args[]) {
 
@@ -55,6 +57,7 @@ public class FileSucker {
 		LaunchProfileModel launchProfileModel = new LaunchProfileModel();
 		ToolsModel toolsModel = new ToolsModel();
 		TaskModel taskModel = new TaskModel();
+		TransferModel transferModel = new TransferModel();
 
 		taskModel.setDirectory(configModel.getBaseDir());
 
@@ -64,6 +67,7 @@ public class FileSucker {
 		ToolsView toolsView = new ToolsView(launchProfileView);
 		LooperPanel looperPanel = new LooperPanel(configModel, taskModel);
 		TaskView taskView = new TaskView(looperPanel);
+		TransferView transferView = new TransferView();
 
 		ConfigController configController = new ConfigController(configModel, configView);
 		CreditsController creditsController = new CreditsController(creditsModel, creditsView);
@@ -71,22 +75,23 @@ public class FileSucker {
 				launchProfileView);
 		ToolsController toolsController = new ToolsController(toolsModel, toolsView);
 		TaskController taskController = new TaskController(taskModel, taskView);
+		TransferController transferController = new TransferController(transferModel, transferView);
 
 		configController.initController();
 		creditsController.initController();
 		launchProfileController.initController(configModel, toolsModel);
 		toolsController.initController(configModel, taskModel);
 		taskController.initController(configModel, toolsModel);
+		transferController.initController();
 
 		Downloader.getInstance(configModel);
 
 		// Build tabs
-		activeFileSuckerThreads = new LinkedList<SuckerThread>();
-		transferScreen = new TransferScreen();
-
+//		activeFileSuckerThreads = new LinkedList<SuckerThread>();
+//		transferScreen = new TransferScreen();
 
 		// Open window
-		new FileSuckerFrame(taskView, configView, creditsView, toolsView);
+		new FileSuckerFrame(taskView, configView, creditsView, toolsView, transferView);
 	}
 
 	private static void setUpVersion() {

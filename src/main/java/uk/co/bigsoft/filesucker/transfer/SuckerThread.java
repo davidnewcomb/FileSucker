@@ -20,19 +20,14 @@ import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 public class SuckerThread extends Thread {
 
 	private SuckerParams parms;
-
 	private boolean running = true;
-
 	private boolean cancel = false;
-
 	private UrlSequencer urlsequence;
-
 	private ThreadPoolExecutor threadPoolExecutor;
 	private BlockingQueue<Runnable> queue;
 	private int remaining;
 	// private Object remainingSync = new Object();
 	private SuckerProgressPanel statusPanel;
-
 	private long timeToDownload = 0L;
 
 	// TODO: SuckerThread

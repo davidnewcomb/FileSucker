@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.event.ListDataListener;
 
-
 public class LaunchProfileConfigPanel extends JPanel {
 	protected JList<String> current;
 

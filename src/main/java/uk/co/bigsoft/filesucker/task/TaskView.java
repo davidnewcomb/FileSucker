@@ -50,7 +50,7 @@ public class TaskView extends JPanel {
 
 	private JTextField prefixTF = new JTextField();
 	private JTextField suffixTF = new JTextField();
-	
+
 	private JButton prefixButton = new JButton("Prefix");
 	private JButton prefixLowerButton = new JButton("Lower");
 	private JButton prefixClipButton = new JButton("Clip");
@@ -148,7 +148,8 @@ public class TaskView extends JPanel {
 		hbox.add(copyToToolsButton);
 		centre.add(hbox);
 
-		//OriginalAddressLaunchButton findFileLaunchB = new OriginalAddressLaunchButton(originalAddressTF);
+		// OriginalAddressLaunchButton findFileLaunchB = new
+		// OriginalAddressLaunchButton(originalAddressTF);
 
 		centre.add(new JLabel(" "));
 
@@ -253,13 +254,12 @@ public class TaskView extends JPanel {
 		suffixEndCB.setMinimumSize(new Dimension(10, 20));
 		suffixEndCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		
 		prefixTF.setMinimumSize(new Dimension(10, 20));
 		prefixTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		
+
 		suffixTF.setMinimumSize(new Dimension(10, 20));
 		suffixTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		
+
 		hbox = Box.createVerticalBox();
 		hbox.setBorder(new LineBorder(Color.BLUE));
 		hbox.add(new JLabel("Filename modifiers"));

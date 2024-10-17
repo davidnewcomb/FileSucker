@@ -55,7 +55,7 @@ public class TaskController {
 		view.getOriginalAddressTextField().addCaretListener(e -> caretMovedOrigAddr());
 		view.getOriginalAddressTextField().addMouseListener((MousePressListener) e -> pasteIntoWorkingOrigAddr(e));
 		view.getOriginalAddressLaunchButton().addActionListener(e -> originalAddressLaunch(configModel));
-		
+
 		view.getDirectoryComboBox().getEditor().getEditorComponent()
 				.addKeyListener((KeyReleasedListener) e -> keyReleasedDirectory());
 
@@ -235,6 +235,7 @@ public class TaskController {
 
 		SuckerParams sp = new SuckerParams("name", model.getUrl(), selectedDir, model.getPrefix(), model.getSuffix(),
 				hm, model.isSuffixEnd(), model.getOriginalAddress());
+
 		if (model.isSaveUrl()) {
 			TaskScreenParams.save(sp);
 			if (model.isSaveOnly()) {
@@ -255,7 +256,7 @@ public class TaskController {
 		// }
 		// TransferScreen.updateScreen () ;
 		// // Switch to other tab
-		FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
+		// FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
 
 		// for (int t = 0 ; t <
 		// FileSuckerFrame.tabPane.getComponentCount()

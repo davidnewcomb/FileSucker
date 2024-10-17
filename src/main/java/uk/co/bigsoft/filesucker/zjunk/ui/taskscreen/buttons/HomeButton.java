@@ -26,7 +26,7 @@ public class HomeButton extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//directory.setSelectedItem(FileSucker.configData.getScreenBaseDir());
+		// directory.setSelectedItem(FileSucker.configData.getScreenBaseDir());
 	}
 
 }

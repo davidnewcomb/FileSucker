@@ -222,7 +222,7 @@ public class TaskScreen extends JPanel {
 				// }
 				// TransferScreen.updateScreen () ;
 				// // Switch to other tab
-				FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
+				// FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
 
 				// for (int t = 0 ; t <
 				// FileSuckerFrame.tabPane.getComponentCount()

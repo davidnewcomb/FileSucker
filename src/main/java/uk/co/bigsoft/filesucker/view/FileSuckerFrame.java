@@ -10,6 +10,7 @@ import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefs;
 import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefsHandler;
 import uk.co.bigsoft.filesucker.task.TaskView;
 import uk.co.bigsoft.filesucker.tools.ToolsView;
+import uk.co.bigsoft.filesucker.transfer.TransferView;
 
 public class FileSuckerFrame extends JFrame {
 
@@ -17,7 +18,8 @@ public class FileSuckerFrame extends JFrame {
 
 	public static JTabbedPane tabPane;
 
-	public FileSuckerFrame(TaskView taskView, ConfigView configView, CreditsView creditsView, ToolsView toolsView) {
+	public FileSuckerFrame(TaskView taskView, ConfigView configView, CreditsView creditsView, ToolsView toolsView,
+			TransferView transferView) {
 		super("FileSucker");
 		// setIconImage (icon.getImage ()) ;
 		addWindowListener(new FileSuckerWindowAdaptor());
@@ -27,7 +29,7 @@ public class FileSuckerFrame extends JFrame {
 
 		// Set up page
 		tabPane.addTab("NewTask", null, taskView, "Create new task");
-		tabPane.addTab("Transfer", null, FileSucker.transferScreen, "View tasks in progress");
+		tabPane.addTab("Transfer", null, transferView, "View tasks in progress");
 		tabPane.addTab("Tools", null, toolsView, "Text tools");
 		tabPane.addTab("Options", null, configView, "Change default options");
 		tabPane.addTab("Credits", null, creditsView, "Statistics & Credits");

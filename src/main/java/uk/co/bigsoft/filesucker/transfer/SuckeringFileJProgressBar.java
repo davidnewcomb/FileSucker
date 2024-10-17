@@ -9,7 +9,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
 
-
 public class SuckeringFileJProgressBar extends JProgressBar {
 	private static final int TRANSFER_ROW_HEIGHT = 20;
 

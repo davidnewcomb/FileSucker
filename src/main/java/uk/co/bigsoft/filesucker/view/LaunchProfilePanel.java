@@ -106,7 +106,7 @@ class PasteMouseListener implements MouseListener {
 		String s = Utility.getClipboard();
 		if (s != null) {
 			m_textfield.setText(s);
-			 //taskScreen.changed();
+			// taskScreen.changed();
 		}
 	}
 
