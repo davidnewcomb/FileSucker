@@ -159,8 +159,15 @@ public class LooperPanel extends JPanel {
 		showSingleButton(LooperCmd.L_NUMBER);
 		String sel = taskModel.getSelectedUrl();
 		if (!sel.startsWith("{")) {
-			sel = String.format("{%s,%d,%d,%d,%d}", LooperCmd.L_NUMBER, LooperId.getNext(), configModel.getNumberFrom(),
-					configModel.getNumberTo(), configModel.getNumberPad());
+			int newId = LooperId.getNext();
+			if (sel.length() == 0) {
+				sel = String.format("{%s,%d,%d,%d,%d}", LooperCmd.L_NUMBER, newId, configModel.getNumberFrom(),
+						configModel.getNumberTo(), configModel.getNumberPad());
+			} else {
+				int pad = sel.length();
+				sel = String.format("{%s,%d,%d,%d,%d}", LooperCmd.L_NUMBER, newId, configModel.getNumberFrom(),
+						configModel.getNumberTo(), pad);
+			}
 		}
 		openLooper(sel);
 	}
