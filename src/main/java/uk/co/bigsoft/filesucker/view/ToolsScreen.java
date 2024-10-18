@@ -27,6 +27,9 @@ import uk.co.bigsoft.filesucker.transfer.download.UrlSequenceIteration;
 import uk.co.bigsoft.filesucker.transfer.download.UrlSequencer;
 
 public class ToolsScreen extends JPanel {
+	private static Pattern urlPattern = Pattern.compile(
+			"([Hh][Rr][Ee][Ff]=)?([Hh][Rr][Ee][Ff]=)?([Hh][Tt][Tt][Pp]://)(['\"])?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?");
+
 	public static JTextField convertUrlText;
 
 	public ToolsScreen() {
@@ -448,13 +451,8 @@ public class ToolsScreen extends JPanel {
 	 */
 	protected static List<String> getLinks(StringBuffer initialText) {
 		LinkedList<String> list = new LinkedList<String>();
-		// Pattern p = Pattern.compile
-		// ("(@)?(href=')?(HREF=')?(HREF=\")?(href=\")?(http://)?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?")
-		// ;
-		Pattern p = Pattern.compile(
-				"([Hh][Rr][Ee][Ff]=)?([Hh][Rr][Ee][Ff]=)?([Hh][Tt][Tt][Pp]://)(['\"])?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?");
 
-		Matcher m = p.matcher(initialText);
+		Matcher m = urlPattern.matcher(initialText);
 		while (m.find()) {
 			String href = m.group();
 			if (href.length() < 8)

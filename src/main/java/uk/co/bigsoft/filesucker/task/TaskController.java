@@ -16,7 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.event.CaretEvent;
 
 import uk.co.bigsoft.filesucker.Downloader;
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.SuckerParams;
 import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
@@ -29,7 +28,6 @@ import uk.co.bigsoft.filesucker.tools.ToolsModel;
 import uk.co.bigsoft.filesucker.transfer.download.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.download.SuckerIterable;
 import uk.co.bigsoft.filesucker.transfer.download.SuckerThread;
-import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskController {
 
@@ -155,16 +153,18 @@ public class TaskController {
 	}
 
 	String noError = null;
+
 	private void runTask() {
-		
-		SuckerIterable si = new SuckerIterable(model.getUrl(), model.getDirectory(), model.getPrefix(), model.getSuffix(), model.isSuffixEnd());
+		TaskConfig taskConfig = new TaskConfig(model.getUrl(), model.getDirectory(), model.getPrefix(),
+				model.getSuffix(), model.isSuffixEnd());
+		SuckerIterable si = new SuckerIterable(taskConfig);
 		for (SuckerItem i : si) {
 			System.out.println(i.getUrl() + " -> " + i.getLocal());
 		}
 		if (noError == null) {
 			return;
 		}
-		
+
 //		if (Looper.isActive()) {
 //		TaskScreen.setErrorMessage("Looper is active");
 //		return;
@@ -186,7 +186,7 @@ public class TaskController {
 			model.setErrorMessage("You must enter a url");
 			return;
 		}
-		
+
 		// directoryCB.savePrefs(selectedDir);
 
 //	String prefix = null;
@@ -225,7 +225,7 @@ public class TaskController {
 		// "\n");
 		Hashtable<String, String> headers = new Hashtable<String, String>();
 		String ref = refs[0] + "//" + refs[2];
-		headers.put("Referer", ref);		
+		headers.put("Referer", ref);
 		// while (st.hasMoreTokens())
 		// {
 		// String[] kv =
@@ -242,10 +242,7 @@ public class TaskController {
 		// hm.put("Referer", ref);
 		// }
 
-
 		view.getRunYet().setReset();
-
-
 
 		selectedDir = Utility.expandsPercentVars(selectedDir);
 
@@ -650,11 +647,13 @@ public class TaskController {
 		if (min == max) {
 			model.setSelectedUrl("");
 		} else {
-			//System.out.println(String.format("start=%d end=%d selected=%s", e.getDot(), e.getMark(), model.getUrl().substring(e.getDot(), e.getMark())));
+			// System.out.println(String.format("start=%d end=%d selected=%s", e.getDot(),
+			// e.getMark(), model.getUrl().substring(e.getDot(), e.getMark())));
 
 			try {
-			System.out.println(String.format("start=%d end=%d selected=%s", min, max, model.getUrl().substring(min, max)));
-			model.setSelectedUrl(model.getUrl().substring(min, max));
+				System.out.println(
+						String.format("start=%d end=%d selected=%s", min, max, model.getUrl().substring(min, max)));
+				model.setSelectedUrl(model.getUrl().substring(min, max));
 			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
 			}

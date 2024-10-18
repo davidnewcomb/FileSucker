@@ -11,21 +11,21 @@ public class SuckerTypeFactory {
 	public SuckerTypeFactory() {
 		//
 	}
-	
+
 	public SuckerType create(String suckerString) {
-		if (suckerString.charAt(0) != '{' || suckerString.charAt(suckerString.length()-1) != '}') {
+		if (suckerString.charAt(0) != '{' || suckerString.charAt(suckerString.length() - 1) != '}') {
 			return new FixedSuckerType(-LooperId.getNext(), List.of(suckerString));
 		}
-		
-		String guts = suckerString.substring(1, suckerString.length()-1);
-		
+
+		String guts = suckerString.substring(1, suckerString.length() - 1);
+
 		List<String> unmodifiableParams = List.of(guts.split(","));
 		List<String> params = new ArrayList<String>(unmodifiableParams);
-		
+
 		String type = params.remove(0);
 		int id = Integer.parseInt(params.remove(0));
-		
-		switch(type) {
+
+		switch (type) {
 		case LooperCmd.L_NUMBER: {
 			return new NumberSuckerType(id, params);
 		}

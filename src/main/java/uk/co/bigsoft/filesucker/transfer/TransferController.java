@@ -20,8 +20,8 @@ public class TransferController {
 	public void initController() {
 
 	}
-	
+
 	public void addTask(SuckerParams params) {
-		
+
 	}
 }

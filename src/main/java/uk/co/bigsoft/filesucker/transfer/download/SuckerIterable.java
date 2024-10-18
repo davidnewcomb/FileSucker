@@ -5,30 +5,24 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import uk.co.bigsoft.filesucker.task.TaskConfig;
 import uk.co.bigsoft.filesucker.transfer.suckertype.SuckerType;
 import uk.co.bigsoft.filesucker.transfer.suckertype.SuckerTypeFactory;
 
 public class SuckerIterable implements Iterable<SuckerItem> {
+	private static final Pattern looperPattern = Pattern.compile("\\{[^}]*\\}");
 	private SuckerTypeFactory factory = new SuckerTypeFactory();
 	private ArrayList<SuckerType> suckers = new ArrayList<>();
 	private int[] currentIndex;
 	private int[] maxIndex;
 	private ArrayList<int[]> things = new ArrayList<>();
+	private TaskConfig taskConfig;
 
-	private String baseDir;
-	private String prefix;
-	private String suffix;
-	private boolean b4extn;
-	
-	public SuckerIterable(String url, String baseDir, String prefix, String suffix, boolean b4extn) {
+	public SuckerIterable(TaskConfig taskConfig) {
 
-		this.baseDir = baseDir;
-		this.prefix = prefix;
-		this.suffix = suffix;
-		this.b4extn = b4extn;
-		
-		Pattern p = Pattern.compile("\\{[^}]*\\}");
-		Matcher matcher = p.matcher(url);
+		this.taskConfig = taskConfig;
+
+		Matcher matcher = looperPattern.matcher(taskConfig.getUrl());
 
 		int pos = 0;
 
@@ -38,15 +32,15 @@ public class SuckerIterable implements Iterable<SuckerItem> {
 			int end = matcher.end();
 
 			if (pos != start) {
-				String chunk = url.substring(pos, start);
+				String chunk = taskConfig.getUrl().substring(pos, start);
 				suckers.add(factory.create(chunk));
 			}
 			suckers.add(factory.create(matcher.group()));
 			pos = end;
 		}
 
-		if (pos < url.length() - 1) {
-			String chunk = url.substring(pos, url.length());
+		if (pos < taskConfig.getUrl().length() - 1) {
+			String chunk = taskConfig.getUrl().substring(pos, taskConfig.getUrl().length());
 			suckers.add(factory.create(chunk));
 		}
 
@@ -93,6 +87,6 @@ public class SuckerIterable implements Iterable<SuckerItem> {
 
 	@Override
 	public Iterator<SuckerItem> iterator() {
-		return new SuckerIterator(suckers, things, baseDir, prefix, suffix, b4extn);
+		return new SuckerIterator(suckers, things, taskConfig);
 	}
 }

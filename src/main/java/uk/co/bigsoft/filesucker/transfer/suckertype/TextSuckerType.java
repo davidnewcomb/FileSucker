@@ -17,8 +17,8 @@ public class TextSuckerType extends SuckerType {
 		toChar = params.get(1);
 		int from = letters.indexOf(fromChar);
 		int to = letters.indexOf(toChar);
-		
-		for (int i = from ; i <= to ; ++i) {
+
+		for (int i = from; i <= to; ++i) {
 			things.add(String.valueOf(letters.charAt(i)));
 		}
 	}

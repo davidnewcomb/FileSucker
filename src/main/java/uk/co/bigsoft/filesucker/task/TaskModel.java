@@ -11,6 +11,7 @@ import javax.swing.event.SwingPropertyChangeSupport;
 import uk.co.bigsoft.filesucker.Utility;
 
 public class TaskModel {
+	private static final Pattern looperPattern = Pattern.compile("\\{[^}]*\\}");
 	private SwingPropertyChangeSupport propChangeFirer;
 	private String url = "";
 	private int urlCaretStart = 0;
@@ -36,8 +37,7 @@ public class TaskModel {
 
 	public List<Integer> getLooperIds() {
 		ArrayList<Integer> l = new ArrayList<>();
-		Pattern p = Pattern.compile("\\{[^}]*\\}");
-		Matcher matcher = p.matcher(url);
+		Matcher matcher = looperPattern.matcher(url);
 		while (matcher.find()) {
 			String s = matcher.group();
 			List<String> params = Utility.splitLooperText(s);
@@ -60,7 +60,7 @@ public class TaskModel {
 
 	public String getSelectedUrl() {
 		if (selectedUrl.startsWith("{") && selectedUrl.endsWith("}")) {
-			String guts = selectedUrl.substring(1, selectedUrl.length()-2);
+			String guts = selectedUrl.substring(1, selectedUrl.length() - 2);
 			String[] bits = guts.split(",");
 			return "{" + bits[1] + "}";
 		}
@@ -181,7 +181,7 @@ public class TaskModel {
 
 	public void replaceSelectedUrl(String looperText) {
 		String oldVal = url;
-		
+
 		StringBuilder s = new StringBuilder(url);
 		if (urlCaretStart != urlCaretEnd) {
 			s.delete(urlCaretStart, urlCaretEnd);

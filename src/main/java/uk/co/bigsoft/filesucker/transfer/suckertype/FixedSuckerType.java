@@ -8,7 +8,7 @@ public class FixedSuckerType extends SuckerType {
 
 	FixedSuckerType(int looperId, List<String> params) {
 		super(looperId);
-		
+
 		things.add(params.getFirst());
 	}
 

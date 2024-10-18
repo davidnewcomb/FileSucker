@@ -16,8 +16,8 @@ public class NumberSuckerType extends SuckerType {
 		to = Integer.parseInt(params.get(1));
 		pad = params.get(2);
 		String padFormat = "%0" + pad + "d";
-		
-		for (int i = from ; i <= to ; ++i) {
+
+		for (int i = from; i <= to; ++i) {
 			things.add(String.format(padFormat, i));
 		}
 	}
