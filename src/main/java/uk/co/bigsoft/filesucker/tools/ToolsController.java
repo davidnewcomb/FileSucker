@@ -23,6 +23,7 @@ public class ToolsController {
 
 	private static final Pattern urlPattern = Pattern.compile(
 			"([Hh][Rr][Ee][Ff]=)?([Hh][Rr][Ee][Ff]=)?([Hh][Tt][Tt][Pp]://)(['\"])?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?");
+	private static final Pattern b64EncodePattern = Pattern.compile("aHR0c[a-zA-Z0-9=]*");
 
 	private ToolsModel model;
 	private ToolsView view;
@@ -177,28 +178,14 @@ public class ToolsController {
 	}
 
 	private void convertB64Auto() {
-		try {
-			String text = model.getWorking();
-			// int start = text.indexOf("aHR0cDovL");
-			int start = text.indexOf("aHR0c");
-			if (start == -1) {
-				return;
-			}
-			int end = text.indexOf("&", start + 1);
-			if (end == -1) {
-				end = text.length();
-			}
-			String selected = text.substring(start, end);
-			System.out.println("substring:" + selected + "|");
-
-			byte[] decodedBytes = Base64.getDecoder().decode(selected);
-			String decoded = new String(decodedBytes);
-
-			model.setWorking(decoded);
-		} catch (Exception ex) {
-			System.out.println("B64auto");
-			ex.printStackTrace();
+		String text = model.getWorking();
+		Matcher m = b64EncodePattern.matcher(text);
+		if (!m.find()) {
+			return;
 		}
+		byte[] decodedBytes = Base64.getDecoder().decode(m.group());
+		String decoded = new String(decodedBytes);
+		model.setWorking(decoded);
 	}
 
 	private void generateWebPage(ConfigModel configModel) {

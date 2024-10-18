@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer.download;
+package uk.co.bigsoft.filesucker.transfer.download.si;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import uk.co.bigsoft.filesucker.task.TaskConfig;
 import uk.co.bigsoft.filesucker.transfer.suckertype.SuckerType;
 
-public class SuckerIterator implements Iterator<SuckerItem> {
+class SuckerIterator implements Iterator<SuckerItem> {
 
 	private static final Pattern looperPattern = Pattern.compile("\\{[0-9]+}");
 	private static final int IDX_BASE = 0;
@@ -21,7 +21,7 @@ public class SuckerIterator implements Iterator<SuckerItem> {
 	private Iterator<int[]> iter;
 	private TaskConfig taskConfig;
 
-	public SuckerIterator(List<SuckerType> suckersList, ArrayList<int[]> things, TaskConfig taskConfig) {
+	SuckerIterator(List<SuckerType> suckersList, ArrayList<int[]> things, TaskConfig taskConfig) {
 		this.taskConfig = taskConfig;
 		suckers = suckersList;
 		iter = things.iterator();

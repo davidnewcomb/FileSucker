@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer.download;
+package uk.co.bigsoft.filesucker.transfer.download.si;
 
 public class SuckerItem {
 	private String url;

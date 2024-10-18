@@ -1,16 +1,23 @@
 package uk.co.bigsoft.filesucker.transfer;
 
-import uk.co.bigsoft.filesucker.SuckerParams;
+import java.beans.PropertyChangeEvent;
+
+import uk.co.bigsoft.filesucker.task.TaskProps;
+import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
+import uk.co.bigsoft.filesucker.transfer.view.SuckerTaskModel;
+import uk.co.bigsoft.filesucker.transfer.view.SuckerTaskView;
 
 public class TransferController {
 
-	private TransferModel transferModel;
-	private TransferView transferView;
+	private TransferModel model;
+	private TransferView view;
 
 	public TransferController(TransferModel m, TransferView v) {
-		transferModel = m;
-		transferView = v;
+		model = m;
+		view = v;
 		initView();
+		model.addListener(e -> modelListener(e));
 	}
 
 	private void initView() {
@@ -21,7 +28,26 @@ public class TransferController {
 
 	}
 
-	public void addTask(SuckerParams params) {
+	private void modelListener(PropertyChangeEvent evt) {
+		String propName = evt.getPropertyName();
+		Object newVal = evt.getNewValue();
 
+		switch (propName) {
+		case TransferProps.F_TASK_ADDED: {
+			SuckerIterable si = (SuckerIterable) newVal;
+			SuckerTaskModel model = new SuckerTaskModel(si.getTaskConfig().getUrl(), si.size());
+			SuckerTaskView panel = new SuckerTaskView(model);
+			view.addTask(panel);
+		}
+		}
+
+	}
+	
+	public void addTask(SuckerIterable si) {
+
+		for (SuckerItem i : si) {
+			System.out.println(i.getUrl() + " -> " + i.getLocal());
+		}
+		model.addTask(si);
 	}
 }

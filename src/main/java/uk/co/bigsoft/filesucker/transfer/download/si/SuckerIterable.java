@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer.download;
+package uk.co.bigsoft.filesucker.transfer.download.si;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -59,6 +59,11 @@ public class SuckerIterable implements Iterable<SuckerItem> {
 
 	}
 
+	@Override
+	public Iterator<SuckerItem> iterator() {
+		return new SuckerIterator(suckers, things, taskConfig);
+	}
+	
 	private int[] nextCurrent(int idx, int[] cur, int[] max) {
 
 		int[] copy = cur.clone();
@@ -85,8 +90,7 @@ public class SuckerIterable implements Iterable<SuckerItem> {
 		return things.size();
 	}
 
-	@Override
-	public Iterator<SuckerItem> iterator() {
-		return new SuckerIterator(suckers, things, taskConfig);
+	public TaskConfig getTaskConfig() {
+		return taskConfig;
 	}
 }

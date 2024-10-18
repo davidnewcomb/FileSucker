@@ -75,12 +75,12 @@ public class FileSucker {
 		TaskController taskController = new TaskController(taskModel, taskView);
 		TransferController transferController = new TransferController(transferModel, transferView);
 
+		transferController.initController();
 		configController.initController();
 		creditsController.initController();
 		launchProfileController.initController(configModel, toolsModel);
 		toolsController.initController(configModel, taskModel);
-		taskController.initController(configModel, toolsModel);
-		transferController.initController();
+		taskController.initController(configModel, toolsModel, transferController);
 
 		Downloader.getInstance(configModel);
 

@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -16,8 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.event.CaretEvent;
 
 import uk.co.bigsoft.filesucker.Downloader;
-import uk.co.bigsoft.filesucker.SuckerParams;
-import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
@@ -25,9 +22,8 @@ import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 import uk.co.bigsoft.filesucker.task.looper.LooperId;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
-import uk.co.bigsoft.filesucker.transfer.download.SuckerItem;
-import uk.co.bigsoft.filesucker.transfer.download.SuckerIterable;
-import uk.co.bigsoft.filesucker.transfer.download.SuckerThread;
+import uk.co.bigsoft.filesucker.transfer.TransferController;
+import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
 
 public class TaskController {
 
@@ -47,7 +43,7 @@ public class TaskController {
 		view.getDirectoryComboBox().setSelectedItem(model.getDirectory());
 	}
 
-	public void initController(ConfigModel configModel, ToolsModel toolsModel) {
+	public void initController(ConfigModel configModel, ToolsModel toolsModel, TransferController transferController) {
 		view.getUrlTextField().addKeyListener((KeyReleasedListener) e -> keyReleasedUrl());
 		view.getUrlTextField().addCaretListener(e -> caretMovedUrl(e));
 		view.getUrlTextField().addMouseListener((MousePressListener) e -> pasteIntoWorkingUrl(e));
@@ -75,7 +71,7 @@ public class TaskController {
 		view.getSubDirectoryFromClipboardButton().addActionListener(e -> subDirectoryFromClipboard());
 		view.getSubDirectoryPathButton().addActionListener(e -> subDirectoryPath(configModel));
 
-		view.getRunTaskButton().addActionListener(e -> runTask());
+		view.getRunTaskButton().addActionListener(e -> runTask(transferController));
 		view.getFindFilesButton().addActionListener(e -> findFiles(configModel));
 
 		view.getSaveOnly().addActionListener(e -> saveOnly());
@@ -152,136 +148,24 @@ public class TaskController {
 		model.setSaveUrl(x);
 	}
 
-	String noError = null;
-
-	private void runTask() {
-		TaskConfig taskConfig = new TaskConfig(model.getUrl(), model.getDirectory(), model.getPrefix(),
+	private void runTask(TransferController transferController) {
+		String dir = Utility.expandsPercentVars(model.getDirectory());
+		TaskConfig taskConfig = new TaskConfig(model.getUrl(), dir, model.getPrefix(),
 				model.getSuffix(), model.isSuffixEnd());
 		SuckerIterable si = new SuckerIterable(taskConfig);
-		for (SuckerItem i : si) {
-			System.out.println(i.getUrl() + " -> " + i.getLocal());
-		}
-		if (noError == null) {
-			return;
-		}
-
-//		if (Looper.isActive()) {
-//		TaskScreen.setErrorMessage("Looper is active");
-//		return;
-//	}
-
-		String selectedDir = model.getDirectory().trim(); // directoryCB.getSelectedItem().toString().trim();
-		if (selectedDir.equals("")) {
-			model.setErrorMessage("You must provide a directory to store the files");
-			return;
-		}
-
-		if (!selectedDir.endsWith(File.separator)) {
-			selectedDir = selectedDir + File.separator;
-			model.setDirectory(selectedDir);
-		}
-
-		String refs[] = model.getUrl().split("/", 4);
-		if (refs.length < 3) {
-			model.setErrorMessage("You must enter a url");
-			return;
-		}
-
-		// directoryCB.savePrefs(selectedDir);
-
-//	String prefix = null;
-//	String suffix = null;
-//
-//	if (prefixTF.getText().length() > 0) {
-//		prefix = prefixTF.getText();
-//	}
-//	if (suffixTF.getText().length() > 0) {
-//		suffix = suffixTF.getText();
-//	}
-
-		// // Is selectedDir in the list already
-		// boolean inList = false;
-		// int listEntries =
-		// directoryCB.getItemCount();
-		// for (int i = 0 ; i < listEntries ;
-		// ++i)
-		// {
-		// String item = (String)
-		// directoryCB.getItemAt(i);
-		// if (item.equals(selectedDir))
-		// inList = true;
-		// }
-		// if (inList == false)
-		// {
-		// directoryCB.addItem(selectedDir);
-		// }
-
-		// File f = new File (selectedDir) ;
-		// String name = f.getName () ;
-
-		// Cookie
-		// StringTokenizer st = new
-		// StringTokenizer(cookieTA.getText().trim(),
-		// "\n");
-		Hashtable<String, String> headers = new Hashtable<String, String>();
-		String ref = refs[0] + "//" + refs[2];
-		headers.put("Referer", ref);
-		// while (st.hasMoreTokens())
-		// {
-		// String[] kv =
-		// st.nextToken().trim().split(":", 2);
-		// String k = kv[0].trim();
-		// String v = kv[1].trim();
-		// hm.put(k, v);
-		// }
-
-		// Referer
-		// String ref = refererTF.getText();
-		// if (ref.equals("") == false)
-		// {
-		// hm.put("Referer", ref);
-		// }
-
-		view.getRunYet().setReset();
-
-		selectedDir = Utility.expandsPercentVars(selectedDir);
-
-		SuckerParams sp = new SuckerParams("name", model.getUrl(), selectedDir, model.getPrefix(), model.getSuffix(),
-				headers, model.isSuffixEnd(), model.getOriginalAddress());
-
+		transferController.addTask(si);
+		
 		if (model.isSaveUrl()) {
-			TaskScreenParams.save(sp);
+//			TaskScreenParams.save(taskConfig);
 			if (model.isSaveOnly()) {
 				model.setErrorMessage("Saved");
 				return;
 			}
 		}
-		// SuckerThread sth =
-		new SuckerThread(sp);
-
-		// SuckerThread sth = new SuckerThread (sp)
-		// ;
-		// synchronized
-		// (FileSucker.activeFileSuckerThreads)
-		// {
-		// FileSucker.activeFileSuckerThreads.add
-		// (sth) ;
-		// }
-		// TransferScreen.updateScreen () ;
-		// // Switch to other tab
-		// FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
-
-		// for (int t = 0 ; t <
-		// FileSuckerFrame.tabPane.getComponentCount()
-		// ;
-		// t++)
-		// if
-		// (FileSuckerFrame.tabPane.getComponent(t)
-		// ==
-		// FileSucker.transferScreen)
-		//
+		
 		model.setOriginalAddress("");
 		view.getRunYet().setReset();
+
 	}
 
 	private void findFiles(ConfigModel configModel) {
