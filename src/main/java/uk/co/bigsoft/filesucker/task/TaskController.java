@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
 
 import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.FileSucker;
@@ -25,6 +26,8 @@ import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 import uk.co.bigsoft.filesucker.task.looper.LooperId;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
+import uk.co.bigsoft.filesucker.transfer.download.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.download.SuckerIterable;
 import uk.co.bigsoft.filesucker.transfer.download.SuckerThread;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
@@ -48,7 +51,7 @@ public class TaskController {
 
 	public void initController(ConfigModel configModel, ToolsModel toolsModel) {
 		view.getUrlTextField().addKeyListener((KeyReleasedListener) e -> keyReleasedUrl());
-		view.getUrlTextField().addCaretListener(e -> caretMovedUrl());
+		view.getUrlTextField().addCaretListener(e -> caretMovedUrl(e));
 		view.getUrlTextField().addMouseListener((MousePressListener) e -> pasteIntoWorkingUrl(e));
 
 		view.getOriginalAddressTextField().addKeyListener((KeyReleasedListener) e -> keyReleasedOrigAddr());
@@ -151,7 +154,17 @@ public class TaskController {
 		model.setSaveUrl(x);
 	}
 
+	String noError = null;
 	private void runTask() {
+		
+		SuckerIterable si = new SuckerIterable(model.getUrl(), model.getDirectory(), model.getPrefix(), model.getSuffix(), model.isSuffixEnd());
+		for (SuckerItem i : si) {
+			System.out.println(i.getUrl() + " -> " + i.getLocal());
+		}
+		if (noError == null) {
+			return;
+		}
+		
 //		if (Looper.isActive()) {
 //		TaskScreen.setErrorMessage("Looper is active");
 //		return;
@@ -547,6 +560,8 @@ public class TaskController {
 		switch (propName) {
 		case TaskProps.F_URL: {
 			view.getUrlTextField().setText(newVal);
+			view.getUrlTextField().setSelectionStart(model.getUrlCaretStart());
+			view.getUrlTextField().setSelectionEnd(model.getUrlCaretEnd());
 			break;
 		}
 		case TaskProps.F_SELECTED_URL: {
@@ -558,28 +573,28 @@ public class TaskController {
 			}
 			break;
 		}
-		case TaskProps.F_SET_SELECTED_URL: {
-			// TODO check this
-			if (newVal.startsWith("{") && newVal.endsWith("}")) {
-				view.getLooperPanel().openLooper(newVal);
-			}
-			int start = view.getUrlTextField().getSelectionStart();
-			int end = view.getUrlTextField().getSelectionEnd();
-			String url = view.getUrlTextField().getText();
-
-			String oldSel = url.substring(start, end);
-			if (oldSel.equals(newVal)) {
-				return;
-			}
-
-			StringBuilder sb = new StringBuilder(url);
-			sb.delete(start, end);
-			sb.insert(start, newVal);
-			view.getUrlTextField().setText(sb.toString());
-			view.getUrlTextField().setSelectionStart(start);
-			view.getUrlTextField().setSelectionEnd(start + newVal.length());
-			break;
-		}
+//		case TaskProps.F_SET_SELECTED_URL: {
+//			// TODO check this
+//			if (newVal.startsWith("{") && newVal.endsWith("}")) {
+//				view.getLooperPanel().openLooper(newVal);
+//			}
+//			int start = view.getUrlTextField().getSelectionStart();
+//			int end = view.getUrlTextField().getSelectionEnd();
+//			String url = view.getUrlTextField().getText();
+//
+//			String oldSel = url.substring(start, end);
+//			if (oldSel.equals(newVal)) {
+//				return;
+//			}
+//
+//			StringBuilder sb = new StringBuilder(url);
+//			sb.delete(start, end);
+//			sb.insert(start, newVal);
+//			view.getUrlTextField().setText(sb.toString());
+//			view.getUrlTextField().setSelectionStart(start);
+//			view.getUrlTextField().setSelectionEnd(start + newVal.length());
+//			break;
+//		}
 		case TaskProps.F_ORIGINAL_ADDRESS: {
 			view.getOriginalAddressTextField().setText(newVal);
 			break;
@@ -604,6 +619,10 @@ public class TaskController {
 			view.getSuffixTextField().setText(newVal);
 			break;
 		}
+		case TaskProps.F_SUFFIX_END: {
+			view.getSuffixEndCB().setSelected(newVal == "0");
+			break;
+		}
 		default: {
 			String s = "Unknown TaskProp: " + propName + " -> " + newVal;
 			model.setErrorMessage(s);
@@ -622,12 +641,29 @@ public class TaskController {
 		}
 	}
 
-	private void caretMovedUrl() {
-		String s = view.getUrlTextField().getSelectedText();
-		if (s == null || "".equals(s)) {
-			return;
+	private void caretMovedUrl(CaretEvent e) {
+		int min = Math.min(e.getDot(), e.getMark());
+		int max = Math.max(e.getDot(), e.getMark());
+
+		model.setUrlCaretStart(min);
+		model.setUrlCaretEnd(max);
+		if (min == max) {
+			model.setSelectedUrl("");
+		} else {
+			//System.out.println(String.format("start=%d end=%d selected=%s", e.getDot(), e.getMark(), model.getUrl().substring(e.getDot(), e.getMark())));
+
+			try {
+			System.out.println(String.format("start=%d end=%d selected=%s", min, max, model.getUrl().substring(min, max)));
+			model.setSelectedUrl(model.getUrl().substring(min, max));
+			} catch (Exception ex) {
+				System.out.println(ex.getMessage());
+			}
 		}
-		model.setSelectedUrl(s);
+//		String s = view.getUrlTextField().getSelectedText();
+//		if (s == null || "".equals(s)) {
+//			return;
+//		}
+//		model.setSelectedUrl(s);
 	}
 
 	private void keyReleasedUrl() {

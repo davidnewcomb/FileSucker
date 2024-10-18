@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.sucker_types;
+package uk.co.bigsoft.filesucker.zjunk.sucker_types;
 
 import java.util.ArrayList;
 

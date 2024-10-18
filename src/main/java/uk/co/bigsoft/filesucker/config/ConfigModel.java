@@ -1,12 +1,13 @@
 package uk.co.bigsoft.filesucker.config;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ConfigModel implements Cloneable {
 
-	private String baseDir = System.getenv("HOME") + "/FileSuker";
+	private String baseDir = System.getenv("HOME") + File.separatorChar + "FileSuker" + File.separatorChar;
 	private String helperWeb = "firefox %s";
 	private String helperText = "textPad %s";
 	private String openDirectory = "/usr/bin/nautilus %s";

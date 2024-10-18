@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import uk.co.bigsoft.filesucker.sucker_types.CopySuckerType;
-import uk.co.bigsoft.filesucker.sucker_types.LabelSuckerType;
-import uk.co.bigsoft.filesucker.sucker_types.SuckerType;
+import uk.co.bigsoft.filesucker.zjunk.sucker_types.CopySuckerType;
+import uk.co.bigsoft.filesucker.zjunk.sucker_types.LabelSuckerType;
+import uk.co.bigsoft.filesucker.zjunk.sucker_types.SuckerType;
 
 public class UrlSequencer {
 	private String orginalString;

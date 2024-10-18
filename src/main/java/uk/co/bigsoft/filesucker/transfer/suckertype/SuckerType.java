@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class SuckerType {
+public abstract class SuckerType {
 
 	private int id;
 	protected ArrayList<String> things = new ArrayList<String>();
@@ -24,8 +24,14 @@ public class SuckerType {
 	public String get(int idx) {
 		return things.get(idx);
 	}
-	
+
 	public List<String> getList() {
 		return things;
+	}
+
+	public abstract String toStringBraces();
+
+	public String toString() {
+		return toStringBraces();
 	}
 }

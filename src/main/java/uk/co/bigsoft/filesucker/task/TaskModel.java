@@ -13,6 +13,8 @@ import uk.co.bigsoft.filesucker.Utility;
 public class TaskModel {
 	private SwingPropertyChangeSupport propChangeFirer;
 	private String url = "";
+	private int urlCaretStart = 0;
+	private int urlCaretEnd = 0;
 	private String selectedUrl = "";
 	private String originalAddress = "";
 	private String selectedOriginalAddress = "";
@@ -57,13 +59,18 @@ public class TaskModel {
 	}
 
 	public String getSelectedUrl() {
+		if (selectedUrl.startsWith("{") && selectedUrl.endsWith("}")) {
+			String guts = selectedUrl.substring(1, selectedUrl.length()-2);
+			String[] bits = guts.split(",");
+			return "{" + bits[1] + "}";
+		}
 		return selectedUrl;
 	}
 
 	public void setSelectedUrl(String x) {
 		String oldVal = selectedUrl;
 		selectedUrl = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SET_SELECTED_URL, oldVal, selectedUrl);
+		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_URL, oldVal, selectedUrl);
 	}
 
 	public String getOriginalAddress() {
@@ -133,7 +140,7 @@ public class TaskModel {
 	public void setSuffixEnd(boolean x) {
 		boolean oldVal = suffixEnd;
 		suffixEnd = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX_END, oldVal, suffixEnd);
+		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX_END, oldVal, suffixEnd ? "0" : "1");
 	}
 
 	public boolean isSaveUrl() {
@@ -155,4 +162,34 @@ public class TaskModel {
 		saveOnly = x;
 		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_ONLY, oldVal, saveOnly);
 	}
+
+	public int getUrlCaretStart() {
+		return urlCaretStart;
+	}
+
+	public void setUrlCaretStart(int urlCaretStart) {
+		this.urlCaretStart = urlCaretStart;
+	}
+
+	public int getUrlCaretEnd() {
+		return urlCaretEnd;
+	}
+
+	public void setUrlCaretEnd(int urlCaretEnd) {
+		this.urlCaretEnd = urlCaretEnd;
+	}
+
+	public void replaceSelectedUrl(String looperText) {
+		String oldVal = url;
+		
+		StringBuilder s = new StringBuilder(url);
+		if (urlCaretStart != urlCaretEnd) {
+			s.delete(urlCaretStart, urlCaretEnd);
+			urlCaretEnd = urlCaretStart + looperText.length();
+		}
+		s.insert(urlCaretStart, looperText);
+		url = s.toString();
+		propChangeFirer.firePropertyChange(TaskProps.F_URL, oldVal, url);
+	}
+
 }

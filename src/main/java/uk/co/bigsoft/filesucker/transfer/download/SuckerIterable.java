@@ -8,15 +8,25 @@ import java.util.regex.Pattern;
 import uk.co.bigsoft.filesucker.transfer.suckertype.SuckerType;
 import uk.co.bigsoft.filesucker.transfer.suckertype.SuckerTypeFactory;
 
-public class SuckerIterable implements Iterable<String> {
+public class SuckerIterable implements Iterable<SuckerItem> {
 	private SuckerTypeFactory factory = new SuckerTypeFactory();
 	private ArrayList<SuckerType> suckers = new ArrayList<>();
 	private int[] currentIndex;
 	private int[] maxIndex;
 	private ArrayList<int[]> things = new ArrayList<>();
 
-	public SuckerIterable(String url) {
+	private String baseDir;
+	private String prefix;
+	private String suffix;
+	private boolean b4extn;
+	
+	public SuckerIterable(String url, String baseDir, String prefix, String suffix, boolean b4extn) {
 
+		this.baseDir = baseDir;
+		this.prefix = prefix;
+		this.suffix = suffix;
+		this.b4extn = b4extn;
+		
 		Pattern p = Pattern.compile("\\{[^}]*\\}");
 		Matcher matcher = p.matcher(url);
 
@@ -82,7 +92,7 @@ public class SuckerIterable implements Iterable<String> {
 	}
 
 	@Override
-	public Iterator<String> iterator() {
-		return new SuckerIterator(suckers, things);
+	public Iterator<SuckerItem> iterator() {
+		return new SuckerIterator(suckers, things, baseDir, prefix, suffix, b4extn);
 	}
 }

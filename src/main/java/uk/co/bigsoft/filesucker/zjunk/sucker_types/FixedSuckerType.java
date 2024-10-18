@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.sucker_types;
+package uk.co.bigsoft.filesucker.zjunk.sucker_types;
 
 public class FixedSuckerType extends SuckerType {
 	private int from = 1;

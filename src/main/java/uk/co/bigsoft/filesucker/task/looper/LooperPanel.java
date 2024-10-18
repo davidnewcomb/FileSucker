@@ -73,7 +73,8 @@ public class LooperPanel extends JPanel {
 
 	private void okButton() {
 		String looperText = currentPanel.toStringBraces();
-		taskModel.setSelectedUrl(looperText);
+		//taskModel.replaceSelectedUrl(looperText);
+		taskModel.replaceSelectedUrl(looperText);
 
 		System.out.println("looperText: " + looperText);
 

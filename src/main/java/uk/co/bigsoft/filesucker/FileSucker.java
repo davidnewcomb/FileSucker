@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import uk.co.bigsoft.filesucker.config.ConfigController;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
@@ -43,6 +45,15 @@ public class FileSucker {
 	// public static TransferScreen transferScreen = null;
 
 	public static void main(String args[]) {
+		
+//		Pattern pat = Pattern.compile("\\{[0-9]+}");
+//		Matcher m = pat.matcher("{3}_");
+//		
+//		while (m.find()) {
+//			System.out.println("->" + m.group());
+//		}
+//		System.exit(0);
+		
 		
 		setUpVersion();
 		FileSuckerPrefs p = fileSuckerPrefHandler.load();
