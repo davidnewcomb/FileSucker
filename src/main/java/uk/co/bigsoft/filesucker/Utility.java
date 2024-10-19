@@ -41,12 +41,12 @@ public class Utility {
 		System.out.println("setClipboard not implemented");
 	}
 
-	public static void delay(int t) {
-		if (t < 1)
+	public static void delay(int ms) {
+		if (ms < 1)
 			return;
 
 		try {
-			Thread.sleep(t);
+			Thread.sleep(ms);
 		} catch (Exception e) {
 			/* empty */
 		}

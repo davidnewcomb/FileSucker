@@ -1,14 +1,17 @@
 package uk.co.bigsoft.filesucker.transfer;
 
+import java.beans.PropertyChangeEvent;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import uk.co.bigsoft.filesucker.transfer.download.SuckerProgressPanel;
-import uk.co.bigsoft.filesucker.transfer.download.UrlSequencer;
+import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
+import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
+import uk.co.bigsoft.filesucker.transfer.view.SuckerItemProgressBar;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerTaskModel;
+import uk.co.bigsoft.filesucker.transfer.view.SuckerTaskView;
 
 public class SuckerTaskThread extends Thread {
 
@@ -17,12 +20,14 @@ public class SuckerTaskThread extends Thread {
 	private int maximumPoolSize = 10; // TODO should come from config
 	private SuckerIterable si;
 	private SuckerTaskModel taskM;
+	private SuckerTaskView taskV;
 	private ThreadPoolExecutor executor;
 	private LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>(maxTasks);
 
-	public SuckerTaskThread(SuckerIterable si, SuckerTaskModel taskM) {
+	public SuckerTaskThread(SuckerIterable si, SuckerTaskView taskV, SuckerTaskModel taskM) {
 		this.si = si;
 		this.taskM = taskM;
+		this.taskV = taskV;
 
 		setName("FileSucker: " + si.getTaskConfig().getUrl());
 
@@ -41,9 +46,34 @@ public class SuckerTaskThread extends Thread {
 	@Override
 	public void run() {
 		for (SuckerItem item : si) {
+			
+			SuckerItemModel m = new SuckerItemModel();
+			m.setUrl(item.getUrl());
+			SuckerItemProgressBar v = new SuckerItemProgressBar(m);
+			m.addListener(e -> itemModelListener(e, v));
+			
+			item.setModel(m);
+			
 			SuckerItemDownloader r = new SuckerItemDownloader(item);
-			queue.add(r);
+			while (queue.offer(r) == false) {
+				Utility.delay(1_000);
+			}
+			taskV.addSuckerProgressBar(v);
 		}
 	}
+
+	private void itemModelListener(PropertyChangeEvent evt, SuckerItemProgressBar v) {
+		String propName = evt.getPropertyName();
+		Object newVal = evt.getNewValue();
+
+		switch (propName) {
+		case TransferProps.F_COMPLETED: {
+//			String state = (String) newVal;
+			taskV.removeSuckerProgressBar(v);
+			break;
+		}
+		}
+	}
+	
 
 }

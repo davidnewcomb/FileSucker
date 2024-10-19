@@ -37,7 +37,7 @@ public class TransferController {
 			SuckerTaskModel taskM = new SuckerTaskModel(si.getTaskConfig().getUrl(), si.size());
 			SuckerTaskView taskV = new SuckerTaskView(taskM);
 			view.addTask(taskV);
-			new SuckerTaskThread(si, taskM);
+			new SuckerTaskThread(si, taskV, taskM);
 		}
 		}
 

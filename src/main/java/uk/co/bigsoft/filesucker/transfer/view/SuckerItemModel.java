@@ -13,7 +13,7 @@ public class SuckerItemModel {
 	private String url;
 	private Exception error = null;
 
-	SuckerItemModel() {
+	public SuckerItemModel() {
 		propChangeFirer = new SwingPropertyChangeSupport(this);
 	}
 
@@ -46,7 +46,7 @@ public class SuckerItemModel {
 			return -1;
 		}
 
-		return (int) (bytesDownloaded / bytesToDownload);
+		return (int) ((bytesDownloaded * 100)/ bytesToDownload);
 	}
 
 	public String getUrl() {

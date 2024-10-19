@@ -55,6 +55,14 @@ public class SuckerTaskView extends JPanel {
 
 	}
 
+	public void addSuckerProgressBar(JProgressBar bar) {
+		suckerItemsContainer.add(bar);
+	}
+	
+	public void removeSuckerProgressBar(JProgressBar bar) {
+		suckerItemsContainer.remove(bar);
+	}
+	
 //	public void setDoneAnother() {
 //		current++;
 //		CreditScreen.addFiles(1);
