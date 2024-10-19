@@ -77,11 +77,17 @@ public class TaskController {
 		view.getSaveOnly().addActionListener(e -> saveOnly());
 		view.getSaveUrl().addActionListener(e -> saveUrl());
 
+		view.getPrefixTextField().addCaretListener(e -> caretMovedPrefix(e));
+		view.getPrefixTextField().addKeyListener((KeyReleasedListener) e -> keyReleasedPrefix());
+
 		view.getPrefixButton().addActionListener(e -> prefix(configModel));
 		view.getPrefixLowerButton().addActionListener(e -> prefixLower());
 		view.getPrefixClipButton().addActionListener(e -> prefixClip(configModel));
 		view.getPrefixClearButton().addActionListener(e -> prefixClear());
 
+		view.getSuffixTextField().addCaretListener(e -> caretMovedSuffix(e));
+		view.getSuffixTextField().addKeyListener((KeyReleasedListener) e -> keyReleasedSuffix());
+		
 		view.getSuffixButton().addActionListener(e -> suffix(configModel));
 		view.getSuffixEndCB().addActionListener(e -> suffixEnd());
 		view.getSuffixLowerButton().addActionListener(e -> suffixLower());
@@ -103,8 +109,12 @@ public class TaskController {
 	}
 
 	private void suffixClip(ConfigModel configModel) {
-		String s = model.getSuffix() + configModel.getPostPrefix() + Utility.getClipboard();
-		model.setSuffix(s);
+		String clip = Utility.getClipboard();
+		if (LooperCmd.isLooperText(clip)) {
+			clip = LooperCmd.getLooperReduced(clip);
+		}
+		String s = configModel.getPostPrefix() + clip;
+		model.replaceSelectedSuffix(s);
 	}
 
 	private void suffixLower() {
@@ -116,8 +126,8 @@ public class TaskController {
 	}
 
 	private void suffix(ConfigModel configModel) {
-		String s = model.getSuffix() + configModel.getPostPrefix() + model.getSelectedUrl();
-		model.setSuffix(s);
+		String s = configModel.getPostPrefix() + model.getSelectedUrl();
+		model.replaceSelectedSuffix(s);
 	}
 
 	private void prefixClear() {
@@ -125,8 +135,12 @@ public class TaskController {
 	}
 
 	private void prefixClip(ConfigModel configModel) {
-		String s = model.getPrefix() + Utility.getClipboard() + configModel.getPostPrefix();
-		model.setPrefix(s);
+		String clip = Utility.getClipboard();
+		if (LooperCmd.isLooperText(clip)) {
+			clip = LooperCmd.getLooperReduced(clip);
+		}
+		String s = clip + configModel.getPostPrefix();
+		model.replaceSelectedPrefix(s);
 	}
 
 	private void prefixLower() {
@@ -134,8 +148,9 @@ public class TaskController {
 	}
 
 	private void prefix(ConfigModel configModel) {
-		String s = model.getPrefix() + model.getSelectedUrl() + configModel.getPostPrefix();
-		model.setPrefix(s);
+		System.out.println("pref sel=" + model.getSelectedUrl());
+		String s = model.getSelectedUrl() + configModel.getPostPrefix();
+		model.replaceSelectedPrefix(s);
 	}
 
 	private void saveOnly() {
@@ -449,7 +464,7 @@ public class TaskController {
 			// TODO enable/disable buttons
 
 			// TODO check this
-			if (newVal.startsWith("{") && newVal.endsWith("}")) {
+			if (LooperCmd.isLooperText(newVal)) {
 				view.getLooperPanel().openLooper(newVal);
 			}
 			break;
@@ -535,9 +550,45 @@ public class TaskController {
 		}
 	}
 
+	private void caretMovedPrefix(CaretEvent e) {
+		int min = Math.min(e.getDot(), e.getMark());
+		int max = Math.max(e.getDot(), e.getMark());
+
+		model.setPrefixCaretStart(min);
+		model.setPrefixCaretEnd(max);
+		if (min == max) {
+			model.setSelectedPrefix("");
+		} else {
+			model.setSelectedPrefix(model.getPrefix().substring(min, max));
+		}
+	}
+
+	private void caretMovedSuffix(CaretEvent e) {
+		int min = Math.min(e.getDot(), e.getMark());
+		int max = Math.max(e.getDot(), e.getMark());
+
+		model.setSuffixCaretStart(min);
+		model.setSuffixCaretEnd(max);
+		if (min == max) {
+			model.setSelectedSuffix("");
+		} else {
+			model.setSelectedSuffix(model.getUrl().substring(min, max));
+		}
+	}
+
 	private void keyReleasedUrl() {
 		String s = view.getUrlTextField().getText();
 		model.setUrl(s);
+	}
+
+	private void keyReleasedPrefix() {
+		String s = view.getPrefixTextField().getText();
+		model.setPrefix(s);
+	}
+
+	private void keyReleasedSuffix() {
+		String s = view.getSuffixTextField().getText();
+		model.setSuffix(s);
 	}
 
 	private void pasteIntoWorkingOrigAddr(MouseEvent e) {

@@ -10,8 +10,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.List;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 
@@ -127,12 +129,13 @@ public class Utility {
 	 * @return Expanded string
 	 */
 	public static String expandsPercentVars(String toExpand) {
-		java.util.Date d = new java.util.Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String timeStr = sdf.format(d);
-
-		String s = toExpand.replaceAll("%T", timeStr);
-		return s;
+		if (toExpand.contains("%T")) {
+			ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String timeStr = formatter.format(zdt);
+			return toExpand.replaceAll("%T", timeStr);
+		}
+		return toExpand;
 	}
 
 	public static String realDirectory(String dir) {
@@ -333,22 +336,10 @@ public class Utility {
 	}
 
 	public static String unexpandsPercentVars(String what, String toExpand) {
-		java.util.Date d = new java.util.Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String timeStr = sdf.format(d);
-
-		String s = toExpand.replaceAll("%T", timeStr);
-		return s;
-	}
-
-	public static List<String> splitLooperText(String looperText) {
-		if (!looperText.startsWith("{") && !looperText.endsWith("}")) {
-			return null;
-		}
-		String guts = looperText.substring(1, looperText.length() - 1);
-		String[] bits = guts.split(",");
-		List<String> l = List.of(bits);
-		return l;
+		ZonedDateTime zdt = ZonedDateTime.ofInstant(Instant.now(), ZoneId.systemDefault());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String timeStr = formatter.format(zdt);
+		return toExpand.replaceAll(timeStr, "%T");
 	}
 
 	@SuppressWarnings(value = "deprecation")

@@ -158,7 +158,7 @@ public class LooperPanel extends JPanel {
 	private void showNumberLooper() {
 		showSingleButton(LooperCmd.L_NUMBER);
 		String sel = taskModel.getSelectedUrl();
-		if (!sel.startsWith("{")) {
+		if (!LooperCmd.isLooperText(sel)) {
 			int newId = LooperId.getNext();
 			if (sel.length() == 0) {
 				sel = String.format("{%s,%d,%d,%d,%d}", LooperCmd.L_NUMBER, newId, configModel.getNumberFrom(),
@@ -175,7 +175,7 @@ public class LooperPanel extends JPanel {
 	private void showFixedLooper() {
 		showSingleButton(LooperCmd.L_FIXED);
 		String sel = taskModel.getSelectedUrl();
-		if (!sel.startsWith("{")) {
+		if (!LooperCmd.isLooperText(sel)) {
 			sel = String.format("{%s,%d,%s}", LooperCmd.L_FIXED, LooperId.getNext(), sel);
 		}
 		openLooper(sel);
@@ -184,7 +184,7 @@ public class LooperPanel extends JPanel {
 	private void showCopyLooper() {
 		showSingleButton(LooperCmd.L_COPY);
 		String sel = taskModel.getSelectedUrl();
-		if (!sel.startsWith("{")) {
+		if (!LooperCmd.isLooperText(sel)) {
 			sel = String.format("{%s,%d,%s}", LooperCmd.L_COPY, LooperId.getNext(), sel);
 		}
 		openLooper(sel);
@@ -193,7 +193,7 @@ public class LooperPanel extends JPanel {
 	private void showListLooper() {
 		showSingleButton(LooperCmd.L_LIST);
 		String sel = taskModel.getSelectedUrl();
-		if (!sel.startsWith("{")) {
+		if (!LooperCmd.isLooperText(sel)) {
 			sel = String.format("{%s,%d,%s}", LooperCmd.L_LIST, LooperId.getNext(), sel);
 		}
 		openLooper(sel);
@@ -202,7 +202,7 @@ public class LooperPanel extends JPanel {
 	private void showTextLooper() {
 		showSingleButton(LooperCmd.L_TEXT);
 		String sel = taskModel.getSelectedUrl();
-		if (!sel.startsWith("{")) {
+		if (!LooperCmd.isLooperText(sel)) {
 			sel = String.format("{%s,%d,%s,%s}", LooperCmd.L_TEXT, LooperId.getNext(), configModel.getTextFrom(),
 					configModel.getTextTo());
 		}

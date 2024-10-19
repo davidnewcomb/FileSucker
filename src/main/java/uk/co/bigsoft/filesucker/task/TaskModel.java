@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.event.SwingPropertyChangeSupport;
 
-import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 
 public class TaskModel {
 	private static final Pattern looperPattern = Pattern.compile("\\{[^}]*\\}");
@@ -22,7 +22,13 @@ public class TaskModel {
 	private String directory = "";
 	private String errorMessage = "";
 	private String prefix = "";
+	private int prefixCaretStart = 0;
+	private int prefixCaretEnd = 0;
+	private String selectedPrefix = "";
 	private String suffix = "";
+	private int suffixCaretStart = 0;
+	private int suffixCaretEnd = 0;
+	private String selectedSuffix = "";
 	private boolean suffixEnd = false;
 	private boolean saveUrl = false;
 	private boolean saveOnly = false;
@@ -40,9 +46,9 @@ public class TaskModel {
 		Matcher matcher = looperPattern.matcher(url);
 		while (matcher.find()) {
 			String s = matcher.group();
-			List<String> params = Utility.splitLooperText(s);
-			if (params != null) {
-				l.add(Integer.valueOf(params.get(1)));
+			if (LooperCmd.isLooperText(s)) {
+				String[] params = LooperCmd.getLooperGutsArray(s);
+				l.add(Integer.valueOf(params[1]));
 			}
 		}
 		return l;
@@ -59,10 +65,8 @@ public class TaskModel {
 	}
 
 	public String getSelectedUrl() {
-		if (selectedUrl.startsWith("{") && selectedUrl.endsWith("}")) {
-			String guts = selectedUrl.substring(1, selectedUrl.length() - 2);
-			String[] bits = guts.split(",");
-			return "{" + bits[1] + "}";
+		if (LooperCmd.isLooperText(selectedUrl)) {
+			return "{" + LooperCmd.getLooperGutsArray(selectedUrl)[1] + "}";
 		}
 		return selectedUrl;
 	}
@@ -71,6 +75,32 @@ public class TaskModel {
 		String oldVal = selectedUrl;
 		selectedUrl = x;
 		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_URL, oldVal, selectedUrl);
+	}
+	
+	public String getSelectedPrefix() {
+		if (LooperCmd.isLooperText(selectedPrefix)) {
+			return "{" + LooperCmd.getLooperGutsArray(selectedPrefix)[1] + "}";
+		}
+		return selectedPrefix;
+	}
+
+	public void setSelectedPrefix(String x) {
+		String oldVal = selectedPrefix;
+		selectedPrefix = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_PREFIX, oldVal, selectedPrefix);
+	}
+
+	public String getSelectedSuffix() {
+		if (LooperCmd.isLooperText(selectedSuffix)) {
+			return "{" + LooperCmd.getLooperGutsArray(selectedSuffix)[1] + "}";
+		}
+		return selectedSuffix;
+	}
+
+	public void setSelectedSuffix(String x) {
+		String oldVal = selectedSuffix;
+		selectedSuffix = x;
+		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_SUFFIX, oldVal, selectedSuffix);
 	}
 
 	public String getOriginalAddress() {
@@ -179,6 +209,40 @@ public class TaskModel {
 		this.urlCaretEnd = urlCaretEnd;
 	}
 
+	
+	public int getPrefixCaretStart() {
+		return prefixCaretStart;
+	}
+
+	public void setPrefixCaretStart(int prefixCaretStart) {
+		this.prefixCaretStart = prefixCaretStart;
+	}
+
+	public int getPrefixCaretEnd() {
+		return prefixCaretEnd;
+	}
+
+	public void setPrefixCaretEnd(int prefixCaretEnd) {
+		this.prefixCaretEnd = prefixCaretEnd;
+	}
+
+	
+	public int getSuffixCaretStart() {
+		return suffixCaretStart;
+	}
+
+	public void setSuffixCaretStart(int suffixCaretStart) {
+		this.suffixCaretStart = suffixCaretStart;
+	}
+
+	public int getSuffixCaretEnd() {
+		return suffixCaretEnd;
+	}
+
+	public void setSuffixCaretEnd(int suffixCaretEnd) {
+		this.suffixCaretEnd = suffixCaretEnd;
+	}
+
 	public void replaceSelectedUrl(String looperText) {
 		String oldVal = url;
 
@@ -190,6 +254,32 @@ public class TaskModel {
 		s.insert(urlCaretStart, looperText);
 		url = s.toString();
 		propChangeFirer.firePropertyChange(TaskProps.F_URL, oldVal, url);
+	}
+
+	public void replaceSelectedPrefix(String looperText) {
+		String oldVal = prefix;
+
+		StringBuilder s = new StringBuilder(prefix);
+		if (prefixCaretStart != prefixCaretEnd) {
+			s.delete(prefixCaretStart, prefixCaretEnd);
+			prefixCaretEnd = prefixCaretStart + looperText.length();
+		}
+		s.insert(prefixCaretStart, looperText);
+		prefix = s.toString();
+		propChangeFirer.firePropertyChange(TaskProps.F_PREFIX, oldVal, prefix);
+	}
+
+	public void replaceSelectedSuffix(String looperText) {
+		String oldVal = suffix;
+
+		StringBuilder s = new StringBuilder(suffix);
+		if (suffixCaretStart != suffixCaretEnd) {
+			s.delete(suffixCaretStart, suffixCaretEnd);
+			suffixCaretEnd = suffixCaretStart + looperText.length();
+		}
+		s.insert(suffixCaretStart, looperText);
+		suffix = s.toString();
+		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX, oldVal, suffix);
 	}
 
 }
