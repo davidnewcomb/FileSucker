@@ -63,7 +63,7 @@ public class SuckerIterable implements Iterable<SuckerItem> {
 	public Iterator<SuckerItem> iterator() {
 		return new SuckerIterator(suckers, things, taskConfig);
 	}
-	
+
 	private int[] nextCurrent(int idx, int[] cur, int[] max) {
 
 		int[] copy = cur.clone();

@@ -14,11 +14,17 @@ public class SuckerItemProgressBar extends JProgressBar {
 
 	private void modelListener(PropertyChangeEvent evt) {
 		String propName = evt.getPropertyName();
-		Integer newVal = (Integer) evt.getNewValue();
+		Object newVal = evt.getNewValue();
 
 		switch (propName) {
 		case TransferProps.F_FILE_PROGRESS: {
-			setValue(newVal);
+			Integer i = (Integer) newVal;
+			int ii = i.intValue();
+			if (ii == -1) {
+				setIndeterminate(true);
+			} else {
+				setValue(ii);
+			}
 			break;
 		}
 		}

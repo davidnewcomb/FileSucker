@@ -2,7 +2,6 @@ package uk.co.bigsoft.filesucker.transfer;
 
 import java.beans.PropertyChangeEvent;
 
-import uk.co.bigsoft.filesucker.task.TaskProps;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerTaskModel;
@@ -35,14 +34,15 @@ public class TransferController {
 		switch (propName) {
 		case TransferProps.F_TASK_ADDED: {
 			SuckerIterable si = (SuckerIterable) newVal;
-			SuckerTaskModel model = new SuckerTaskModel(si.getTaskConfig().getUrl(), si.size());
-			SuckerTaskView panel = new SuckerTaskView(model);
-			view.addTask(panel);
+			SuckerTaskModel taskM = new SuckerTaskModel(si.getTaskConfig().getUrl(), si.size());
+			SuckerTaskView taskV = new SuckerTaskView(taskM);
+			view.addTask(taskV);
+			new SuckerTaskThread(si, taskM);
 		}
 		}
 
 	}
-	
+
 	public void addTask(SuckerIterable si) {
 
 		for (SuckerItem i : si) {

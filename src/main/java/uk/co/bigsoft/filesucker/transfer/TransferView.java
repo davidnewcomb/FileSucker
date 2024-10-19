@@ -16,7 +16,7 @@ public class TransferView extends JPanel {
 
 	public TransferView() {
 		super(new BorderLayout());
-		
+
 		transfersPanel.setLayout(new BoxLayout(transfersPanel, BoxLayout.Y_AXIS));
 		JScrollPane jsp = new JScrollPane(transfersPanel);
 

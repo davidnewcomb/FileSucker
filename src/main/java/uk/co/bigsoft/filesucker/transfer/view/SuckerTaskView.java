@@ -1,28 +1,16 @@
 package uk.co.bigsoft.filesucker.transfer.view;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
-import uk.co.bigsoft.filesucker.SuckerParams;
-import uk.co.bigsoft.filesucker.TaskScreenParams;
-import uk.co.bigsoft.filesucker.view.CreditScreen;
-import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 public class SuckerTaskView extends JPanel {
 	private static final int TRANSFER_ROW_HEIGHT = 20;
@@ -36,10 +24,10 @@ public class SuckerTaskView extends JPanel {
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(new LineBorder(Color.BLACK));
-		
-		//SuckerItemModel itemModel = new SuckerItemModel();
 
-		//SuckerIterableModel taskProgressModel = new SuckerIterableModel(69);
+		// SuckerItemModel itemModel = new SuckerItemModel();
+
+		// SuckerIterableModel taskProgressModel = new SuckerIterableModel(69);
 		taskProgressBar = new SuckerTaskProgressBar(model);
 
 		int th = TRANSFER_ROW_HEIGHT * 20; // FileSucker.configData.getMaxTasks();
@@ -59,7 +47,7 @@ public class SuckerTaskView extends JPanel {
 
 		MouseAdapter allFilesContextMenu = new MyMouseAdapter();
 		header.addMouseListener(allFilesContextMenu);
-		//totalNumberOfFiles.addMouseListener(allFilesContextMenu);
+		// totalNumberOfFiles.addMouseListener(allFilesContextMenu);
 
 		add(header);
 		add(taskProgressBar);
@@ -108,7 +96,7 @@ public class SuckerTaskView extends JPanel {
 }
 
 class MyMouseAdapter extends MouseAdapter {
-	
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// super.mousePressed (e) ;

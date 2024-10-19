@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
+import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -354,6 +355,16 @@ public class Utility {
 	public static void runShellCommand(String cmd) throws IOException {
 		System.out.println("Running: '" + cmd + "'");
 		Runtime.getRuntime().exec(cmd);
+	}
+
+	public static void closeSafely(Closeable c) {
+		if (c != null) {
+			try {
+				c.close();
+			} catch (Exception e) {
+				// don't care
+			}
+		}
 	}
 
 }

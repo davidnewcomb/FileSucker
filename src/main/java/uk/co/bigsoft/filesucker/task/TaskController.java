@@ -150,11 +150,11 @@ public class TaskController {
 
 	private void runTask(TransferController transferController) {
 		String dir = Utility.expandsPercentVars(model.getDirectory());
-		TaskConfig taskConfig = new TaskConfig(model.getUrl(), dir, model.getPrefix(),
-				model.getSuffix(), model.isSuffixEnd());
+		TaskConfig taskConfig = new TaskConfig(model.getUrl(), dir, model.getPrefix(), model.getSuffix(),
+				model.isSuffixEnd());
 		SuckerIterable si = new SuckerIterable(taskConfig);
 		transferController.addTask(si);
-		
+
 		if (model.isSaveUrl()) {
 //			TaskScreenParams.save(taskConfig);
 			if (model.isSaveOnly()) {
@@ -162,7 +162,7 @@ public class TaskController {
 				return;
 			}
 		}
-		
+
 		model.setOriginalAddress("");
 		view.getRunYet().setReset();
 
@@ -531,22 +531,8 @@ public class TaskController {
 		if (min == max) {
 			model.setSelectedUrl("");
 		} else {
-			// System.out.println(String.format("start=%d end=%d selected=%s", e.getDot(),
-			// e.getMark(), model.getUrl().substring(e.getDot(), e.getMark())));
-
-			try {
-				System.out.println(
-						String.format("start=%d end=%d selected=%s", min, max, model.getUrl().substring(min, max)));
-				model.setSelectedUrl(model.getUrl().substring(min, max));
-			} catch (Exception ex) {
-				System.out.println(ex.getMessage());
-			}
+			model.setSelectedUrl(model.getUrl().substring(min, max));
 		}
-//		String s = view.getUrlTextField().getSelectedText();
-//		if (s == null || "".equals(s)) {
-//			return;
-//		}
-//		model.setSelectedUrl(s);
 	}
 
 	private void keyReleasedUrl() {

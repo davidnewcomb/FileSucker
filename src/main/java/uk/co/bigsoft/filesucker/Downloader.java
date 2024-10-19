@@ -1,22 +1,31 @@
 package uk.co.bigsoft.filesucker;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.CookieHandler;
 import java.net.CookieManager;
+import java.net.HttpURLConnection;
 import java.net.ProxySelector;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpClient.Redirect;
+import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandler;
 import java.time.Duration;
 
 import uk.co.bigsoft.filesucker.config.ConfigModel;
+import uk.co.bigsoft.filesucker.transfer.download.HttpSupport;
+import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 
 public class Downloader {
 
 	private static Downloader downloader = null;
+
 	private HttpClient client;
 	private Duration timeout;
 
@@ -60,4 +69,80 @@ public class Downloader {
 		return body;
 	}
 
+	public void downloadBinaryFileProgressable(String address, String localFile, SuckerItemModel model) {
+
+		FileOutputStream fos = null;
+		InputStream is = null;
+
+		try {
+			URI url = URI.create(address);
+			File lf = new File(localFile);
+
+			// Resume features
+			long currentFileSize = 0L;
+
+			Builder builder = HttpRequest.newBuilder().uri(url).timeout(timeout).GET();
+
+			if (lf.exists()) {
+				currentFileSize = lf.length();
+				String rangeLastModified = HttpSupport.rangeLastModifiedDateString(localFile);
+				if (rangeLastModified != null) {
+					builder = builder.header("Range", "bytes=" + currentFileSize + "-");
+					builder = builder.header("If-Range", rangeLastModified + " GMT");
+				}
+			}
+
+			HttpRequest req = builder.build();
+
+			BodyHandler<InputStream> handler = HttpResponse.BodyHandlers.ofInputStream();
+			HttpResponse<InputStream> resp = client.send(req, handler);
+			System.out.println("response-code=" + resp.statusCode());
+
+			long bytesDownloaded;
+			if (resp.statusCode() == HttpURLConnection.HTTP_PARTIAL) {
+				fos = new FileOutputStream(lf, true);
+				bytesDownloaded = currentFileSize;
+			} else if (resp.statusCode() == HttpURLConnection.HTTP_OK) {
+				if (currentFileSize > 0) {
+					System.out.println("Server would not honour range request, fresh download");
+				}
+				bytesDownloaded = 0L;
+				fos = new FileOutputStream(lf);
+			} else {
+				throw new IOException("Bad code " + resp.statusCode());
+			}
+
+			HttpHeaders headers = resp.headers();
+
+			int contentLength = HttpSupport.retrieveContentLength(headers);
+			model.setBytesToDownload(contentLength);
+			System.out.println("content-length=" + contentLength);
+
+			is = resp.body();
+
+			byte[] buffer = new byte[4096];
+
+			while (true) {
+				int bytesRead = is.read(buffer);
+				if (bytesRead == 0) {
+					Thread.sleep(Duration.ofMillis(500));
+					continue;
+				}
+				if (bytesRead == -1) {
+					break;
+				}
+				bytesDownloaded += bytesRead;
+				model.setBytesDownloaded(bytesDownloaded);
+				System.out.println("downloaded=" + bytesDownloaded);
+
+				fos.write(buffer, 0, bytesRead);
+			}
+			model.completed();
+		} catch (IOException | InterruptedException e) {
+			model.setError(e);
+		} finally {
+			Utility.closeSafely(fos);
+			Utility.closeSafely(is);
+		}
+	}
 }

@@ -15,7 +15,7 @@ public class SuckerTaskProgressBar extends JProgressBar {
 		setValue(0);
 		setMinimum(0);
 		setMaximum(100);
-		//setStringPainted(true);
+		// setStringPainted(true);
 		setMinimumSize(new Dimension(0, TRANSFER_ROW_HEIGHT));
 		setMaximumSize(new Dimension(Integer.MAX_VALUE, TRANSFER_ROW_HEIGHT));
 		setString(null);

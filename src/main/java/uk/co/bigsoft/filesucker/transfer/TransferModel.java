@@ -19,7 +19,7 @@ public class TransferModel {
 	public void addListener(PropertyChangeListener listener) {
 		propChangeFirer.addPropertyChangeListener(listener);
 	}
-	
+
 	public void addTask(SuckerIterable si) {
 		suckerTasks.add(si);
 		propChangeFirer.firePropertyChange(TransferProps.F_TASK_ADDED, null, si);
