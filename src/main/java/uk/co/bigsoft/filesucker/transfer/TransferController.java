@@ -13,7 +13,8 @@ public class TransferController {
 
 	private TransferModel model;
 	private TransferView view;
-	//private HashMap<SuckerTaskModel, SuckerTaskView> currentTasks = new HashMap<>();
+	// private HashMap<SuckerTaskModel, SuckerTaskView> currentTasks = new
+	// HashMap<>();
 
 	public TransferController(TransferModel m, TransferView v) {
 		model = m;
@@ -38,14 +39,14 @@ public class TransferController {
 		case TransferProps.F_TASK_ADDED: {
 			SuckerTaskController c = (SuckerTaskController) newVal;
 			view.addTask(c.getView());
-			
+
 			c.start();
 			break;
 //			===			
 //			currentTasks.put(taskM, taskV);
 //			
 //			new SuckerTaskThread(taskM);
-			
+
 //			===
 //			SuckerTaskModel taskM = new SuckerTaskModel(si);
 //			model.addTask(taskM);
@@ -67,9 +68,9 @@ public class TransferController {
 		SuckerTaskView taskV = new SuckerTaskView();
 		SuckerTaskModel taskM = new SuckerTaskModel(si);
 		SuckerTaskController taskC = new SuckerTaskController(taskM, taskV);
-		
-		//taskM.addListener(e -> modelListener(e));
-		
+
+		// taskM.addListener(e -> modelListener(e));
+
 		model.addTask(taskC);
 	}
 }

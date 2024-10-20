@@ -13,9 +13,10 @@ public class SuckerTaskModel {
 
 	private SwingPropertyChangeSupport propChangeFirer;
 	private SuckerIterable work;
-	private int numCompleted = 0;
+	private int numSuccess = 0;
+	private int numFailed = 0;
 	private LinkedList<SuckerItemModel> files = new LinkedList<>();
-	
+
 	public SuckerTaskModel(SuckerIterable si) {
 		work = si;
 		propChangeFirer = new SwingPropertyChangeSupport(this);
@@ -25,17 +26,18 @@ public class SuckerTaskModel {
 		propChangeFirer.addPropertyChangeListener(listener);
 	}
 
-	public synchronized void fileDownloaded() {
+	public synchronized void fileDownloaded(boolean success) {
 		int oldVal = getPercentComplete();
-		++numCompleted;
-		propChangeFirer.firePropertyChange(TransferProps.F_TASK_PROGRESS, oldVal, getPercentComplete());
+		if (success) {
+			++numSuccess;
+		} else {
+			++numFailed;
+		}
+		propChangeFirer.firePropertyChange(SuckerTaskProps.FILE_FINISHED, oldVal, getPercentComplete());
 	}
 
 	public int getPercentComplete() {
-		if (numCompleted < 1) {
-			return -1;
-		}
-		return (numCompleted * 100) / work.size();
+		return ((numSuccess + numFailed) * 100) / work.size();
 	}
 
 	public String getTitle() {
@@ -45,8 +47,16 @@ public class SuckerTaskModel {
 	public SuckerIterable getWork() {
 		return work;
 	}
-	
+
 	public void addWorkItem(SuckerItemModel item) {
 		propChangeFirer.firePropertyChange(SuckerTaskProps.ADD, null, getPercentComplete());
+	}
+
+	public int getNumSuccess() {
+		return numSuccess;
+	}
+
+	public int getNumFailed() {
+		return numFailed;
 	}
 }

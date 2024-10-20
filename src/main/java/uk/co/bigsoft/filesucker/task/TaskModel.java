@@ -76,7 +76,7 @@ public class TaskModel {
 		selectedUrl = x;
 		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_URL, oldVal, selectedUrl);
 	}
-	
+
 	public String getSelectedPrefix() {
 		if (LooperCmd.isLooperText(selectedPrefix)) {
 			return "{" + LooperCmd.getLooperGutsArray(selectedPrefix)[1] + "}";
@@ -209,7 +209,6 @@ public class TaskModel {
 		this.urlCaretEnd = urlCaretEnd;
 	}
 
-	
 	public int getPrefixCaretStart() {
 		return prefixCaretStart;
 	}
@@ -226,7 +225,6 @@ public class TaskModel {
 		this.prefixCaretEnd = prefixCaretEnd;
 	}
 
-	
 	public int getSuffixCaretStart() {
 		return suffixCaretStart;
 	}

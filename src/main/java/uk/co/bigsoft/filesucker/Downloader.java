@@ -134,10 +134,10 @@ public class Downloader {
 				}
 				bytesDownloaded += bytesRead;
 				sim.setBytesDownloaded(bytesDownloaded);
-				//System.out.println("downloaded=" + bytesDownloaded);
+				// System.out.println("downloaded=" + bytesDownloaded);
 
 				fos.write(buffer, 0, bytesRead);
-				//Utility.delay(1_000);
+				// Utility.delay(1_000);
 			}
 			sim.completed();
 		} catch (IOException | InterruptedException e) {

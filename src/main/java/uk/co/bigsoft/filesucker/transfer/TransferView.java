@@ -2,6 +2,7 @@ package uk.co.bigsoft.filesucker.transfer;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.util.LinkedList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -13,6 +14,7 @@ import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskView;
 
 public class TransferView extends JPanel {
 	private JPanel transfersPanel = new JPanel();
+	private LinkedList<JPanel> panels = new LinkedList<>();
 
 	public TransferView() {
 		super(new BorderLayout());
@@ -32,26 +34,19 @@ public class TransferView extends JPanel {
 		transfersPanel.revalidate();
 	}
 
-	public void addTransferLine(JComponent c) {
-		Component[] a = transfersPanel.getComponents();
-		transfersPanel.removeAll();
-		transfersPanel.add(c);
-		for (int i = 0; i < a.length; ++i) {
-			transfersPanel.add(a[i]);
-		}
-
-		transfersPanel.revalidate();
-	}
-
-	public void removeTransferLine(JComponent c) {
-		c.setVisible(false);
-		transfersPanel.remove(c);
-		transfersPanel.revalidate();
-		transfersPanel.repaint();
-	}
-
 	public void addTask(SuckerTaskView panel) {
-		transfersPanel.add(panel);
+		panels.addFirst(panel);
+		refreshPanels();
+	}
+
+	public void removeTask(SuckerTaskView panel) {
+		panels.remove(panel);
+		refreshPanels();
+	}
+
+	private void refreshPanels() {
+		transfersPanel.removeAll();
+		panels.stream().forEach(p -> transfersPanel.add(p));
 		transfersPanel.revalidate(); // TODO needed?
 		transfersPanel.repaint(); // TODO needed?
 	}

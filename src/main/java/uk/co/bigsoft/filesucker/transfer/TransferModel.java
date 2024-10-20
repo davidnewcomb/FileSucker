@@ -25,7 +25,7 @@ public class TransferModel {
 		suckerTasks.add(taskC);
 		propChangeFirer.firePropertyChange(TransferProps.F_TASK_ADDED, null, taskC);
 	}
-	
+
 	public void removeTask(SuckerTaskController stm) {
 		suckerTasks.remove(stm);
 		propChangeFirer.firePropertyChange(TransferProps.F_TASK_REMOVED, null, stm);

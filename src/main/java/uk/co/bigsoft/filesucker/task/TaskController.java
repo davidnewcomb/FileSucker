@@ -89,13 +89,13 @@ public class TaskController {
 
 		view.getSuffixTextField().addCaretListener(e -> caretMovedSuffix(e));
 		view.getSuffixTextField().addKeyListener((KeyReleasedListener) e -> keyReleasedSuffix());
-		
+
 		view.getSuffixButton().addActionListener(e -> suffix(configModel));
 		view.getSuffixEndCB().addActionListener(e -> suffixEnd());
 		view.getSuffixLowerButton().addActionListener(e -> suffixLower());
 		view.getSuffixClipButton().addActionListener(e -> suffixClip(configModel));
 		view.getSuffixClearButton().addActionListener(e -> suffixClear());
-		
+
 		view.getRunTaskButton().addActionListener(e -> runTask(transferController));
 
 	}

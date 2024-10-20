@@ -13,11 +13,11 @@ public class LooperCmd {
 	public static boolean isLooperText(String s) {
 		return s.startsWith("{") && s.endsWith("}");
 	}
-	
+
 	public static String getLooperGuts(String s) {
 		return s.substring(1, s.length() - 2);
 	}
-	
+
 	public static List<String> getLooperGutsList(String s) {
 		String[] gutsAr = getLooperGutsArray(s);
 		return List.of(gutsAr);
@@ -27,7 +27,7 @@ public class LooperCmd {
 		String guts = getLooperGuts(s);
 		return guts.split(",");
 	}
-	
+
 	public static String getLooperReduced(String s) {
 		String[] l = getLooperGutsArray(s);
 		return "{" + l[2] + "}";

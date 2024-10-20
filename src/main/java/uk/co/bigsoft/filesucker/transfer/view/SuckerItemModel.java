@@ -12,7 +12,6 @@ public class SuckerItemModel {
 	private SwingPropertyChangeSupport propChangeFirer;
 	private long bytesDownloaded = 0;
 	private long bytesToDownload = -1;
-	//private String url;
 	private Exception error = null;
 	private SuckerItem workItem;
 
@@ -45,12 +44,16 @@ public class SuckerItemModel {
 		propChangeFirer.firePropertyChange(TransferProps.F_FILE_PROGRESS, oldVal, getPercentComplete());
 	}
 
+	public boolean isSuccessful() {
+		return error == null;
+	}
+
 	public int getPercentComplete() {
 		if (bytesToDownload < 1) {
 			return -1;
 		}
 
-		return (int) ((bytesDownloaded * 100)/ bytesToDownload);
+		return (int) ((bytesDownloaded * 100) / bytesToDownload);
 	}
 
 //	public String getUrl() {

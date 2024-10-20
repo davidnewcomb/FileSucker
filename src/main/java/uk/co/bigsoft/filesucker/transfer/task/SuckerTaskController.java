@@ -12,15 +12,13 @@ import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.task.view.SuckerItemProgressBar;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 
-
-
 public class SuckerTaskController extends Thread {
 
 	private SuckerTaskModel model;
 	private SuckerTaskView view;
 	private int maxTasks = 10;
 	private HashMap<SuckerItemModel, SuckerItemProgressBar> mappings = new HashMap<>();
-	
+
 	public SuckerTaskController(SuckerTaskModel m, SuckerTaskView v) {
 		model = m;
 		view = v;
@@ -30,19 +28,18 @@ public class SuckerTaskController extends Thread {
 
 	private void initView() {
 		view.setTitle(model.getTitle());
-		
 	}
 
 	public void initController() {
-	
+
 	}
-	
+
 	private void modelListener(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
 		String propName = evt.getPropertyName();
 		Object newVal = evt.getNewValue();
-		
-		switch(propName) {
+
+		switch (propName) {
 		case SuckerTaskProps.FILE_START: {
 			// add progress bar
 			SuckerItemModel m = (SuckerItemModel) source;
@@ -64,6 +61,7 @@ public class SuckerTaskController extends Thread {
 			synchronized (mappings) {
 				mappings.remove(m);
 			}
+			model.fileDownloaded(m.isSuccessful());
 			break;
 		}
 		case SuckerTaskProps.FILE_PROGRESS: {
@@ -74,8 +72,14 @@ public class SuckerTaskController extends Thread {
 			synchronized (mappings) {
 				v = mappings.get(m);
 			}
-			
+
 			v.setPercentComplete(m.getPercentComplete());
+			break;
+		}
+		case SuckerTaskProps.FILE_FINISHED: {
+			System.out.println("FILE_FINISHED: " + model.getPercentComplete() + " " + model.getNumSuccess() + " "
+					+ model.getNumFailed());
+			view.setTaskStats(model.getPercentComplete(), model.getNumSuccess(), model.getNumFailed());
 			break;
 		}
 		default: {
@@ -83,11 +87,11 @@ public class SuckerTaskController extends Thread {
 		}
 		}
 	}
-	
+
 	public void addWorkItem() {
 		throw new RuntimeException("not implemeneted");
 	}
-	
+
 	public void removeWorkItem() {
 		throw new RuntimeException("not implemeneted");
 	}
@@ -97,29 +101,30 @@ public class SuckerTaskController extends Thread {
 	}
 
 	public void run() {
-		
+
 		LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>(maxTasks);
-		ThreadPoolExecutor executor = new ThreadPoolExecutor(maxTasks , maxTasks, Long.MAX_VALUE, TimeUnit.SECONDS, queue);
+		ThreadPoolExecutor executor = new ThreadPoolExecutor(maxTasks, maxTasks, Long.MAX_VALUE, TimeUnit.SECONDS,
+				queue);
 		executor.prestartAllCoreThreads();
-		
+
 		for (SuckerItem item : model.getWork()) {
-			
+
 			SuckerItemModel m = new SuckerItemModel(item);
 			m.addListener(e -> modelListener(e));
-			
+
 			SuckerItemDownloader r = new SuckerItemDownloader(m);
-			
+
 			while (queue.offer(r) == false) {
 				Utility.delay(1_000);
 			}
 
 		}
-		
+
 		System.out.println("All jobs queued, waiting for queue to empty");
 		while (!queue.isEmpty()) {
 			Utility.delay(1_000);
 		}
-		
+
 		System.out.println("Queue is empty");
 		executor.close();
 		executor.shutdown();
@@ -127,8 +132,6 @@ public class SuckerTaskController extends Thread {
 	}
 
 }
-
-
 
 //m.setUrl(item.getUrl());
 //SuckerItemProgressBar v = new SuckerItemProgressBar();

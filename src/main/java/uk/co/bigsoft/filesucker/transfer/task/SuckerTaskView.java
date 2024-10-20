@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.border.LineBorder;
 
-
 public class SuckerTaskView extends JPanel {
 	private static final int TRANSFER_ROW_HEIGHT = 20;
 
@@ -29,11 +28,11 @@ public class SuckerTaskView extends JPanel {
 		taskProgressBar.setValue(-1);
 		taskProgressBar.setMinimum(-1);
 		taskProgressBar.setMaximum(100);
-		// setStringPainted(true);
+		taskProgressBar.setStringPainted(true);
 		taskProgressBar.setMinimumSize(new Dimension(0, TRANSFER_ROW_HEIGHT));
 		taskProgressBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, TRANSFER_ROW_HEIGHT));
 		taskProgressBar.setString("...");
-		
+
 		int th = TRANSFER_ROW_HEIGHT * 20; // FileSucker.configData.getMaxTasks();
 
 		suckerItemsContainer.setMinimumSize(new Dimension(0, th));
@@ -45,28 +44,38 @@ public class SuckerTaskView extends JPanel {
 		add(header);
 		add(taskProgressBar);
 		add(suckerItemsContainer);
-
 	}
 
 	public void setTitle(String title) {
 		header.setText(title);
 	}
-	
+
+	public void setTaskStats(int percentComplete, int success, int failed) {
+		StringBuilder s = new StringBuilder(percentComplete + "%");
+		if (failed != 0) {
+			s.append(" [success=");
+			s.append(success);
+			s.append(", failed=");
+			s.append(failed);
+			s.append("]");
+		}
+		taskProgressBar.setString(s.toString());
+		taskProgressBar.setValue(percentComplete);
+	}
+
 	public void addSuckerProgressBar(JProgressBar bar) {
 		suckerItemsContainer.add(bar);
 		suckerItemsContainer.revalidate();
 		suckerItemsContainer.repaint();
 	}
-	
+
 	public void removeSuckerProgressBar(JProgressBar bar) {
 		suckerItemsContainer.remove(bar);
 		suckerItemsContainer.revalidate();
 		suckerItemsContainer.repaint();
 	}
-	
 
 }
-
 
 //public void setDoneAnother() {
 //current++;
@@ -105,8 +114,6 @@ public class SuckerTaskView extends JPanel {
 //}
 //return null;
 //}
-
-
 
 class MyMouseAdapter extends MouseAdapter {
 

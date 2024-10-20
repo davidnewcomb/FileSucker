@@ -16,18 +16,18 @@ import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 public class SuckerTaskThread extends Thread {
 
 	private int maxTasks = 5; // TODO should come from config
-	//private int corePoolSize = 10; // TODO should come from config
-	//private int maximumPoolSize = 10; // TODO should come from config
-	//private SuckerIterable si;
+	// private int corePoolSize = 10; // TODO should come from config
+	// private int maximumPoolSize = 10; // TODO should come from config
+	// private SuckerIterable si;
 	private SuckerTaskModel taskM;
-	//private SuckerTaskView taskV;
+	// private SuckerTaskView taskV;
 	private ThreadPoolExecutor executor;
 	private LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>(maxTasks);
 
 	public SuckerTaskThread(SuckerTaskModel taskM) {
-		//this.si = si;
+		// this.si = si;
 		this.taskM = taskM;
-		//this.taskV = taskV;
+		// this.taskV = taskV;
 
 		setName("FileSucker: " + taskM.getTitle());
 
@@ -45,27 +45,27 @@ public class SuckerTaskThread extends Thread {
 
 	@Override
 	public void run() {
-		
+
 		for (SuckerItem item : taskM.getWork()) {
-			
+
 			SuckerItemModel m = new SuckerItemModel(item);
 			m.addListener(null);
-			
-			//m.setUrl(item.getUrl());
+
+			// m.setUrl(item.getUrl());
 //			SuckerItemProgressBar v = new SuckerItemProgressBar(m);
 //			m.addListener(e -> itemModelListener(e, v));
-			
+
 //			item.setModel(m);
-			
+
 			SuckerItemDownloader r = new SuckerItemDownloader(m);
-			
+
 			while (queue.offer(r) == false) {
 				Utility.delay(1_000);
 			}
-			
-			//taskV.addSuckerProgressBar(v);
+
+			// taskV.addSuckerProgressBar(v);
 		}
-		
+
 		System.out.println("All jobs queued, waiting for queue to empty");
 		while (!queue.isEmpty()) {
 			Utility.delay(1_000);
@@ -88,6 +88,5 @@ public class SuckerTaskThread extends Thread {
 //		}
 //		}
 	}
-	
 
 }
