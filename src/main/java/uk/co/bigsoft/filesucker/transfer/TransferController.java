@@ -1,16 +1,19 @@
 package uk.co.bigsoft.filesucker.transfer;
 
 import java.beans.PropertyChangeEvent;
+import java.util.HashMap;
 
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
-import uk.co.bigsoft.filesucker.transfer.view.SuckerTaskModel;
-import uk.co.bigsoft.filesucker.transfer.view.SuckerTaskView;
+import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskController;
+import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskModel;
+import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskView;
 
 public class TransferController {
 
 	private TransferModel model;
 	private TransferView view;
+	//private HashMap<SuckerTaskModel, SuckerTaskView> currentTasks = new HashMap<>();
 
 	public TransferController(TransferModel m, TransferView v) {
 		model = m;
@@ -33,11 +36,24 @@ public class TransferController {
 
 		switch (propName) {
 		case TransferProps.F_TASK_ADDED: {
-			SuckerIterable si = (SuckerIterable) newVal;
-			SuckerTaskModel taskM = new SuckerTaskModel(si.getTaskConfig().getUrl(), si.size());
-			SuckerTaskView taskV = new SuckerTaskView(taskM);
-			view.addTask(taskV);
-			new SuckerTaskThread(si, taskV, taskM);
+			SuckerTaskController c = (SuckerTaskController) newVal;
+			view.addTask(c.getView());
+			
+			c.start();
+			break;
+//			===			
+//			currentTasks.put(taskM, taskV);
+//			
+//			new SuckerTaskThread(taskM);
+			
+//			===
+//			SuckerTaskModel taskM = new SuckerTaskModel(si);
+//			model.addTask(taskM);
+//			taskM.addListener(e -> modelListener(e));
+//			
+//			SuckerTaskView taskV = new SuckerTaskView(taskM);
+//			view.addTask(taskV);
+//			new SuckerTaskThread(si, taskM);
 		}
 		}
 
@@ -48,6 +64,12 @@ public class TransferController {
 		for (SuckerItem i : si) {
 			System.out.println(i.getUrl() + " -> " + i.getLocal());
 		}
-		model.addTask(si);
+		SuckerTaskView taskV = new SuckerTaskView();
+		SuckerTaskModel taskM = new SuckerTaskModel(si);
+		SuckerTaskController taskC = new SuckerTaskController(taskM, taskV);
+		
+		//taskM.addListener(e -> modelListener(e));
+		
+		model.addTask(taskC);
 	}
 }

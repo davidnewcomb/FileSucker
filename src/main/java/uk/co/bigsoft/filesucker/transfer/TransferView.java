@@ -9,7 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import uk.co.bigsoft.filesucker.transfer.view.SuckerTaskView;
+import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskView;
 
 public class TransferView extends JPanel {
 	private JPanel transfersPanel = new JPanel();

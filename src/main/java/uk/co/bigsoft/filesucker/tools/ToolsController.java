@@ -16,8 +16,8 @@ import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
 import uk.co.bigsoft.filesucker.task.TaskModel;
-import uk.co.bigsoft.filesucker.transfer.download.UrlSequenceIteration;
-import uk.co.bigsoft.filesucker.transfer.download.UrlSequencer;
+import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequenceIteration;
+import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequencer;
 
 public class ToolsController {
 

@@ -2,19 +2,20 @@ package uk.co.bigsoft.filesucker.transfer;
 
 import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 
 public class SuckerItemDownloader implements Runnable {
 
-	private SuckerItem suckerItem;
+	private SuckerItemModel suckerItem;
 
-	public SuckerItemDownloader(SuckerItem item) {
+	public SuckerItemDownloader(SuckerItemModel item) {
 		suckerItem = item;
 	}
 
 	@Override
 	public void run() {
 		Downloader dl = Downloader.getInstance();
-		dl.downloadBinaryFileProgressable(suckerItem.getUrl(), suckerItem.getLocal(), suckerItem.getModel());
+		dl.downloadBinaryFileProgressable(suckerItem);
 	}
 
 }

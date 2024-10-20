@@ -29,8 +29,8 @@ import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileView;
 import uk.co.bigsoft.filesucker.transfer.TransferController;
 import uk.co.bigsoft.filesucker.transfer.TransferModel;
 import uk.co.bigsoft.filesucker.transfer.TransferView;
-import uk.co.bigsoft.filesucker.transfer.download.SuckerThread;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
+import uk.co.bigsoft.filesucker.zjunk.transfer.download.SuckerThread;
 
 public class FileSucker {
 	private static final FileSuckerPrefsHandler fileSuckerPrefHandler = new FileSuckerPrefsHandler();

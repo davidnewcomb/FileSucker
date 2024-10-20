@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer.view;
+package uk.co.bigsoft.filesucker.transfer.task;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,42 +12,35 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.border.LineBorder;
 
+
 public class SuckerTaskView extends JPanel {
 	private static final int TRANSFER_ROW_HEIGHT = 20;
 
 	private JLabel header = new JLabel();
-	private JProgressBar taskProgressBar;
+	private JProgressBar taskProgressBar = new JProgressBar();
 	private Box suckerItemsContainer = Box.createVerticalBox();
 
-	public SuckerTaskView(SuckerTaskModel model) {
+	public SuckerTaskView() {
 		super();
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(new LineBorder(Color.BLACK));
 
-		// SuckerItemModel itemModel = new SuckerItemModel();
-
-		// SuckerIterableModel taskProgressModel = new SuckerIterableModel(69);
-		taskProgressBar = new SuckerTaskProgressBar(model);
-
+		taskProgressBar.setValue(-1);
+		taskProgressBar.setMinimum(-1);
+		taskProgressBar.setMaximum(100);
+		// setStringPainted(true);
+		taskProgressBar.setMinimumSize(new Dimension(0, TRANSFER_ROW_HEIGHT));
+		taskProgressBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, TRANSFER_ROW_HEIGHT));
+		taskProgressBar.setString("...");
+		
 		int th = TRANSFER_ROW_HEIGHT * 20; // FileSucker.configData.getMaxTasks();
 
 		suckerItemsContainer.setMinimumSize(new Dimension(0, th));
 		suckerItemsContainer.setMaximumSize(new Dimension(Integer.MAX_VALUE, th));
 
-		header.setText(model.getTitle());
-
-//		System.out.println("xxx-totalNoFiles=" + totalNoFiles);
-//		totalNumberOfFiles = new JProgressBar(SwingConstants.HORIZONTAL, 0, totalNoFiles);
-//		totalNumberOfFiles.setValue(0);
-//		totalNumberOfFiles.setStringPainted(true);
-//		totalNumberOfFiles.setMinimumSize(new Dimension(0, TRANSFER_ROW_HEIGHT));
-//		totalNumberOfFiles.setMaximumSize(new Dimension(Integer.MAX_VALUE, TRANSFER_ROW_HEIGHT));
-//		totalNumberOfFiles.setString(null);
-
 		MouseAdapter allFilesContextMenu = new MyMouseAdapter();
 		header.addMouseListener(allFilesContextMenu);
-		// totalNumberOfFiles.addMouseListener(allFilesContextMenu);
 
 		add(header);
 		add(taskProgressBar);
@@ -55,53 +48,65 @@ public class SuckerTaskView extends JPanel {
 
 	}
 
+	public void setTitle(String title) {
+		header.setText(title);
+	}
+	
 	public void addSuckerProgressBar(JProgressBar bar) {
 		suckerItemsContainer.add(bar);
+		suckerItemsContainer.revalidate();
+		suckerItemsContainer.repaint();
 	}
 	
 	public void removeSuckerProgressBar(JProgressBar bar) {
 		suckerItemsContainer.remove(bar);
+		suckerItemsContainer.revalidate();
+		suckerItemsContainer.repaint();
 	}
 	
-//	public void setDoneAnother() {
-//		current++;
-//		CreditScreen.addFiles(1);
-//		totalNumberOfFiles.setValue(current);
-//		totalNumberOfFiles.repaint();
-//	}
-//
-//	public void addDownloadFile(JComponent c) {
-//		files.add(c);
-//		revalidate();
-//	}
-//
-//	public void removeDownloadFile(JComponent c) {
-//		files.remove(c);
-//		revalidate();
-//	}
-//
-//	protected SuckeringFileJProgressBar[] getFiles() {
-//		Component[] cs = null;
-//		ArrayList<SuckeringFileJProgressBar> al = new ArrayList<SuckeringFileJProgressBar>();
-//
-//		try {
-//			cs = files.getComponents();
-//			for (int i = 0; i < cs.length; ++i) {
-//				if (cs[i] == null)
-//					continue;
-//
-//				if (cs[i] instanceof SuckeringFileJProgressBar)
-//					al.add((SuckeringFileJProgressBar) cs[i]);
-//			}
-//			SuckeringFileJProgressBar[] r = al.toArray(new SuckeringFileJProgressBar[0]);
-//			return r;
-//		} catch (Exception e) {
-//			System.out.print("here");
-//		}
-//		return null;
-//	}
 
 }
+
+
+//public void setDoneAnother() {
+//current++;
+//CreditScreen.addFiles(1);
+//totalNumberOfFiles.setValue(current);
+//totalNumberOfFiles.repaint();
+//}
+//
+//public void addDownloadFile(JComponent c) {
+//files.add(c);
+//revalidate();
+//}
+//
+//public void removeDownloadFile(JComponent c) {
+//files.remove(c);
+//revalidate();
+//}
+//
+//protected SuckeringFileJProgressBar[] getFiles() {
+//Component[] cs = null;
+//ArrayList<SuckeringFileJProgressBar> al = new ArrayList<SuckeringFileJProgressBar>();
+//
+//try {
+//	cs = files.getComponents();
+//	for (int i = 0; i < cs.length; ++i) {
+//		if (cs[i] == null)
+//			continue;
+//
+//		if (cs[i] instanceof SuckeringFileJProgressBar)
+//			al.add((SuckeringFileJProgressBar) cs[i]);
+//	}
+//	SuckeringFileJProgressBar[] r = al.toArray(new SuckeringFileJProgressBar[0]);
+//	return r;
+//} catch (Exception e) {
+//	System.out.print("here");
+//}
+//return null;
+//}
+
+
 
 class MyMouseAdapter extends MouseAdapter {
 

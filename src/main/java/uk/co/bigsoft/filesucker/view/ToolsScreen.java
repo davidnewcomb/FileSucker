@@ -23,8 +23,8 @@ import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
-import uk.co.bigsoft.filesucker.transfer.download.UrlSequenceIteration;
-import uk.co.bigsoft.filesucker.transfer.download.UrlSequencer;
+import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequenceIteration;
+import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequencer;
 
 public class ToolsScreen extends JPanel {
 	private static Pattern urlPattern = Pattern.compile(

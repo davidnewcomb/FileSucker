@@ -5,12 +5,13 @@ import java.util.LinkedList;
 
 import javax.swing.event.SwingPropertyChangeSupport;
 
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
+import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskController;
+import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskModel;
 
 public class TransferModel {
 
 	private SwingPropertyChangeSupport propChangeFirer;
-	private LinkedList<SuckerIterable> suckerTasks = new LinkedList<>();
+	private LinkedList<SuckerTaskController> suckerTasks = new LinkedList<>();
 
 	public TransferModel() {
 		propChangeFirer = new SwingPropertyChangeSupport(this);
@@ -20,8 +21,14 @@ public class TransferModel {
 		propChangeFirer.addPropertyChangeListener(listener);
 	}
 
-	public void addTask(SuckerIterable si) {
-		suckerTasks.add(si);
-		propChangeFirer.firePropertyChange(TransferProps.F_TASK_ADDED, null, si);
+	public void addTask(SuckerTaskController taskC) {
+		suckerTasks.add(taskC);
+		propChangeFirer.firePropertyChange(TransferProps.F_TASK_ADDED, null, taskC);
 	}
+	
+	public void removeTask(SuckerTaskController stm) {
+		suckerTasks.remove(stm);
+		propChangeFirer.firePropertyChange(TransferProps.F_TASK_REMOVED, null, stm);
+	}
+
 }

@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer.download;
+package uk.co.bigsoft.filesucker.zjunk.transfer.download;
 
 import java.io.File;
 import java.io.FileNotFoundException;

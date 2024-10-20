@@ -24,6 +24,7 @@ import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
 import uk.co.bigsoft.filesucker.transfer.TransferController;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
+import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskController {
 
@@ -38,6 +39,8 @@ public class TaskController {
 	}
 
 	private void initView() {
+		// TODO remove after testing
+		model.setUrl("http://192.168.4.192/test/red-arrows/red-arrows-{N,13,1,10,1}.jpg");
 		view.getUrlTextField().setText(model.getUrl());
 		view.getOriginalAddressTextField().setText(model.getOriginalAddress());
 		view.getDirectoryComboBox().setSelectedItem(model.getDirectory());
@@ -71,7 +74,6 @@ public class TaskController {
 		view.getSubDirectoryFromClipboardButton().addActionListener(e -> subDirectoryFromClipboard());
 		view.getSubDirectoryPathButton().addActionListener(e -> subDirectoryPath(configModel));
 
-		view.getRunTaskButton().addActionListener(e -> runTask(transferController));
 		view.getFindFilesButton().addActionListener(e -> findFiles(configModel));
 
 		view.getSaveOnly().addActionListener(e -> saveOnly());
@@ -93,6 +95,9 @@ public class TaskController {
 		view.getSuffixLowerButton().addActionListener(e -> suffixLower());
 		view.getSuffixClipButton().addActionListener(e -> suffixClip(configModel));
 		view.getSuffixClearButton().addActionListener(e -> suffixClear());
+		
+		view.getRunTaskButton().addActionListener(e -> runTask(transferController));
+
 	}
 
 	private void originalAddressLaunch(ConfigModel configModel) {
@@ -169,6 +174,7 @@ public class TaskController {
 				model.isSuffixEnd());
 		SuckerIterable si = new SuckerIterable(taskConfig);
 		transferController.addTask(si);
+		FileSuckerFrame.viewTransfers();
 
 		if (model.isSaveUrl()) {
 //			TaskScreenParams.save(taskConfig);

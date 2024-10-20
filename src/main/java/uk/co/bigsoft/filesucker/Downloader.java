@@ -69,14 +69,15 @@ public class Downloader {
 		return body;
 	}
 
-	public void downloadBinaryFileProgressable(String address, String localFile, SuckerItemModel model) {
+	public void downloadBinaryFileProgressable(SuckerItemModel sim) {
 
+		sim.started();
 		FileOutputStream fos = null;
 		InputStream is = null;
 
 		try {
-			URI url = URI.create(address);
-			File lf = new File(localFile);
+			URI url = URI.create(sim.getWorkItem().getUrl());
+			File lf = new File(sim.getWorkItem().getLocal());
 
 			// Resume features
 			long currentFileSize = 0L;
@@ -85,7 +86,7 @@ public class Downloader {
 
 			if (lf.exists()) {
 				currentFileSize = lf.length();
-				String rangeLastModified = HttpSupport.rangeLastModifiedDateString(localFile);
+				String rangeLastModified = HttpSupport.rangeLastModifiedDateString(sim.getWorkItem().getLocal());
 				if (rangeLastModified != null) {
 					builder = builder.header("Range", "bytes=" + currentFileSize + "-");
 					builder = builder.header("If-Range", rangeLastModified + " GMT");
@@ -115,7 +116,7 @@ public class Downloader {
 			HttpHeaders headers = resp.headers();
 
 			int contentLength = HttpSupport.retrieveContentLength(headers);
-			model.setBytesToDownload(contentLength);
+			sim.setBytesToDownload(contentLength);
 			System.out.println("content-length=" + contentLength);
 
 			is = resp.body();
@@ -132,14 +133,17 @@ public class Downloader {
 					break;
 				}
 				bytesDownloaded += bytesRead;
-				model.setBytesDownloaded(bytesDownloaded);
-				System.out.println("downloaded=" + bytesDownloaded);
+				sim.setBytesDownloaded(bytesDownloaded);
+				//System.out.println("downloaded=" + bytesDownloaded);
 
 				fos.write(buffer, 0, bytesRead);
+				//Utility.delay(1_000);
 			}
-			model.completed();
+			sim.completed();
 		} catch (IOException | InterruptedException e) {
-			model.setError(e);
+			System.out.println("FAILED " + sim.getWorkItem().getUrl() + ": " + e.toString());
+			e.printStackTrace();
+			sim.setError(e);
 		} finally {
 			Utility.closeSafely(fos);
 			Utility.closeSafely(is);

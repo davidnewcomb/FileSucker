@@ -4,16 +4,20 @@ import java.beans.PropertyChangeListener;
 import javax.swing.event.SwingPropertyChangeSupport;
 
 import uk.co.bigsoft.filesucker.transfer.TransferProps;
+import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskProps;
 
 public class SuckerItemModel {
 
 	private SwingPropertyChangeSupport propChangeFirer;
 	private long bytesDownloaded = 0;
 	private long bytesToDownload = -1;
-	private String url;
+	//private String url;
 	private Exception error = null;
+	private SuckerItem workItem;
 
-	public SuckerItemModel() {
+	public SuckerItemModel(SuckerItem item) {
+		workItem = item;
 		propChangeFirer = new SwingPropertyChangeSupport(this);
 	}
 
@@ -49,25 +53,33 @@ public class SuckerItemModel {
 		return (int) ((bytesDownloaded * 100)/ bytesToDownload);
 	}
 
-	public String getUrl() {
-		return url;
-	}
+//	public String getUrl() {
+//		return workItem.getUrl();
+//	}
 
-	public void setUrl(String url) {
-		this.url = url;
+//	public void setUrl(String url) {
+//		this.url = url;
+//	}
+
+	public void started() {
+		propChangeFirer.firePropertyChange(SuckerTaskProps.FILE_START, null, "ok");
 	}
 
 	public void completed() {
-		propChangeFirer.firePropertyChange(TransferProps.F_COMPLETED, null, "ok");
+		propChangeFirer.firePropertyChange(SuckerTaskProps.FILE_COMPLETED, null, "ok");
 	}
 
 	public void setError(Exception e) {
 		error = e;
-		propChangeFirer.firePropertyChange(TransferProps.F_COMPLETED, null, "failed");
+		propChangeFirer.firePropertyChange(SuckerTaskProps.FILE_COMPLETED, null, "failed");
 	}
 
 	public Exception getError() {
 		return error;
+	}
+
+	public SuckerItem getWorkItem() {
+		return workItem;
 	}
 
 }

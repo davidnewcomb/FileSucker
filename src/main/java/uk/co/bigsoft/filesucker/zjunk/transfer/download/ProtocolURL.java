@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer.download;
+package uk.co.bigsoft.filesucker.zjunk.transfer.download;
 
 import java.net.MalformedURLException;
 import java.net.URI;

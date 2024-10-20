@@ -5,7 +5,7 @@ import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 public class SuckerItem {
 	private String url;
 	private String local;
-	private SuckerItemModel model;
+	//private SuckerItemModel model;
 
 	public SuckerItem(String url, String local) {
 		this.url = url;
@@ -20,12 +20,12 @@ public class SuckerItem {
 		return local;
 	}
 
-	public SuckerItemModel getModel() {
-		return model;
-	}
-
-	public void setModel(SuckerItemModel model) {
-		this.model = model;
-	}
+//	public SuckerItemModel getModel() {
+//		return model;
+//	}
+//
+//	public void setModel(SuckerItemModel model) {
+//		this.model = model;
+//	}
 
 }
