@@ -228,13 +228,12 @@ public class TaskView extends JPanel {
 		homeDirectoryPrefixButton.setMinimumSize(new Dimension(0, 0));
 		homeDirectoryPrefixButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
-
 		JPanel directoryPanel = new JPanel();
 		directoryPanel.setBorder(new LineBorder(Color.BLUE));
 		directoryPanel.setLayout(new BoxLayout(directoryPanel, BoxLayout.Y_AXIS));
-		directoryPanel.setMinimumSize(new Dimension(0,0));
-		directoryPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
-		
+		directoryPanel.setMinimumSize(new Dimension(0, 0));
+		directoryPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+
 		hbox = Box.createHorizontalBox();
 		hbox.add(directoryBrowseButton);
 		hbox.add(subDirectoryPathButton);
@@ -256,7 +255,7 @@ public class TaskView extends JPanel {
 		dirLayout.add(helperDirectoryButton, BorderLayout.EAST);
 		dirLayout.add(dirLayoutCentre, BorderLayout.CENTER);
 		dirLayout.add(homeButton, BorderLayout.WEST);
-		
+
 		directoryPanel.add(dirLayout);
 
 		centre.add(directoryPanel);

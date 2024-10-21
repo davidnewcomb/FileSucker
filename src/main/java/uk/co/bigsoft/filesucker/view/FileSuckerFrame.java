@@ -48,7 +48,7 @@ public class FileSuckerFrame extends JFrame {
 	public static void viewTransfers() {
 		tabPane.setSelectedIndex(1);
 	}
-	
+
 	public static void viewTools() {
 		tabPane.setSelectedIndex(2);
 	}

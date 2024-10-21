@@ -31,13 +31,13 @@ public class SuckerTaskView extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(new LineBorder(Color.BLACK));
 
-		header.setMinimumSize(new Dimension(0,0));
+		header.setMinimumSize(new Dimension(0, 0));
 		header.setMaximumSize(new Dimension(Integer.MAX_VALUE, TRANSFER_ROW_HEIGHT));
 
-		removeButton.setMinimumSize(new Dimension(0,0));
+		removeButton.setMinimumSize(new Dimension(0, 0));
 		removeButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, TRANSFER_ROW_HEIGHT));
 		removeButton.setVisible(false);
-		
+
 		taskProgressBar.setValue(-1);
 		taskProgressBar.setMinimum(-1);
 		taskProgressBar.setMaximum(100);
@@ -100,12 +100,11 @@ public class SuckerTaskView extends JPanel {
 	}
 }
 
-
 class MyMouseAdapter extends MouseAdapter {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		super.mousePressed (e) ;
+		super.mousePressed(e);
 		System.out.println("mousePressed");
 		if ((e.getModifiers() & InputEvent.BUTTON3_MASK) != 0) {
 			JPopupMenu popUpMenu = new JPopupMenu();
@@ -153,7 +152,7 @@ class MyMouseAdapter extends MouseAdapter {
 //						rs.cancelThread();
 //					}
 //					cs = getFiles();
-					
+
 //					if (cs.length == 0) {
 //						break;
 //					}
@@ -173,7 +172,7 @@ class MyMouseAdapter extends MouseAdapter {
 				@Override
 				public void mousePressed(MouseEvent ee) {
 					System.out.println("Save: ");
-					//TaskScreenParams.save(parms);
+					// TaskScreenParams.save(parms);
 					// suckerThread.save();
 				}
 			});
@@ -184,7 +183,7 @@ class MyMouseAdapter extends MouseAdapter {
 				@Override
 				public void mousePressed(MouseEvent ee) {
 					System.out.println("Load: " + "xxx");
-					//TaskScreen.load(parms);
+					// TaskScreen.load(parms);
 				}
 			});
 			popUpMenu.add(t);
