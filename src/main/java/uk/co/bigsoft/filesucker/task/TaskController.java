@@ -23,7 +23,7 @@ import uk.co.bigsoft.filesucker.task.looper.LooperId;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
 import uk.co.bigsoft.filesucker.transfer.TransferController;
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
+import uk.co.bigsoft.filesucker.transfer.si.SuckerIterable;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskController {

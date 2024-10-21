@@ -16,8 +16,8 @@ import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
 import uk.co.bigsoft.filesucker.task.TaskConfig;
 import uk.co.bigsoft.filesucker.task.TaskModel;
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
+import uk.co.bigsoft.filesucker.transfer.si.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.si.SuckerIterable;
 
 public class ToolsController {
 

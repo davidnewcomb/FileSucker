@@ -2,7 +2,7 @@ package uk.co.bigsoft.filesucker.transfer;
 
 import java.beans.PropertyChangeEvent;
 
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
+import uk.co.bigsoft.filesucker.transfer.si.SuckerIterable;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskController;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskModel;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskView;

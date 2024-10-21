@@ -2,7 +2,6 @@ package uk.co.bigsoft.filesucker.transfer.task;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -42,9 +41,6 @@ public class SuckerTaskView extends JPanel {
 		taskProgressBar.setString("...");
 
 		suckerItemsContainer.setMinimumSize(new Dimension(0, TRANSFER_ROW_HEIGHT));
-
-		MouseAdapter allFilesContextMenu = new SuckerTaskViewMouseAdapter();
-		header.addMouseListener(allFilesContextMenu);
 
 		add(header);
 		add(taskProgressBar);
@@ -92,5 +88,9 @@ public class SuckerTaskView extends JPanel {
 
 	public JButton getRemoveButton() {
 		return removeButton;
+	}
+
+	public JLabel getHeaderLabel() {
+		return header;
 	}
 }

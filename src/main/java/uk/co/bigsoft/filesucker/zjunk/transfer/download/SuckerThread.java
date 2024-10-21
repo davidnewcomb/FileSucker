@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.SuckerParams;
 import uk.co.bigsoft.filesucker.view.TransferScreen;
 import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
@@ -179,9 +178,9 @@ public class SuckerThread extends Thread {
 	}
 
 	public void removeFromTransfersList() {
-		synchronized (FileSucker.activeFileSuckerThreads) {
-			FileSucker.activeFileSuckerThreads.remove(this);
-		}
+//		synchronized (FileSucker.activeFileSuckerThreads) {
+//			FileSucker.activeFileSuckerThreads.remove(this);
+//		}
 	}
 
 	public boolean isRunning() {

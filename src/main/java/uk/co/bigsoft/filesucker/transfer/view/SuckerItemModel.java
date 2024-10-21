@@ -4,7 +4,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.event.SwingPropertyChangeSupport;
 
 import uk.co.bigsoft.filesucker.transfer.TransferProps;
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskProps;
 
 public class SuckerItemModel {

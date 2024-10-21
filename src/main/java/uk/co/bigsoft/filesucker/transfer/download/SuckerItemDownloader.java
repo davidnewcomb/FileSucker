@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer;
+package uk.co.bigsoft.filesucker.transfer.download;
 
 import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;

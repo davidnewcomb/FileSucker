@@ -30,15 +30,12 @@ import uk.co.bigsoft.filesucker.transfer.TransferController;
 import uk.co.bigsoft.filesucker.transfer.TransferModel;
 import uk.co.bigsoft.filesucker.transfer.TransferView;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
-import uk.co.bigsoft.filesucker.zjunk.transfer.download.SuckerThread;
 
 public class FileSucker {
 	private static final FileSuckerPrefsHandler fileSuckerPrefHandler = new FileSuckerPrefsHandler();
 
 	public static String version = "";
 	public static String versionDate = "";
-
-	public static LinkedList<SuckerThread> activeFileSuckerThreads = null;
 
 	public static void main(String args[]) {
 
@@ -83,10 +80,6 @@ public class FileSucker {
 		taskController.initController(configModel, toolsModel, transferController);
 
 		Downloader.getInstance(configModel);
-
-		// Build tabs
-//		activeFileSuckerThreads = new LinkedList<SuckerThread>();
-//		transferScreen = new TransferScreen();
 
 		// Open window
 		new FileSuckerFrame(taskView, configView, creditsView, toolsView, transferView);

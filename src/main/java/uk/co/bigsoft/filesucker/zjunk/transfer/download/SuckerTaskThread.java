@@ -1,11 +1,12 @@
-package uk.co.bigsoft.filesucker.transfer;
+package uk.co.bigsoft.filesucker.zjunk.transfer.download;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.bigsoft.filesucker.Utility;
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.download.SuckerItemDownloader;
+import uk.co.bigsoft.filesucker.transfer.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskModel;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 

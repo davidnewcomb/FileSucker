@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.transfer.download.si;
+package uk.co.bigsoft.filesucker.transfer.si;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -7,9 +7,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.bigsoft.filesucker.Utility;
-import uk.co.bigsoft.filesucker.transfer.SuckerItemDownloader;
 import uk.co.bigsoft.filesucker.transfer.TransferController;
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.download.SuckerItemDownloader;
+import uk.co.bigsoft.filesucker.transfer.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.task.view.SuckerItemProgressBar;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 
@@ -35,6 +35,7 @@ public class SuckerTaskController extends Thread {
 
 	public void initController() {
 		view.getRemoveButton().addActionListener(e -> transferController.removeTask(this));
+		view.getHeaderLabel().addMouseListener(new SuckerTaskViewMouseAdapter(model));
 	}
 
 	private void modelListener(PropertyChangeEvent evt) {
@@ -112,25 +113,33 @@ public class SuckerTaskController extends Thread {
 
 		for (SuckerItem item : model.getWork()) {
 
+			if (model.isCancelled()) {
+				break;
+			}
+
 			SuckerItemModel m = new SuckerItemModel(item);
 			m.addListener(e -> modelListener(e));
 
 			SuckerItemDownloader r = new SuckerItemDownloader(m);
 
-			while (queue.offer(r) == false) {
+			while (!model.isCancelled() && queue.offer(r) == false) {
 				Utility.delay(100);
 			}
 
 		}
 
 		System.out.println("All jobs queued, waiting for queue to empty");
-		while (!queue.isEmpty()) {
+		while (!model.isCancelled() && !queue.isEmpty()) {
 			Utility.delay(1_000);
 		}
 
 		System.out.println("Queue is empty");
 		executor.close();
-		executor.shutdown();
+		if (model.isCancelled()) {
+			executor.shutdownNow();
+		} else {
+			executor.shutdown();
+		}
 		System.out.println("Task finished");
 	}
 
