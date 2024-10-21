@@ -89,6 +89,7 @@ public class TaskView extends JPanel {
 		// Base Directory
 		directoryCB.setMinimumSize(new Dimension(10, 20));
 		directoryCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+		directoryCB.addMouseListener((MousePressListener) e -> mousePressed(e));
 		// TODO
 		// directoryCB.setSelectedItem(FileSucker.configData.getBaseDir().toString());
 
@@ -227,12 +228,14 @@ public class TaskView extends JPanel {
 		homeDirectoryPrefixButton.setMinimumSize(new Dimension(0, 0));
 		homeDirectoryPrefixButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
+
+		JPanel directoryPanel = new JPanel();
+		directoryPanel.setBorder(new LineBorder(Color.BLUE));
+		directoryPanel.setLayout(new BoxLayout(directoryPanel, BoxLayout.Y_AXIS));
+		directoryPanel.setMinimumSize(new Dimension(0,0));
+		directoryPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
+		
 		hbox = Box.createHorizontalBox();
-		hbox.setBorder(new LineBorder(Color.BLUE));
-		hbox.add(helperDirectoryButton);
-		hbox.add(new JLabel("Directory"));
-		hbox.add(directoryCB);
-		hbox.add(homeButton);
 		hbox.add(directoryBrowseButton);
 		hbox.add(subDirectoryPathButton);
 		hbox.add(homeDirectoryPrefixButton);
@@ -243,10 +246,20 @@ public class TaskView extends JPanel {
 		hbox.add(subDirectoryAndPrefixFromClipboardButton);
 		hbox.add(subDirectoryFromClipboardButton);
 		hbox.add(directoryClipboardButton);
+		directoryPanel.add(hbox);
 
-		hbox.addMouseListener((MousePressListener) e -> mousePressed(e));
+		JPanel dirLayoutCentre = new JPanel(new BorderLayout());
+		dirLayoutCentre.add(new JLabel("Directory"), BorderLayout.WEST);
+		dirLayoutCentre.add(directoryCB, BorderLayout.CENTER);
 
-		centre.add(hbox);
+		JPanel dirLayout = new JPanel(new BorderLayout());
+		dirLayout.add(helperDirectoryButton, BorderLayout.EAST);
+		dirLayout.add(dirLayoutCentre, BorderLayout.CENTER);
+		dirLayout.add(homeButton, BorderLayout.WEST);
+		
+		directoryPanel.add(dirLayout);
+
+		centre.add(directoryPanel);
 
 		JPanel jp = new JPanel(new GridLayout(1, 2));
 

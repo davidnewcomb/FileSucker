@@ -3,7 +3,6 @@ package uk.co.bigsoft.filesucker.view;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.config.ConfigView;
 import uk.co.bigsoft.filesucker.credits.CreditsView;
 import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefs;
@@ -48,5 +47,9 @@ public class FileSuckerFrame extends JFrame {
 
 	public static void viewTransfers() {
 		tabPane.setSelectedIndex(1);
+	}
+	
+	public static void viewTools() {
+		tabPane.setSelectedIndex(2);
 	}
 }

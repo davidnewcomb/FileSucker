@@ -644,5 +644,6 @@ public class TaskController {
 	private void copyWorkingToTools(ToolsModel toolsModel) {
 		String u = model.getUrl();
 		toolsModel.setWorking(u);
+		FileSuckerFrame.viewTools();
 	}
 }
