@@ -49,10 +49,14 @@ public class Downloader {
 
 		timeout = Duration.ofMillis(configModel.getDelaySockReadMs());
 
-		client = HttpClient.newBuilder().followRedirects(Redirect.NORMAL).proxy(ProxySelector.getDefault())
+		client = HttpClient.newBuilder() //
+				.followRedirects(Redirect.NORMAL) //
+				.proxy(ProxySelector.getDefault())
 				// .authenticator(Authenticator.getDefault())
 				// TODO add separate connection timeout, maybe!
-				.connectTimeout(timeout).cookieHandler(CookieHandler.getDefault()).build();
+				.connectTimeout(timeout) //
+				.cookieHandler(CookieHandler.getDefault()) //
+				.build();
 	}
 
 	public String downloadTextFile(String address) throws IOException, InterruptedException {
@@ -60,7 +64,11 @@ public class Downloader {
 
 		// TODO setRequestProperty("Authorization", "Basic " + BasicAuth.encode(auth[0],
 		// auth[1]));
-		HttpRequest req = HttpRequest.newBuilder().uri(url).timeout(timeout).GET().build();
+		HttpRequest req = HttpRequest.newBuilder() //
+				.uri(url) //
+				.timeout(timeout) //
+				.GET() //
+				.build();
 
 		BodyHandler<String> handler = HttpResponse.BodyHandlers.ofString();
 		HttpResponse<String> resp = client.send(req, handler);
@@ -82,7 +90,11 @@ public class Downloader {
 			// Resume features
 			long currentFileSize = 0L;
 
-			Builder builder = HttpRequest.newBuilder().uri(url).timeout(timeout).GET();
+			Builder builder = HttpRequest.newBuilder() //
+					.version(HttpClient.Version.HTTP_1_1) //
+					.uri(url) //
+					.timeout(timeout) //
+					.GET();
 
 			if (lf.exists()) {
 				currentFileSize = lf.length();
@@ -97,6 +109,7 @@ public class Downloader {
 
 			BodyHandler<InputStream> handler = HttpResponse.BodyHandlers.ofInputStream();
 			HttpResponse<InputStream> resp = client.send(req, handler);
+
 			System.out.println("response-code=" + resp.statusCode());
 
 			long bytesDownloaded;

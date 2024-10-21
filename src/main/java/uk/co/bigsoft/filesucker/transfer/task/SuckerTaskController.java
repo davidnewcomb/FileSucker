@@ -37,7 +37,7 @@ public class SuckerTaskController extends Thread {
 	private void modelListener(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
 		String propName = evt.getPropertyName();
-		Object newVal = evt.getNewValue();
+		//Object newVal = evt.getNewValue();
 
 		switch (propName) {
 		case SuckerTaskProps.FILE_START: {
@@ -115,7 +115,7 @@ public class SuckerTaskController extends Thread {
 			SuckerItemDownloader r = new SuckerItemDownloader(m);
 
 			while (queue.offer(r) == false) {
-				Utility.delay(1_000);
+				Utility.delay(100);
 			}
 
 		}
