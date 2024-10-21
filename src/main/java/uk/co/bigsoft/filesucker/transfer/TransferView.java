@@ -1,12 +1,10 @@
 package uk.co.bigsoft.filesucker.transfer;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.util.LinkedList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -47,7 +45,7 @@ public class TransferView extends JPanel {
 	private void refreshPanels() {
 		transfersPanel.removeAll();
 		panels.stream().forEach(p -> transfersPanel.add(p));
-		transfersPanel.revalidate(); // TODO needed?
-		transfersPanel.repaint(); // TODO needed?
+		transfersPanel.revalidate();
+		transfersPanel.repaint();
 	}
 }

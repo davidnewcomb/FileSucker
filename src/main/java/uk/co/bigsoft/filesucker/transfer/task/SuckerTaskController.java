@@ -8,18 +8,21 @@ import java.util.concurrent.TimeUnit;
 
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.transfer.SuckerItemDownloader;
+import uk.co.bigsoft.filesucker.transfer.TransferController;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.task.view.SuckerItemProgressBar;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 
 public class SuckerTaskController extends Thread {
 
+	private TransferController transferController;
 	private SuckerTaskModel model;
 	private SuckerTaskView view;
 	private int maxTasks = 10;
 	private HashMap<SuckerItemModel, SuckerItemProgressBar> mappings = new HashMap<>();
 
-	public SuckerTaskController(SuckerTaskModel m, SuckerTaskView v) {
+	public SuckerTaskController(TransferController tc, SuckerTaskModel m, SuckerTaskView v) {
+		transferController = tc;
 		model = m;
 		view = v;
 		initView();
@@ -31,13 +34,13 @@ public class SuckerTaskController extends Thread {
 	}
 
 	public void initController() {
-
+		view.getRemoveButton().addActionListener(e -> transferController.removeTask(this));
 	}
 
 	private void modelListener(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
 		String propName = evt.getPropertyName();
-		//Object newVal = evt.getNewValue();
+		// Object newVal = evt.getNewValue();
 
 		switch (propName) {
 		case SuckerTaskProps.FILE_START: {

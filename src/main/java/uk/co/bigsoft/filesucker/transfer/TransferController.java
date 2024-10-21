@@ -1,9 +1,7 @@
 package uk.co.bigsoft.filesucker.transfer;
 
 import java.beans.PropertyChangeEvent;
-import java.util.HashMap;
 
-import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskController;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskModel;
@@ -42,19 +40,14 @@ public class TransferController {
 
 			c.start();
 			break;
-//			===			
-//			currentTasks.put(taskM, taskV);
-//			
-//			new SuckerTaskThread(taskM);
-
-//			===
-//			SuckerTaskModel taskM = new SuckerTaskModel(si);
-//			model.addTask(taskM);
-//			taskM.addListener(e -> modelListener(e));
-//			
-//			SuckerTaskView taskV = new SuckerTaskView(taskM);
-//			view.addTask(taskV);
-//			new SuckerTaskThread(si, taskM);
+		}
+		case TransferProps.F_TASK_REMOVED: {
+			SuckerTaskController c = (SuckerTaskController) newVal;
+			view.removeTask(c.getView());
+			break;
+		}
+		default: {
+			throw new RuntimeException("Bad TransferProps: " + propName);
 		}
 		}
 
@@ -62,15 +55,18 @@ public class TransferController {
 
 	public void addTask(SuckerIterable si) {
 
-		for (SuckerItem i : si) {
-			System.out.println(i.getUrl() + " -> " + i.getLocal());
-		}
+//		for (SuckerItem i : si) {
+//			System.out.println(i.getUrl() + " -> " + i.getLocal());
+//		}
 		SuckerTaskView taskV = new SuckerTaskView();
 		SuckerTaskModel taskM = new SuckerTaskModel(si);
-		SuckerTaskController taskC = new SuckerTaskController(taskM, taskV);
-
-		// taskM.addListener(e -> modelListener(e));
+		SuckerTaskController taskC = new SuckerTaskController(this, taskM, taskV);
+		taskC.initController();
 
 		model.addTask(taskC);
+	}
+
+	public void removeTask(SuckerTaskController stc) {
+		model.removeTask(stc);
 	}
 }
