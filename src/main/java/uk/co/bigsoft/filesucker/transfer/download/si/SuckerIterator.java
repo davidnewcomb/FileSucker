@@ -86,6 +86,9 @@ class SuckerIterator implements Iterator<SuckerItem> {
 	}
 
 	private String replaceVars(HashMap<Integer, String> map, String text) {
+		if ("".equals(text)) {
+			return "";
+		}
 		Matcher m = looperPattern.matcher(text);
 		StringBuilder sb = new StringBuilder();
 

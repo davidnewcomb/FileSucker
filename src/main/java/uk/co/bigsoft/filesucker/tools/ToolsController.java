@@ -5,7 +5,6 @@ import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Base64;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -15,9 +14,10 @@ import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.config.KeyReleasedListener;
+import uk.co.bigsoft.filesucker.task.TaskConfig;
 import uk.co.bigsoft.filesucker.task.TaskModel;
-import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequenceIteration;
-import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequencer;
+import uk.co.bigsoft.filesucker.transfer.download.si.SuckerItem;
+import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
 
 public class ToolsController {
 
@@ -188,7 +188,15 @@ public class ToolsController {
 		model.setWorking(decoded);
 	}
 
+	private File createTmpFile() {
+		String filename = System.getenv("HOME") + File.separator + "FileSucker-" + Math.random() + ".html";
+		File f = new File(filename);
+		f.deleteOnExit();
+		return f;
+	}
+
 	private void generateWebPage(ConfigModel configModel) {
+
 		try {
 			String text = model.getWorking();
 			text = text.trim();
@@ -196,44 +204,36 @@ public class ToolsController {
 				return;
 			}
 
-			File f = File.createTempFile("FileSucker-", ".html");
+			StringBuilder s = new StringBuilder();
 
-			// TODO - FileWrite does not
-			// handle \n properly
-			FileWriter fw = new FileWriter(f);
-			fw.write("<html>\n<head>\n<title>FileSucker v");
-			fw.write(FileSucker.version);
-			fw.write("</title>\n</head>\n<body>\n<p>\n");
+			s.append("<html>\n<head>\n <title>FileSucker v");
+			s.append(FileSucker.version);
+			s.append("</title>\n</head>\n<body>\n\n");
 
-			StringBuffer s;
-			String remoteFile;
-			UrlSequencer urls = new UrlSequencer(text);
-			UrlSequenceIteration urlsi;
-			for (Iterator<UrlSequenceIteration> i = urls.iterator(); i.hasNext();) {
-				urlsi = i.next();
-				remoteFile = urlsi.getRemoteFile();
-				s = new StringBuffer();
+			TaskConfig tm = new TaskConfig(text, ".", "", "", false);
+			SuckerIterable sit = new SuckerIterable(tm);
+
+			for (SuckerItem st : sit) {
+				String remoteFile = st.getUrl();
+
 				s.append("<a href=\"");
 				s.append(remoteFile);
 				s.append("\">");
 				s.append(remoteFile);
 				s.append("</a><br>\n");
-				fw.write(s.toString());
 			}
-			fw.write("\n</body></html>\n");
+			s.append("\n</body>\n</html>\n");
+
+			File f = createTmpFile();
+			FileWriter fw = new FileWriter(f);
+			fw.write(s.toString());
 			fw.close();
 
-			// fucking DOS does not honour a
-			// second quoted string in the
-			// command
-			// line
-			// String path = "\"" +
-			// f.toString ().replaceAll
-			// ("\\\\", "\\\\\\\\")
-			// + "\"";
+			// DOS does not honour a second quoted string in the
+			// command line
+			// String path = "\"" + f.toString ().replaceAll ("\\\\", "\\\\\\\\") + "\"";
 			String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
 			Utility.launchBrowser(configModel, path);
-			f.deleteOnExit();
 		} catch (Exception ex) {
 			System.out.println("GenWebPage");
 			ex.printStackTrace();
@@ -241,6 +241,7 @@ public class ToolsController {
 	}
 
 	private void generateImageWebPage(ConfigModel configModel) {
+
 		try {
 			String text = model.getWorking();
 			text = text.trim();
@@ -248,61 +249,51 @@ public class ToolsController {
 				return;
 			}
 
-			File f = File.createTempFile("FileSucker-", ".html");
+			TaskConfig tm = new TaskConfig(text, ".", "", "", false);
+			SuckerIterable sit = new SuckerIterable(tm);
 
-			// TODO - FileWrite does not
-			// handle \n properly
-			FileWriter fw = new FileWriter(f);
-			fw.write("<html>\n<head>\n<title>FileSucker v");
-			fw.write(FileSucker.version);
-			fw.write("</title>\n</head>\n<body>\n<p>\n");
+			StringBuilder s = new StringBuilder();
 
-			StringBuffer s;
-			String remoteFile;
-			UrlSequencer urls = new UrlSequencer(text);
-			UrlSequenceIteration urlsi;
-			for (Iterator<UrlSequenceIteration> i = urls.iterator(); i.hasNext();) {
-				urlsi = i.next();
-				remoteFile = urlsi.getRemoteFile();
-				s = new StringBuffer();
-				s.append("<table><tr><td>");
+			s.append("<html>\n<head>\n <title>FileSucker v");
+			s.append(FileSucker.version);
+			s.append("</title>\n</head>\n<body>\n\n");
+
+			for (SuckerItem st : sit) {
+				String remoteFile = st.getUrl();
+				s.append("<table>\n <tr>\n  <td>");
 				s.append("<a href=\"");
 				s.append(remoteFile);
 				s.append("\"><img src=\"");
 				s.append(remoteFile);
-				s.append("\" border=\"0\"></a></td></tr><tr><td><a href=\"");
+				s.append("\" border=\"0\"></a></td>\n </tr>\n <tr>\n  <td><a href=\"");
 				s.append(remoteFile);
 				s.append("\">");
 				s.append(remoteFile);
-				s.append("</a></td></tr></table>\n");
-				fw.write(s.toString());
+				s.append("</a></td>\n </tr>\n</table>\n");
 			}
-			fw.write("\n</body></html>\n");
+
+			s.append("\n</body>\n</html>\n");
+
+			File f = createTmpFile();
+			FileWriter fw = new FileWriter(f);
+			fw.write(s.toString());
 			fw.close();
 
-			// fucking DOS does not honour a
-			// second quoted string in the
-			// command
-			// line
-			// String path = "\"" +
-			// f.toString ().replaceAll
-			// ("\\\\", "\\\\\\\\")
-			// + "\"";
+			// DOS does not honour a second quoted string in the command line
+			// String path = "\"" + f.toString ().replaceAll("\\\\", "\\\\\\\\") + "\"";
 			String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
 			Utility.launchBrowser(configModel, path);
-			f.deleteOnExit();
+
 		} catch (Exception ex) {
 			System.out.println("GenImageWebPage");
 			ex.printStackTrace();
 		}
+
 	}
 
 	private void linksPage(ConfigModel configModel, TaskModel taskModel) {
 		try {
-			int idx;
-			StringBuffer s;
-			String text = model.getWorking();
-			text = text.trim();
+			String text = model.getWorking().trim();
 			if (text.length() == 0) {
 				return;
 			}
@@ -314,19 +305,14 @@ public class ToolsController {
 
 			List<String> links = getLinks(sb);
 
-			File f = File.createTempFile("FileSucker-", ".html");
-
-			// TODO - FileWrite does not
-			// handle \n properly
-			FileWriter fw = new FileWriter(f);
-			fw.write("<html>\n<head>\n<title>FileSucker v");
-			fw.write(FileSucker.version);
-			fw.write("</title>\n</head>\n<body>\n<p>\n");
+			StringBuilder s = new StringBuilder();
+			s.append("<html>\n<head>\n<title>FileSucker v");
+			s.append(FileSucker.version);
+			s.append("</title>\n</head>\n<body>\n<p>\n");
 
 			for (String l : links) {
-				s = new StringBuffer();
 
-				idx = l.lastIndexOf(".") + 1;
+				int idx = l.lastIndexOf(".") + 1;
 				String extn = l.substring(idx, l.length()).toLowerCase();
 				if (extn.endsWith("jpg") || extn.endsWith("jpeg")) {
 					s.append("<img src=\"");
@@ -349,22 +335,19 @@ public class ToolsController {
 					}
 				}
 				s.append("<br>\n");
-				fw.write(s.toString());
 			}
-			fw.write("\n</body></html>\n");
+			s.append("\n</body></html>\n");
+
+			File f = createTmpFile();
+			FileWriter fw = new FileWriter(f);
+			fw.write(s.toString());
 			fw.close();
 
-			// fucking DOS does not honour a
-			// second quoted string in the
-			// command
-			// line
-			// String path = "\"" +
-			// f.toString ().replaceAll
-			// ("\\\\", "\\\\\\\\")
-			// + "\"";
+			// DOS does not honour a second quoted string in the command line
+			// String path = "\"" + f.toString ().replaceAll ("\\\\", "\\\\\\\\") + "\"";
 			String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
 			Utility.launchBrowser(configModel, path);
-			f.deleteOnExit();
+
 		} catch (Exception ex) {
 			taskModel.setErrorMessage(ex.getMessage());
 		}
