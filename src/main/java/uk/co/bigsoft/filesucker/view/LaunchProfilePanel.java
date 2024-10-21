@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.Utility;
-//import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 public class LaunchProfilePanel extends JPanel {
 	private JComboBox<String> list = new JComboBox<String>();

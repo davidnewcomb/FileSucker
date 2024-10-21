@@ -1,11 +1,9 @@
 package uk.co.bigsoft.filesucker.transfer.task;
 
 import java.beans.PropertyChangeListener;
-import java.util.LinkedList;
 
 import javax.swing.event.SwingPropertyChangeSupport;
 
-import uk.co.bigsoft.filesucker.transfer.TransferProps;
 import uk.co.bigsoft.filesucker.transfer.download.si.SuckerIterable;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 
@@ -15,7 +13,6 @@ public class SuckerTaskModel {
 	private SuckerIterable work;
 	private int numSuccess = 0;
 	private int numFailed = 0;
-	private LinkedList<SuckerItemModel> files = new LinkedList<>();
 
 	public SuckerTaskModel(SuckerIterable si) {
 		work = si;

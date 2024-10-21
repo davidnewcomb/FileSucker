@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import javax.swing.event.SwingPropertyChangeSupport;
 
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskController;
-import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskModel;
 
 public class TransferModel {
 
