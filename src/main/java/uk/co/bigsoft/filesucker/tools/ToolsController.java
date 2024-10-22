@@ -94,8 +94,8 @@ public class ToolsController {
 
 	private void pasteIntoWorking(MouseEvent e) {
 		int clickedButton = e.getButton();
-		if (clickedButton == 3) // r-click
-		{
+		if (clickedButton == 3) {
+			// r-click
 			String s = Utility.getClipboard();
 			if (s != null) {
 				model.setWorking(s);
@@ -116,25 +116,21 @@ public class ToolsController {
 					num.append(s.charAt(i + 2));
 					c = (char) Integer.parseInt(num.toString(), 16);
 					i += 2;
-				} catch (StringIndexOutOfBoundsException ex) {
-					// c will not be
-					// affected
-				} catch (NumberFormatException ex) {
-					// c will not be
-					// affected
+				} catch (StringIndexOutOfBoundsException | NumberFormatException ex) {
+					// c will not be affected
 				}
 			}
 			sb.append(c);
 		}
-
 		model.setWorking(sb.toString());
 	}
 
 	private void convertMiddle() {
 		String ss = model.getWorking();
 		int s = ss.indexOf("http");
-		if (s == 0)
+		if (s == 0) {
 			s = ss.indexOf("http", 1);
+		}
 		int another = s;
 
 		while (another != -1) {
@@ -142,8 +138,9 @@ public class ToolsController {
 			another = ss.indexOf("http", s + 1);
 		}
 
-		if (s == -1)
+		if (s == -1) {
 			return;
+		}
 
 		int end = ss.length();
 		ss = ss.substring(s);
@@ -151,17 +148,20 @@ public class ToolsController {
 		int ie = ss.indexOf("?");
 
 		if (ie != -1) {
-			if (end > ie)
+			if (end > ie) {
 				end = ie;
+			}
 		}
 		ie = ss.indexOf("&");
 		if (ie != 1) {
-			if (end > ie)
+			if (end > ie) {
 				end = ie;
+			}
 		}
 
-		if (end != -1)
+		if (end != -1) {
 			ss = ss.substring(s, end);
+		}
 
 		model.setWorking(ss.toString());
 	}

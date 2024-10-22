@@ -96,8 +96,8 @@ public class FileAndTextTransferHandler extends TransferHandler {
 			} else {
 				L.debug("**** Found doggy drag type");
 				DataFlavor[] dfAr = t.getTransferDataFlavors();
-				for (int i = 0; i < dfAr.length; ++i) {
-					L.debug(i + ")" + dfAr[i].toString());
+				for (DataFlavor df : dfAr) {
+					L.debug("->" + df.toString());
 				}
 			}
 		} catch (UnsupportedFlavorException ufe) {

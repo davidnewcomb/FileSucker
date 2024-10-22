@@ -13,8 +13,9 @@ public class SpinnerCharacterModel extends AbstractSpinnerModel {
 
 	public Object getNextValue() {
 		int i = range.indexOf(current);
-		if (!(i >= 0 && i < range.length() - 1))
+		if (!(i >= 0 && i < range.length() - 1)) {
 			return null;
+		}
 		++i;
 		String newVal = range.substring(i, i + 1);
 		return newVal;
@@ -22,8 +23,9 @@ public class SpinnerCharacterModel extends AbstractSpinnerModel {
 
 	public Object getPreviousValue() {
 		int i = range.indexOf(current);
-		if (!(i > 0 && i < range.length()))
+		if (!(i > 0 && i < range.length())) {
 			return null;
+		}
 		--i;
 		String newVal = range.substring(i, i + 1);
 		return newVal;

@@ -278,24 +278,6 @@ public class TaskView extends JPanel {
 		hbox.add(suffixTF);
 
 		jp.add(hbox);
-
-//		iteratorJP = new JPanel(new BorderLayout());
-//
-//		hbox = Box.createHorizontalBox();
-//		hbox.add(numberB);
-//		hbox.add(textB);
-//		hbox.add(listB);
-//		hbox.add(copyB);
-//		hbox.add(staticB);
-//
-//		JPanel iter_jp = new JPanel(new BorderLayout());
-//		iter_jp.setBorder(new LineBorder(Color.BLUE));
-//		iter_jp.add(hbox, BorderLayout.NORTH);
-//		iter_jp.add(iteratorJP, BorderLayout.CENTER);
-//
-//		jp.add(iter_jp);
-//		centre.add(jp);
-
 		jp.add(looperPanel);
 		centre.add(jp);
 
@@ -303,8 +285,8 @@ public class TaskView extends JPanel {
 
 	private void mousePressed(MouseEvent me) {
 		int clickedButton = me.getButton();
-		if (clickedButton == 3) // r-click
-		{
+		if (clickedButton == 3) {
+			// r-click
 			String s = Utility.getClipboard();
 			if (s != null) {
 				directoryCB.setSelectedItem(s);

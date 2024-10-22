@@ -254,8 +254,9 @@ public class TaskController {
 		String curDir = model.getDirectory();
 		StringBuffer newDir = new StringBuffer();
 		if (curDir.length() > 1) {
-			if (curDir.charAt(curDir.length() - 1) != File.separatorChar)
+			if (curDir.charAt(curDir.length() - 1) != File.separatorChar) {
 				newDir.append(File.separator);
+			}
 		}
 		newDir.append(url_s);
 		if (curDir.equals("")) {
@@ -269,14 +270,16 @@ public class TaskController {
 
 	private void subDirectoryFromClipboard() {
 		String s = Utility.getClipboard();
-		if (s == null)
+		if (s == null) {
 			return;
+		}
 
 		s = Utility.cleanString(s);
 
 		StringBuffer sb = new StringBuffer(model.getDirectory());
-		if (sb.charAt(sb.length() - 1) != File.separatorChar)
+		if (sb.charAt(sb.length() - 1) != File.separatorChar) {
 			sb.append(File.separator);
+		}
 
 		sb.append(s);
 		model.setDirectory(sb.toString());
@@ -285,8 +288,9 @@ public class TaskController {
 	private void subDirectoryAndPrefixFromClipboard(ConfigModel configModel) {
 		// Add to dir
 		String url_s = Utility.getClipboard();
-		if (url_s == null)
+		if (url_s == null) {
 			return;
+		}
 
 		url_s = Utility.getSuckerLable(url_s);
 		url_s = Utility.cleanString(url_s);
@@ -294,14 +298,16 @@ public class TaskController {
 		String curDir = model.getDirectory();
 		StringBuffer newDir = new StringBuffer();
 		if (curDir.length() > 1) {
-			if (curDir.charAt(curDir.length() - 1) != File.separatorChar)
+			if (curDir.charAt(curDir.length() - 1) != File.separatorChar) {
 				newDir.append(File.separator);
+			}
 		}
 		newDir.append(url_s);
-		if (curDir.equals(""))
+		if (curDir.equals("")) {
 			newDir.insert(0, configModel.getBaseDir());
-		else
+		} else {
 			newDir.insert(0, curDir);
+		}
 
 		model.setDirectory(newDir.toString());
 
@@ -313,8 +319,9 @@ public class TaskController {
 	private void subDirectoryAndPrefix(ConfigModel configModel) {
 		// Add to dir
 		String url_s = model.getSelectedUrl();
-		if (url_s == null)
+		if (url_s == null) {
 			return;
+		}
 
 		url_s = Utility.getSuckerLable(url_s);
 		url_s = Utility.cleanString(url_s);
@@ -342,10 +349,10 @@ public class TaskController {
 
 	private void homeDirectoryPrefix(ConfigModel configModel) {
 		String url_s = model.getSelectedUrl();
-		if (url_s == null)
+		if (url_s == null) {
 			return;
+		}
 		url_s = Utility.getSuckerLable(url_s);
-
 		url_s = Utility.cleanString(url_s);
 
 		StringBuffer newDir = new StringBuffer(configModel.getBaseDir());
@@ -383,8 +390,9 @@ public class TaskController {
 
 	private void directoryClipboard(ConfigModel configModel) {
 		String s = Utility.getClipboard();
-		if (s == null)
+		if (s == null) {
 			return;
+		}
 
 		s = Utility.cleanString(s);
 
@@ -448,8 +456,9 @@ public class TaskController {
 
 	private void clipboardAsDirectory() {
 		String s = Utility.getClipboard();
-		if (s == null)
+		if (s == null) {
 			return;
+		}
 		model.setDirectory(s);
 	}
 

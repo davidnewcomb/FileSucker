@@ -44,8 +44,9 @@ public class Utility {
 	}
 
 	public static void delay(int ms) {
-		if (ms < 1)
+		if (ms < 1) {
 			return;
+		}
 
 		try {
 			Thread.sleep(ms);
@@ -68,11 +69,9 @@ public class Utility {
 		boolean first = true;
 		boolean possibly_camelcase = false;
 		boolean actually_camelcase = false;
-		String letter;
-		boolean isUpper;
 		for (int i = 0; i < s.length(); ++i) {
-			letter = s.substring(i, i + 1);
-			isUpper = Character.isUpperCase(letter.charAt(0));
+			String letter = s.substring(i, i + 1);
+			boolean isUpper = Character.isUpperCase(letter.charAt(0));
 
 			if (s.charAt(i) == '_' || s.charAt(i) == '-') {
 				first = true;
@@ -113,18 +112,6 @@ public class Utility {
 		return n.toString();
 	}
 
-	public static String implode(String[] a, String sep) {
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < a.length; ++i) {
-			sb.append(a[i]);
-			sb.append(sep);
-		}
-		if (sb.length() > 0) {
-			sb.deleteCharAt(sb.length() - 1);
-		}
-		return sb.toString();
-	}
-
 	/**
 	 * @param what     Debug reason for caller
 	 * @param toExpand What to expand
@@ -154,75 +141,6 @@ public class Utility {
 		return dirEpanded;
 	}
 
-	// Works
-	// public static String cleanString (String s)
-	// {
-	// s = s.trim () ;
-	// s = s.replaceAll (" & ", "__") ;
-	// s = s.replaceAll ("[ \\.]", "_") ;
-	// s = s.replaceAll ("&", "__") ;
-	// s = s.replaceAll ("__", "_") ;
-	//
-	// // Capitalise
-	// StringBuffer n = new StringBuffer() ;
-	// boolean first = true ;
-	// boolean possibly_camelcase = false ;
-	// boolean actually_camelcase = false ;
-	// String letter ;
-	// for (int i = 0; i < s.length (); ++i)
-	// {
-	// letter = s.substring (i, i + 1) ;
-	// if (s.charAt (i) == '_' || s.charAt (i) == '-')
-	// {
-	// first = true ;
-	// n.append (letter) ;
-	// continue ;
-	// }
-	// if (first)
-	// {
-	// first = false ;
-	// if (Character.isUpperCase (letter.charAt (0)))
-	// {
-	// possibly_camelcase = true ;
-	// actually_camelcase = true ;
-	// n.append (letter) ;
-	// }
-	// else
-	// {
-	// possibly_camelcase = false ;
-	// actually_camelcase = false ;
-	// n.append (letter.toUpperCase ()) ;
-	// }
-	// }
-	// else
-	// {
-	// if (possibly_camelcase)
-	// {
-	// possibly_camelcase = true ;
-	// if (Character.isLowerCase (letter.charAt (0)))
-	// {
-	// actually_camelcase = true ;
-	// }
-	// }
-	//
-	// if (Character.isUpperCase (letter.charAt (0)) && actually_camelcase)
-	// {
-	// n.append ("_") ;
-	// n.append (letter) ;
-	// possibly_camelcase = false ;
-	// actually_camelcase = false ;
-	// }
-	// else
-	// {
-	// n.append (letter.toLowerCase ()) ;
-	// }
-	// }
-	// //n.append (letter) ;
-	// }
-	//
-	// return n.toString () ;
-	// }
-
 	public static void launchBrowser(String helperWeb, String url) {
 		if ("".equals(url)) {
 			return;
@@ -236,8 +154,9 @@ public class Utility {
 	}
 
 	public static void launchBrowser(ConfigModel configModel, String url) {
-		if (url == null)
+		if (url == null) {
 			return;
+		}
 		String u = url.trim();
 		if (u.trim().equals("")) {
 			return;

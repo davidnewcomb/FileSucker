@@ -11,8 +11,9 @@ public class HistoryDropDown extends TreeSet<HistoryElement> {
 	public void removeOldest() {
 		HistoryElement oldest = first();
 		for (HistoryElement o : this) {
-			if (o.isOlder(oldest))
+			if (o.isOlder(oldest)) {
 				oldest = o;
+			}
 		}
 		remove(oldest);
 	}

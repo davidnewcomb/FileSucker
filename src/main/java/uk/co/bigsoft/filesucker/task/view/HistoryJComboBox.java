@@ -72,8 +72,9 @@ public class HistoryJComboBox extends JComboBox<String> {
 		String[] items = loadPrefs();
 
 		// Load history from preferences
-		for (int i = 0; i < items.length; ++i)
-			addItem(items[i]);
+		for (String item : items) {
+			addItem(item);
+		}
 
 		addItem(clearHistory);
 		addItem(culHistory);
@@ -91,16 +92,16 @@ public class HistoryJComboBox extends JComboBox<String> {
 		p_items = preferences.get(preferenceName, "");
 		String[] items = p_items.split(ITEM_SEPERATOR);
 		TreeSet<String> tp = new TreeSet<String>();
-		String s;
-		String t[];
-		for (int i = 0; i < items.length; ++i) {
-			t = items[i].split(ITEM_SUB_SEPERATOR);
-			s = t[0];
+		for (String item : items) {
+			String[] t = item.split(ITEM_SUB_SEPERATOR);
+			String s = t[0];
 
-			if ("".equals(s))
+			if ("".equals(s)) {
 				continue;
-			if (s.charAt(s.length() - 1) == File.separatorChar)
+			}
+			if (s.charAt(s.length() - 1) == File.separatorChar) {
 				s = s.substring(0, s.length() - 1);
+			}
 			tp.add(s);
 		}
 		items = tp.toArray(new String[tp.size()]);
@@ -128,10 +129,8 @@ public class HistoryJComboBox extends JComboBox<String> {
 		p_items = preferences.get(preferenceName, "");
 		String[] items = p_items.split(ITEM_SEPERATOR);
 		TreeSet<HistoryJComboBoxLife> tp = new TreeSet<HistoryJComboBoxLife>();
-		HistoryJComboBoxLife c;
-		for (int idx = 0; idx < items.length; ++idx) {
-			c = new HistoryJComboBoxLife(items[idx]);
-			tp.add(c);
+		for (String item : items) {
+			tp.add(new HistoryJComboBoxLife(item));
 		}
 
 		int cul = tp.size() / 2;
@@ -159,12 +158,10 @@ public class HistoryJComboBox extends JComboBox<String> {
 	public void savePrefs(String item) {
 		String value;
 		boolean notInList = false;
-		if (item == null)
-			value = getSelectedName();
-		else
-			value = item;
-		if (value == null || value.equals(""))
+		value = item == null ? getSelectedName() : item;
+		if (value == null || value.equals("")) {
 			return;
+		}
 
 		if (p_items.equals("")) {
 			p_items = value + ITEM_SUB_SEPERATOR + System.currentTimeMillis();
@@ -174,8 +171,8 @@ public class HistoryJComboBox extends JComboBox<String> {
 			StringBuffer sb = new StringBuffer(value);
 
 			String[] items = p_items.split(ITEM_SEPERATOR);
-			for (int i = 0; i < items.length; ++i) {
-				HistoryJComboBoxLife x = new HistoryJComboBoxLife(items[i]);
+			for (String s : items) {
+				HistoryJComboBoxLife x = new HistoryJComboBoxLife(s);
 				if (x.getItem().equals(value)) {
 					notInList = true;
 					continue;
@@ -186,8 +183,9 @@ public class HistoryJComboBox extends JComboBox<String> {
 			p_items = sb.toString();
 		}
 
-		if (notInList == false)
+		if (notInList == false) {
 			addItem(value);
+		}
 
 		if (p_items.length() >= Preferences.MAX_VALUE_LENGTH) {
 			// TODO do something proper here
@@ -232,7 +230,6 @@ public class HistoryJComboBox extends JComboBox<String> {
 			}
 			setSelectedIndex(0);
 		}
-
 	}
 
 	/**
@@ -243,20 +240,18 @@ public class HistoryJComboBox extends JComboBox<String> {
 	public String getSelectedName() {
 		return super.getSelectedItem().toString().trim();
 	}
-
 }
 
 class HistoryJComboBoxLife implements Comparable<HistoryJComboBoxLife> {
 	private long age;
-
 	private String item;
 
 	public HistoryJComboBoxLife(String txt) {
 		String[] items = txt.split(HistoryJComboBox.ITEM_SUB_SEPERATOR);
 		item = items[0];
-		if (items.length == 1)
+		if (items.length == 1) {
 			age = 0;
-		else {
+		} else {
 			try {
 				age = Long.valueOf(items[1]);
 			} catch (NumberFormatException e) {
@@ -294,8 +289,6 @@ class HistoryJComboBoxLife implements Comparable<HistoryJComboBoxLife> {
 		if (x == 0) {
 			return item.compareTo(o.item);
 		}
-
 		return x;
-
 	}
 }

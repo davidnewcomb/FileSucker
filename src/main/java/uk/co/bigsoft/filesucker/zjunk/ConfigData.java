@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.view.HistoryDropDown;
 import uk.co.bigsoft.filesucker.view.HistoryElement;
 
@@ -235,7 +234,7 @@ public class ConfigData extends Properties {
 		setProperty(LAB_POSTPREFIX, postPrefix);
 		setProperty(LAB_MAXTASKS, "" + maxTasks);
 		setProperty(LAB_MAXSUBTASKS, "" + maxSubTasks);
-		String s = Utility.implode(findExtn, ",");
+		String s = String.join(",", findExtn);
 		setProperty(LAB_FINDEXTN, s);
 		setProperty(LAB_HELPER_WEB, helperWeb);
 		setProperty(LAB_HELPER_TEXT, helperText);

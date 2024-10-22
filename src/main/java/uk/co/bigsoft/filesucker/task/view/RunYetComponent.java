@@ -11,22 +11,22 @@ public class RunYetComponent extends JLabel {
 	}
 
 	public void setModifed() {
-		if (modifed)
+		if (modifed) {
 			return;
+		}
 		modifed = true;
 		change();
 	}
 
 	public void setReset() {
-		if (!modifed)
+		if (!modifed) {
 			return;
+		}
 		modifed = false;
 		change();
 	}
 
 	private void change() {
 		setText(modifed ? "modifed" : "same");
-		// TODO
-		// TaskScreen.runB.setEnabled(modifed);
 	}
 }
