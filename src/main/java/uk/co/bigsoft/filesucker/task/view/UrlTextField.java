@@ -2,17 +2,13 @@ package uk.co.bigsoft.filesucker.task.view;
 
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
-import javax.swing.TransferHandler;
 
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 
 public class UrlTextField extends JTextField {
-	public UrlTextField(TransferHandler transferHandler) {
+	public UrlTextField() {
 		super();
-
-		setDragEnabled(true);
-		setTransferHandler(transferHandler);
 		addMouseListener((MousePressListener) e -> mousePressed(e));
 	}
 

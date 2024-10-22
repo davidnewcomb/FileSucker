@@ -8,13 +8,9 @@ import java.util.prefs.Preferences;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.TransferHandler;
-import javax.swing.text.JTextComponent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-// TODO - Refactor so that combo box is a list of classes
 
 public class HistoryJComboBox extends JComboBox<String> {
 
@@ -36,30 +32,7 @@ public class HistoryJComboBox extends JComboBox<String> {
 	 * @param preferenceName Preference name to store history
 	 */
 	public HistoryJComboBox(String pn) {
-		this(null, pn, new String[0]);
-	}
-
-	/**
-	 * Constructor:
-	 * 
-	 * @param preferenceName Preference name to store history
-	 * @param start_array    Array to start with
-	 */
-	public HistoryJComboBox(String pn, String[] start_array) {
-		this(null, pn, start_array);
-	}
-
-	public HistoryJComboBox(String pn, TransferHandler transferHandler) {
-		this(transferHandler, pn, new String[0]);
-	}
-
-	public HistoryJComboBox(TransferHandler transferHandler, String pn, String[] start_array) {
-		super(start_array);
 		init(pn);
-
-		JTextComponent e = (JTextComponent) getEditor().getEditorComponent();
-		e.setDragEnabled(true);
-		e.setTransferHandler(transferHandler);
 	}
 
 	/**

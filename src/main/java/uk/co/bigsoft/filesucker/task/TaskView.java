@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import uk.co.bigsoft.filesucker.FileAndTextTransferHandler;
 import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.task.view.FileTransferHandler;
 import uk.co.bigsoft.filesucker.task.view.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.task.view.RunYetComponent;
 import uk.co.bigsoft.filesucker.task.view.UrlTextField;
@@ -25,10 +25,6 @@ import uk.co.bigsoft.filesucker.task.view.loopers.LooperPanel;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 
 public class TaskView extends JPanel {
-	// Drag & Drop
-	private FileAndTextTransferHandler ddHandler = new FileAndTextTransferHandler();
-
-	// Wired in
 
 	private JTextField urlTF = new JTextField();
 	private JTextField originalAddressTF = new JTextField();
@@ -62,7 +58,7 @@ public class TaskView extends JPanel {
 	private JButton suffixClipButton = new JButton("Clip");
 	private JButton suffixClearButton = new JButton("Clear");
 
-	private HistoryJComboBox directoryCB = new HistoryJComboBox("directory", ddHandler);
+	private HistoryJComboBox directoryCB = new HistoryJComboBox("directory");
 
 	private RunYetComponent runYet = new RunYetComponent();
 	private JCheckBox saveUrl = new JCheckBox();
@@ -79,7 +75,7 @@ public class TaskView extends JPanel {
 		super(new BorderLayout());
 		this.looperPanel = looperPanel;
 
-		setTransferHandler(ddHandler);
+		setTransferHandler(new FileTransferHandler());
 
 		JPanel centre = new JPanel();
 		centre.setLayout(new BoxLayout(centre, BoxLayout.Y_AXIS));
@@ -110,7 +106,7 @@ public class TaskView extends JPanel {
 
 		centre.add(new JLabel("Get"));
 
-		urlTF = new UrlTextField(ddHandler);
+		urlTF = new UrlTextField();
 
 		copyToToolsButton.setToolTipText("Copy text to ToolScreen");
 
@@ -317,10 +313,6 @@ public class TaskView extends JPanel {
 
 	public JLabel getErrorMessagesLabel() {
 		return errorMessagesLabel;
-	}
-
-	public FileAndTextTransferHandler getDdHandler() {
-		return ddHandler;
 	}
 
 	public JButton getSubDirectoryPathButton() {
