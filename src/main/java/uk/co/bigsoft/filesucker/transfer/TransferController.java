@@ -2,6 +2,7 @@ package uk.co.bigsoft.filesucker.transfer;
 
 import java.beans.PropertyChangeEvent;
 
+import uk.co.bigsoft.filesucker.credits.CreditsController;
 import uk.co.bigsoft.filesucker.transfer.si.SuckerIterable;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskController;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskModel;
@@ -11,6 +12,7 @@ public class TransferController {
 
 	private TransferModel model;
 	private TransferView view;
+	private CreditsController creditsController;
 
 	public TransferController(TransferModel m, TransferView v) {
 		model = m;
@@ -23,8 +25,8 @@ public class TransferController {
 		//
 	}
 
-	public void initController() {
-		//
+	public void initController(CreditsController creditsController) {
+		this.creditsController = creditsController;
 	}
 
 	private void modelListener(PropertyChangeEvent evt) {
@@ -56,7 +58,7 @@ public class TransferController {
 		SuckerTaskView stv = new SuckerTaskView();
 		SuckerTaskModel stm = new SuckerTaskModel(si);
 		SuckerTaskController stc = new SuckerTaskController(stm, stv);
-		stc.initController(this);
+		stc.initController(this, creditsController);
 
 		model.addTask(stc);
 	}

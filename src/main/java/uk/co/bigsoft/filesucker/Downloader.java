@@ -147,7 +147,7 @@ public class Downloader {
 					break;
 				}
 				bytesDownloaded += bytesRead;
-				sim.setBytesDownloaded(bytesDownloaded);
+				sim.setBytesDownloaded(bytesDownloaded, bytesRead);
 				// L.debug("downloaded=" + bytesDownloaded);
 
 				fos.write(buffer, 0, bytesRead);

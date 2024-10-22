@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.credits.CreditsController;
+import uk.co.bigsoft.filesucker.credits.CreditsProps;
 import uk.co.bigsoft.filesucker.transfer.TransferController;
 import uk.co.bigsoft.filesucker.transfer.download.SuckerItemDownloader;
 import uk.co.bigsoft.filesucker.transfer.si.SuckerItem;
@@ -20,6 +22,7 @@ public class SuckerTaskController extends Thread {
 
 	private static Logger L = LoggerFactory.getLogger(SuckerTaskController.class);
 
+	private CreditsController creditsController;
 	private SuckerTaskModel model;
 	private SuckerTaskView view;
 	private int maxTasks = 10;
@@ -36,7 +39,8 @@ public class SuckerTaskController extends Thread {
 		view.setTitle(model.getTitle());
 	}
 
-	public void initController(TransferController transferController) {
+	public void initController(TransferController transferController, CreditsController creditsController) {
+		this.creditsController = creditsController;
 		view.getRemoveButton().addActionListener(e -> transferController.removeTask(this));
 		view.addMouseListener(new SuckerTaskViewMouseAdapter(this));
 	}
@@ -44,7 +48,7 @@ public class SuckerTaskController extends Thread {
 	private void modelListener(PropertyChangeEvent evt) {
 		Object source = evt.getSource();
 		String propName = evt.getPropertyName();
-		// Object newVal = evt.getNewValue();
+		Object newVal = evt.getNewValue();
 
 		switch (propName) {
 		case SuckerTaskProps.FILE_START: {
@@ -87,6 +91,12 @@ public class SuckerTaskController extends Thread {
 			L.debug("FILE_FINISHED: " + model.getPercentComplete() + " " + model.getNumSuccess() + " "
 					+ model.getNumFailed());
 			view.setTaskStats(model.getPercentComplete(), model.getNumSuccess(), model.getNumFailed());
+			creditsController.addFiles(1);
+			break;
+		}
+		case CreditsProps.CRED_DOWNLOADED_PART: {
+			int bytes = ((Integer) newVal).intValue();
+			creditsController.addBytes(bytes);
 			break;
 		}
 		default: {

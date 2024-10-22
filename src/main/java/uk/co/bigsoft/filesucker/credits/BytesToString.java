@@ -1,6 +1,13 @@
 package uk.co.bigsoft.filesucker.credits;
 
 public class BytesToString {
+	private static final String UNIT_B = "b";
+	private static final String UNIT_K = "K";
+	private static final String UNIT_MB = "MB";
+	private static final String UNIT_GB = "GB";
+	private static final String UNIT_TB = "TB";
+	private static final String UNIT_PB = "PB";
+
 	private static final long DIV_K = 1024L;
 	private static final long DIV_MB = 1024L * 1024L;
 	private static final long DIV_GB = 1024L * 1024L * 1024L;
@@ -13,40 +20,33 @@ public class BytesToString {
 		int decimal_places = 0;
 
 		if (n < DIV_K) {
-			u = " b";
+			u = UNIT_B;
 			f = n;
 			decimal_places = 0;
 		} else if (n < DIV_MB) {
-			u = " K";
+			u = UNIT_K;
 			f = (float) n / (float) DIV_K;
 			decimal_places = 2;
 		} else if (n < DIV_GB) {
-			u = " MB";
+			u = UNIT_MB;
 			f = (float) n / (float) DIV_MB;
 			decimal_places = 3;
 		} else if (n < DIV_TB) {
-			u = " GB";
+			u = UNIT_GB;
 			f = (float) n / (float) DIV_GB;
 			decimal_places = 4;
 		} else if (n < DIV_PB) {
-			u = " TB";
+			u = UNIT_TB;
 			f = (float) n / (float) DIV_TB;
+			decimal_places = 5;
+		} else {
+			u = UNIT_PB;
+			f = (float) n / (float) DIV_PB;
 			decimal_places = 5;
 		}
 
-		String fs = String.valueOf(f);
-		if (decimal_places != 0) {
-			int dp_pos = fs.indexOf('.');
-			if (dp_pos != -1) {
-				int actual_dp = fs.length() - dp_pos;
-				if (actual_dp < decimal_places)
-					decimal_places = actual_dp;
-				fs = fs.substring(0, dp_pos + decimal_places);
-			}
-		}
-		String dec = "" + fs + " " + u;
-
-		return dec;
+		String str = String.format("%." + decimal_places + "f " + u, f);
+		return str;
 	}
 
 }

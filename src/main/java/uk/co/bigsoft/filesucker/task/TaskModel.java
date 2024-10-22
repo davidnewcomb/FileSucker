@@ -30,7 +30,7 @@ public class TaskModel {
 	private int suffixCaretEnd = 0;
 	private String selectedSuffix = "";
 	private boolean suffixEnd = false;
-	private boolean saveUrl = false;
+	private boolean saveUrl = true;
 	private boolean saveOnly = false;
 
 	public TaskModel() {

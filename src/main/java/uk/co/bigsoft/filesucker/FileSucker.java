@@ -75,7 +75,7 @@ public class FileSucker {
 		taskController = new TaskController(taskModel, taskView);
 		TransferController transferController = new TransferController(transferModel, transferView);
 
-		transferController.initController();
+		transferController.initController(creditsController);
 		configController.initController();
 		creditsController.initController();
 		launchProfileController.initController(configModel, toolsModel);

@@ -2,6 +2,7 @@ package uk.co.bigsoft.filesucker.credits;
 
 public class CreditsController {
 
+	private static BytesToString bytesToString = new BytesToString();
 	private CreditsModel model;
 	private CreditsView view;
 
@@ -12,9 +13,9 @@ public class CreditsController {
 	}
 
 	public void initView() {
-		view.getNumBytesLabel().setText(String.valueOf(model.getNumBytes()));
+		view.getNumBytesLabel().setText(bytesToString.convert(model.getNumBytes()));
 		view.getNumFilesLabel().setText(String.valueOf(model.getNumFiles()));
-		view.getTotalNumBytesLabel().setText(String.valueOf(model.getTotalNumBytes()));
+		view.getTotalNumBytesLabel().setText(bytesToString.convert(model.getTotalNumBytes()));
 		view.getTotalNumFilesLabel().setText(String.valueOf(model.getTotalNumFiles()));
 	}
 
@@ -41,31 +42,12 @@ public class CreditsController {
 	}
 
 	private void redrawBytes() {
-		view.getNumBytesLabel().setText(String.valueOf(model.getNumBytes()));
-		view.getTotalNumBytesLabel().setText(String.valueOf(model.getTotalNumBytes()));
+		view.getNumBytesLabel().setText(bytesToString.convert(model.getNumBytes()));
+		view.getTotalNumBytesLabel().setText(bytesToString.convert(model.getTotalNumBytes()));
 	}
 
 	private void redrawFiles() {
 		view.getNumFilesLabel().setText(String.valueOf(model.getNumFiles()));
 		view.getTotalNumFilesLabel().setText(String.valueOf(model.getTotalNumFiles()));
 	}
-
-//	public static long getTotalDownloadedFiles() {
-//		return totalNumFiles;
-//	}
-//
-//	public static long getTotalDownloadedBytes() {
-//		return totalNumBytes;
-//	}
-//
-//	public static void setTotalDownloadedFiles(long l) {
-//		totalNumFiles = l;
-//		redrawFiles();
-//	}
-//
-//	public static void setTotalDownloadedBytes(long l) {
-//		totalNumBytes = l;
-//		redrawBytes();
-//	}
-
 }

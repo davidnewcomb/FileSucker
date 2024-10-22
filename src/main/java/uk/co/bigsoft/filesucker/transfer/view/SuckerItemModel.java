@@ -3,6 +3,7 @@ package uk.co.bigsoft.filesucker.transfer.view;
 import java.beans.PropertyChangeListener;
 import javax.swing.event.SwingPropertyChangeSupport;
 
+import uk.co.bigsoft.filesucker.credits.CreditsProps;
 import uk.co.bigsoft.filesucker.transfer.TransferProps;
 import uk.co.bigsoft.filesucker.transfer.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.task.SuckerTaskProps;
@@ -28,10 +29,11 @@ public class SuckerItemModel {
 		return bytesDownloaded;
 	}
 
-	public void setBytesDownloaded(long x) {
+	public void setBytesDownloaded(long x, int bytes) {
 		long oldVal = getPercentComplete();
 		bytesDownloaded = x;
 		propChangeFirer.firePropertyChange(TransferProps.F_FILE_PROGRESS, oldVal, getPercentComplete());
+		propChangeFirer.firePropertyChange(CreditsProps.CRED_DOWNLOADED_PART, 0, bytes);
 	}
 
 	public long getBytesToDownload() {
