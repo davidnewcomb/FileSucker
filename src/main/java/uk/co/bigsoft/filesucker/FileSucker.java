@@ -103,7 +103,7 @@ public class FileSucker {
 		}
 	}
 
-	public void load(TaskConfig tc) {
+	public static void load(TaskConfig tc) {
 		taskController.load(tc);
 	}
 }

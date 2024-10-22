@@ -507,7 +507,7 @@ public class TaskController {
 			break;
 		}
 		case TaskProps.TASK_SUFFIX_END: {
-			view.getSuffixEndCB().setSelected(newVal == "0");
+			view.getSuffixEndCB().setSelected(newVal == "1");
 			break;
 		}
 		default: {

@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.zjunk;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +10,8 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import uk.co.bigsoft.filesucker.FileSucker;
+import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.view.HistoryDropDown;
 import uk.co.bigsoft.filesucker.view.HistoryElement;
 

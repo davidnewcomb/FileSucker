@@ -170,7 +170,7 @@ public class TaskModel {
 	public void setSuffixEnd(boolean x) {
 		boolean oldVal = suffixEnd;
 		suffixEnd = x;
-		propChangeFirer.firePropertyChange(TaskProps.TASK_SUFFIX_END, oldVal, suffixEnd ? "0" : "1");
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SUFFIX_END, oldVal, suffixEnd ? "1" : "0");
 	}
 
 	public boolean isSaveUrl() {
@@ -180,7 +180,7 @@ public class TaskModel {
 	public void setSaveUrl(boolean x) {
 		boolean oldVal = saveUrl;
 		saveUrl = x;
-		propChangeFirer.firePropertyChange(TaskProps.TASK_SAVE_URL, oldVal, saveUrl ? "0" : "1");
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SAVE_URL, oldVal, saveUrl ? "1" : "0");
 	}
 
 	public boolean isSaveOnly() {
@@ -190,7 +190,7 @@ public class TaskModel {
 	public void setSaveOnly(boolean x) {
 		boolean oldVal = saveOnly;
 		saveOnly = x;
-		propChangeFirer.firePropertyChange(TaskProps.TASK_SAVE_ONLY, oldVal, saveOnly ? "0" : "1");
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SAVE_ONLY, oldVal, saveOnly ? "1" : "0");
 	}
 
 	public int getUrlCaretStart() {

@@ -59,10 +59,10 @@ public class TaskConfigFile {
 
 			p.setProperty(LAB_VERSION, FileSucker.version);
 			p.setProperty(LAB_URL, tc.getUrl());
-			p.getProperty(LAB_DIRECTORY, tc.getDirectory());
-			p.getProperty(LAB_PREFIX, tc.getPrefix());
-			p.getProperty(LAB_SUFFIX, tc.getSuffix());
-			p.getProperty(LAB_SUFFIX_END, tc.isSuffixEnd() ? "1" : "0");
+			p.setProperty(LAB_DIRECTORY, tc.getDirectory());
+			p.setProperty(LAB_PREFIX, tc.getPrefix());
+			p.setProperty(LAB_SUFFIX, tc.getSuffix());
+			p.setProperty(LAB_SUFFIX_END, tc.isSuffixEnd() ? "1" : "0");
 
 			p.store(fos, "FileChecker");
 		} catch (IOException e) {

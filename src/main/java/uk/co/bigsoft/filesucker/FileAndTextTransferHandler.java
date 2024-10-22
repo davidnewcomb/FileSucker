@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import uk.co.bigsoft.filesucker.task.TaskConfig;
 import uk.co.bigsoft.filesucker.task.TaskConfigFile;
+import uk.co.bigsoft.filesucker.task.TaskView;
 
 @SuppressWarnings("all")
 public class FileAndTextTransferHandler extends TransferHandler {
@@ -72,6 +73,7 @@ public class FileAndTextTransferHandler extends TransferHandler {
 				L.debug("Drag & Drop: Handling: " + file.toString());
 
 				TaskConfig cfg = taskConfigFile.load(file);
+				FileSucker.load(cfg);
 
 				// ts.setSelInd (0) ;
 				L.debug("Drag & Drop: Handling: completed");

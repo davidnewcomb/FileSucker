@@ -111,21 +111,6 @@ public class TaskView extends JPanel {
 
 		urlTF = new UrlTextField(ddHandler);
 
-		// URL
-		// urlTF = new JTextField
-		// ("http://djn:djn@dr-shi/bigsoft/fs/01.php",
-		// ddHandler) ;
-		// urlTF = new JTextField
-		// ("http://www.pornstar-galaxy.com/pornstars/hungarian_pantera/pics03.htm",
-		// ddHandler);
-		// urlTF = new JTextField
-		// ("http://www.pornstar-galaxy.com/pornstars/hungarian_pantera/images/full/panrdchrbg028.jpg",
-		// ddHandler);
-//		urlTF = new UrlTextField(ddHandler);
-
-		// originalAddressTF = new OriginalAddressTextField();
-		// findFileTF.setEditable (false) ;
-
 		copyToToolsButton.setToolTipText("Copy text to ToolScreen");
 
 		saveUrl.setToolTipText("Save download instructions");
@@ -142,9 +127,6 @@ public class TaskView extends JPanel {
 		hbox.add(findFilesButton);
 		hbox.add(copyToToolsButton);
 		centre.add(hbox);
-
-		// OriginalAddressLaunchButton findFileLaunchB = new
-		// OriginalAddressLaunchButton(originalAddressTF);
 
 		centre.add(new JLabel(" "));
 
