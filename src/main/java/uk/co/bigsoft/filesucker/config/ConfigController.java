@@ -171,8 +171,6 @@ public class ConfigController {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
 			model.setBaseDir(file.toString());
-//			FileSucker.configData.setScreenBaseDir(file);
-			// System.out.println("File="+file.toString()+"|");
 		}
 	}
 }

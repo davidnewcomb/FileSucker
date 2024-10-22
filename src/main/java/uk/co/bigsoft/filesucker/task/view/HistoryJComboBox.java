@@ -11,9 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.TransferHandler;
 import javax.swing.text.JTextComponent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 // TODO - Refactor so that combo box is a list of classes
 
 public class HistoryJComboBox extends JComboBox<String> {
+
+	private static Logger L = LoggerFactory.getLogger(HistoryJComboBox.class);
 
 	private static final String clearHistory = "--Clear history--";
 	private static final String culHistory = "--Cul history--";
@@ -186,10 +191,9 @@ public class HistoryJComboBox extends JComboBox<String> {
 
 		if (p_items.length() >= Preferences.MAX_VALUE_LENGTH) {
 			// TODO do something proper here
-			System.out.println(
-					"HistoryJCombo:" + preferenceName + " " + p_items.length() + " >= " + Preferences.MAX_VALUE_LENGTH);
+			L.debug("HistoryJCombo:" + preferenceName + " " + p_items.length() + " >= " + Preferences.MAX_VALUE_LENGTH);
 			culPrefs();
-			System.out.println("History automatically culled");
+			L.debug("History automatically culled");
 			return;
 		}
 		preferences.put(preferenceName, p_items);

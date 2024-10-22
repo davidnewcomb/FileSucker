@@ -19,7 +19,7 @@ import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 public class SuckerTaskController extends Thread {
 
 	private static Logger L = LoggerFactory.getLogger(SuckerTaskController.class);
-	
+
 	private TransferController transferController;
 	private SuckerTaskModel model;
 	private SuckerTaskView view;
@@ -125,19 +125,19 @@ public class SuckerTaskController extends Thread {
 
 		}
 
-		System.out.println("All jobs queued, waiting for queue to empty");
+		L.debug("All jobs queued, waiting for queue to empty");
 		while (!model.isCancelled() && !queue.isEmpty()) {
 			Utility.delay(1_000);
 		}
 
-		System.out.println("Queue is empty");
+		L.debug("Queue is empty");
 		executor.close();
 		if (model.isCancelled()) {
 			executor.shutdownNow();
 		} else {
 			executor.shutdown();
 		}
-		System.out.println("Task finished");
+		L.debug("Task finished");
 	}
 
 	public void cancel() {

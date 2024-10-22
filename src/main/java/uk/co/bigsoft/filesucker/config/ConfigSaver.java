@@ -8,9 +8,14 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uk.co.bigsoft.filesucker.FileSucker;
 
 public class ConfigSaver extends Properties {
+	private static Logger L = LoggerFactory.getLogger(ConfigSaver.class);
+
 	private static final String listSeperator = "�"; //$NON-NLS-1$
 
 	private final String CONFIG_FILE = "FileSucker.cfg.txt"; //$NON-NLS-1$
@@ -78,7 +83,7 @@ public class ConfigSaver extends Properties {
 			p.store(fos, header.toString());
 			fos.close();
 		} catch (Exception e) {
-			System.out.println("Could not save config: " + e.toString());
+			L.debug("Could not save config: " + e.toString());
 		}
 	}
 
@@ -93,7 +98,7 @@ public class ConfigSaver extends Properties {
 				p.load(fis);
 				fis.close();
 			} catch (Exception e) {
-				System.out.println("Problem reading " + CONFIG_FILE + ": " + e.toString());
+				L.debug("Problem reading " + CONFIG_FILE + ": " + e.toString());
 				return cm;
 			}
 		}

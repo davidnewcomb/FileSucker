@@ -17,7 +17,6 @@ public class SuckerTaskViewMouseAdapter extends MouseAdapter {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		super.mousePressed(e);
-		System.out.println("mousePressed");
 		popup.show((Component) e.getSource(), e.getX(), e.getY());
 	}
 }

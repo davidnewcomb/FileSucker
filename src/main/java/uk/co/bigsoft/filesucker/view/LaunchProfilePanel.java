@@ -115,7 +115,7 @@ class PasteMouseListener implements MouseListener {
 		int pos = m_textfield.getCaretPosition();
 		int len = m_textfield.getText().length();
 		int startpos = -1, endpos = -1;
-		// System.out.println("mousePressed: "+pos);
+
 		pos--;
 		// Backwards
 		for (int i = pos; i >= 0; --i) {

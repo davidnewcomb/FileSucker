@@ -9,10 +9,15 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.task.TaskModel;
 
 public class LooperPanel extends JPanel {
+
+	private static Logger L = LoggerFactory.getLogger(LooperPanel.class);
 
 	private JPanel EMPTY = new JPanel();
 	private JButton numberButton = new JButton(LooperCmd.L_NUMBER);
@@ -76,7 +81,7 @@ public class LooperPanel extends JPanel {
 		// taskModel.replaceSelectedUrl(looperText);
 		taskModel.replaceSelectedUrl(looperText);
 
-		System.out.println("looperText: " + looperText);
+		L.debug("looperText: " + looperText);
 
 		for (JButton jb : commandButtons) {
 			jb.setVisible(true);
@@ -132,7 +137,7 @@ public class LooperPanel extends JPanel {
 			break;
 		}
 		default: {
-			System.out.println("Bad looper type: " + looperType);
+			L.debug("Bad looper type: " + looperType);
 			return;
 		}
 		}

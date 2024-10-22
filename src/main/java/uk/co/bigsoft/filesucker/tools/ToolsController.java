@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
@@ -21,6 +24,8 @@ import uk.co.bigsoft.filesucker.transfer.si.SuckerItem;
 import uk.co.bigsoft.filesucker.transfer.si.SuckerIterable;
 
 public class ToolsController {
+
+	private static Logger L = LoggerFactory.getLogger(ToolsController.class);
 
 	private static final Pattern urlPattern = Pattern.compile(
 			"([Hh][Rr][Ee][Ff]=)?([Hh][Rr][Ee][Ff]=)?([Hh][Tt][Tt][Pp]://)(['\"])?[a-zA-Z_0-9\\-]+(\\.\\w[a-zA-Z_0-9\\-]+)+(/[#&\\n\\-=?\\+\\%/\\.\\w]+)?");
@@ -54,7 +59,7 @@ public class ToolsController {
 			break;
 		}
 		default: {
-			System.out.println("Unknown ToolsProp: " + propName);
+			L.debug("Unknown ToolsProp: " + propName);
 		}
 		}
 	}
@@ -173,7 +178,7 @@ public class ToolsController {
 
 			model.setWorking(decoded);
 		} catch (Exception ex) {
-			System.out.println("Base64");
+			L.debug("Base64");
 			ex.printStackTrace();
 		}
 	}
@@ -236,7 +241,7 @@ public class ToolsController {
 			String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
 			Utility.launchBrowser(configModel, path);
 		} catch (Exception ex) {
-			System.out.println("GenWebPage");
+			L.debug("GenWebPage");
 			ex.printStackTrace();
 		}
 	}
@@ -286,7 +291,7 @@ public class ToolsController {
 			Utility.launchBrowser(configModel, path);
 
 		} catch (Exception ex) {
-			System.out.println("GenImageWebPage");
+			L.debug("GenImageWebPage");
 			ex.printStackTrace();
 		}
 
@@ -360,7 +365,7 @@ public class ToolsController {
 	}
 
 	private void launchProfile() {
-		System.out.println("not-implemented: launchProfile");
+		L.debug("not-implemented: launchProfile");
 		String url = model.getWorking();
 		if ("".equals(url)) {
 			return;

@@ -7,10 +7,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uk.co.bigsoft.filesucker.view.HistoryDropDown;
 import uk.co.bigsoft.filesucker.view.HistoryElement;
 
 public class ConfigData extends Properties {
+	private static Logger L = LoggerFactory.getLogger(ConfigData.class);
+
 	private static final String listSeperator = "�"; //$NON-NLS-1$
 
 	private final String CONFIG_FILE = "FileSucker.cfg.txt"; //$NON-NLS-1$
@@ -91,7 +96,7 @@ public class ConfigData extends Properties {
 
 			return;
 		} catch (Exception e) {
-			System.out.println("Exception: " + e.toString());
+			L.debug("Exception: " + e.toString());
 		}
 	}
 
@@ -243,7 +248,7 @@ public class ConfigData extends Properties {
 		try {
 			store(new FileOutputStream(CONFIG_FILE), header.toString());
 		} catch (Exception e) {
-			System.out.println("Could not save config: " + e.toString());
+			L.debug("Could not save config: " + e.toString());
 		}
 	}
 

@@ -12,9 +12,14 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 
 public class Utility {
+	private static Logger L = LoggerFactory.getLogger(Utility.class);
+
 	public static String getClipboard() {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Clipboard clipboard = toolkit.getSystemClipboard();
@@ -28,14 +33,14 @@ public class Utility {
 				}
 				toolkit.beep();
 			} catch (Exception ee) {
-				System.out.println("RClick: " + ee.toString());
+				L.debug("RClick: " + ee.toString());
 			}
 		}
 		return null;
 	}
 
 	public static void setClipboard(String str) {
-		System.out.println("setClipboard not implemented");
+		L.debug("setClipboard not implemented");
 	}
 
 	public static void delay(int ms) {
@@ -297,7 +302,7 @@ public class Utility {
 
 	@SuppressWarnings(value = "deprecation")
 	public static void runShellCommand(String cmd) throws IOException {
-		System.out.println("Running: '" + cmd + "'");
+		L.debug("Running: '" + cmd + "'");
 		Runtime.getRuntime().exec(cmd);
 	}
 

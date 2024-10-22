@@ -14,6 +14,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.event.CaretEvent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
@@ -27,6 +30,8 @@ import uk.co.bigsoft.filesucker.transfer.si.SuckerIterable;
 import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskController {
+
+	private static Logger L = LoggerFactory.getLogger(TaskController.class);
 
 	private static TaskConfigFile taskConfigFile = new TaskConfigFile();
 	private TaskModel model;
@@ -154,7 +159,7 @@ public class TaskController {
 	}
 
 	private void prefix(ConfigModel configModel) {
-		System.out.println("pref sel=" + model.getSelectedUrl());
+		L.debug("pref sel=" + model.getSelectedUrl());
 		String s = model.getSelectedUrl() + configModel.getPostPrefix();
 		model.replaceSelectedPrefix(s);
 	}
@@ -605,7 +610,7 @@ public class TaskController {
 
 		File dir = new File(realDir);
 		if (dir.isFile()) {
-			System.out.println("Can not create folder at '" + realDir + "' as file exists");
+			L.debug("Can not create folder at '" + realDir + "' as file exists");
 			return;
 		}
 		if (!dir.exists()) {

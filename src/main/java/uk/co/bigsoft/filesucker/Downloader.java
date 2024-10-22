@@ -18,11 +18,16 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandler;
 import java.time.Duration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import uk.co.bigsoft.filesucker.config.ConfigModel;
 import uk.co.bigsoft.filesucker.transfer.download.HttpSupport;
 import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 
 public class Downloader {
+
+	private static Logger L = LoggerFactory.getLogger(Downloader.class);
 
 	private static Downloader downloader = null;
 
@@ -106,7 +111,7 @@ public class Downloader {
 			BodyHandler<InputStream> handler = HttpResponse.BodyHandlers.ofInputStream();
 			HttpResponse<InputStream> resp = client.send(req, handler);
 
-			System.out.println("response-code=" + resp.statusCode());
+			L.debug("response-code=" + resp.statusCode());
 
 			long bytesDownloaded;
 			if (resp.statusCode() == HttpURLConnection.HTTP_PARTIAL) {
@@ -114,7 +119,7 @@ public class Downloader {
 				bytesDownloaded = currentFileSize;
 			} else if (resp.statusCode() == HttpURLConnection.HTTP_OK) {
 				if (currentFileSize > 0) {
-					System.out.println("Server would not honour range request, fresh download");
+					L.debug("Server would not honour range request, fresh download");
 				}
 				bytesDownloaded = 0L;
 				fos = new FileOutputStream(lf);
@@ -126,7 +131,7 @@ public class Downloader {
 
 			int contentLength = HttpSupport.retrieveContentLength(headers);
 			sim.setBytesToDownload(contentLength);
-			System.out.println("content-length=" + contentLength);
+			L.debug("content-length=" + contentLength);
 
 			is = resp.body();
 
@@ -143,14 +148,14 @@ public class Downloader {
 				}
 				bytesDownloaded += bytesRead;
 				sim.setBytesDownloaded(bytesDownloaded);
-				// System.out.println("downloaded=" + bytesDownloaded);
+				// L.debug("downloaded=" + bytesDownloaded);
 
 				fos.write(buffer, 0, bytesRead);
 				// Utility.delay(1_000);
 			}
 			sim.completed();
 		} catch (IOException | InterruptedException e) {
-			System.out.println("FAILED " + sim.getWorkItem().getUrl() + ": " + e.toString());
+			L.debug("FAILED " + sim.getWorkItem().getUrl() + ": " + e.toString());
 			e.printStackTrace();
 			sim.setError(e);
 		} finally {

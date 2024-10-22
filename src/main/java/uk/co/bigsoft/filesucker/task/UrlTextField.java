@@ -72,4 +72,3 @@ public class UrlTextField extends JTextField {
 	}
 
 }
-
