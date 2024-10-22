@@ -11,8 +11,6 @@ public class TransferController {
 
 	private TransferModel model;
 	private TransferView view;
-	// private HashMap<SuckerTaskModel, SuckerTaskView> currentTasks = new
-	// HashMap<>();
 
 	public TransferController(TransferModel m, TransferView v) {
 		model = m;
@@ -22,11 +20,11 @@ public class TransferController {
 	}
 
 	private void initView() {
-
+		//
 	}
 
 	public void initController() {
-
+		//
 	}
 
 	private void modelListener(PropertyChangeEvent evt) {
@@ -57,8 +55,8 @@ public class TransferController {
 
 		SuckerTaskView stv = new SuckerTaskView();
 		SuckerTaskModel stm = new SuckerTaskModel(si);
-		SuckerTaskController stc = new SuckerTaskController(this, stm, stv);
-		stc.initController();
+		SuckerTaskController stc = new SuckerTaskController(stm, stv);
+		stc.initController(this);
 
 		model.addTask(stc);
 	}

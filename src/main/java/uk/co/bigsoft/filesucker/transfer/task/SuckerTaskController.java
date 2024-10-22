@@ -20,14 +20,12 @@ public class SuckerTaskController extends Thread {
 
 	private static Logger L = LoggerFactory.getLogger(SuckerTaskController.class);
 
-	private TransferController transferController;
 	private SuckerTaskModel model;
 	private SuckerTaskView view;
 	private int maxTasks = 10;
 	private HashMap<SuckerItemModel, SuckerItemProgressBar> mappings = new HashMap<>();
 
-	public SuckerTaskController(TransferController tc, SuckerTaskModel m, SuckerTaskView v) {
-		transferController = tc;
+	public SuckerTaskController(SuckerTaskModel m, SuckerTaskView v) {
 		model = m;
 		view = v;
 		initView();
@@ -38,7 +36,7 @@ public class SuckerTaskController extends Thread {
 		view.setTitle(model.getTitle());
 	}
 
-	public void initController() {
+	public void initController(TransferController transferController) {
 		view.getRemoveButton().addActionListener(e -> transferController.removeTask(this));
 		view.addMouseListener(new SuckerTaskViewMouseAdapter(this));
 	}

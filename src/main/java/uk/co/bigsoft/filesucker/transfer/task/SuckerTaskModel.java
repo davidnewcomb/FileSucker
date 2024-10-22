@@ -5,7 +5,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.event.SwingPropertyChangeSupport;
 
 import uk.co.bigsoft.filesucker.transfer.si.SuckerIterable;
-import uk.co.bigsoft.filesucker.transfer.view.SuckerItemModel;
 
 public class SuckerTaskModel {
 
@@ -44,10 +43,6 @@ public class SuckerTaskModel {
 
 	public SuckerIterable getWork() {
 		return work;
-	}
-
-	public void addWorkItem(SuckerItemModel item) {
-		propChangeFirer.firePropertyChange(SuckerTaskProps.ADD, null, getPercentComplete());
 	}
 
 	public int getNumSuccess() {
