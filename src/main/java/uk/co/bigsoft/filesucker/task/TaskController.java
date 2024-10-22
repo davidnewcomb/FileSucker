@@ -103,7 +103,6 @@ public class TaskController {
 		view.getSuffixClearButton().addActionListener(e -> suffixClear());
 
 		view.getRunTaskButton().addActionListener(e -> runTask(transferController));
-
 	}
 
 	private void originalAddressLaunch(ConfigModel configModel) {
@@ -176,6 +175,9 @@ public class TaskController {
 
 	private void runTask(TransferController transferController) {
 		String dir = Utility.expandsPercentVars(model.getDirectory());
+		if (!dir.endsWith(File.separator)) {
+			dir += File.separator;
+		}
 		TaskConfig taskConfig = new TaskConfig(model.getUrl(), dir, model.getPrefix(), model.getSuffix(),
 				model.isSuffixEnd());
 
@@ -187,6 +189,7 @@ public class TaskController {
 			}
 		}
 
+		view.getDirectoryComboBox().savePrefs(dir);
 		SuckerIterable si = new SuckerIterable(taskConfig);
 		transferController.addTask(si);
 		FileSuckerFrame.viewTransfers();
