@@ -1,6 +1,6 @@
 package uk.co.bigsoft.filesucker.transfer.suckertype;
 
-import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
+import uk.co.bigsoft.filesucker.task.view.loopers.LooperCmd;
 
 public class CopySuckerType extends SuckerType {
 

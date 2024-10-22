@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.task.looper;
+package uk.co.bigsoft.filesucker.task.view.loopers;
 
 public class LooperId {
 

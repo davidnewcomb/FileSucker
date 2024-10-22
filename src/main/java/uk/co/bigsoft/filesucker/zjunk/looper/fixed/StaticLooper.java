@@ -7,8 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import uk.co.bigsoft.filesucker.task.looper.ILooperPanel;
-import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
+import uk.co.bigsoft.filesucker.task.view.loopers.ILooperPanel;
+import uk.co.bigsoft.filesucker.task.view.loopers.LooperCmd;
 
 public class StaticLooper extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
 

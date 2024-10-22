@@ -17,10 +17,10 @@ import javax.swing.border.LineBorder;
 
 import uk.co.bigsoft.filesucker.FileAndTextTransferHandler;
 import uk.co.bigsoft.filesucker.Utility;
-import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
-import uk.co.bigsoft.filesucker.task.looper.LooperPanel;
 import uk.co.bigsoft.filesucker.task.view.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.task.view.RunYetComponent;
+import uk.co.bigsoft.filesucker.task.view.loopers.LooperCmd;
+import uk.co.bigsoft.filesucker.task.view.loopers.LooperPanel;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 
 public class TaskView extends JPanel {

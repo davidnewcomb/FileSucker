@@ -19,7 +19,7 @@ import uk.co.bigsoft.filesucker.task.TaskConfig;
 import uk.co.bigsoft.filesucker.task.TaskController;
 import uk.co.bigsoft.filesucker.task.TaskModel;
 import uk.co.bigsoft.filesucker.task.TaskView;
-import uk.co.bigsoft.filesucker.task.looper.LooperPanel;
+import uk.co.bigsoft.filesucker.task.view.loopers.LooperPanel;
 import uk.co.bigsoft.filesucker.tools.ToolsController;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
 import uk.co.bigsoft.filesucker.tools.ToolsView;

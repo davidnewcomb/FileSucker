@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.task.looper;
+package uk.co.bigsoft.filesucker.task.view.loopers;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

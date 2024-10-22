@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.event.SwingPropertyChangeSupport;
 
-import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
+import uk.co.bigsoft.filesucker.task.view.loopers.LooperCmd;
 
 public class TaskModel {
 	private static final Pattern looperPattern = Pattern.compile("\\{[^}]*\\}");

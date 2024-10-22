@@ -3,8 +3,8 @@ package uk.co.bigsoft.filesucker.transfer.suckertype;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
-import uk.co.bigsoft.filesucker.task.looper.LooperId;
+import uk.co.bigsoft.filesucker.task.view.loopers.LooperCmd;
+import uk.co.bigsoft.filesucker.task.view.loopers.LooperId;
 
 public class SuckerTypeFactory {
 
