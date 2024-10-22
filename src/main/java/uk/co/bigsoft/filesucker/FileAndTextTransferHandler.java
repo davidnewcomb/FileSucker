@@ -22,14 +22,14 @@ import javax.swing.text.Position;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uk.co.bigsoft.filesucker.zjunk.TaskScreenParams;
-import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.task.TaskConfig;
+import uk.co.bigsoft.filesucker.task.TaskConfigFile;
 
 @SuppressWarnings("all")
 public class FileAndTextTransferHandler extends TransferHandler {
 
 	private static Logger L = LoggerFactory.getLogger(FileAndTextTransferHandler.class);
-
+	private static TaskConfigFile taskConfigFile = new TaskConfigFile();
 	private DataFlavor fileFlavor;
 	private DataFlavor stringFlavor;
 
@@ -70,7 +70,9 @@ public class FileAndTextTransferHandler extends TransferHandler {
 				// display the contents of the file is returned.
 				// tc = ts.addTab (file.toString ()) ;
 				L.debug("Drag & Drop: Handling: " + file.toString());
-				TaskScreenParams.load(file);
+				
+				TaskConfig cfg = taskConfigFile.load(file);
+				
 				// ts.setSelInd (0) ;
 				L.debug("Drag & Drop: Handling: completed");
 				return true;

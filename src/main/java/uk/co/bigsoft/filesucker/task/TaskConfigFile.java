@@ -32,11 +32,11 @@ public class TaskConfigFile {
 			Properties p = new Properties();
 			p.load(fis);
 
-			String url = p.getProperty(LAB_URL);
-			String directory = p.getProperty(LAB_DIRECTORY);
-			String prefix = p.getProperty(LAB_PREFIX);
-			String suffix = p.getProperty(LAB_SUFFIX);
-			boolean suffixEnd = "1".equals(p.getProperty(LAB_SUFFIX_END));
+			String url = p.getProperty(LAB_URL, "");
+			String directory = p.getProperty(LAB_DIRECTORY, "");
+			String prefix = p.getProperty(LAB_PREFIX, "");
+			String suffix = p.getProperty(LAB_SUFFIX, "");
+			boolean suffixEnd = "1".equals(p.getProperty(LAB_SUFFIX_END, "1"));
 
 			TaskConfig tc = new TaskConfig(url, directory, prefix, suffix, suffixEnd);
 			return tc;

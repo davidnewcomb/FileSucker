@@ -15,6 +15,7 @@ import uk.co.bigsoft.filesucker.credits.CreditsModel;
 import uk.co.bigsoft.filesucker.credits.CreditsView;
 import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefs;
 import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefsHandler;
+import uk.co.bigsoft.filesucker.task.TaskConfig;
 import uk.co.bigsoft.filesucker.task.TaskController;
 import uk.co.bigsoft.filesucker.task.TaskModel;
 import uk.co.bigsoft.filesucker.task.TaskView;
@@ -35,6 +36,8 @@ public class FileSucker {
 	public static String version = "";
 	public static String versionDate = "";
 
+	private static TaskController taskController;
+	
 	public static void main(String args[]) {
 
 		setUpVersion();
@@ -48,6 +51,10 @@ public class FileSucker {
 		creditsModel.setTotalNumFiles(p.getTotalDownloadedFiles());
 
 		LaunchProfileModel launchProfileModel = new LaunchProfileModel();
+		LaunchProfileView launchProfileView = new LaunchProfileView();
+		LaunchProfileController launchProfileController = new LaunchProfileController(launchProfileModel,
+				launchProfileView);
+		
 		ToolsModel toolsModel = new ToolsModel();
 		TaskModel taskModel = new TaskModel();
 		TransferModel transferModel = new TransferModel();
@@ -56,7 +63,7 @@ public class FileSucker {
 
 		ConfigView configView = new ConfigView();
 		CreditsView creditsView = new CreditsView();
-		LaunchProfileView launchProfileView = new LaunchProfileView();
+		
 		ToolsView toolsView = new ToolsView(launchProfileView);
 		LooperPanel looperPanel = new LooperPanel(configModel, taskModel);
 		TaskView taskView = new TaskView(looperPanel);
@@ -64,10 +71,8 @@ public class FileSucker {
 
 		ConfigController configController = new ConfigController(configModel, configView);
 		CreditsController creditsController = new CreditsController(creditsModel, creditsView);
-		LaunchProfileController launchProfileController = new LaunchProfileController(launchProfileModel,
-				launchProfileView);
 		ToolsController toolsController = new ToolsController(toolsModel, toolsView);
-		TaskController taskController = new TaskController(taskModel, taskView);
+		taskController = new TaskController(taskModel, taskView);
 		TransferController transferController = new TransferController(transferModel, transferView);
 
 		transferController.initController();
@@ -98,4 +103,7 @@ public class FileSucker {
 		}
 	}
 
+	public void load(TaskConfig tc) {
+		taskController.load(tc);
+	}
 }

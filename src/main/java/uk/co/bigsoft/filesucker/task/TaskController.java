@@ -630,4 +630,12 @@ public class TaskController {
 		toolsModel.setWorking(u);
 		FileSuckerFrame.viewTools();
 	}
+
+	public void load(TaskConfig tc) {
+		model.setUrl(tc.getUrl());
+		model.setPrefix(tc.getPrefix());
+		model.setSuffix(tc.getSuffix());
+		model.setSuffixEnd(tc.isSuffixEnd());
+		model.setDirectory(tc.getDirectory());
+	}
 }
