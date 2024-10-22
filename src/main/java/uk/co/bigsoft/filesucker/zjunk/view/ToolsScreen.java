@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.view;
+package uk.co.bigsoft.filesucker.zjunk.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.view.LaunchProfilePanel;
 import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequenceIteration;
 import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequencer;
 

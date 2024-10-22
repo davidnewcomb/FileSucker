@@ -10,8 +10,8 @@ public class SuckerTaskViewMouseAdapter extends MouseAdapter {
 
 	private SuckerTaskViewPopupMenu popup;
 
-	public SuckerTaskViewMouseAdapter(SuckerTaskModel stm) {
-		popup = new SuckerTaskViewPopupMenu(stm);
+	public SuckerTaskViewMouseAdapter(SuckerTaskController stc) {
+		popup = new SuckerTaskViewPopupMenu(stc);
 	}
 
 	@Override

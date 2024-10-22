@@ -14,7 +14,7 @@ import javax.swing.border.LineBorder;
 public class SuckerTaskView extends JPanel {
 	private static final int TRANSFER_ROW_HEIGHT = 20;
 
-	private JLabel header = new JLabel();
+	private JLabel header = new JLabel("Loading...");
 	private JButton removeButton = new JButton("Remove");
 	private JProgressBar taskProgressBar = new JProgressBar();
 	private Box suckerItemsContainer = Box.createVerticalBox();
@@ -38,7 +38,7 @@ public class SuckerTaskView extends JPanel {
 		taskProgressBar.setStringPainted(true);
 		taskProgressBar.setMinimumSize(new Dimension(0, TRANSFER_ROW_HEIGHT));
 		taskProgressBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, TRANSFER_ROW_HEIGHT));
-		taskProgressBar.setString("...");
+		taskProgressBar.setString("0%");
 
 		suckerItemsContainer.setMinimumSize(new Dimension(0, TRANSFER_ROW_HEIGHT));
 

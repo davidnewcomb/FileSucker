@@ -35,7 +35,7 @@ public class SuckerTaskController extends Thread {
 
 	public void initController() {
 		view.getRemoveButton().addActionListener(e -> transferController.removeTask(this));
-		view.getHeaderLabel().addMouseListener(new SuckerTaskViewMouseAdapter(model));
+		view.addMouseListener(new SuckerTaskViewMouseAdapter(this));
 	}
 
 	private void modelListener(PropertyChangeEvent evt) {
@@ -143,22 +143,13 @@ public class SuckerTaskController extends Thread {
 		System.out.println("Task finished");
 	}
 
+	public void cancel() {
+		model.setCancelled(true);
+	}
+
+	@Override
+	public void interrupt() {
+		model.setCancelled(true);
+		super.interrupt();
+	}
 }
-
-//m.setUrl(item.getUrl());
-//SuckerItemProgressBar v = new SuckerItemProgressBar();
-//v.setString(m.getWorkItem().getUrl());
-//
-//mappings.put(m, v);
-
-//m.addListener(e -> itemModelListener(e, v));
-
-//item.setModel(m);
-
-//SuckerItemDownloader r = new SuckerItemDownloader(m);
-//
-//while (queue.offer(r) == false) {
-//	Utility.delay(1_000);
-//}
-
-//taskV.addSuckerProgressBar(v);

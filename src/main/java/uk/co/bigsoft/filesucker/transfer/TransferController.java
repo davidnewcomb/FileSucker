@@ -55,15 +55,12 @@ public class TransferController {
 
 	public void addTask(SuckerIterable si) {
 
-//		for (SuckerItem i : si) {
-//			System.out.println(i.getUrl() + " -> " + i.getLocal());
-//		}
-		SuckerTaskView taskV = new SuckerTaskView();
-		SuckerTaskModel taskM = new SuckerTaskModel(si);
-		SuckerTaskController taskC = new SuckerTaskController(this, taskM, taskV);
-		taskC.initController();
+		SuckerTaskView stv = new SuckerTaskView();
+		SuckerTaskModel stm = new SuckerTaskModel(si);
+		SuckerTaskController stc = new SuckerTaskController(this, stm, stv);
+		stc.initController();
 
-		model.addTask(taskC);
+		model.addTask(stc);
 	}
 
 	public void removeTask(SuckerTaskController stc) {
