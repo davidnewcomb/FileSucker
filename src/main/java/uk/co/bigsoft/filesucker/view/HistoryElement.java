@@ -1,16 +1,16 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.view;
 
 public class HistoryElement {
 	public char HISTORY_SEPERATER = ':';
 	private String element;
 	private long time;
 
-	HistoryElement(String _element) {
+	public HistoryElement(String _element) {
 		element = _element;
 		time = System.currentTimeMillis();
 	}
 
-	HistoryElement(String _element, String _time) {
+	public HistoryElement(String _element, String _time) {
 		element = _element;
 		try {
 			time = Long.parseLong(_time);

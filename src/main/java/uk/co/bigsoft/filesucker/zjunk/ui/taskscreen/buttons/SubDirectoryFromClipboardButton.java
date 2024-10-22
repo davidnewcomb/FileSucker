@@ -7,8 +7,8 @@ import java.io.File;
 
 import javax.swing.JButton;
 
-import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.task.view.HistoryJComboBox;
 
 public class SubDirectoryFromClipboardButton extends JButton implements ActionListener {
 	private HistoryJComboBox directory;

@@ -2,7 +2,7 @@ package uk.co.bigsoft.filesucker.zjunk.looper.text;
 
 import java.util.Comparator;
 
-import uk.co.bigsoft.filesucker.HistoryElement;
+import uk.co.bigsoft.filesucker.view.HistoryElement;
 
 public class TextLooperSort implements Comparator<HistoryElement> {
 

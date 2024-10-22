@@ -3,7 +3,7 @@
  */
 
 // package examples.netclient;
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.zjunk;
 
 /**
  * This class encodes a user name and password in the format (base 64) that HTTP

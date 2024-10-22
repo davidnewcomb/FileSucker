@@ -51,9 +51,7 @@ public class Downloader {
 
 		client = HttpClient.newBuilder() //
 				.followRedirects(Redirect.NORMAL) //
-				.proxy(ProxySelector.getDefault())
-				// .authenticator(Authenticator.getDefault())
-				// TODO add separate connection timeout, maybe!
+				.proxy(ProxySelector.getDefault()) //
 				.connectTimeout(timeout) //
 				.cookieHandler(CookieHandler.getDefault()) //
 				.build();
@@ -62,8 +60,6 @@ public class Downloader {
 	public String downloadTextFile(String address) throws IOException, InterruptedException {
 		URI url = URI.create(address);
 
-		// TODO setRequestProperty("Authorization", "Basic " + BasicAuth.encode(auth[0],
-		// auth[1]));
 		HttpRequest req = HttpRequest.newBuilder() //
 				.uri(url) //
 				.timeout(timeout) //

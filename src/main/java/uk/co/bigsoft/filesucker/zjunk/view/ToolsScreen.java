@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.view.LaunchProfilePanel;
@@ -318,7 +319,7 @@ public class ToolsScreen extends JPanel {
 					if (text.length() == 0)
 						return;
 
-					StringBuffer sb = Utility.downloadFile(text);
+					StringBuffer sb = new StringBuffer(Downloader.getInstance().downloadTextFile(text));
 					if (sb.length() == 0)
 						return;
 

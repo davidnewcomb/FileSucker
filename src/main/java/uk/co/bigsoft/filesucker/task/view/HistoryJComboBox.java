@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.task.view;
 
 import java.awt.event.ActionEvent;
 import java.io.File;

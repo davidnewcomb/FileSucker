@@ -28,6 +28,7 @@ import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class TaskController {
 
+	private static TaskConfigFile taskConfigFile = new TaskConfigFile();
 	private TaskModel model;
 	private TaskView view;
 
@@ -172,17 +173,18 @@ public class TaskController {
 		String dir = Utility.expandsPercentVars(model.getDirectory());
 		TaskConfig taskConfig = new TaskConfig(model.getUrl(), dir, model.getPrefix(), model.getSuffix(),
 				model.isSuffixEnd());
-		SuckerIterable si = new SuckerIterable(taskConfig);
-		transferController.addTask(si);
-		FileSuckerFrame.viewTransfers();
 
 		if (model.isSaveUrl()) {
-//			TaskScreenParams.save(taskConfig);
+			taskConfigFile.save(taskConfig);
 			if (model.isSaveOnly()) {
 				model.setErrorMessage("Saved");
 				return;
 			}
 		}
+
+		SuckerIterable si = new SuckerIterable(taskConfig);
+		transferController.addTask(si);
+		FileSuckerFrame.viewTransfers();
 
 		model.setOriginalAddress("");
 		view.getRunYet().setReset();
@@ -475,28 +477,6 @@ public class TaskController {
 			}
 			break;
 		}
-//		case TaskProps.F_SET_SELECTED_URL: {
-//			// TODO check this
-//			if (newVal.startsWith("{") && newVal.endsWith("}")) {
-//				view.getLooperPanel().openLooper(newVal);
-//			}
-//			int start = view.getUrlTextField().getSelectionStart();
-//			int end = view.getUrlTextField().getSelectionEnd();
-//			String url = view.getUrlTextField().getText();
-//
-//			String oldSel = url.substring(start, end);
-//			if (oldSel.equals(newVal)) {
-//				return;
-//			}
-//
-//			StringBuilder sb = new StringBuilder(url);
-//			sb.delete(start, end);
-//			sb.insert(start, newVal);
-//			view.getUrlTextField().setText(sb.toString());
-//			view.getUrlTextField().setSelectionStart(start);
-//			view.getUrlTextField().setSelectionEnd(start + newVal.length());
-//			break;
-//		}
 		case TaskProps.F_ORIGINAL_ADDRESS: {
 			view.getOriginalAddressTextField().setText(newVal);
 			break;
@@ -528,7 +508,6 @@ public class TaskController {
 		default: {
 			String s = "Unknown TaskProp: " + propName + " -> " + newVal;
 			model.setErrorMessage(s);
-			// System.out.println(s);
 		}
 		}
 	}

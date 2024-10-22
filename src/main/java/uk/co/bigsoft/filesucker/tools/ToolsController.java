@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.config.ConfigModel;
@@ -298,7 +299,7 @@ public class ToolsController {
 				return;
 			}
 
-			StringBuffer sb = Utility.downloadFile(text);
+			StringBuffer sb = new StringBuffer(Downloader.getInstance().downloadTextFile(text));
 			if (sb.length() == 0) {
 				return;
 			}

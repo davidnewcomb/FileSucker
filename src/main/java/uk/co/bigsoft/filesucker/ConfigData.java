@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
+import uk.co.bigsoft.filesucker.view.HistoryDropDown;
+import uk.co.bigsoft.filesucker.view.HistoryElement;
+
 public class ConfigData extends Properties {
 	private static final String listSeperator = "�"; //$NON-NLS-1$
 

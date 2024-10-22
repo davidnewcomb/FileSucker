@@ -16,11 +16,10 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import uk.co.bigsoft.filesucker.FileAndTextTransferHandler;
-import uk.co.bigsoft.filesucker.HistoryJComboBox;
-import uk.co.bigsoft.filesucker.SuckerParams;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.task.looper.LooperCmd;
 import uk.co.bigsoft.filesucker.task.looper.LooperPanel;
+import uk.co.bigsoft.filesucker.task.view.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.task.view.RunYetComponent;
 import uk.co.bigsoft.filesucker.tools.MousePressListener;
 
@@ -90,8 +89,6 @@ public class TaskView extends JPanel {
 		directoryCB.setMinimumSize(new Dimension(10, 20));
 		directoryCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		directoryCB.addMouseListener((MousePressListener) e -> mousePressed(e));
-		// TODO
-		// directoryCB.setSelectedItem(FileSucker.configData.getBaseDir().toString());
 
 		// Prefix and Suffix
 		saveOnly.setToolTipText("RunTask - save but without running");
@@ -99,9 +96,6 @@ public class TaskView extends JPanel {
 
 		runTaskButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-//		openDir = new OpenDirectoryButton(directoryCB);
-
-		// errorMessages.setFont()
 		JPanel bot = new JPanel();
 		bot.setLayout(new BoxLayout(bot, BoxLayout.Y_AXIS));
 		bot.add(errorMessagesLabel);
@@ -336,134 +330,6 @@ public class TaskView extends JPanel {
 		}
 	}
 
-	// New actions
-//
-//	private void runTask() {
-////		if (Looper.isActive()) {
-////			TaskScreen.setErrorMessage("Looper is active");
-////			return;
-////		}
-//
-//		String selectedDir = directoryCB.getSelectedItem().toString().trim();
-//		if (selectedDir.equals("")) {
-//			TaskScreen.setErrorMessage("You must provide a directory to store the files");
-//			return;
-//		}
-//
-//		if (!selectedDir.endsWith(File.separator)) {
-//			selectedDir = selectedDir + File.separator;
-//			directoryCB.setSelectedItem(selectedDir);
-//		}
-//
-//		directoryCB.savePrefs(selectedDir);
-//
-//		String prefix = null;
-//		String suffix = null;
-//
-//		if (prefixTF.getText().length() > 0) {
-//			prefix = prefixTF.getText();
-//		}
-//		if (suffixTF.getText().length() > 0) {
-//			suffix = suffixTF.getText();
-//		}
-//
-//		// // Is selectedDir in the list already
-//		// boolean inList = false;
-//		// int listEntries =
-//		// directoryCB.getItemCount();
-//		// for (int i = 0 ; i < listEntries ;
-//		// ++i)
-//		// {
-//		// String item = (String)
-//		// directoryCB.getItemAt(i);
-//		// if (item.equals(selectedDir))
-//		// inList = true;
-//		// }
-//		// if (inList == false)
-//		// {
-//		// directoryCB.addItem(selectedDir);
-//		// }
-//
-//		// File f = new File (selectedDir) ;
-//		// String name = f.getName () ;
-//
-//		if (selectedDir.endsWith(File.separator) == false) {
-//			selectedDir = selectedDir + File.separator;
-//			directoryCB.setSelectedItem(selectedDir);
-//		}
-//
-//		// Cookie
-//		// StringTokenizer st = new
-//		// StringTokenizer(cookieTA.getText().trim(),
-//		// "\n");
-//		Hashtable<String, String> hm = new Hashtable<String, String>();
-//		// while (st.hasMoreTokens())
-//		// {
-//		// String[] kv =
-//		// st.nextToken().trim().split(":", 2);
-//		// String k = kv[0].trim();
-//		// String v = kv[1].trim();
-//		// hm.put(k, v);
-//		// }
-//
-//		// Referer
-//		// String ref = refererTF.getText();
-//		// if (ref.equals("") == false)
-//		// {
-//		// hm.put("Referer", ref);
-//		// }
-//		String refs[] = urlTF.getText().split("/", 4);
-//		if (refs.length < 3) {
-//			TaskScreen.setErrorMessage("You must enter a url");
-//			return;
-//		}
-//
-//		runYet.setReset();
-//
-//		String ref = refs[0] + "//" + refs[2];
-//		hm.put("Referer", ref);
-//
-//		selectedDir = Utility.expandsPercentVars(selectedDir);
-//
-//		SuckerParams sp = new SuckerParams("name", urlTF.getText(), selectedDir, prefix, suffix, hm,
-//				suffixEndCB.isSelected(), originalAddressTF.getText());
-//		if (saveUrl.isSelected()) {
-//			TaskScreenParams.save(sp);
-//			if (saveOnly.isSelected()) {
-//				setErrorMessage("Saved");
-//				return;
-//			}
-//		}
-//		// SuckerThread sth =
-//		new SuckerThread(sp);
-//
-//		// SuckerThread sth = new SuckerThread (sp)
-//		// ;
-//		// synchronized
-//		// (FileSucker.activeFileSuckerThreads)
-//		// {
-//		// FileSucker.activeFileSuckerThreads.add
-//		// (sth) ;
-//		// }
-//		// TransferScreen.updateScreen () ;
-//		// // Switch to other tab
-//		FileSuckerFrame.tabPane.setSelectedComponent(FileSucker.transferScreen);
-//
-//		// for (int t = 0 ; t <
-//		// FileSuckerFrame.tabPane.getComponentCount()
-//		// ;
-//		// t++)
-//		// if
-//		// (FileSuckerFrame.tabPane.getComponent(t)
-//		// ==
-//		// FileSucker.transferScreen)
-//		//
-//		originalAddressTF.setText("");
-//		runYet.setReset();
-//	}
-
-	// Below: New getters
-
 	public JButton getCopyToToolsButton() {
 		return copyToToolsButton;
 	}
@@ -550,22 +416,6 @@ public class TaskView extends JPanel {
 
 	// Below: waiting for refactor
 
-//	public void setErrorMessage(String m) {
-//		System.err.println(m);
-//		errorMessagesLabel.setText("Message: " + m);
-//	}
-
-	public void load(SuckerParams p) {
-		System.out.println(p.getOrginalAddress());
-		urlTF.setText(p.getOrginalUrl());
-		prefixTF.setText(p.getPrefix());
-		suffixTF.setText(p.getSuffix());
-		directoryCB.setSelectedItem(p.getIntoDir());
-		suffixEndCB.setSelected(p.isSuffixEnd());
-		originalAddressTF.setText(p.getOrginalAddress());
-		runYet.setModifed();
-	}
-
 	public void enableRunButton(boolean e) {
 		runTaskButton.setEnabled(e);
 	}
@@ -580,19 +430,6 @@ public class TaskView extends JPanel {
 
 	public void setUrlText(String x) {
 		urlTF.setText(x);
-	}
-
-	public void replaceUrlText(String braces) {
-		StringBuffer sb = new StringBuffer(urlTF.getText());
-		int carpos = urlTF.getCaretPosition();
-		int startSel = urlTF.getSelectionStart();
-		int endSel = urlTF.getSelectionEnd();
-		if (startSel != endSel)
-			sb.replace(startSel, endSel, braces);
-		else
-			sb.insert(carpos, braces);
-
-		urlTF.setText(sb.toString());
 	}
 
 	public void changed() {

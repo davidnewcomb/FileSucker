@@ -2,7 +2,7 @@ package uk.co.bigsoft.filesucker.zjunk.transfer.download;
 
 import java.util.HashMap;
 
-import uk.co.bigsoft.filesucker.SuckerParams;
+import uk.co.bigsoft.filesucker.zjunk.SuckerParams;
 
 public class UrlSequenceIteration {
 	private String remotefile = "";

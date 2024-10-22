@@ -9,8 +9,8 @@ import java.text.SimpleDateFormat;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
-import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.task.view.HistoryJComboBox;
 
 public class BrowseButton extends JButton implements ActionListener {
 	private HistoryJComboBox directory;

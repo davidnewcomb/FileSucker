@@ -8,6 +8,23 @@
 	<name>FileSucker</name>
 	<description>Generates URLs from a pattern and downloads all the files.</description>
 
+	<properties>
+		<slf4jVersion>2.0.16</slf4jVersion>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4jVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4jVersion}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -19,5 +36,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

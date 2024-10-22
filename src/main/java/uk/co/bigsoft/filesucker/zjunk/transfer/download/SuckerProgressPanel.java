@@ -19,9 +19,9 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import uk.co.bigsoft.filesucker.SuckerParams;
-import uk.co.bigsoft.filesucker.TaskScreenParams;
 import uk.co.bigsoft.filesucker.view.CreditScreen;
+import uk.co.bigsoft.filesucker.zjunk.SuckerParams;
+import uk.co.bigsoft.filesucker.zjunk.TaskScreenParams;
 import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 public class SuckerProgressPanel extends JPanel {

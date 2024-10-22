@@ -3,7 +3,6 @@ package uk.co.bigsoft.filesucker;
 import java.net.JarURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
@@ -33,7 +32,6 @@ import uk.co.bigsoft.filesucker.view.FileSuckerFrame;
 
 public class FileSucker {
 	private static final FileSuckerPrefsHandler fileSuckerPrefHandler = new FileSuckerPrefsHandler();
-
 	public static String version = "";
 	public static String versionDate = "";
 

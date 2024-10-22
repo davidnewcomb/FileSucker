@@ -8,8 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.FileSucker;
-import uk.co.bigsoft.filesucker.HistoryJComboBox;
 import uk.co.bigsoft.filesucker.Utility;
+import uk.co.bigsoft.filesucker.task.view.HistoryJComboBox;
 
 public class DirectoryExtensionButton extends JButton implements ActionListener {
 	private JTextField url;

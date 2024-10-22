@@ -4,11 +4,11 @@ import java.awt.Dimension;
 
 import javax.swing.JLabel;
 
-import uk.co.bigsoft.filesucker.HistoryDropDown;
-import uk.co.bigsoft.filesucker.MenuButton;
 import uk.co.bigsoft.filesucker.MenuButtonListOwner;
-import uk.co.bigsoft.filesucker.MenuButtonListener;
 import uk.co.bigsoft.filesucker.task.view.UpDownNumberJTextField;
+import uk.co.bigsoft.filesucker.view.HistoryDropDown;
+import uk.co.bigsoft.filesucker.zjunk.MenuButton;
+import uk.co.bigsoft.filesucker.zjunk.MenuButtonListener;
 import uk.co.bigsoft.filesucker.zjunk.looper.Looper;
 
 public class NumberLooper extends Looper implements MenuButtonListOwner {

@@ -180,7 +180,7 @@ public class TaskModel {
 	public void setSaveUrl(boolean x) {
 		boolean oldVal = saveUrl;
 		saveUrl = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_URL, oldVal, saveUrl);
+		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_URL, oldVal, saveUrl ? "0" : "1");
 	}
 
 	public boolean isSaveOnly() {
@@ -190,7 +190,7 @@ public class TaskModel {
 	public void setSaveOnly(boolean x) {
 		boolean oldVal = saveOnly;
 		saveOnly = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_ONLY, oldVal, saveOnly);
+		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_ONLY, oldVal, saveOnly ? "0" : "1");
 	}
 
 	public int getUrlCaretStart() {

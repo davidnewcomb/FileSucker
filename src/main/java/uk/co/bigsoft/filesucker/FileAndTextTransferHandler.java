@@ -19,6 +19,7 @@ import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.Position;
 
+import uk.co.bigsoft.filesucker.zjunk.TaskScreenParams;
 import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
 
 @SuppressWarnings("all")

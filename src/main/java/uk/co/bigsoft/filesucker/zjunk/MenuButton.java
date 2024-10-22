@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.zjunk;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,10 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+
+import uk.co.bigsoft.filesucker.MenuButtonListOwner;
+import uk.co.bigsoft.filesucker.view.HistoryDropDown;
+import uk.co.bigsoft.filesucker.view.HistoryElement;
 
 public class MenuButton extends JButton {
 	protected HistoryDropDown entries;

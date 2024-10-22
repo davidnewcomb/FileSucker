@@ -7,9 +7,6 @@ import java.awt.datatransfer.Transferable;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -258,50 +255,6 @@ public class Utility {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-
-	public static StringBuffer downloadFile(String url) {
-		StringBuffer sb = new StringBuffer();
-		try {
-			URL u = URI.create(url).toURL();
-			java.net.URLConnection urlc = u.openConnection();
-			String userinfo = u.getUserInfo();
-			if (userinfo != null) {
-				String[] auth = userinfo.split(":");
-				urlc.setRequestProperty("Authorization", "Basic " + BasicAuth.encode(auth[0], auth[1]));
-			}
-			InputStream is = urlc.getInputStream(); // To download
-			byte[] buffer = new byte[4096];
-			// Map header = urlc.getHeaderFields();
-			int len = 69;
-			while (len > 0) {
-				len = is.read(buffer, 0, buffer.length);
-				if (len <= 0)
-					break;
-				sb.append(new String(buffer));
-			}
-			is.close();
-			return sb;
-
-			// For debug - to load from a file
-			// byte[] buffer = new byte[4096] ;
-			//
-			// FileInputStream is = new FileInputStream
-			// ("c:\\tmp\\so.html") ;
-			// int len = 69 ;
-			// while (len > 0)
-			// {
-			// len = is.read (buffer, 0, buffer.length) ;
-			// if (len <= 0)
-			// break ;
-			// sb.append (new String (buffer)) ;
-			// }
-			// is.close () ;
-			// return sb ;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new StringBuffer();
 	}
 
 	public static String getSuckerLable(String sel) {
