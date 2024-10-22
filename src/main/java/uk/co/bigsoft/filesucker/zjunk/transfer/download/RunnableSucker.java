@@ -13,8 +13,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import uk.co.bigsoft.filesucker.view.CreditScreen;
 import uk.co.bigsoft.filesucker.zjunk.BasicAuth;
+import uk.co.bigsoft.filesucker.zjunk.view.CreditScreen;
 
 public class RunnableSucker implements Runnable {
 	// private static int maxFollowDepth = 5 ; // TODO move to config

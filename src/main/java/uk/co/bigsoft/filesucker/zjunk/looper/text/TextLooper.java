@@ -4,10 +4,10 @@ import java.awt.Dimension;
 
 import javax.swing.JLabel;
 
-import uk.co.bigsoft.filesucker.MenuButtonListOwner;
 import uk.co.bigsoft.filesucker.task.view.UpDownTextJTextField;
 import uk.co.bigsoft.filesucker.view.HistoryDropDown;
 import uk.co.bigsoft.filesucker.zjunk.MenuButton;
+import uk.co.bigsoft.filesucker.zjunk.MenuButtonListOwner;
 import uk.co.bigsoft.filesucker.zjunk.MenuButtonListener;
 import uk.co.bigsoft.filesucker.zjunk.looper.Looper;
 

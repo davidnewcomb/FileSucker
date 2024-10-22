@@ -70,9 +70,9 @@ public class FileAndTextTransferHandler extends TransferHandler {
 				// display the contents of the file is returned.
 				// tc = ts.addTab (file.toString ()) ;
 				L.debug("Drag & Drop: Handling: " + file.toString());
-				
+
 				TaskConfig cfg = taskConfigFile.load(file);
-				
+
 				// ts.setSelInd (0) ;
 				L.debug("Drag & Drop: Handling: completed");
 				return true;

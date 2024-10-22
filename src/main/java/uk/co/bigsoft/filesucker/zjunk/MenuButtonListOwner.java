@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker;
+package uk.co.bigsoft.filesucker.zjunk;
 
 import uk.co.bigsoft.filesucker.view.HistoryDropDown;
 

@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class FixedLooperPanel extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
+public class FixedLooperPanel extends JPanel implements ILooperPanel {
 
 	private JTextField idTF = new JTextField();
 	private JLabel looperTitle = new JLabel();

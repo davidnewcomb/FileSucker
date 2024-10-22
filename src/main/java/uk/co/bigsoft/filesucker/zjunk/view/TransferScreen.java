@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.view;
+package uk.co.bigsoft.filesucker.zjunk.view;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

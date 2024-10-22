@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import uk.co.bigsoft.filesucker.view.TransferScreen;
 import uk.co.bigsoft.filesucker.zjunk.SuckerParams;
 import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.zjunk.view.TransferScreen;
 
 public class SuckerThread extends Thread {
 

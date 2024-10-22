@@ -19,10 +19,10 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import uk.co.bigsoft.filesucker.view.CreditScreen;
 import uk.co.bigsoft.filesucker.zjunk.SuckerParams;
 import uk.co.bigsoft.filesucker.zjunk.TaskScreenParams;
 import uk.co.bigsoft.filesucker.zjunk.ui.taskscreen.TaskScreen;
+import uk.co.bigsoft.filesucker.zjunk.view.CreditScreen;
 
 public class SuckerProgressPanel extends JPanel {
 	private static final int TRANSFER_ROW_HEIGHT = 20;

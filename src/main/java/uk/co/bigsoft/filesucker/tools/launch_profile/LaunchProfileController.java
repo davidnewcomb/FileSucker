@@ -38,7 +38,7 @@ public class LaunchProfileController extends JPanel {
 		}
 
 		try {
-			sub = sub.replace(' ', '+');
+			sub = sub.replaceAll(" ", "+");
 			sub = URLEncoder.encode(sub, "UFT-8");
 		} catch (UnsupportedEncodingException ex) {
 			// nothing
@@ -53,7 +53,6 @@ public class LaunchProfileController extends JPanel {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
 	}
 
 	private void refreshCombo(JComboBox<String> list) {

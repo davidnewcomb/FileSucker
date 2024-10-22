@@ -1,4 +1,4 @@
-package uk.co.bigsoft.filesucker.view;
+package uk.co.bigsoft.filesucker.zjunk.view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -21,11 +21,8 @@ import javax.swing.event.ListDataListener;
 
 public class LaunchProfileConfigPanel extends JPanel {
 	protected JList<String> current;
-
 	protected JTextField toAdd;
-
 	protected JButton addButton;
-
 	protected LaunchListModel model;
 
 	public LaunchProfileConfigPanel() {

@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import uk.co.bigsoft.filesucker.view.LaunchProfileConfigPanel;
-
 public class ConfigScreen extends JPanel {
 	private final static int MAX_WID_HEIGHT = 15;
 

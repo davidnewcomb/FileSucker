@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import uk.co.bigsoft.filesucker.task.view.UpDownNumberJTextField;
 
-public class NumberLooperPanel extends JPanel implements ILooperPanel { // , MenuButtonListOwner {
+public class NumberLooperPanel extends JPanel implements ILooperPanel {
 
 	private UpDownNumberJTextField toTF = new UpDownNumberJTextField();
 	private UpDownNumberJTextField padTF = new UpDownNumberJTextField();

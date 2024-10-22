@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-import uk.co.bigsoft.filesucker.MenuButtonListOwner;
 import uk.co.bigsoft.filesucker.view.HistoryDropDown;
 import uk.co.bigsoft.filesucker.view.HistoryElement;
 

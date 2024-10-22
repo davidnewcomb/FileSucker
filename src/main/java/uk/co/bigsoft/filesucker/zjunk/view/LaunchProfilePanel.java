@@ -1,8 +1,6 @@
-package uk.co.bigsoft.filesucker.view;
+package uk.co.bigsoft.filesucker.zjunk.view;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.UnsupportedEncodingException;
@@ -16,45 +14,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import uk.co.bigsoft.filesucker.Utility;
-import uk.co.bigsoft.filesucker.zjunk.view.ToolsScreen;
+import uk.co.bigsoft.filesucker.tools.ToolsModel;
 
 public class LaunchProfilePanel extends JPanel {
 	private JComboBox<String> list = new JComboBox<String>();
 	private JButton submit = new JButton("LaunchProfile");
 
-	public LaunchProfilePanel() {
+	public LaunchProfilePanel(ToolsModel toolsModel) {
 		super(new BorderLayout());
 
 		list.setEditable(true);
 
-		submit.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				String sub = ToolsScreen.convertUrlText.getText().trim();
-				if (sub.equals("")) {
-					return;
-				}
-
-				try {
-					sub = sub.replace(' ', '+');
-					sub = URLEncoder.encode(sub, "UFT-8");
-				} catch (UnsupportedEncodingException ex) {
-					// nothing
-				}
-
-				String url = (String) list.getSelectedItem();
-				url = url.replaceAll("%s", sub);
-
-				try {
-					String helper = ""; // FileSucker.configData.getHelperWeb().replaceAll("%s", url);
-					Utility.runShellCommand(helper);
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
-
-			}
-
-		});
+		submit.addActionListener(e -> submitAction(toolsModel));
 
 		add(list, BorderLayout.CENTER);
 		add(submit, BorderLayout.EAST);
@@ -66,6 +37,30 @@ public class LaunchProfilePanel extends JPanel {
 		List<String> opts = new ArrayList<>(); // FileSucker.configData.getLaunchProfiles();
 		for (String s : opts) {
 			list.addItem(s);
+		}
+	}
+
+	private void submitAction(ToolsModel toolsModel) {
+		String sub = toolsModel.getWorking().trim();
+		if (sub.equals("")) {
+			return;
+		}
+
+		try {
+			sub = sub.replace(' ', '+');
+			sub = URLEncoder.encode(sub, "UFT-8");
+		} catch (UnsupportedEncodingException ex) {
+			// nothing
+		}
+
+		String url = (String) list.getSelectedItem();
+		url = url.replaceAll("%s", sub);
+
+		try {
+			String helper = ""; // FileSucker.configData.getHelperWeb().replaceAll("%s", url);
+			Utility.runShellCommand(helper);
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 }

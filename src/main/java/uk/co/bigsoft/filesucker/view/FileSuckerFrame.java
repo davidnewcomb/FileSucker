@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 import uk.co.bigsoft.filesucker.config.ConfigView;
+import uk.co.bigsoft.filesucker.credits.CreditsModel;
 import uk.co.bigsoft.filesucker.credits.CreditsView;
 import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefs;
 import uk.co.bigsoft.filesucker.prefs.FileSuckerPrefsHandler;
@@ -18,10 +19,10 @@ public class FileSuckerFrame extends JFrame {
 	public static JTabbedPane tabPane;
 
 	public FileSuckerFrame(TaskView taskView, ConfigView configView, CreditsView creditsView, ToolsView toolsView,
-			TransferView transferView) {
+			TransferView transferView, CreditsModel creditsModel) {
 		super("FileSucker");
 		// setIconImage (icon.getImage ()) ;
-		addWindowListener(new FileSuckerWindowAdaptor());
+		addWindowListener(new FileSuckerWindowAdaptor(creditsModel));
 
 		tabPane = new JTabbedPane();
 		getContentPane().add(tabPane);

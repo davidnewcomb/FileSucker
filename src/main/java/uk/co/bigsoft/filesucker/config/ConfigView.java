@@ -13,8 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import uk.co.bigsoft.filesucker.view.LaunchProfileConfigPanel;
-
 public class ConfigView extends JPanel {
 	private final static int MAX_WID_HEIGHT = 15;
 
@@ -239,11 +237,6 @@ public class ConfigView extends JPanel {
 
 	public JTextField getHelperDirectoryTextField() {
 		return helperDirectoryTF;
-	}
-
-	public LaunchProfileConfigPanel getLaunchProfileConfig() {
-		// TODO
-		return null; // launchProfileConfig;
 	}
 
 	public JButton getBaseBrowseButton() {

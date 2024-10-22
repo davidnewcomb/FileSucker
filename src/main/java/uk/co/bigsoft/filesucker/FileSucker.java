@@ -37,7 +37,7 @@ public class FileSucker {
 	public static String versionDate = "";
 
 	private static TaskController taskController;
-	
+
 	public static void main(String args[]) {
 
 		setUpVersion();
@@ -54,7 +54,7 @@ public class FileSucker {
 		LaunchProfileView launchProfileView = new LaunchProfileView();
 		LaunchProfileController launchProfileController = new LaunchProfileController(launchProfileModel,
 				launchProfileView);
-		
+
 		ToolsModel toolsModel = new ToolsModel();
 		TaskModel taskModel = new TaskModel();
 		TransferModel transferModel = new TransferModel();
@@ -63,7 +63,7 @@ public class FileSucker {
 
 		ConfigView configView = new ConfigView();
 		CreditsView creditsView = new CreditsView();
-		
+
 		ToolsView toolsView = new ToolsView(launchProfileView);
 		LooperPanel looperPanel = new LooperPanel(configModel, taskModel);
 		TaskView taskView = new TaskView(looperPanel);
@@ -85,7 +85,7 @@ public class FileSucker {
 		Downloader.getInstance(configModel);
 
 		// Open window
-		new FileSuckerFrame(taskView, configView, creditsView, toolsView, transferView);
+		new FileSuckerFrame(taskView, configView, creditsView, toolsView, transferView, creditsModel);
 	}
 
 	private static void setUpVersion() {

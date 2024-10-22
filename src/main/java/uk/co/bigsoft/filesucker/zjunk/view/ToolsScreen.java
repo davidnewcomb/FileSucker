@@ -24,7 +24,6 @@ import javax.swing.JTextField;
 import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.FileSucker;
 import uk.co.bigsoft.filesucker.Utility;
-import uk.co.bigsoft.filesucker.view.LaunchProfilePanel;
 import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequenceIteration;
 import uk.co.bigsoft.filesucker.zjunk.transfer.download.UrlSequencer;
 
@@ -435,10 +434,10 @@ public class ToolsScreen extends JPanel {
 		hbox.add(new JLabel("Convert"));
 		hbox.add(convertUrlText);
 
-		vbox.add(hbox);
-		LaunchProfilePanel lpp = new LaunchProfilePanel();
-		lpp.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-		vbox.add(lpp);
+//		vbox.add(hbox);
+//		LaunchProfilePanel lpp = new LaunchProfilePanel();
+//		lpp.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+//		vbox.add(lpp);
 	}
 
 	public static void setConvertUrlText(String s) {
