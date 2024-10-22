@@ -467,13 +467,13 @@ public class TaskController {
 		String newVal = (String) evt.getNewValue();
 
 		switch (propName) {
-		case TaskProps.F_URL: {
+		case TaskProps.TASK_URL: {
 			view.getUrlTextField().setText(newVal);
 			view.getUrlTextField().setSelectionStart(model.getUrlCaretStart());
 			view.getUrlTextField().setSelectionEnd(model.getUrlCaretEnd());
 			break;
 		}
-		case TaskProps.F_SELECTED_URL: {
+		case TaskProps.TASK_SELECTED_URL: {
 			// TODO enable/disable buttons
 
 			// TODO check this
@@ -482,31 +482,31 @@ public class TaskController {
 			}
 			break;
 		}
-		case TaskProps.F_ORIGINAL_ADDRESS: {
+		case TaskProps.TASK_ORIGINAL_ADDRESS: {
 			view.getOriginalAddressTextField().setText(newVal);
 			break;
 		}
-		case TaskProps.F_SELECTED_ORIGINAL_ADDRESS: {
+		case TaskProps.TASK_SELECTED_ORIGINAL_ADDRESS: {
 			// TODO enable/disable buttons
 			break;
 		}
-		case TaskProps.F_DIRECTORY: {
+		case TaskProps.TASK_DIRECTORY: {
 			view.getDirectoryComboBox().setSelectedItem(newVal);
 			break;
 		}
-		case TaskProps.F_ERROR_MESSAGE: {
+		case TaskProps.TASK_ERROR_MESSAGE: {
 			view.getErrorMessagesLabel().setText(newVal);
 			break;
 		}
-		case TaskProps.F_PREFIX: {
+		case TaskProps.TASK_PREFIX: {
 			view.getPrefixTextField().setText(newVal);
 			break;
 		}
-		case TaskProps.F_SUFFIX: {
+		case TaskProps.TASK_SUFFIX: {
 			view.getSuffixTextField().setText(newVal);
 			break;
 		}
-		case TaskProps.F_SUFFIX_END: {
+		case TaskProps.TASK_SUFFIX_END: {
 			view.getSuffixEndCB().setSelected(newVal == "0");
 			break;
 		}

@@ -61,7 +61,7 @@ public class TaskModel {
 	public void setUrl(String x) {
 		String oldVal = url;
 		url = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_URL, oldVal, url);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_URL, oldVal, url);
 	}
 
 	public String getSelectedUrl() {
@@ -74,7 +74,7 @@ public class TaskModel {
 	public void setSelectedUrl(String x) {
 		String oldVal = selectedUrl;
 		selectedUrl = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_URL, oldVal, selectedUrl);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SELECTED_URL, oldVal, selectedUrl);
 	}
 
 	public String getSelectedPrefix() {
@@ -87,7 +87,7 @@ public class TaskModel {
 	public void setSelectedPrefix(String x) {
 		String oldVal = selectedPrefix;
 		selectedPrefix = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_PREFIX, oldVal, selectedPrefix);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SELECTED_PREFIX, oldVal, selectedPrefix);
 	}
 
 	public String getSelectedSuffix() {
@@ -100,7 +100,7 @@ public class TaskModel {
 	public void setSelectedSuffix(String x) {
 		String oldVal = selectedSuffix;
 		selectedSuffix = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_SUFFIX, oldVal, selectedSuffix);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SELECTED_SUFFIX, oldVal, selectedSuffix);
 	}
 
 	public String getOriginalAddress() {
@@ -110,7 +110,7 @@ public class TaskModel {
 	public void setOriginalAddress(String x) {
 		String oldVal = originalAddress;
 		originalAddress = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_ORIGINAL_ADDRESS, oldVal, originalAddress);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_ORIGINAL_ADDRESS, oldVal, originalAddress);
 	}
 
 	public String getSelectedOriginalAddress() {
@@ -120,7 +120,7 @@ public class TaskModel {
 	public void setSelectedOriginalAddress(String x) {
 		String oldVal = selectedOriginalAddress;
 		selectedOriginalAddress = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SELECTED_ORIGINAL_ADDRESS, oldVal, selectedOriginalAddress);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SELECTED_ORIGINAL_ADDRESS, oldVal, selectedOriginalAddress);
 	}
 
 	public String getDirectory() {
@@ -130,7 +130,7 @@ public class TaskModel {
 	public void setDirectory(String x) {
 		String oldVal = directory;
 		directory = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_DIRECTORY, oldVal, directory);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_DIRECTORY, oldVal, directory);
 	}
 
 	public String getErrorMessage() {
@@ -140,7 +140,7 @@ public class TaskModel {
 	public void setErrorMessage(String x) {
 		String oldVal = errorMessage;
 		errorMessage = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_ERROR_MESSAGE, oldVal, errorMessage);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_ERROR_MESSAGE, oldVal, errorMessage);
 	}
 
 	public String getPrefix() {
@@ -150,7 +150,7 @@ public class TaskModel {
 	public void setPrefix(String x) {
 		String oldVal = prefix;
 		prefix = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_PREFIX, oldVal, prefix);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_PREFIX, oldVal, prefix);
 	}
 
 	public String getSuffix() {
@@ -160,7 +160,7 @@ public class TaskModel {
 	public void setSuffix(String x) {
 		String oldVal = suffix;
 		suffix = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX, oldVal, suffix);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SUFFIX, oldVal, suffix);
 	}
 
 	public boolean isSuffixEnd() {
@@ -170,7 +170,7 @@ public class TaskModel {
 	public void setSuffixEnd(boolean x) {
 		boolean oldVal = suffixEnd;
 		suffixEnd = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX_END, oldVal, suffixEnd ? "0" : "1");
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SUFFIX_END, oldVal, suffixEnd ? "0" : "1");
 	}
 
 	public boolean isSaveUrl() {
@@ -180,7 +180,7 @@ public class TaskModel {
 	public void setSaveUrl(boolean x) {
 		boolean oldVal = saveUrl;
 		saveUrl = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_URL, oldVal, saveUrl ? "0" : "1");
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SAVE_URL, oldVal, saveUrl ? "0" : "1");
 	}
 
 	public boolean isSaveOnly() {
@@ -190,7 +190,7 @@ public class TaskModel {
 	public void setSaveOnly(boolean x) {
 		boolean oldVal = saveOnly;
 		saveOnly = x;
-		propChangeFirer.firePropertyChange(TaskProps.F_SAVE_ONLY, oldVal, saveOnly ? "0" : "1");
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SAVE_ONLY, oldVal, saveOnly ? "0" : "1");
 	}
 
 	public int getUrlCaretStart() {
@@ -251,7 +251,7 @@ public class TaskModel {
 		}
 		s.insert(urlCaretStart, looperText);
 		url = s.toString();
-		propChangeFirer.firePropertyChange(TaskProps.F_URL, oldVal, url);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_URL, oldVal, url);
 	}
 
 	public void replaceSelectedPrefix(String looperText) {
@@ -264,7 +264,7 @@ public class TaskModel {
 		}
 		s.insert(prefixCaretStart, looperText);
 		prefix = s.toString();
-		propChangeFirer.firePropertyChange(TaskProps.F_PREFIX, oldVal, prefix);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_PREFIX, oldVal, prefix);
 	}
 
 	public void replaceSelectedSuffix(String looperText) {
@@ -277,7 +277,7 @@ public class TaskModel {
 		}
 		s.insert(suffixCaretStart, looperText);
 		suffix = s.toString();
-		propChangeFirer.firePropertyChange(TaskProps.F_SUFFIX, oldVal, suffix);
+		propChangeFirer.firePropertyChange(TaskProps.TASK_SUFFIX, oldVal, suffix);
 	}
 
 }
