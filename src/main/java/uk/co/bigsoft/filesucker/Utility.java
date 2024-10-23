@@ -1,5 +1,6 @@
 package uk.co.bigsoft.filesucker;
 
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -39,6 +40,14 @@ public class Utility {
 		return null;
 	}
 
+	public static void openOnDesktop(File f) {
+		try {
+			Desktop.getDesktop().open(f);
+		} catch (IOException e) {
+			L.error("Can not open file: " + f.toString(), e);
+		}
+	}
+	
 	public static void setClipboard(String str) {
 		L.debug("setClipboard not implemented");
 	}
@@ -165,17 +174,6 @@ public class Utility {
 		try {
 			String helper = configModel.getHelperWeb().replaceAll("%s", u);
 			runShellCommand(helper);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	public static void launchTextFile(ConfigModel configModel, File file) {
-		try {
-			String helper = configModel.getHelperText();
-			String local = realDirectory(file.toString());
-			String sub = helper.replaceAll("%s", local);
-			runShellCommand(sub);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

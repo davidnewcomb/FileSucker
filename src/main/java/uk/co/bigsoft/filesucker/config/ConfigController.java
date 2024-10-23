@@ -23,8 +23,6 @@ public class ConfigController {
 		view.getBaseTextField().setText(model.getBaseDir());
 
 		view.getHelperWebTextField().setText(model.getHelperWeb());
-		view.getHelperTextTextField().setText(model.getHelperText());
-		view.getHelperDirectoryTextField().setText(model.getHelperDirectory());
 
 		view.getNumberToTextField().setText(String.valueOf(model.getNumberTo()));
 		view.getNumberFromTextField().setText(String.valueOf(model.getNumberFrom()));
@@ -49,10 +47,6 @@ public class ConfigController {
 
 		view.getHelperWebTextField().addActionListener(e -> updateHelperWeb());
 		view.getHelperWebTextField().addKeyListener((KeyReleasedListener) e -> updateHelperWeb());
-		view.getHelperTextTextField().addActionListener(e -> updateHelperText());
-		view.getHelperTextTextField().addKeyListener((KeyReleasedListener) e -> updateHelperText());
-		view.getHelperDirectoryTextField().addActionListener(e -> updateOpenDirectory());
-		view.getHelperDirectoryTextField().addKeyListener((KeyReleasedListener) e -> updateOpenDirectory());
 
 		view.getNumberToTextField().addActionListener(e -> updateNumberTo());
 		view.getNumberToTextField().addKeyListener((KeyReleasedListener) e -> updateNumberTo());
@@ -101,14 +95,6 @@ public class ConfigController {
 
 	private void updateHelperWeb() {
 		editingModel.setHelperWeb(view.getHelperWebTextField().getText());
-	}
-
-	private void updateHelperText() {
-		editingModel.setHelperText(view.getHelperTextTextField().getText());
-	}
-
-	private void updateOpenDirectory() {
-		editingModel.setOpenDirectory(view.getHelperDirectoryTextField().getText());
 	}
 
 	private void updateNumberTo() {

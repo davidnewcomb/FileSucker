@@ -8,9 +8,7 @@ import java.util.List;
 public class ConfigModel implements Cloneable {
 
 	private String baseDir = System.getenv("HOME") + File.separatorChar + "FileSuker" + File.separatorChar;
-	private String helperWeb = "firefox %s";
-	private String helperText = "textPad %s";
-	private String openDirectory = "/usr/bin/nautilus %s";
+	private String helperWeb = "firefox -private %s";
 	private int numberFrom = 1;
 	private int numberTo = 15;
 	private int numberPad = 1;
@@ -33,8 +31,6 @@ public class ConfigModel implements Cloneable {
 		ConfigModel cm = new ConfigModel();
 		cm.setBaseDir(baseDir);
 		cm.setHelperWeb(helperWeb);
-		cm.setHelperText(helperText);
-		cm.setOpenDirectory(openDirectory);
 		cm.setNumberFrom(numberFrom);
 		cm.setNumberTo(numberTo);
 		cm.setNumberPad(numberPad);
@@ -153,22 +149,6 @@ public class ConfigModel implements Cloneable {
 
 	public void setHelperWeb(String helperWeb) {
 		this.helperWeb = helperWeb;
-	}
-
-	public String getHelperText() {
-		return helperText;
-	}
-
-	public void setHelperText(String helperText) {
-		this.helperText = helperText;
-	}
-
-	public String getHelperDirectory() {
-		return openDirectory;
-	}
-
-	public void setOpenDirectory(String openDirectory) {
-		this.openDirectory = openDirectory;
 	}
 
 	public List<String> getNumberLooperHistory() {

@@ -30,8 +30,6 @@ public class ConfigView extends JPanel {
 	private JTextField delaySockReadMsTF = new JTextField();
 	private JTextField delayFilesMsTF = new JTextField();
 	private JTextField helperWebTF = new JTextField();
-	private JTextField helperTextTF = new JTextField();
-	private JTextField helperDirectoryTF = new JTextField();
 	private JButton baseBrowseButton = new JButton("Browse");
 
 	public ConfigView() {
@@ -66,33 +64,6 @@ public class ConfigView extends JPanel {
 		helperWebTF.setToolTipText("File location of web browser (%s for url substitution)");
 
 		hbox.add(helperWebTF);
-
-		centre.add(hbox);
-
-		// Helper for text files
-		centre.add(new JLabel("Text file helper (%s for file)"));
-		hbox = Box.createHorizontalBox();
-
-		helperTextTF.setMinimumSize(new Dimension(10, 20));
-		helperTextTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		helperTextTF.setEditable(true);
-		helperTextTF.setToolTipText("Path to text file viewer (%s for url substitution)");
-
-		hbox.add(helperTextTF);
-
-		centre.add(hbox);
-
-		// Open directory launch
-		centre.add(new JLabel("Open directory helper (%s for the directory name)"));
-		hbox = Box.createHorizontalBox();
-
-		helperDirectoryTF.setMinimumSize(new Dimension(10, 20));
-		helperDirectoryTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-		helperDirectoryTF.setEditable(true);
-		helperDirectoryTF.setToolTipText("File location of web browser (%s for url substitution)");
-
-		hbox.add(helperDirectoryTF);
-
 		centre.add(hbox);
 
 		// Iteration Defaults
@@ -219,14 +190,6 @@ public class ConfigView extends JPanel {
 
 	public JTextField getHelperWebTextField() {
 		return helperWebTF;
-	}
-
-	public JTextField getHelperTextTextField() {
-		return helperTextTF;
-	}
-
-	public JTextField getHelperDirectoryTextField() {
-		return helperDirectoryTF;
 	}
 
 	public JButton getBaseBrowseButton() {

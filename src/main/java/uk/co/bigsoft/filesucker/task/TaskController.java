@@ -3,7 +3,6 @@ package uk.co.bigsoft.filesucker.task;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -69,7 +68,7 @@ public class TaskController {
 		view.getDirectoryBrowseButton().addActionListener(e -> directoryBrowse());
 		view.getDirectoryClipboardButton().addActionListener(e -> directoryClipboard(configModel));
 		view.getDirectoryExtensionButton().addActionListener(e -> directoryExtension(configModel));
-		view.getHelperDirectoryButton().addActionListener(e -> helperDirectory(configModel.getHelperDirectory()));
+		view.getHelperDirectoryButton().addActionListener(e -> helperDirectory());
 		view.getHomeButton().addActionListener(e -> directoryToHome(configModel.getBaseDir()));
 		view.getHomeDirectoryPrefixButton().addActionListener(e -> homeDirectoryPrefix(configModel));
 		view.getSubDirectoryAndPrefixButton().addActionListener(e -> subDirectoryAndPrefix(configModel));
@@ -612,7 +611,7 @@ public class TaskController {
 		model.setOriginalAddress(s);
 	}
 
-	private void helperDirectory(String helperDirectory) {
+	private void helperDirectory() {
 		String d = model.getDirectory();
 		String realDir = Utility.realDirectory(d);
 
@@ -625,12 +624,7 @@ public class TaskController {
 			dir.mkdirs();
 		}
 
-		String cmd = helperDirectory.replaceAll("%s", realDir);
-		try {
-			Utility.runShellCommand(cmd);
-		} catch (IOException e) {
-			model.setErrorMessage(e.toString());
-		}
+		Utility.openOnDesktop(dir);
 	}
 
 	private void copyWorkingToTools(ToolsModel toolsModel) {

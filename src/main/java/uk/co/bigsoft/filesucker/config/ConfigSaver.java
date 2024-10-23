@@ -30,14 +30,12 @@ public class ConfigSaver extends Properties {
 	private final String LAB_MAXTASKS = "maxTasks"; //$NON-NLS-1$
 	private final String LAB_MAXSUBTASKS = "maxSubTasks"; //$NON-NLS-1$
 	private final String LAB_HELPER_WEB = "helperWeb"; //$NON-NLS-1$
-	private final String LAB_HELPER_TEXT = "helperText"; //$NON-NLS-1$
 	private final String LAB_DELAYSOCKREADMS = "delaySockReadMs"; //$NON-NLS-1$
 	private final String LAB_DELAYFILESMS = "delayFilesMs"; //$NON-NLS-1$
 	private final String LAB_FINDEXTN = "findExtension"; //$NON-NLS-1$
 	private final String LAB_NUMBERLOOPHISTORY = "numberLooperHistory"; //$NON-NLS-1$
 	private final String LAB_TEXTLOOPHISTORY = "textLooperHistory"; //$NON-NLS-1$
 	private final String LAB_VERSION = "Version"; //$NON-NLS-1$
-	private final String LAB_HELPER_DIRECTORY = "OpenDirectory"; //$NON-NLS-1$
 
 	public ConfigSaver() {
 		//
@@ -68,8 +66,6 @@ public class ConfigSaver extends Properties {
 		p.setProperty(LAB_MAXSUBTASKS, String.valueOf(cm.getMaxSubTasks()));
 		p.setProperty(LAB_FINDEXTN, stringListToString(cm.getFindExtn()));
 		p.setProperty(LAB_HELPER_WEB, cm.getHelperWeb());
-		p.setProperty(LAB_HELPER_TEXT, cm.getHelperText());
-		p.setProperty(LAB_HELPER_DIRECTORY, cm.getHelperDirectory());
 		p.setProperty(LAB_DELAYSOCKREADMS, String.valueOf(cm.getDelaySockReadMs()));
 		p.setProperty(LAB_DELAYFILESMS, String.valueOf(cm.getDelayFilesMs()));
 
@@ -114,13 +110,11 @@ public class ConfigSaver extends Properties {
 		cm.setMaxSubTasks(getIntProperty(p, LAB_MAXSUBTASKS, cm.getMaxTasks()));
 		cm.setMaxTasks(getIntProperty(p, LAB_MAXTASKS, cm.getMaxTasks()));
 
-		cm.setHelperText(getStringProperty(p, LAB_HELPER_TEXT, cm.getHelperText()));
 		cm.setHelperWeb(getStringProperty(p, LAB_HELPER_WEB, cm.getHelperWeb()));
 
 		cm.setNumberLooperHistory(getStringListProperty(p, LAB_NUMBERLOOPHISTORY, cm.getNumberLooperHistory()));
 		cm.setTextLooperHistory(getStringListProperty(p, LAB_TEXTLOOPHISTORY, cm.getTextLooperHistory()));
 
-		cm.setOpenDirectory(getStringProperty(p, LAB_HELPER_DIRECTORY, cm.getHelperDirectory()));
 		cm.setFindExtn(getStringListProperty(p, LAB_FINDEXTN, cm.getFindExtn()));
 
 		cm.setPostPrefix(getStringProperty(p, LAB_POSTPREFIX, cm.getPostPrefix()));
