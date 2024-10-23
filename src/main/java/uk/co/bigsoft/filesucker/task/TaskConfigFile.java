@@ -66,7 +66,7 @@ public class TaskConfigFile {
 			p.setProperty(LAB_SUFFIX, tc.getSuffix());
 			p.setProperty(LAB_SUFFIX_END, tc.isSuffixEnd() ? "1" : "0");
 			p.setProperty(LAB_ORIGINAL_ADDRESS, tc.getOrignalAddress());
-			
+
 			p.store(fos, "FileChecker");
 		} catch (IOException e) {
 			e.printStackTrace();

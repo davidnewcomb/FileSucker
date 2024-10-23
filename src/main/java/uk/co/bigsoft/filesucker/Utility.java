@@ -47,7 +47,7 @@ public class Utility {
 			L.error("Can not open file: " + f.toString(), e);
 		}
 	}
-	
+
 	public static void setClipboard(String str) {
 		L.debug("setClipboard not implemented");
 	}
