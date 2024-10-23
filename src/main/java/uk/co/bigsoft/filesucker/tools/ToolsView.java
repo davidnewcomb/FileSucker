@@ -9,8 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileView;
-
 public class ToolsView extends JPanel {
 	private JTextField workingTF = new JTextField("");
 
@@ -23,9 +21,8 @@ public class ToolsView extends JPanel {
 	private JButton linksPageButton = new JButton("LinksPage");
 	private JButton generateImageWebPage = new JButton("GenImageWebPage");
 	private JButton generateWebPage = new JButton("GenWebPage");
-	private JButton launchProfileButton = new JButton("LaunchProfile");
 
-	public ToolsView(LaunchProfileView launchProfileView) {
+	public ToolsView() {
 		super(new BorderLayout());
 
 		Box hbox = Box.createHorizontalBox();
@@ -52,9 +49,6 @@ public class ToolsView extends JPanel {
 		hbox.add(workingTF);
 
 		vbox.add(hbox);
-
-		launchProfileView.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
-		vbox.add(launchProfileView);
 	}
 
 	public void setConvertUrlText(String s) {
@@ -95,9 +89,5 @@ public class ToolsView extends JPanel {
 
 	public JButton getGenerateWebPage() {
 		return generateWebPage;
-	}
-
-	public JButton getLaunchProfileButton() {
-		return launchProfileButton;
 	}
 }

@@ -9,7 +9,6 @@ public class ToolsModel {
 	private SwingPropertyChangeSupport propChangeFirer;
 	private String working = "";
 	private String selectedWorking = "";
-	private String launchProfile = "";
 
 	public ToolsModel() {
 		propChangeFirer = new SwingPropertyChangeSupport(this);
@@ -38,13 +37,4 @@ public class ToolsModel {
 		this.selectedWorking = selectedWorking;
 		propChangeFirer.firePropertyChange(ToolsProps.F_SELECTED_WORKING, oldVal, this.selectedWorking);
 	}
-
-	public String getLaunchProfile() {
-		return launchProfile;
-	}
-
-	public void setLaunchProfile(String launchProfile) {
-		this.launchProfile = launchProfile;
-	}
-
 }

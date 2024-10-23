@@ -95,12 +95,6 @@ public class ConfigView extends JPanel {
 
 		centre.add(hbox);
 
-		// Open directory launch
-		centre.add(new JLabel("Launch Profiles"));
-		hbox = Box.createHorizontalBox();
-		hbox.add(new JLabel("TODO LaunchProfileConfigPanel"));
-		centre.add(hbox);
-
 		// Iteration Defaults
 		centre.add(new JLabel("Iteration Defaults"));
 

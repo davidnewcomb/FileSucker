@@ -1,9 +1,11 @@
 package uk.co.bigsoft.filesucker.tools;
 
+import java.awt.Desktop;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
@@ -76,7 +78,6 @@ public class ToolsController {
 		view.getGenerateImageWebPage().addActionListener(e -> generateImageWebPage(configModel));
 		view.getLinksPageButton().addActionListener(e -> linksPage(configModel, taskModel));
 		view.getLaunchButton().addActionListener(e -> launch(configModel.getHelperWeb()));
-		view.getLaunchProfileButton().addActionListener(e -> launchProfile());
 	}
 
 	private void keyReleased() {
@@ -360,21 +361,10 @@ public class ToolsController {
 
 	private void launch(String helperWeb) {
 		String url = model.getWorking();
-		Utility.launchBrowser(helperWeb, url);
-	}
-
-	private void launchProfile() {
-		L.debug("not-implemented: launchProfile");
-		String url = model.getWorking();
-		if ("".equals(url)) {
-			return;
-		}
 		try {
-//			 String sub = list.getSel
-//			 String helper = FileSucker.configData.getWebHelper().replaceAll ("%s", url);
-//			 Runtime.getRuntime ().exec (helper) ;
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			Desktop.getDesktop().open(new File(url));
+		} catch (IOException e) {
+			L.info("Unable to launch application", e);
 		}
 	}
 

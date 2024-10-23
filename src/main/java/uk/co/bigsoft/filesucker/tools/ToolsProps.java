@@ -4,6 +4,5 @@ public class ToolsProps {
 
 	public static final String F_WORKING = "working";
 	public static final String F_SELECTED_WORKING = "selectedWorking";
-	public static final String F_LAUNCH_PROFILE = "launchProfile";
 
 }

@@ -23,9 +23,6 @@ import uk.co.bigsoft.filesucker.task.view.loopers.LooperPanel;
 import uk.co.bigsoft.filesucker.tools.ToolsController;
 import uk.co.bigsoft.filesucker.tools.ToolsModel;
 import uk.co.bigsoft.filesucker.tools.ToolsView;
-import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileController;
-import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileModel;
-import uk.co.bigsoft.filesucker.tools.launch_profile.LaunchProfileView;
 import uk.co.bigsoft.filesucker.transfer.TransferController;
 import uk.co.bigsoft.filesucker.transfer.TransferModel;
 import uk.co.bigsoft.filesucker.transfer.TransferView;
@@ -50,11 +47,6 @@ public class FileSucker {
 		creditsModel.setTotalNumBytes(p.getTotalDownloadedBytes());
 		creditsModel.setTotalNumFiles(p.getTotalDownloadedFiles());
 
-		LaunchProfileModel launchProfileModel = new LaunchProfileModel();
-		LaunchProfileView launchProfileView = new LaunchProfileView();
-		LaunchProfileController launchProfileController = new LaunchProfileController(launchProfileModel,
-				launchProfileView);
-
 		ToolsModel toolsModel = new ToolsModel();
 		TaskModel taskModel = new TaskModel();
 		TransferModel transferModel = new TransferModel();
@@ -64,7 +56,7 @@ public class FileSucker {
 		ConfigView configView = new ConfigView();
 		CreditsView creditsView = new CreditsView();
 
-		ToolsView toolsView = new ToolsView(launchProfileView);
+		ToolsView toolsView = new ToolsView();
 		LooperPanel looperPanel = new LooperPanel(configModel, taskModel);
 		TaskView taskView = new TaskView(looperPanel);
 		TransferView transferView = new TransferView();
@@ -78,7 +70,6 @@ public class FileSucker {
 		transferController.initController(creditsController);
 		configController.initController();
 		creditsController.initController();
-		launchProfileController.initController(configModel, toolsModel);
 		toolsController.initController(configModel, taskModel);
 		taskController.initController(configModel, toolsModel, transferController);
 

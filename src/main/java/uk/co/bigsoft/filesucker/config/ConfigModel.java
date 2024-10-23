@@ -24,7 +24,6 @@ public class ConfigModel implements Cloneable {
 	private int delayFilesMs = 5000;
 	private List<String> numberLooperHistory = new ArrayList<>();
 	private List<String> textLooperHistory = new ArrayList<>();
-	private List<String> launchProfiles = new ArrayList<>();
 
 	public ConfigModel() {
 		//
@@ -49,7 +48,6 @@ public class ConfigModel implements Cloneable {
 		cm.setDelayFilesMs(delayFilesMs);
 		cm.setNumberLooperHistory(numberLooperHistory);
 		cm.setTextLooperHistory(textLooperHistory);
-		cm.setLaunchProfiles(launchProfiles);
 		return cm;
 	}
 
@@ -188,13 +186,4 @@ public class ConfigModel implements Cloneable {
 	public void setTextLooperHistory(List<String> textLooperHistory) {
 		this.textLooperHistory = textLooperHistory;
 	}
-
-	public List<String> getLaunchProfiles() {
-		return launchProfiles;
-	}
-
-	public void setLaunchProfiles(List<String> launchProfiles) {
-		this.launchProfiles = launchProfiles;
-	}
-
 }

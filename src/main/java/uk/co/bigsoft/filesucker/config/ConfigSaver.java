@@ -36,7 +36,6 @@ public class ConfigSaver extends Properties {
 	private final String LAB_FINDEXTN = "findExtension"; //$NON-NLS-1$
 	private final String LAB_NUMBERLOOPHISTORY = "numberLooperHistory"; //$NON-NLS-1$
 	private final String LAB_TEXTLOOPHISTORY = "textLooperHistory"; //$NON-NLS-1$
-	private final String LAB_LAUNCHPROFILES = "LaunchProfiles"; //$NON-NLS-1$
 	private final String LAB_VERSION = "Version"; //$NON-NLS-1$
 	private final String LAB_HELPER_DIRECTORY = "OpenDirectory"; //$NON-NLS-1$
 
@@ -76,7 +75,6 @@ public class ConfigSaver extends Properties {
 
 		p.setProperty(LAB_NUMBERLOOPHISTORY, stringListToString(cm.getNumberLooperHistory()));
 		p.setProperty(LAB_TEXTLOOPHISTORY, stringListToString(cm.getTextLooperHistory()));
-		p.setProperty(LAB_LAUNCHPROFILES, stringListToString(cm.getLaunchProfiles()));
 
 		try {
 			FileOutputStream fos = new FileOutputStream(CONFIG_FILE);
@@ -119,7 +117,6 @@ public class ConfigSaver extends Properties {
 		cm.setHelperText(getStringProperty(p, LAB_HELPER_TEXT, cm.getHelperText()));
 		cm.setHelperWeb(getStringProperty(p, LAB_HELPER_WEB, cm.getHelperWeb()));
 
-		cm.setLaunchProfiles(getStringListProperty(p, LAB_LAUNCHPROFILES, cm.getLaunchProfiles()));
 		cm.setNumberLooperHistory(getStringListProperty(p, LAB_NUMBERLOOPHISTORY, cm.getNumberLooperHistory()));
 		cm.setTextLooperHistory(getStringListProperty(p, LAB_TEXTLOOPHISTORY, cm.getTextLooperHistory()));
 
