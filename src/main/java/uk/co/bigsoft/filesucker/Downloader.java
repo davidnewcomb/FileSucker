@@ -154,7 +154,9 @@ public class Downloader {
 			while (true) {
 				int bytesRead = is.read(buffer);
 				if (bytesRead == 0) {
-					Thread.sleep(Duration.ofMillis(500));
+					// sleep(Duration) available in java > 19
+					// Thread.sleep(Duration.ofMillis(500)); 
+					Thread.sleep(500);
 					continue;
 				}
 				if (bytesRead == -1) {

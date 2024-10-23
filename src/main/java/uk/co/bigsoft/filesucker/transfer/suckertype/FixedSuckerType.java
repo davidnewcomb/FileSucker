@@ -9,12 +9,16 @@ public class FixedSuckerType extends SuckerType {
 	FixedSuckerType(int looperId, List<String> params) {
 		super(looperId);
 
-		things.add(params.getFirst());
+		// getFirst only available in java > 21
+		// things.add(params.getFirst()); 
+		things.add(params.get(0));
 	}
 
 	@Override
 	public String toStringBraces() {
-		return String.format("{%s,%d,%s}", LooperCmd.L_FIXED, getId(), things.getFirst());
+		// getFirst only available in java > 21
+		// return String.format("{%s,%d,%s}", LooperCmd.L_FIXED, getId(), things.getFirst());  
+		return String.format("{%s,%d,%s}", LooperCmd.L_FIXED, getId(), things.get(0));
 	}
 
 }

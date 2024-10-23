@@ -139,7 +139,8 @@ public class SuckerTaskController extends Thread {
 		}
 
 		L.debug("Queue is empty");
-		executor.close();
+		// Available in java > 19
+		// executor.close();
 		if (model.isCancelled()) {
 			executor.shutdownNow();
 		} else {
