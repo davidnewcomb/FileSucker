@@ -177,7 +177,7 @@ public class TaskController {
 			dir += File.separator;
 		}
 		TaskConfig taskConfig = new TaskConfig(model.getUrl(), dir, model.getPrefix(), model.getSuffix(),
-				model.isSuffixEnd());
+				model.isSuffixEnd(), model.getOriginalAddress());
 
 		if (model.isSaveUrl()) {
 			taskConfigFile.save(taskConfig);
@@ -654,5 +654,6 @@ public class TaskController {
 		model.setSuffix(tc.getSuffix());
 		model.setSuffixEnd(tc.isSuffixEnd());
 		model.setDirectory(tc.getDirectory());
+		model.setOriginalAddress(tc.getOrignalAddress());
 	}
 }

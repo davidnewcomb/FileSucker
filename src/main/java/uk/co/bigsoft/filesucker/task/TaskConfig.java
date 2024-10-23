@@ -7,13 +7,15 @@ public class TaskConfig {
 	private String prefix;
 	private String suffix;
 	private boolean suffixEnd;
+	private String orignalAddress;
 
-	public TaskConfig(String url, String directory, String prefix, String suffix, boolean suffixEnd) {
+	public TaskConfig(String url, String directory, String prefix, String suffix, boolean suffixEnd, String orignalAddress) {
 		this.url = url;
 		this.directory = directory;
 		this.prefix = prefix;
 		this.suffix = suffix;
 		this.suffixEnd = suffixEnd;
+		this.orignalAddress = orignalAddress;
 	}
 
 	public String getUrl() {
@@ -36,4 +38,7 @@ public class TaskConfig {
 		return suffixEnd;
 	}
 
+	public String getOrignalAddress() {
+		return orignalAddress;
+	}
 }

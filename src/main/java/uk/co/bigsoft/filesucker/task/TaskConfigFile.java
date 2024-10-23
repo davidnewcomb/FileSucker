@@ -18,6 +18,7 @@ public class TaskConfigFile {
 	private static final String LAB_DIRECTORY = "Directory";
 	private static final String LAB_SUFFIX = "Suffix";
 	private static final String LAB_SUFFIX_END = "SuffixEnd";
+	private static final String LAB_ORIGINAL_ADDRESS = "OriginalAddress";
 
 	public TaskConfigFile() {
 		//
@@ -37,8 +38,9 @@ public class TaskConfigFile {
 			String prefix = p.getProperty(LAB_PREFIX, "");
 			String suffix = p.getProperty(LAB_SUFFIX, "");
 			boolean suffixEnd = "1".equals(p.getProperty(LAB_SUFFIX_END, "1"));
+			String originalAddress = p.getProperty(LAB_ORIGINAL_ADDRESS, "");
 
-			TaskConfig tc = new TaskConfig(url, directory, prefix, suffix, suffixEnd);
+			TaskConfig tc = new TaskConfig(url, directory, prefix, suffix, suffixEnd, originalAddress);
 			return tc;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -63,7 +65,8 @@ public class TaskConfigFile {
 			p.setProperty(LAB_PREFIX, tc.getPrefix());
 			p.setProperty(LAB_SUFFIX, tc.getSuffix());
 			p.setProperty(LAB_SUFFIX_END, tc.isSuffixEnd() ? "1" : "0");
-
+			p.setProperty(LAB_ORIGINAL_ADDRESS, tc.getOrignalAddress());
+			
 			p.store(fos, "FileChecker");
 		} catch (IOException e) {
 			e.printStackTrace();

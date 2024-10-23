@@ -215,7 +215,7 @@ public class ToolsController {
 			s.append(FileSucker.version);
 			s.append("</title>\n</head>\n<body>\n\n");
 
-			TaskConfig tm = new TaskConfig(text, ".", "", "", false);
+			TaskConfig tm = new TaskConfig(text, ".", "", "", false, "");
 			SuckerIterable sit = new SuckerIterable(tm);
 
 			for (SuckerItem st : sit) {
@@ -253,7 +253,7 @@ public class ToolsController {
 				return;
 			}
 
-			TaskConfig tm = new TaskConfig(text, ".", "", "", false);
+			TaskConfig tm = new TaskConfig(text, ".", "", "", false, "");
 			SuckerIterable sit = new SuckerIterable(tm);
 
 			StringBuilder s = new StringBuilder();
