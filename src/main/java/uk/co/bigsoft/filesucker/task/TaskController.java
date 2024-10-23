@@ -545,6 +545,7 @@ public class TaskController {
 			String s = Utility.getClipboard();
 			if (s != null) {
 				model.setUrl(s);
+				model.setOriginalAddress("");
 			}
 		}
 	}

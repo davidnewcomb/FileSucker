@@ -15,8 +15,10 @@ public class SuckerItemModel {
 	private long bytesToDownload = -1;
 	private Exception error = null;
 	private SuckerItem workItem;
+	private String referer = "";
 
-	public SuckerItemModel(SuckerItem item) {
+	public SuckerItemModel(SuckerItem item, String originalAddress) {
+		referer = originalAddress;
 		workItem = item;
 		propChangeFirer = new SwingPropertyChangeSupport(this);
 	}
@@ -77,6 +79,15 @@ public class SuckerItemModel {
 
 	public SuckerItem getWorkItem() {
 		return workItem;
+	}
+
+	public String getReferer() {
+		if ("".equals(referer)) {
+			String url = workItem.getUrl();
+			int idx = url.lastIndexOf("/");
+			referer = url.substring(0, idx);
+		}
+		return referer;
 	}
 
 }

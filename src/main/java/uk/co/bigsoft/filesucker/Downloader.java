@@ -78,11 +78,6 @@ public class Downloader {
 		return body;
 	}
 
-	private String getReferer(String url) {
-		int idx = url.lastIndexOf("/");
-		return url.substring(0, idx);
-	}
-
 	public void downloadBinaryFileProgressable(SuckerItemModel sim) {
 
 		sim.started();
@@ -111,7 +106,7 @@ public class Downloader {
 				}
 			}
 
-			builder = builder.header("Referer", getReferer(sim.getWorkItem().getUrl()));
+			builder = builder.header("Referer", sim.getReferer());
 			HttpRequest req = builder.build();
 
 			BodyHandler<InputStream> handler = HttpResponse.BodyHandlers.ofInputStream();
@@ -155,7 +150,7 @@ public class Downloader {
 				int bytesRead = is.read(buffer);
 				if (bytesRead == 0) {
 					// sleep(Duration) available in java > 19
-					// Thread.sleep(Duration.ofMillis(500)); 
+					// Thread.sleep(Duration.ofMillis(500));
 					Thread.sleep(500);
 					continue;
 				}

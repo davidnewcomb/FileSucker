@@ -37,7 +37,6 @@ public class TransferController {
 		case TransferProps.F_TASK_ADDED: {
 			SuckerTaskController c = (SuckerTaskController) newVal;
 			view.addTask(c.getView());
-
 			c.start();
 			break;
 		}

@@ -1,6 +1,7 @@
 package uk.co.bigsoft.filesucker.transfer.task;
 
 import java.beans.PropertyChangeEvent;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -9,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import uk.co.bigsoft.filesucker.Downloader;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.credits.CreditsController;
 import uk.co.bigsoft.filesucker.credits.CreditsProps;
@@ -117,13 +119,24 @@ public class SuckerTaskController extends Thread {
 				queue);
 		executor.prestartAllCoreThreads();
 
+		// Preload cookies etc
+		String originalAddress = model.getWork().getTaskConfig().getOrignalAddress();
+		if (!"".equals(originalAddress)) {
+			try {
+				L.debug("Downloading original address");
+				Downloader.getInstance().downloadTextFile(originalAddress);
+			} catch (IOException | InterruptedException e) {
+				L.info("Error downloading original address", e);
+			}
+		}
+
 		for (SuckerItem item : model.getWork()) {
 
 			if (model.isCancelled()) {
 				break;
 			}
 
-			SuckerItemModel m = new SuckerItemModel(item);
+			SuckerItemModel m = new SuckerItemModel(item, originalAddress);
 			m.addListener(e -> modelListener(e));
 
 			SuckerItemDownloader r = new SuckerItemDownloader(m);
