@@ -218,7 +218,8 @@ public class Utility {
 		return toExpand.replaceAll(timeStr, "%T");
 	}
 
-	@SuppressWarnings(value = "deprecation")
+	// exec(String) deprecation in java 18
+	// @SuppressWarnings(value = "deprecation")
 	public static void runShellCommand(String cmd) throws IOException {
 		L.debug("Running: '" + cmd + "'");
 		Runtime.getRuntime().exec(cmd);

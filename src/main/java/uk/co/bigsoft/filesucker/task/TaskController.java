@@ -193,8 +193,6 @@ public class TaskController {
 		FileSuckerFrame.viewTransfers();
 
 		model.setOriginalAddress("");
-		view.getRunYet().setReset();
-
 	}
 
 	private void findFiles(ConfigModel configModel) {

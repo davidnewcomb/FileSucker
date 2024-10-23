@@ -18,7 +18,6 @@ import javax.swing.border.LineBorder;
 import uk.co.bigsoft.filesucker.Utility;
 import uk.co.bigsoft.filesucker.task.view.FileTransferHandler;
 import uk.co.bigsoft.filesucker.task.view.HistoryJComboBox;
-import uk.co.bigsoft.filesucker.task.view.RunYetComponent;
 import uk.co.bigsoft.filesucker.task.view.UrlTextField;
 import uk.co.bigsoft.filesucker.task.view.loopers.LooperCmd;
 import uk.co.bigsoft.filesucker.task.view.loopers.LooperPanel;
@@ -60,7 +59,6 @@ public class TaskView extends JPanel {
 
 	private HistoryJComboBox directoryCB = new HistoryJComboBox("directory");
 
-	private RunYetComponent runYet = new RunYetComponent();
 	private JCheckBox saveUrl = new JCheckBox();
 	private JCheckBox saveOnly = new JCheckBox();
 
@@ -97,7 +95,6 @@ public class TaskView extends JPanel {
 		rp.add(BorderLayout.CENTER, runTaskButton);
 		rp.add(BorderLayout.EAST, saveOnly);
 		bot.add(rp);
-		bot.add(runYet);
 		add(bot, BorderLayout.SOUTH);
 
 		centre.add(new JLabel("Get"));
@@ -354,16 +351,8 @@ public class TaskView extends JPanel {
 		urlTF.setText(x);
 	}
 
-	public void changed() {
-		runYet.setModifed();
-	}
-
 	public LooperPanel getLooperPanel() {
 		return looperPanel;
-	}
-
-	public RunYetComponent getRunYet() {
-		return runYet;
 	}
 
 	public JCheckBox getSaveUrl() {

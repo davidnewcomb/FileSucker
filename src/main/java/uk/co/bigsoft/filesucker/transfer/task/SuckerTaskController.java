@@ -112,6 +112,7 @@ public class SuckerTaskController extends Thread {
 	public void run() {
 
 		LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>(maxTasks);
+		// executor needs to be closed in java > 19
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(maxTasks, maxTasks, Long.MAX_VALUE, TimeUnit.SECONDS,
 				queue);
 		executor.prestartAllCoreThreads();
