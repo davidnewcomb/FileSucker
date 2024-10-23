@@ -47,6 +47,7 @@ public class TaskController {
 		view.getUrlTextField().setText(model.getUrl());
 		view.getOriginalAddressTextField().setText(model.getOriginalAddress());
 		view.getDirectoryComboBox().setSelectedItem(model.getDirectory());
+		enableUrlSelectionButtons(false);
 	}
 
 	public void initController(ConfigModel configModel, ToolsModel toolsModel, TransferController transferController) {
@@ -481,11 +482,13 @@ public class TaskController {
 			break;
 		}
 		case TaskProps.TASK_SELECTED_URL: {
-			// TODO enable/disable buttons
-
-			// TODO check this
-			if (LooperCmd.isLooperText(newVal)) {
-				view.getLooperPanel().openLooper(newVal);
+			if ("".equals(newVal)) {
+				enableUrlSelectionButtons(false);
+			} else {
+				enableUrlSelectionButtons(true);
+				if (LooperCmd.isLooperText(newVal)) {
+					view.getLooperPanel().openLooper(newVal);
+				}
 			}
 			break;
 		}
@@ -522,6 +525,18 @@ public class TaskController {
 			model.setErrorMessage(s);
 		}
 		}
+	}
+
+	private void enableUrlSelectionButtons(boolean isSelected) {
+		view.getDirectoryAndPrefixButton().setEnabled(isSelected);
+
+		view.getDirectoryExtensionButton().setEnabled(isSelected);
+		view.getHomeDirectoryPrefixButton().setEnabled(isSelected);
+		view.getSubDirectoryAndPrefixButton().setEnabled(isSelected);
+		view.getSubDirectoryPathButton().setEnabled(isSelected);
+
+		view.getPrefixButton().setEnabled(isSelected);
+		view.getSuffixButton().setEnabled(isSelected);
 	}
 
 	private void pasteIntoWorkingUrl(MouseEvent e) {
