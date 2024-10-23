@@ -58,14 +58,6 @@ public class SuckerItemModel {
 		return (int) ((bytesDownloaded * 100) / bytesToDownload);
 	}
 
-//	public String getUrl() {
-//		return workItem.getUrl();
-//	}
-
-//	public void setUrl(String url) {
-//		this.url = url;
-//	}
-
 	public void started() {
 		propChangeFirer.firePropertyChange(SuckerTaskProps.FILE_START, null, "ok");
 	}

@@ -67,8 +67,6 @@ public class TaskView extends JPanel {
 	private JButton runTaskButton = new JButton("Run Task");
 	private JButton findFilesButton = new JButton("FindFiles");
 
-	// Not wired in!
-
 	private LooperPanel looperPanel;
 
 	public TaskView(LooperPanel looperPanel) {
@@ -82,12 +80,10 @@ public class TaskView extends JPanel {
 
 		add(centre, BorderLayout.CENTER);
 
-		// Base Directory
 		directoryCB.setMinimumSize(new Dimension(10, 20));
 		directoryCB.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 		directoryCB.addMouseListener((MousePressListener) e -> mousePressed(e));
 
-		// Prefix and Suffix
 		saveOnly.setToolTipText("RunTask - save but without running");
 		saveOnly.setSelected(false);
 
@@ -136,65 +132,41 @@ public class TaskView extends JPanel {
 
 		centre.add(new JLabel("Save To"));
 
-		// JButton browseButton = new BrowseButton(directoryCB);
-		// JButton hButton = new HomeButton(directoryCB);
-
 		homeButton.setToolTipText("Initialises the directory to base directory");
 		homeButton.setMinimumSize(new Dimension(0, 0));
 		homeButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-
-		// JButton dButton = new SubDirectoryPathButton(urlTF, directoryCB);
 
 		subDirectoryPathButton.setToolTipText("Appends highlighted url text as new sub-directory");
 		subDirectoryPathButton.setMinimumSize(new Dimension(0, 0));
 		subDirectoryPathButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
-		// JButton dsButton = new DirectoryExtensionButton(urlTF, directoryCB);
-
 		directoryExtensionButton.setToolTipText("Appends highlighted url text to directory");
 		directoryExtensionButton.setMinimumSize(new Dimension(0, 0));
 		directoryExtensionButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-
-		// JButton dpButton = new SubDirectoryAndPrefixButton(urlTF, directoryCB,
-		// prefixTF);
 
 		subDirectoryAndPrefixButton.setToolTipText("Appends highlighted url text to /directory and prefix_");
 		subDirectoryAndPrefixButton.setMinimumSize(new Dimension(0, 0));
 		subDirectoryAndPrefixButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
-		// JButton pdpButton = new DirectoryAndPrefixButton(urlTF, directoryCB,
-		// prefixTF);
-
 		directoryAndPrefixButton.setToolTipText("Appends highlighted url text to _directory and _prefix");
 		directoryAndPrefixButton.setMinimumSize(new Dimension(0, 0));
 		directoryAndPrefixButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-
-		// JButton cButton = new ClipboardAsDirectoryButton(directoryCB);
 
 		clipboardAsDirectoryButton.setToolTipText("Paste clipboard as new sub-directory");
 		clipboardAsDirectoryButton.setMinimumSize(new Dimension(0, 0));
 		clipboardAsDirectoryButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
-		// JButton cpButton = new SubDirectoryAndPrefixFromClipboardButton(directoryCB,
-		// prefixTF);
-
 		subDirectoryAndPrefixFromClipboardButton.setToolTipText("Appends clipboard text to /directory and prefix_");
 		subDirectoryAndPrefixFromClipboardButton.setMinimumSize(new Dimension(0, 0));
 		subDirectoryAndPrefixFromClipboardButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-
-		// JButton cdButton = new SubDirectoryFromClipboardButton(directoryCB);
 
 		subDirectoryFromClipboardButton.setToolTipText("Appends clipboard as new sub-directory");
 		subDirectoryFromClipboardButton.setMinimumSize(new Dimension(0, 0));
 		subDirectoryFromClipboardButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
 
-		// JButton csButton = new DirectoryClipboardButton(directoryCB);
-
 		directoryClipboardButton.setToolTipText("Appends clipboard to end of directory");
 		directoryClipboardButton.setMinimumSize(new Dimension(0, 0));
 		directoryClipboardButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-
-		// JButton hpdpButton = new HomeDirectoryPrefix(urlTF, directoryCB, prefixTF);
 
 		homeDirectoryPrefixButton
 				.setToolTipText("Clears defaults and prefix then appends highlighted url text to directory and prefix");
@@ -277,7 +249,6 @@ public class TaskView extends JPanel {
 		jp.add(hbox);
 		jp.add(looperPanel);
 		centre.add(jp);
-
 	}
 
 	private void mousePressed(MouseEvent me) {
@@ -369,12 +340,6 @@ public class TaskView extends JPanel {
 
 	public JButton getFindFilesButton() {
 		return findFilesButton;
-	}
-
-	// Below: waiting for refactor
-
-	public void enableRunButton(boolean e) {
-		runTaskButton.setEnabled(e);
 	}
 
 	public JTextField getUrlTextField() {

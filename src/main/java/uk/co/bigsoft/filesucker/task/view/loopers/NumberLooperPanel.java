@@ -14,7 +14,7 @@ public class NumberLooperPanel extends JPanel implements ILooperPanel {
 	private UpDownNumberJTextField toTF = new UpDownNumberJTextField();
 	private UpDownNumberJTextField padTF = new UpDownNumberJTextField();
 	private UpDownNumberJTextField fromTF = new UpDownNumberJTextField();
-	// private MenuButton history;
+
 	private JLabel looperTitle = new JLabel();
 	private int looperId = -1;
 
@@ -23,31 +23,14 @@ public class NumberLooperPanel extends JPanel implements ILooperPanel {
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		// fromTF = new UpDownNumberJTextField();
 		fromTF.setMinimumSize(new Dimension(10, 20));
 		fromTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		// toTF = new UpDownNumberJTextField();
 		toTF.setMinimumSize(new Dimension(10, 20));
 		toTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
-		// padTF = new UpDownNumberJTextField();
 		padTF.setMinimumSize(new Dimension(10, 20));
 		padTF.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-
-//		history = new MenuButton(this);
-//		history.setMinimumSize(new Dimension(10, 20));
-//		history.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-
-//		history.addMenuButtonListener(new MenuButtonListener() {
-//			public void changed(String newText) {
-//				NumberLooperParms p = new NumberLooperParms(newText);
-//				fromTF.setValue(p.getFrom());
-//				toTF.setValue(p.getTo());
-//				padTF.setValue(p.getPadding());
-//			}
-//
-//		});
 
 		add(looperTitle);
 		add(new JLabel("From:"));
@@ -56,9 +39,6 @@ public class NumberLooperPanel extends JPanel implements ILooperPanel {
 		add(toTF);
 		add(new JLabel("Pad:"));
 		add(padTF);
-//		add(new JLabel("History:"));
-//		add(history);
-
 	}
 
 	@Override
@@ -69,7 +49,6 @@ public class NumberLooperPanel extends JPanel implements ILooperPanel {
 		int pad = padTF.getVal();
 
 		String guts = String.format("%d,%d,%d", from, to, pad);
-		// history.addEntry(s.toString());
 
 		String full = String.format("{%s,%d,%s}", LooperCmd.L_NUMBER, looperId, guts);
 		return full;
@@ -88,13 +67,4 @@ public class NumberLooperPanel extends JPanel implements ILooperPanel {
 		toTF.setStartingValue(to);
 		padTF.setStartingValue(pad);
 	}
-
-//	public HistoryDropDown getList() {
-//		return FileSucker.configData.getNumberLooperHistory();
-//	}
-//
-//	public void setList(HistoryDropDown l) {
-//		FileSucker.configData.setNumberLooperHistory(l);
-//	}
-
 }

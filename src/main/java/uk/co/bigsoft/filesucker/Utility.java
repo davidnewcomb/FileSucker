@@ -196,8 +196,7 @@ public class Utility {
 				String[] restAr = rest.split(",");
 				sb.append("{");
 				if (restAr.length > 1) {
-					// A special set eg l,43,02,03,10. 2nd
-					// value is the number eg 43
+					// A special set eg l,43,02,03,10. 2nd value is the number eg 43
 					sb.append(restAr[1]);
 				} else {
 					// Just a number on its own

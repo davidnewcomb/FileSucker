@@ -55,7 +55,7 @@ public class ToolsController {
 			break;
 		}
 		case ToolsProps.F_SELECTED_WORKING: {
-			//
+			// TODO Needed?
 			break;
 		}
 		default: {
@@ -235,8 +235,7 @@ public class ToolsController {
 			fw.write(s.toString());
 			fw.close();
 
-			// DOS does not honour a second quoted string in the
-			// command line
+			// DOS does not honour a second quoted string in the command line
 			// String path = "\"" + f.toString ().replaceAll ("\\\\", "\\\\\\\\") + "\"";
 			String path = f.toString().replaceAll("\\\\", "\\\\\\\\");
 			Utility.launchBrowser(configModel, path);

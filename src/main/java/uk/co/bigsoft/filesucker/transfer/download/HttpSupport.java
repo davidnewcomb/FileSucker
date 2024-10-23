@@ -24,6 +24,7 @@ class HttpRange {
 }
 
 public class HttpSupport {
+	public static final int HTTP_RANGE_NOT_SATISFIABLE = 416;
 	// content-range=bytes 22-330122/330123
 	private static final Pattern contentRangePattern1 = Pattern.compile("([a-z]+) ([0-9]+)-([0-9]+)/([0-9]+)");
 //	private static final Pattern contentRangePattern2 = Pattern.compile("([a-z]+) ([0-9]+)-([0-9]+)/\\*");

@@ -39,5 +39,4 @@ public class UpDownTextJTextField extends JSpinner {
 	public String toString() {
 		return textbox.getText();
 	}
-
 }

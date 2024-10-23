@@ -35,8 +35,6 @@ public class ToolsView extends JPanel {
 
 		add(vbox, BorderLayout.CENTER);
 
-		// hbox.setMaximumSize(new Dimension(Integer.MAX_VALUE, MAX_WID_HEIGHT)) ;
-
 		hbox.add(convertHexNum);
 		hbox.add(convertMiddle);
 		hbox.add(convertB64);

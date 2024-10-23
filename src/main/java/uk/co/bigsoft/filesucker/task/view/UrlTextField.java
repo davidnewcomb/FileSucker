@@ -66,5 +66,4 @@ public class UrlTextField extends JTextField {
 		setSelectionStart(startpos);
 		setSelectionEnd(endpos);
 	}
-
 }

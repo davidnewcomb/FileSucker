@@ -78,6 +78,11 @@ public class Downloader {
 		return body;
 	}
 
+	private String getReferer(String url) {
+		int idx = url.lastIndexOf("/");
+		return url.substring(0, idx);
+	}
+
 	public void downloadBinaryFileProgressable(SuckerItemModel sim) {
 
 		sim.started();
@@ -102,10 +107,11 @@ public class Downloader {
 				String rangeLastModified = HttpSupport.rangeLastModifiedDateString(sim.getWorkItem().getLocal());
 				if (rangeLastModified != null) {
 					builder = builder.header("Range", "bytes=" + currentFileSize + "-");
-					builder = builder.header("If-Range", rangeLastModified + " GMT");
+					// builder = builder.header("If-Range", rangeLastModified + " GMT");
 				}
 			}
 
+			builder = builder.header("Referer", getReferer(sim.getWorkItem().getUrl()));
 			HttpRequest req = builder.build();
 
 			BodyHandler<InputStream> handler = HttpResponse.BodyHandlers.ofInputStream();
@@ -123,7 +129,15 @@ public class Downloader {
 				}
 				bytesDownloaded = 0L;
 				fos = new FileOutputStream(lf);
+			} else if (resp.statusCode() == HttpURLConnection.HTTP_NOT_FOUND) {
+				sim.setError(new IOException("404 Not Found"));
+				return;
+			} else if (resp.statusCode() == HttpSupport.HTTP_RANGE_NOT_SATISFIABLE) {
+				// Usually means the file is complete
+				sim.completed();
+				return;
 			} else {
+				sim.setError(new IOException("Bad code " + resp.statusCode()));
 				throw new IOException("Bad code " + resp.statusCode());
 			}
 
@@ -148,10 +162,8 @@ public class Downloader {
 				}
 				bytesDownloaded += bytesRead;
 				sim.setBytesDownloaded(bytesDownloaded, bytesRead);
-				// L.debug("downloaded=" + bytesDownloaded);
 
 				fos.write(buffer, 0, bytesRead);
-				// Utility.delay(1_000);
 			}
 			sim.completed();
 		} catch (IOException | InterruptedException e) {

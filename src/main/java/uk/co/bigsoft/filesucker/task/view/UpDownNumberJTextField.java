@@ -40,5 +40,4 @@ public class UpDownNumberJTextField extends JSpinner {
 	public String toString() {
 		return textbox.getText().replaceAll(",", "");
 	}
-
 }

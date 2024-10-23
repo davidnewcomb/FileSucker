@@ -78,7 +78,6 @@ public class LooperPanel extends JPanel {
 
 	private void okButton() {
 		String looperText = currentPanel.toStringBraces();
-		// taskModel.replaceSelectedUrl(looperText);
 		taskModel.replaceSelectedUrl(looperText);
 
 		L.debug("looperText: " + looperText);
@@ -215,12 +214,3 @@ public class LooperPanel extends JPanel {
 	}
 
 }
-
-// works -
-// https://stackoverflow.com/questions/2711104/swapping-out-the-center-jpanel-in-a-borderlayout
-//	remove(EMPTY);
-//	add(listPanel, BorderLayout.CENTER);
-//	repaint();
-//	revalidate();
-
-// Also works

@@ -45,8 +45,6 @@ public class TaskController {
 	}
 
 	private void initView() {
-		// TODO remove after testing
-		model.setUrl("http://192.168.4.192/test/red-arrows/red-arrows-{N,13,1,10,1}.jpg");
 		view.getUrlTextField().setText(model.getUrl());
 		view.getOriginalAddressTextField().setText(model.getOriginalAddress());
 		view.getDirectoryComboBox().setSelectedItem(model.getDirectory());

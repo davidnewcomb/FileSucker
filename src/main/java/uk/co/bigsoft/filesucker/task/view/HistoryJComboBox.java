@@ -26,20 +26,10 @@ public class HistoryJComboBox extends JComboBox<String> {
 	private Preferences preferences = null;
 	private String p_items = null;
 
-	/**
-	 * Constructor:
-	 * 
-	 * @param preferenceName Preference name to store history
-	 */
 	public HistoryJComboBox(String pn) {
 		init(pn);
 	}
 
-	/**
-	 * init: Sets up all the default values for the JComboBox
-	 * 
-	 * @param pn Preference name to store history
-	 */
 	private void init(String pn) {
 		preferenceName = prefix + pn;
 		String[] items = loadPrefs();
@@ -55,11 +45,6 @@ public class HistoryJComboBox extends JComboBox<String> {
 		addActionListener(this);
 	}
 
-	/**
-	 * loadPrefs: Loads preferences from user node
-	 * 
-	 * @return String[] of items for the list
-	 */
 	private String[] loadPrefs() {
 		preferences = Preferences.userNodeForPackage(HistoryJComboBox.class);
 		p_items = preferences.get(preferenceName, "");
@@ -81,9 +66,6 @@ public class HistoryJComboBox extends JComboBox<String> {
 		return items;
 	}
 
-	/**
-	 * wipePrefs: Clears the list
-	 */
 	private void wipePrefs() {
 		removeAllItems();
 		addItem("");
@@ -93,9 +75,6 @@ public class HistoryJComboBox extends JComboBox<String> {
 		p_items = "";
 	}
 
-	/**
-	 * wipePrefs: Clears the list
-	 */
 	private void culPrefs() {
 		removeAllItems();
 
@@ -122,12 +101,6 @@ public class HistoryJComboBox extends JComboBox<String> {
 		preferences.put(preferenceName, p_items);
 	}
 
-	/**
-	 * savePrefs: Adds the parameter item or if item is null add the currently
-	 * selected entry to the history.
-	 * 
-	 * @param item Item to be added. If null, then current is used
-	 */
 	public void savePrefs(String item) {
 		String value;
 		boolean notInList = false;
@@ -170,20 +143,6 @@ public class HistoryJComboBox extends JComboBox<String> {
 		preferences.put(preferenceName, p_items);
 	}
 
-	/**
-	 * setHistory: Sets the maximum number of entries in the history.
-	 * 
-	 * @param num Max number of history entries, 0 mean unlimited
-	 */
-	// public void setHistory (int num)
-	// {
-	// maxHistory = num ;
-	// }
-	/**
-	 * actionPerformed: Required to intercept clicking on "Clear History"
-	 * 
-	 * @param e what has happened
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
@@ -205,63 +164,7 @@ public class HistoryJComboBox extends JComboBox<String> {
 		}
 	}
 
-	/**
-	 * getSelectedName: Required to intercept clicking on "Clear History"
-	 * 
-	 * @return Selected trimmed item
-	 */
 	public String getSelectedName() {
 		return super.getSelectedItem().toString().trim();
-	}
-}
-
-class HistoryJComboBoxLife implements Comparable<HistoryJComboBoxLife> {
-	private long age;
-	private String item;
-
-	public HistoryJComboBoxLife(String txt) {
-		String[] items = txt.split(HistoryJComboBox.ITEM_SUB_SEPERATOR);
-		item = items[0];
-		if (items.length == 1) {
-			age = 0;
-		} else {
-			try {
-				age = Long.valueOf(items[1]);
-			} catch (NumberFormatException e) {
-				age = 0;
-			}
-		}
-	}
-
-	public void setAge(long x) {
-		age = x;
-	}
-
-	public long getAge() {
-		return age;
-	}
-
-	public void setItem(String x) {
-		item = x;
-	}
-
-	public String getItem() {
-		return item;
-	}
-
-	@Override
-	public String toString() {
-		StringBuffer s = new StringBuffer(item);
-		s.append(HistoryJComboBox.ITEM_SUB_SEPERATOR);
-		s.append(age);
-		return s.toString();
-	}
-
-	public int compareTo(HistoryJComboBoxLife o) {
-		int x = (int) (age - o.age);
-		if (x == 0) {
-			return item.compareTo(o.item);
-		}
-		return x;
 	}
 }

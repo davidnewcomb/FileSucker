@@ -4,7 +4,6 @@ import javax.swing.AbstractSpinnerModel;
 
 public class SpinnerCharacterModel extends AbstractSpinnerModel {
 	private String range = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
 	private String current;
 
 	public SpinnerCharacterModel(String start) {
@@ -44,5 +43,4 @@ public class SpinnerCharacterModel extends AbstractSpinnerModel {
 			fireStateChanged();
 		}
 	}
-
 }

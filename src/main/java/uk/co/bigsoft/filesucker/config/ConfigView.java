@@ -32,8 +32,6 @@ public class ConfigView extends JPanel {
 	private JTextField helperWebTF = new JTextField();
 	private JTextField helperTextTF = new JTextField();
 	private JTextField helperDirectoryTF = new JTextField();
-	// private LaunchProfileConfigPanel launchProfileConfig = new
-	// LaunchProfileConfigPanel();
 	private JButton baseBrowseButton = new JButton("Browse");
 
 	public ConfigView() {
@@ -100,8 +98,6 @@ public class ConfigView extends JPanel {
 		// Open directory launch
 		centre.add(new JLabel("Launch Profiles"));
 		hbox = Box.createHorizontalBox();
-		// launchProfileConfig = new LaunchProfileConfigPanel();
-		// hbox.add(launchProfileConfig);
 		hbox.add(new JLabel("TODO LaunchProfileConfigPanel"));
 		centre.add(hbox);
 
