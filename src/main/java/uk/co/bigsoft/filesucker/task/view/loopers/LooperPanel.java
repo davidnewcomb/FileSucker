@@ -146,6 +146,7 @@ public class LooperPanel extends JPanel {
 		add(jpanel, BorderLayout.CENTER);
 		cancelOkBox.setVisible(true);
 		validate();
+		repaint();
 	}
 
 	private void showSingleButton(String ref) {

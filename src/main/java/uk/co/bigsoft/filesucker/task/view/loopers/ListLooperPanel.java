@@ -50,23 +50,43 @@ public class ListLooperPanel extends JPanel implements ILooperPanel {
 			return String.format("{%s,%d}", LooperCmd.L_LIST, looperId);
 		}
 
-		// Can only be done when listlooper closes
-		String first = items.get(0);
-		String common = "";
-		if (first.contains("/")) {
-			int lastSlash = first.lastIndexOf("/");
-			String pref = first.substring(0, lastSlash + 1);
-			boolean hasSamePrefix = items.stream().allMatch(s -> s.startsWith(pref));
-			if (hasSamePrefix) {
-				items = items.stream().map(s -> s.substring(pref.length())).collect(Collectors.toList());
-				common = pref;
+		String prefix = items.stream().reduce((a, b) -> {
+			int i = 0;
+			for (; i < a.length(); ++i) {
+				if (a.charAt(i) != b.charAt(i)) {
+					break;
+				}
 			}
+			return a.substring(0, i);
+		}).get();
+
+		if (!"".equals(prefix)) {
+			final int prefixIdx = prefix.length();
+			items = items.stream().map(s -> s.substring(prefixIdx)).collect(Collectors.toList());
+		}
+		String suffix = items.stream().reduce((a, b) -> {
+			int enda = a.length() - 1;
+			int endb = b.length() - 1;
+			int ia = enda;
+			int ib = endb;
+			for (; ia != -1 && ib != -1; --ia, --ib) {
+				if (a.charAt(ia) != b.charAt(ib)) {
+					break;
+				}
+			}
+			String s = a.substring(ia + 1, enda + 1);
+			return s;
+		}).get();
+
+		if (!"".equals(suffix)) {
+			final int suffixIdx = suffix.length();
+			items = items.stream().map(s -> s.substring(0, s.length() - suffixIdx)).collect(Collectors.toList());
 		}
 
 		StringBuilder sb = new StringBuilder();
 		String guts = String.join(",", items);
 
-		sb.append(common);
+		sb.append(prefix);
 		sb.append("{");
 		sb.append(LooperCmd.L_LIST);
 		sb.append(",");
@@ -74,6 +94,7 @@ public class ListLooperPanel extends JPanel implements ILooperPanel {
 		sb.append(",");
 		sb.append(guts);
 		sb.append("}");
+		sb.append(suffix);
 		return sb.toString();
 	}
 
