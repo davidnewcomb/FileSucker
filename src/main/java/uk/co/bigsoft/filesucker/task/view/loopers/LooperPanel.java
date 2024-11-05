@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.slf4j.Logger;
@@ -49,19 +50,23 @@ public class LooperPanel extends JPanel {
 		this.taskModel = taskModel;
 		this.configModel = configModel;
 
+		Box looperBox = Box.createVerticalBox();
+		looperBox.add(new JLabel("Loopers"));
+		
 		Box buttonsBox = Box.createHorizontalBox();
 		for (JButton jb : commandButtons) {
 			jb.setMinimumSize(new Dimension(10, 20));
 			jb.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 			buttonsBox.add(jb);
 		}
+		looperBox.add(buttonsBox);
 
 		cancelOkBox.add(okButton);
 		cancelOkBox.add(Box.createHorizontalGlue());
 		cancelOkBox.add(cancelButton);
 		cancelOkBox.setVisible(false);
 
-		add(buttonsBox, BorderLayout.NORTH);
+		add(looperBox, BorderLayout.NORTH);
 		add(EMPTY, BorderLayout.CENTER);
 		add(cancelOkBox, BorderLayout.SOUTH);
 
