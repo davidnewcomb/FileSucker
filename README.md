@@ -1,7 +1,7 @@
 # FileSucker
 Generates URLs from a pattern and downloads all the files.
 
-# GUI Layout
+## GUI Layout
 
 The application is split into 5 sections
 * NewTask - design your expression
@@ -14,41 +14,41 @@ The application is split into 5 sections
 
 ### Get section
 
-**URL**: url pattern, right click pastes from clipboard.
-**Original Address**: If you need a specific referrer page, otherwise one is generated from the url. Right click pastes from clipd
-**FindFiles**: go to the page in URL and create a looper using files found in Options:FindFiles.
+* **URL**: url pattern, right click pastes from clipboard.
+* **Original Address**: If you need a specific referrer page, otherwise one is generated from the url. Right click pastes from clipd
+* **FindFiles**: go to the page in URL and create a looper using files found in Options:FindFiles.
 
 Right-click in URL and Original Address pastes from the clipboard.
 
 ### Save To section
 Construct directory you would like to save the downloaded files to. Looper IDs may be used in the construction.
 
-*D* - directory
-*P* - prefix
-*C* - clipboard
-*_* - post prefix character
+* *D* - directory
+* *P* - prefix
+* *C* - clipboard
+* *_* - post prefix character
 
 
 ### Filename modifiers section
 Contruct the file name to save as. Looper IDs may be used here.
 
 ### Looper section
-*N* - sequence number looper
-*T* - sequence text looper
-*L* - list looper
-*C* - copy looper (repeat of existing looper)
-*F* - fixed looper (a list of 1 entry, handy if needed in a looper expression)
+* *N* - sequence number looper
+* *T* - sequence text looper
+* *L* - list looper
+* *C* - copy looper (repeat of existing looper)
+* *F* - fixed looper (a list of 1 entry, handy if needed in a looper expression)
 
-# Example expressions
+## Example expressions
 
-## http://hostname/red-arrows/red-arrows{N,1,1,10,2}.jpg
+### http://hostname/red-arrows/red-arrows{N,1,1,10,2}.jpg
 Will generated
 - http://hostname/red-arrows/red-arrows01.jpg
 - http://hostname/red-arrows/red-arrows02.jpg
 - ...
 - http://hostname/red-arrows/red-arrows10.jpg
 
-## http://hostname/show{L,1,2022,2024}/{L,2,blue-angels,red-arrows}/{C,2}-{N,3,1,10,3}.jpg
+### http://hostname/show{L,1,2022,2024}/{L,2,blue-angels,red-arrows}/{C,2}-{N,3,1,10,3}.jpg
 
 * With directory: /air-show/{2}
 * With filename: {1}_
@@ -65,7 +65,7 @@ Will generate:
 - http://hostname/show2024/red-arrows/red-arrows-001.jpg -> /air-show/red-arrows/2024-red-arrows-001.jpg
 - ...
 
-# Screenshots
+## Screenshots
 ![Configuration page](doc/images/configuration-page.jpg)
 ![Download completed time](doc/images/download-completed-time.jpg)
 ![New task page](doc/images/new-task.jpg)
