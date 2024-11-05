@@ -12,6 +12,8 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -217,10 +219,13 @@ public class Utility {
 	}
 
 	// exec(String) deprecation in java 18
-	// @SuppressWarnings(value = "deprecation")
 	public static void runShellCommand(String cmd) throws IOException {
-		L.debug("Running: '" + cmd + "'");
-		Runtime.getRuntime().exec(cmd);
+		String[] params = cmd.split(" ");
+		if (L.isDebugEnabled()) {
+			String debug = Arrays.asList(params).stream().map(p -> "'" + p + "'").collect(Collectors.joining(" "));
+			L.debug("Running: " + debug);
+		}
+		Runtime.getRuntime().exec(params);
 	}
 
 	public static void closeSafely(Closeable c) {
