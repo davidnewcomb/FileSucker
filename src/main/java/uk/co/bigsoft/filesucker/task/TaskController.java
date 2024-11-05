@@ -476,9 +476,14 @@ public class TaskController {
 
 		switch (propName) {
 		case TaskProps.TASK_URL: {
+			int caretPos = view.getUrlTextField().getCaretPosition();
 			view.getUrlTextField().setText(newVal);
-			view.getUrlTextField().setSelectionStart(model.getUrlCaretStart());
-			view.getUrlTextField().setSelectionEnd(model.getUrlCaretEnd());
+			if (model.getUrlCaretStart() == model.getUrlCaretEnd()) {
+				view.getUrlTextField().setCaretPosition(caretPos);
+			} else {
+				view.getUrlTextField().setSelectionStart(model.getUrlCaretStart());
+				view.getUrlTextField().setSelectionEnd(model.getUrlCaretEnd());
+			}
 			break;
 		}
 		case TaskProps.TASK_SELECTED_URL: {
